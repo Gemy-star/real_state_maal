@@ -6,3 +6,8 @@ from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = "main/home.html"
+
+
+
+class SoonPageView(TemplateView):
+    template_name = "main/soon.html"
