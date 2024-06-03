@@ -8,6 +8,9 @@ class HomePageView(TemplateView):
     template_name = "main/home.html"
 
 
-
 class SoonPageView(TemplateView):
     template_name = "main/soon.html"
+
+
+class AboutPageView(TemplateView):
+    template_name = "main/about.html"
