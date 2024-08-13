@@ -1,12 +1,13 @@
 <!-- ======= Footer ======= -->
-{% load static %}
+{% load static version %}
 <section class="section-footer">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-4">
         <div class="widget-a">
           <div class="w-header-a">
-            <img src="{% static 'assets/img/logo.png' %}" class="img-fluid" style="max-width: 10.1rem;" />
+            <img src="{% static 'assets/img/logo.png' %}" class="img-fluid" style="max-height: 7rem;
+    max-width: 8.1rem;" />
           </div>
           <div class="w-body-a">
             <p class="w-text-a color-text-a">ثمار القابضة    </p>
@@ -14,10 +15,10 @@
           <div class="w-footer-a">
             <ul class="list-unstyled">
               <li class="color-a">
-                <span class="color-text-a">الهاتف .</span> contact@https://thimarholding.net
+                <span class="color-text-a">الهاتف .</span> +0566666976
               </li>
               <li class="color-a">
-                <span class="color-text-a">البريد الألكترونى .</span> +54 356 945234
+                <span class="color-text-a">البريد الألكترونى .</span> Info@thimar.com.sa
               </li>
             </ul>
           </div>
@@ -85,7 +86,7 @@
         <div class="copyleft-footer">
           <p class="copyleft color-text-a">
             &copy; Copyleft
-            <span class="color-a">ثمار القابضه</span> جميع الحقوق محفوظة
+            <span class="color-a">ثمار القابضه - {% get_version as version %}{{ version }}</span> جميع الحقوق محفوظة
           </p>
         </div>
       </div>

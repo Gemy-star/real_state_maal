@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <main id="main">
+    <section class="agent-single">
+      <div class="container">
+        <div class="row pt-4"></div>
+        <div class="row pt-4">
+          <div class="col-md-12 section-md-t3 pt-4">
+            <div class="agent-info-box pt-4">
+              <div class="agent-content mb-3 d-flex align-items-center pt-4 flex-column">
+                <img class="img-fluid pt-4" style="max-height: 43vh; max-width: 30rem;" src="{% static 'assets/img/logo.png' %}" />
+                         <div class="col-md-12 d-flex justify-content-center pb-3">
+                           <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'ksa.pdf' %}">أعضاء مجلس الأدارة</a>
+                         </div>
+                <span class="badge badge-sm text-bg-dark pt-2" style="height: fit-content; width: fit-content;"><h1 class="text-white">  تقرير مجلس إدارة شركة ثمار </h1></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-md-12 d-flex justify-content-between">
+             <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'reports/2019.pdf' %}">2019</a>
+              <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'reports/2020.pdf' %}">2020</a>
+            <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'reports/2021.pdf' %}">2021</a>
+              <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'reports/2022.pdf' %}">2022</a>
+              <a class="btn btn-sm btn-success col-2 text-white" href="{% static 'reports/2023.pdf' %}">2023</a>
+          </div>
+        </div>
+              <div class="row pt-4">
+          <div class="col-md-12 section-md-t3 pt-4">
+            <div class="agent-info-box pt-2">
+              <div class="agent-content mb-3 d-flex align-items-center pt-2 flex-column">
+                <span class="badge badge-sm text-bg-dark pt-2" style="height: fit-content; width: fit-content;"><h1 class="text-white">   القوائم النهائية لشركة ثمار </h1></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-md-12 d-flex justify-content-between">
+             <a class="btn btn-sm btn-outline-success col-2 " href="{% static 'menus/2019.pdf' %}">2019</a>
+              <a class="btn btn-sm btn-outline-success col-2 " href="{% static 'menus/2020.pdf' %}">2020</a>
+            <a class="btn btn-sm btn-outline-success col-2 " href="{% static 'menus/2021.pdf' %}">2021</a>
+              <a class="btn btn-sm btn-outline-success col-2 " href="{% static 'menus/2022.pdf' %}">2022</a>
+              <a class="btn btn-sm btn-outline-success col-2" href="{% static 'menus/2023.pdf' %}">2023</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

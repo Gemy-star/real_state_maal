@@ -14,3 +14,8 @@ class SoonPageView(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = "main/about.html"
+
+
+
+class ReportsPageView(TemplateView):
+    template_name = "main/reports.html"
