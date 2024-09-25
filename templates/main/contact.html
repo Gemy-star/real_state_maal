@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block body %}
+
+<main id="main">
+
+
+
+
+      <!-- ======= Latest News Section ======= -->
+      <section class="section-news section-t8">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="title-wrap d-flex justify-content-between">
+                <div class="title-box">
+                  <h2 class="title-a noto-kufi-arabic">أخبار ثمار</h2>
+                </div>
+                <div class="title-link">
+                  <a href="blog-grid.html">
+                    جميع الأخبار
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+       <div class="row pt-4">
+  {% for new in news  %}
+  <div class="col-12">
+    <div class="card">
+      <div class="card-img">
+        <img src="{{new.image.url}}" alt="" class="img-fluid" style="max-width: 50%;" />
+      </div>
+      <div class="card-body">
+        <h2 class="title-2 text-black">
+          {{new.title}}
+      </h2>
+          <div class="card-footer">
+            <p class="text-sm">{{new.content}}</p>
+          </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  {% endfor %}
+       </div>
+        </div>
+      </section>
+      <!-- End Latest News Section -->
+    <!-- ======= Latest Gallery Section ======= -->
+    <section class="section-news section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a noto-kufi-arabic">جاليرى </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="news-carousel" class="swiper">
+          <div class="swiper-wrapper">
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/ksa.png' %}" alt="" class="img-b img-fluid" />
+                </div>
+              </div>
+            </div>
+            <!-- End carousel item -->
+
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/post-5.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+              </div>
+            </div>
+            <!-- End carousel item -->
+
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/ksa-sea.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+              </div>
+            </div>
+            <!-- End carousel item -->
+
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img  src="{% static 'assets/img/back.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+              </div>
+            </div>
+            <!-- End carousel item -->
+          </div>
+        </div>
+
+        <div class="news-carousel-pagination carousel-pagination"></div>
+      </div>
+    </section>
+    <!-- End Latest Gallery Section -->
+    <section class="section-agents section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="title-single-box">
+              <h1 class="title-single"> تواصل معنا</h1>
+              <span class="color-text-a">تواصل معنا و سيتم الرد عليك فى اسرع وقت </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 section-t8">
+            <div class="row">
+              <div class="col-md-7">
+                <form method="post">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <button type="submit" class="btn btn-a">إرسال </button>
+
+                </form>
+              </div>
+
+              <div class="col-md-5 section-md-t3">
+                <div class="icon-box section-b2">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-envelope"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                      <h4 class="icon-title"> ثمار القابضة</h4>
+                    </div>
+                    <div class="icon-box-content">
+                      <p class="mb-1">البريد الألكترونى.
+                        <span class="color-a">thimarshareholders@thimar.com.sa</span>
+                      </p>
+                      <p class="mb-1">الهاتف.
+                        <span class="color-a">+0591616638</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="icon-box section-b2">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-geo-alt"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                    </div>
+                    <div class="icon-box-content">
+                      <p class="mb-1">
+                        الرياض
+                        <br> السعودية
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="icon-box">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-share"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                      <h4 class="icon-title"> منصات التواصل</h4>
+                    </div>
+                    <div class="icon-box-content">
+                      <div class="socials-footer">
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <a href="#" class="link-one">
+                              <i class="bi bi-facebook" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="#" class="link-one">
+                              <i class="bi bi-twitter" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="#" class="link-one">
+                              <i class="bi bi-instagram" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="#" class="link-one">
+                              <i class="bi bi-linkedin" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+
+{% endblock %}

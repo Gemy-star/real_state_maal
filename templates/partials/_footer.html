@@ -15,10 +15,10 @@
           <div class="w-footer-a">
             <ul class="list-unstyled" style="margin-inline-start: -2rem;">
               <li class="color-a">
-                <span class="color-text-a fw-bolder">الهاتف .</span> +0566666976
+                <span class="color-text-a fw-bolder">الهاتف .</span> +0591616638
               </li>
               <li class="color-a">
-                <span class="color-text-a  fw-bolder">البريد الألكترونى .</span> Info@thimar.com.sa
+                <span class="color-text-a  fw-bolder">البريد الألكترونى .</span> thimarshareholders@thimar.com.sa
               </li>
             </ul>
           </div>
@@ -33,10 +33,16 @@
             <div class="w-body-a">
               <ul class="list-unstyled">
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="#">الرئيسية</a>
+                  <i class="bi bi-chevron-left"></i> <a href="{% url 'home-page' %}">الرئيسية</a>
                 </li>
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="#">عن الشركة</a>
+                  <i class="bi bi-chevron-left"></i> <a href="{% url 'about-page' %}">عن الشركة</a>
+                </li>
+                 <li class="item-list-a">
+                  <i class="bi bi-chevron-left"></i> <a href="{% url 'who-page' %}">من نحن </a>
+                </li>
+                  <li class="item-list-a">
+                  <i class="bi bi-chevron-left"></i> <a href="{% url 'services-page' %}">خدماتنا  </a>
                 </li>
               </ul>
             </div>
@@ -52,9 +58,6 @@
             <ul class="list-unstyled">
               <li class="item-list-a">
                 <i class="bi bi-chevron-left"></i> <a href="#">السعودية</a>
-              </li>
-              <li class="item-list-a">
-                <i class="bi bi-chevron-left"></i> <a href="#">مصر</a>
               </li>
             </ul>
           </div>

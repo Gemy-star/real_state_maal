@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+  {% block style %}
+<style>
+  .card-box-ico{
+    padding: 0.95rem !important;
+  }
+</style>
+    {% endblock %}
+{% block body %}
+  <main id="main">
+    <section class="section-agents section-t8"></section>
+
+      <div class="container">
+        <div class="row ">
+          <div class="col-sm-12">
+            <div class="row pt-4">
+              <div class="col-md-3">
+                <div class="agent-avatar-box">
+                  <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
+                </div>
+              </div>
+              <div class="col-md-9 section-md-t3">
+                <div class="agent-info-box">
+                  <div class="agent-title">
+                    <div class="title-box-d">
+                      <h5 class="title-d">
+                        استراتيجيتنا
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="agent-content mb-3">
+                    <p class="content-d color-text-a">
+                      مرّت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح تلك الاستراتيجية:
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+
+    <section class="section-agents section-t8">
+
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-8 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single"> التوظيف  </h1>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-md-12 section-md-t3">
+                <div class="agent-info-box">
+                  <div class="agent-title">
+                  </div>
+                  <div class="agent-content mb-3">
+                    <form method="post">
+                      {% csrf_token %}
+                     {{ form|crispy }}
+                                                      <button type="submit" class="btn btn-a">إرسال </button>
+
+            </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+
+
+
+
+    <!-- ======= Latest News Section ======= -->
+    <!-- <section class="section-news section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a noto-kufi-arabic">أخبار ثمار</h2>
+              </div>
+              <div class="title-link">
+                <a href="blog-grid.html">
+                  جميع الأخبار
+                  <span class="bi bi-chevron-left"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="news-carousel" class="swiper">
+          <div class="swiper-wrapper">
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/ksa.png' %}" alt="" class="img-b img-fluid" />
+                </div>
+                <div class="card-overlay">
+                  <div class="card-header-b">
+                    <div class="card-category-b">
+                      <a href="#" class="category-b">أخبار</a>
+                    </div>
+                    <div class="card-title-b">
+                      <h2 class="title-2">
+                        <a href="blog-single.html">
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+                        </a>
+                      </h2>
+                    </div>
+                    <div class="card-date">
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End carousel item -->
+
+            <!-- <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/post-5.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+                <div class="card-overlay">
+                  <div class="card-header-b">
+                    <div class="card-category-b">
+                      <a href="#" class="category-b">أخبار</a>
+                    </div>
+                    <div class="card-title-b">
+                      <h2 class="title-2">
+                        <a href="blog-single.html">
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+                        </a>
+                      </h2>
+                    </div>
+                    <div class="card-date">
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- End carousel item -->
+
+            <!-- <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img src="{% static 'assets/img/ksa-sea.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+                <div class="card-overlay">
+                  <div class="card-header-b">
+                    <div class="card-category-b">
+                      <a href="#" class="category-b">أخبار</a>
+                    </div>
+                    <div class="card-title-b">
+                      <h2 class="title-2">
+                        <a href="blog-single.html">
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+
+                        </a>
+                      </h2>
+                    </div>
+                    <div class="card-date">
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- End carousel item -->
+<!--
+            <div class="carousel-item-c swiper-slide">
+              <div class="card-box-b card-shadow news-box news-frame">
+                <div class="img-box-b">
+                  <img  src="{% static 'assets/img/back.jpg' %}" alt="" class="img-b img-fluid" />
+                </div>
+                <div class="card-overlay">
+                  <div class="card-header-b">
+                    <div class="card-category-b">
+                      <a href="#" class="category-b">أخبار</a>
+                    </div>
+                    <div class="card-title-b">
+                      <h2 class="title-2">
+                        <a href="#">
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+
+                        </a>
+                      </h2>
+                    </div>
+                    <div class="card-date">
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- End carousel item -->
+          <!-- </div>
+        </div>
+
+        <div class="news-carousel-pagination carousel-pagination"></div>
+      </div>
+    </section>  -->
+    <!-- End Latest News Section -->
+  </main>
+  <!-- End #main -->
+{% endblock %}

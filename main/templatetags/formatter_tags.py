@@ -9,7 +9,6 @@ from typing import Any, Optional
 from django import template
 from django.template.defaultfilters import date
 
-
 register = template.Library()
 
 

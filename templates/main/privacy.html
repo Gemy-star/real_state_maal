@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block body %}
+
+<main id="main">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="title-single-box">
+                    <h1 class="title-single"> السياسية و الخصوصية</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row pt-2">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="agent-avatar-box">
+                            <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-md-5 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <p class="content-d color-text-a">
+                                        نحن في شركة ثمار القابضة نقدر خصوصية عملائنا وزوار موقعنا الإلكتروني، ونعمل بجد
+                                        لحماية المعلومات الشخصية التي نتحصل عليها منك. توضح هذه السياسة كيفية جمع
+                                        واستخدام وحماية معلوماتك الشخصية عند استخدامك لموقعنا.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-10 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <h5 class="title-d">
+                                        جمع المعلومات الشخصية
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="agent-content mb-3">
+                                <p class="content-d color-text-a">
+                                    نقوم بجمع المعلومات الشخصية التي تقدمها لنا بشكل مباشر عند التسجيل في الموقع، أو عند
+                                    ملء النماذج، أو المشاركة في العروض الترويجية، أو التواصل معنا. تشمل هذه المعلومات،
+                                    على سبيل المثال لا الحصر:
+
+                                    الاسم الكامل
+                                    عنوان البريد الإلكتروني
+                                    رقم الهاتف
+                                    معلومات العنوان
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pt-2">
+                <div class="row">
+                    <div class="col-md-10 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <h5 class="title-d">
+                                        استخدام المعلومات الشخصية
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="agent-content mb-3">
+                                <p class="content-d color-text-a">
+                                    نستخدم المعلومات الشخصية التي نجمعها للأغراض التالية:
+
+                                    تحسين تجربة المستخدم على الموقع
+                                    تقديم الدعم والمساعدة الفنية
+                                    معالجة الطلبات والمعاملات المالية
+                                    إرسال التحديثات والعروض الترويجية التي قد تهمك
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-10 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <h5 class="title-d">
+                                        مشاركة المعلومات الشخصي
+                                      </h5>
+                                </div>
+                            </div>
+                            <div class="agent-content mb-3">
+                                <p class="content-d color-text-a">
+                                    نحن لا نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. قد نشارك المعلومات مع مقدمي الخدمات الموثوق بهم الذين يساعدوننا في تشغيل موقعنا أو إدارة الأعمال، بشرط التزامهم بسرية هذه المعلومات وعدم استخدامها لأي أغراض أخرى.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pt-2">
+                <div class="row">
+                    <div class="col-md-10 section-md-t3">
+                        <div class="agent-info-box">
+                            <div class="agent-title">
+                                <div class="title-box-d">
+                                    <h5 class="title-d">
+                                        حماية المعلومات الشخصية
+                                                                       </h5>
+                                </div>
+                            </div>
+                            <div class="agent-content mb-3">
+                                <p class="content-d color-text-a">
+                                    نحن نستخدم مجموعة متنوعة من الإجراءات الأمنية لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التغيير أو الإفصاح أو التدمير. تتضمن هذه الإجراءات التدابير الفنية والإداري
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+</main>
+
+
+{% endblock %}

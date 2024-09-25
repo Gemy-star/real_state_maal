@@ -11,17 +11,20 @@
 --------------------------------------------------------------*/
 
 .noto-kufi-arabic {
-  font-family: "Noto Kufi Arabic", sans-serif !important;
+  font-family: "Cairo", sans-serif !important;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 }
 
 body {
-   font-family: "Almarai", sans-serif;
-  font-weight: 400;
+  font-family: "Cairo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:500;
   font-style: normal;
-  color: #555555;
+  font-variation-settings:
+    "slnt" 0;
+  font-size: 0.9rem !important;
 }
 
 h1,
@@ -47,6 +50,7 @@ a:hover {
 .link-two {
   color: #000000;
   transition: all 0.5s ease;
+  font-size: 0.9rem;
 }
 
 .link-two:hover {
@@ -70,7 +74,7 @@ a:hover {
 }
 
 .link-icon span {
-  font-size: 14px;
+  font-size: 10px;
   padding-left: 4px;
   vertical-align: middle;
 }
@@ -83,13 +87,13 @@ a:hover {
 
 @media (min-width: 768px) {
   .link-a {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (min-width: 992px) {
   .link-a {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -99,32 +103,32 @@ a:hover {
 }
 
 .link-a span {
-  font-size: 18px;
+  font-size: 14px;
   vertical-align: middle;
   margin-left: 5px;
 }
 
 @media (min-width: 768px) {
   .link-a span {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
 @media (min-width: 992px) {
   .link-a span {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
 .text-brand {
   color: #000000;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 600;
 }
 
 @media (max-width: 767px) {
   .text-brand {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -236,7 +240,7 @@ a:hover {
 }
 
 .pagination-a .pagination .page-link span {
-  font-size: 1.2rem;
+  font-size: 1.01rem;
 }
 
 .pagination-a .pagination .next .page-link {
@@ -265,14 +269,14 @@ a:hover {
 .a {
   text-decoration: none;
   color: #878280;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 /*------/ Icon Box /------*/
 .icon-box .icon-box-icon {
   display: table-cell;
   vertical-align: top;
-  font-size: 36px;
+  font-size: 30px;
   color: #000000;
   width: 50px;
   padding-top: 8px;
@@ -334,12 +338,12 @@ a:hover {
 
 .title-a {
   text-decoration: none;
-  font-size: 2.6rem;
+  font-size: 2.1rem;
   font-weight: 600;
 }
 
 .title-link {
-  font-size: 1.2rem;
+  font-size: 1.01rem;
   font-weight: 300;
   padding-top: 1.2rem;
 }
@@ -350,7 +354,7 @@ a:hover {
 }
 
 .title-link span {
-  font-size: 20px;
+  font-size: 15px;
   padding-left: 4px;
   vertical-align: middle;
 }
@@ -363,7 +367,7 @@ a:hover {
 
 .title-box-d .title-d {
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .title-box-d .title-d:after {
@@ -437,7 +441,7 @@ a:hover {
 }
 
 .nav-arrow-a .owl-arrow .owl-nav {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   margin-top: -110px;
 }
 
@@ -449,7 +453,7 @@ a:hover {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 1.2rem;
+  font-size: 1.01rem;
 }
 
 .nav-arrow-b .owl-arrow .owl-nav .owl-prev,
@@ -504,7 +508,7 @@ a:hover {
 }
 
 .back-to-top i {
-  font-size: 28px;
+  font-size: 21px;
   color: #fff;
   line-height: 0;
 }
@@ -627,7 +631,7 @@ a:hover {
 
 .navbar-default .nav-search {
   color: #000000;
-  font-size: 1.5rem;
+  font-size: 1.01rem;
 }
 
 .navbar-default.navbar-reduce {
@@ -658,7 +662,7 @@ a:hover {
 
 .navbar-default.navbar-trans .nav-link,
 .navbar-default.navbar-reduce .nav-link {
-  font-size: 1.1rem;
+  font-size: 1.01rem;
   color: #000000;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -955,7 +959,7 @@ a:hover {
   position: absolute;
   z-index: 1050;
   top: 2rem;
-  font-size: 3.5rem;
+  font-size: 3.01rem;
   line-height: 1;
   color: #000000;
   cursor: pointer;
@@ -1081,19 +1085,19 @@ a:hover {
 }
 
 .intro .intro-subtitle {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   font-weight: 300;
 }
 
 @media (min-width: 768px) {
   .intro .intro-subtitle {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 }
 
 .intro .intro-subtitle.intro-price {
   padding-top: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.01rem;
 }
 
 @media (min-width: 576px) {
@@ -1105,7 +1109,7 @@ a:hover {
 @media (min-width: 768px) {
   .intro .intro-subtitle.intro-price {
     padding-top: 2rem;
-    font-size: 1.5rem;
+    font-size: 1.01rem;
   }
 }
 
@@ -1480,7 +1484,11 @@ a:hover {
     margin-top: 2.5rem;
   }
 }
+.news-frame {
+  width: 23rem !important;
+  height: 37vh !important;
 
+}
 /*======================================
 //--//-->   NEWS - CARD-B
 ======================================*/
@@ -1517,7 +1525,7 @@ a:hover {
 .card-header-b .title-2 {
   margin-bottom: 0;
   padding: 0.6rem 0;
-  font-size: 1.5rem;
+  font-size: 1.01rem;
 }
 
 @media (min-width: 768px) {
@@ -1622,7 +1630,7 @@ a:hover {
 
 @media (min-width: 768px) {
   .box-comments .list-comments .comment-author {
-    font-size: 1.5rem;
+    font-size: 1.01rem;
   }
 }
 
@@ -1692,7 +1700,7 @@ a:hover {
 }
 
 .title-c {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-left: -40px;
 }
@@ -1705,7 +1713,7 @@ a:hover {
 
 @media (min-width: 992px) {
   .title-c {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -1753,7 +1761,7 @@ a:hover {
 
 @media (min-width: 992px) {
   .card-box-d .title-d {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     margin: 1rem 0;
   }
 }

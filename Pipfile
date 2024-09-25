@@ -5,8 +5,13 @@ name = "pypi"
 
 [packages]
 pillow = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
+pre-commit = "*"
 
 [dev-packages]
+flake8 = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.11"

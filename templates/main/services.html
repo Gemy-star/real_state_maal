@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+  {% block style %}
+<style>
+  .card-box-ico{
+    padding: 0.95rem !important;
+  }
+</style>
+    {% endblock %}
+
+{% block body %}
+
+  <main id="main">
+    <section class="section-agents section-t8">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">استثماراتنا</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="agent-avatar-box">
+                  <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
+                </div>
+              </div>
+              <div class="col-md-8 section-md-t3">
+                <div class="agent-info-box">
+                  <div class="agent-title">
+                    <div class="title-box-d">
+                      <h5 class="title-d">
+                        مشاريعنا
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="agent-content mb-3">
+                    <p class="content-d color-text-a">
+                      شكّلت رؤية المملكة 2030 منعطفاً كبيراً على كل المستويات ومنهجاً أعاد التفكير في هيكلة وأهداف "ثمار التنمية القابضة"، التي سارعت خطاها لتحقيق مستهدفات الرؤية في التنمية المستدامة والتنوع الاقتصادي، فاتسعت دائرة أعمالنا واستثماراتنا ووضعنا استراتيجيات مرنة تعزز الأفكار البنّاءة داخل الشركة وخارجها، لاستقطاب الكفاءات والمشاريع الاستثمارية المتنوعة، الأمر الذي حقق الاستقرار والنجاح لثمار ودفعها للمساهمة في مسيرة المملكة الطموحة نحو آفاقٍ لا تحدّ.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <section class="section-services section-t8">
+      <div class="container">
+        <div class="row pt-2">
+          <div class="col-md-6">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="bi bi-cart"></span>
+                </div>
+                <div class="card-title-c align-self-center" style="margin: 0.4rem;">
+                  <h2 class="title-c">القطاع الزراعي</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">
+                  بدأت "ثمار" استثماراتها في القطاع الزراعي، متخصصةً في تسويق المواد الزراعية والثروة الحيوانية الطازجة إلى جانب الزراعات العضوية، وقد أسست لهذا عشرات المراكز المتخصصة في بيع المواد الطازجة والمنتجات الغذائية التكميلية، إضافةً إلى تأسيس شركة "وسمي" التي افتتحت عشرات الفروع بدورها لبيع اللحوم الطازجة على مستوى المملكة.
+منذ ما يزيد عن ربع قرن حتى اليوم؛ تمدّ "ثمار" القطاعات الحكومية التموينية والغذائية بمنتجاتها، كما تورّد المنتجات الزراعية للعديد من الأسواق المركزية الكبرى مثل بندة والدانوب والسنبلة والعديد من سلاسل المطاعم التي تهتم بجودة المنتجات والأطعمة الطازجة الموثوقة.
+إلى جانب ما تقدم، تعتبر ثمار من الشركات الموثوقة لإمداد كبرى المستشفيات وشركات الإعاشة والمزارع الكبرى على مستوى المملكة مثل نادك الزراعية، الجوف، الخالدية، وغيرها
+
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="bi bi-building"></span>
+                </div>
+                <div class="card-title-c align-self-center" style="margin: 0.4rem;">
+                  <h2 class="title-c">القطاع العقاري</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">
+                  يعدّ التطوير العقاري أحد المستهدفات الهامة للشركة، وصاحب النصيب الأكبر من إجمالي أعمال ثمار في هذه المرحلة، إلى جانب الاهتمام بالفرص الأخرى حسب خطط الشركة المعلن عنها في التنظيم المالي مثل المجالات الغذائية والتسويق الزراعي وغيرها من المجالات ذات العوائد المجزية، وذلك لخلق تنوع في استثمارات الشركة يدعم استقراها ونموها.
+                  وفي هذا الاتجاه، تم تأسيس شركة "أبراج ثمار العقارية" وهي شركة مملوكة لثمار بنسبة 100%، لتكون الذراع الاستثمارية للشركة واستغلال الفرص المتاحة في المجال العقاري، خصوصاً فيما يتعلق بالتطوير العقاري نظرا لما تشهده المملكة من نهضة اقتصادية على جميع الأصعدة سوف تساهم في زيادة الطلبات السكنية والتجارية.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-agents section-t8">
+
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-8 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">تقدّم بمشروعك  </h1>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-md-12 section-md-t3">
+                <div class="agent-info-box">
+                  <div class="agent-title">
+                  </div>
+                  <div class="agent-content mb-3">
+                    <form method="post">
+                      {% csrf_token %}
+                     {{ form|crispy }}
+                                                      <button type="submit" class="btn btn-a">إرسال </button>
+
+            </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+{% endblock %}

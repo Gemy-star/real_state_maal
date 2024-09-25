@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 ASGI config for real_state project.
 
@@ -11,6 +12,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'real_state.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "real_state.settings")
 
 application = get_asgi_application()

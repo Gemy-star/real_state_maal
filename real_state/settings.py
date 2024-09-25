@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for real_state project.
 
@@ -39,7 +40,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
+
+# crispy forms Configuration
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

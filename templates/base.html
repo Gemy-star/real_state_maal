@@ -12,12 +12,9 @@
     <!-- Favicons -->
     <link href="{% static 'assets/img/logo.png' %}" rel="icon" />
     <link href="{% static 'assets/img/logo.png' %}" rel="apple-touch-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
@@ -26,7 +23,11 @@
 
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
-
+    <style>
+      .back-to-top{
+        cursor: pointer !important;
+      }
+    </style>
     <!--                       =======================================================
   * Template Name: EstateAgency
   * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
@@ -52,8 +53,7 @@
     {% endblock %}
     {% include 'partials/_footer.html' %}
     <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+    <a id="chat" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-whatsapp"></i></a>
     <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
@@ -61,5 +61,14 @@
 
     <!-- Template Main JS File -->
     <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <script>
+   document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("chat").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.location.href = "https://api.whatsapp.com/send?phone=966544944680";
+  });
+});
+    </script>
   </body>
 </html>

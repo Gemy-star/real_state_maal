@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+  {% block style %}
+<style>
+  .card-box-ico{
+    padding: 0.95rem !important;
+  }
+</style>
+    {% endblock %}
 {% block body %}
   <!-- ======= Intro Section ======= -->
   <div class="intro intro-carousel swiper position-relative">
     <div class="swiper-wrapper">
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../static/assets/img/slide-1.jpg')">
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/ksa_header.jpg')">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -15,7 +22,28 @@
                     <p class="intro-title-top"></p>
                     <h1 class="intro-title mb-4"></h1>
                     <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">السعر | $ 12.000</span></a>
+                      شركة ثمار هي شركة سعودية رائدة في مجال الزراعة والمنتجات الغذائية، تأسست في عام 1987. بدأت الشركة بتقديم خدماتها في قطاع تسويق المنتجات الزراعية محليًا ودوليًا، حيث تعمل على توفير حلول زراعية مبتكرة ودعم المزارعين من خلال تسويق محاصيلهم وضمان أعلى معايير الجودة. توسعت الشركة على مدار السنوات لتشمل مجموعة واسعة من المنتجات الغذائية والخدمات اللوجستية المتعلقة بالزراعة، مما جعلها أحد اللاعبين الأساسيين في تعزيز الأمن الغذائي بالمملكة العربية السعودية
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/back_ksa.jpg')">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+                    <p class="intro-title-top"></p>
+                    <h1 class="intro-title mb-4"></h1>
+                    <p class="intro-subtitle intro-price">
+                      مرحباً بكم في شركة ثمار، حيث نؤمن بأن الزراعة هي أساس الأمن الغذائي، وأن تقديم منتجات غذائية عالية الجودة هو رسالتنا. نسعى في ثمار لتحقيق الاستدامة والابتكار في كل ما نقوم به، بهدف دعم المزارعين وتوفير حلول زراعية متكاملة تسهم في تحسين حياتهم وتعزيز مستقبل أكثر ازدهاراً للجميع. رؤيتنا هي أن نكون الشريك الموثوق به في قطاع الزراعة والغذاء، ملتزمين بالتفوق والجودة في كل خطوة نخطوها
                     </p>
                   </div>
                 </div>
@@ -24,7 +52,7 @@
           </div>
         </div>
       </div>
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../static/assets/img/slide-2.jpg')">
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/ksa22.jpg')">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -35,27 +63,7 @@
                     <p class="intro-title-top"></p>
                     <h1 class="intro-title mb-4"></h1>
                     <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">السعر | $ 12.000</span></a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../static/assets/img/slide-3.jpg')">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <p class="intro-title-top"></p>
-                    <h1 class="intro-title mb-4"></h1>
-                    <p class="intro-subtitle intro-price">
-                      <a href="#"><span class="price-a">السعر | $ 12.000</span></a>
+                      الجودة والابتكار في خدمة الزراعة
                     </p>
                   </div>
                 </div>
@@ -77,318 +85,79 @@
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">خدماتنا</h2>
+                <h2 class="title-a noto-kufi-arabic">لماذا ثمار ؟ </h2>
+                <p class="intro-subtitle">تتميز شركة "ثمار" بعدة جوانب تجعلها رائدة في مجالها، منها:</p>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="card-box-c foo">
               <div class="card-header-c d-flex">
                 <div class="card-box-ico">
                   <span class="bi bi-cart"></span>
                 </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">الرفاهية</h2>
+                <div class="card-title-c align-self-center m-2">
+                  <h2 class="title-c">الجودة العالية</h2>
                 </div>
               </div>
               <div class="card-body-c">
-                <p class="content-c">لكن شركة الطيران اختارت السعر. غدًا قيل أن البوابة صغيرة ولكنها كبيرة. الصلاة المرسلة بحكمة القداس، وادي الناس وعدمها، إلا إذا كان ذلك ضروريا.</p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">
-                  المزيد
-                  <span class="bi bi-chevron-left"></span>
-                </a>
+                <p class="content-c">تلتزم شركة ثمار بتقديم منتجات زراعية وغذائية ذات جودة ممتازة، حيث تتبع أعلى المعايير العالمية في جميع مراحل الإنتاج، من الزراعة حتى التسويق</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="card-box-c foo">
               <div class="card-header-c d-flex">
                 <div class="card-box-ico">
                   <span class="bi bi-calendar4-week"></span>
                 </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">لأيجار</h2>
+                <div class="card-title-c align-self-center m-2">
+                  <h2 class="title-c">الالتزام بالوقت</h2>
                 </div>
               </div>
               <div class="card-body-c">
-                <p class="content-c">لا يوجد مطور طيران. الفصل الدراسي ممتع لوضعه على الله. موريس يتملق النخبة، يحتاج إلى الصبغة</p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">
-                  المزيد
-                  <span class="bi bi-calendar4-week"></span>
-                </a>
+                <p class="content-c">تحرص الشركة على الالتزام بمواعيد تسليم المنتجات والخدمات بدقة، مما يعزز ثقة العملاء ويضمن استمرارية التعاون</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="card-box-c foo">
               <div class="card-header-c d-flex">
                 <div class="card-box-ico">
                   <span class="bi bi-card-checklist"></span>
                 </div>
-                <div class="card-title-c align-self-center">
-                  <h2 class="title-c">شراء</h2>
+                <div class="card-title-c align-self-center m-2">
+                  <h2 class="title-c">الابتكار</h2>
                 </div>
               </div>
               <div class="card-body-c">
-                <p class="content-c">لكن شركة الطيران اختارت السعر. غدًا قيل أن البوابة صغيرة ولكنها كبيرة. إنها كتلة حكيمة، الوادي ليس حتى من الصغار، هو ضروري فقط.</p>
-              </div>
-              <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">
-                  المزيد
-                  <span class="bi bi-chevron-left"></span>
-                </a>
+                <p class="content-c">تعتمد شركة ثمار على استخدام أحدث التقنيات الزراعية والابتكارات في مجال الخدمات اللوجستية، مما يساعدها على تحسين كفاءة الإنتاج وزيادة القدرة التنافسية في السوق.</p>
               </div>
             </div>
           </div>
+                 <div class="col-md-3">
+            <div class="card-box-c foo">
+              <div class="card-header-c d-flex">
+                <div class="card-box-ico">
+                  <span class="bi bi-calculator"></span>
+                </div>
+                <div class="card-title-c align-self-center m-2">
+                  <h2 class="title-c">الاستدامة</h2>
+                </div>
+              </div>
+              <div class="card-body-c">
+                <p class="content-c">تركز الشركة على الممارسات الزراعية المستدامة التي تحافظ على البيئة وتدعم التنمية الزراعية طويلة الأمد</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
     <!-- End Services Section -->
 
-    <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">احدث العقارات</h2>
-              </div>
-              <div class="title-link">
-                <a href="property-grid.html">
-                  جميع العقارات
-                  <span class="bi bi-chevron-left"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="property-carousel" class="swiper">
-          <div class="swiper-wrapper">
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{% static 'assets/img/property-6.jpg' %}" alt="" class="img-a img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">
-                          206 جدة
-                          <br /> جدة ,السعودية
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">السعر | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">
-                        انقر هنا لعرض
-                        <span class="bi bi-chevron-left"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">المساحة</h4>
-                          <span>
-                            340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الغرف</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الحمامات</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الجراج</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{% static 'assets/img/property-3.jpg' %}" alt="" class="img-a img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">
-                          157 غرب
-                          <br /> الخير , الدمام
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">السعر | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">
-                        انقر هنا لعرض
-                        <span class="bi bi-chevron-left"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">المساحة</h4>
-                          <span>
-                            340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الغرف</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الحمامات</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الجراج</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{% static 'assets/img/property-7.jpg' %}" alt="" class="img-a img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">
-                          245 جدة
-                          <br /> لخير , الدمام
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">السعر | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">
-                        انقر هنا لعرض
-                        <span class="bi bi-chevron-left"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">المساحة</h4>
-                          <span>
-                            340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الغرف</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الحمامات</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الجراج</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="{% static 'assets/img/property-10.jpg' %}" alt="" class="img-a img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">
-                          204 جدة
-                          <br />لخير , الدمام
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">السعر | $ 12.000</span>
-                      </div>
-                      <a href="property-single.html" class="link-a">
-                        انقر هنا لعرض
-                        <span class="bi bi-chevron-left"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">المساحة</h4>
-                          <span>
-                            340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الغرف</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الحمامات</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">الجراج</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-          </div>
-        </div>
-        <div class="propery-carousel-pagination carousel-pagination"></div>
-      </div>
-    </section>
-    <!-- End Latest Properties Section -->
 
     <!-- ======= Agents Section ======= -->
     <section class="section-agents section-t8">
@@ -397,11 +166,11 @@
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">المطوريين</h2>
+                <h2 class="title-a noto-kufi-arabic">فريق العمل</h2>
               </div>
               <div class="title-link">
                 <a href="agents-grid.html">
-                  جميع المطوريين
+                  المزيد
                   <span class="bi bi-chevron-left"></span>
                 </a>
               </div>
@@ -412,47 +181,20 @@
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
-                <img src="{% static 'assets/img/agent-4.jpg' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/1.png' %}" alt="" class="img-d img-fluid" />
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">
                   <div class="card-title-d align-self-center">
                     <h3 class="title-d">
                       <a href="agent-single.html" class="link-two">
-                        السعودية القابضة
-                        <br /> مطور
-                      </a>
+                        المهندس/ وليد بن عبدالعزيز الشويعر
+                                    </a>
                     </h3>
                   </div>
                 </div>
                 <div class="card-body-d">
-                  <p class="content-d color-text-a">ولكن البواب قد اختار النيبه، فغداً الوتريسي هو باب صغير ولكنه باب عظيم .</p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>الهاتف:</strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>البريد:</strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-twitter" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-                      </li>
-                    </ul>
-                  </div>
+                  <p class="content-d color-text-a">رئيس مجلس الإدارة</p>
                 </div>
               </div>
             </div>
@@ -460,47 +202,21 @@
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
-                <img src="{% static 'assets/img/agent-1.jpg' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/2.png' %}" alt="" class="img-d img-fluid" />
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">
                   <div class="card-title-d align-self-center">
                     <h3 class="title-d">
                       <a href="agent-single.html" class="link-two">
-                        الأهلى صبور
-                        <br /> مطور
+                        أ/ خالد بن أسعد خاشقجي
                       </a>
                     </h3>
                   </div>
                 </div>
                 <div class="card-body-d">
-                  <p class="content-d color-text-a">ولكن البواب قد اختار النيبه، فغداً الوتريسي هو باب صغير ولكنه باب عظيم .</p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>الهاتف:</strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>البريد:</strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-twitter" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-                      </li>
-                    </ul>
-                  </div>
+                  <p class="content-d color-text-a">نائب رئيس مجلس الإدارة</p>
+
                 </div>
               </div>
             </div>
@@ -508,47 +224,20 @@
           <div class="col-md-4">
             <div class="card-box-d">
               <div class="card-img-d">
-                <img src="{% static 'assets/img/agent-5.jpg' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/3.png' %}" alt="" class="img-d img-fluid" />
               </div>
               <div class="card-overlay card-overlay-hover">
                 <div class="card-header-d">
                   <div class="card-title-d align-self-center">
                     <h3 class="title-d">
                       <a href="agent-single.html" class="link-two">
-                        الامارات القابضة
-                        <br /> Cascada
+                        أ/ ملفي بن مناحي المرزوقي
                       </a>
                     </h3>
                   </div>
                 </div>
                 <div class="card-body-d">
-                  <p class="content-d color-text-a">ولكن البواب قد اختار النيبه، فغداً الوتريسي هو باب صغير ولكنه باب عظيم .</p>
-                  <div class="info-agents color-a">
-                    <p>
-                      <strong>الهاتف:</strong> +54 356 945234
-                    </p>
-                    <p>
-                      <strong>البريد:</strong> agents@example.com
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer-d">
-                  <div class="socials-footer d-flex justify-content-center">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-twitter" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="link-one"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-                      </li>
-                    </ul>
-                  </div>
+                  <p class="content-d color-text-a">عضو مجلس الإدارة  - العضو المنتدب</p>
                 </div>
               </div>
             </div>
@@ -565,11 +254,11 @@
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">المدونات</h2>
+                <h2 class="title-a noto-kufi-arabic">أخبار ثمار</h2>
               </div>
               <div class="title-link">
                 <a href="blog-grid.html">
-                  جميع المدونات
+                  جميع الأخبار
                   <span class="bi bi-chevron-left"></span>
                 </a>
               </div>
@@ -580,25 +269,24 @@
         <div id="news-carousel" class="swiper">
           <div class="swiper-wrapper">
             <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
+              <div class="card-box-b card-shadow news-box news-frame">
                 <div class="img-box-b">
-                  <img src="{% static 'assets/img/post-2.jpg' %}" alt="" class="img-b img-fluid" />
+                  <img src="{% static 'assets/img/ksa.png' %}" alt="" class="img-b img-fluid" />
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
-                      <a href="#" class="category-b">House</a>
+                      <a href="#" class="category-b">أخبار</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
                         <a href="blog-single.html">
-                          House is comming
-                          <br /> new
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
                         </a>
                       </h2>
                     </div>
                     <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
                     </div>
                   </div>
                 </div>
@@ -607,25 +295,24 @@
             <!-- End carousel item -->
 
             <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
+              <div class="card-box-b card-shadow news-box news-frame">
                 <div class="img-box-b">
                   <img src="{% static 'assets/img/post-5.jpg' %}" alt="" class="img-b img-fluid" />
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
-                      <a href="#" class="category-b">Travel</a>
+                      <a href="#" class="category-b">أخبار</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
                         <a href="blog-single.html">
-                          Travel is comming
-                          <br /> new
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
                         </a>
                       </h2>
                     </div>
                     <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
                     </div>
                   </div>
                 </div>
@@ -634,25 +321,25 @@
             <!-- End carousel item -->
 
             <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
+              <div class="card-box-b card-shadow news-box news-frame">
                 <div class="img-box-b">
-                  <img src="{% static 'assets/img/post-7.jpg' %}" alt="" class="img-b img-fluid" />
+                  <img src="{% static 'assets/img/ksa-sea.jpg' %}" alt="" class="img-b img-fluid" />
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
-                      <a href="#" class="category-b">Park</a>
+                      <a href="#" class="category-b">أخبار</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
                         <a href="blog-single.html">
-                          Park is comming
-                          <br /> new
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+
                         </a>
                       </h2>
                     </div>
                     <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
                     </div>
                   </div>
                 </div>
@@ -661,25 +348,25 @@
             <!-- End carousel item -->
 
             <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box">
+              <div class="card-box-b card-shadow news-box news-frame">
                 <div class="img-box-b">
-                  <img src="{% static 'assets/img/post-3.jpg' %}" alt="" class="img-b img-fluid" />
+                  <img  src="{% static 'assets/img/back.jpg' %}" alt="" class="img-b img-fluid" />
                 </div>
                 <div class="card-overlay">
                   <div class="card-header-b">
                     <div class="card-category-b">
-                      <a href="#" class="category-b">Travel</a>
+                      <a href="#" class="category-b">أخبار</a>
                     </div>
                     <div class="card-title-b">
                       <h2 class="title-2">
                         <a href="#">
-                          Travel is comming
-                          <br /> new
+                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
+
                         </a>
                       </h2>
                     </div>
                     <div class="card-date">
-                      <span class="date-b">18 Sep. 2017</span>
+                      <span class="date-b">{% now "jS F Y H:i" %}</span>
                     </div>
                   </div>
                 </div>
@@ -693,77 +380,6 @@
       </div>
     </section>
     <!-- End Latest News Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section class="section-testimonials section-t8 nav-arrow-a">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">أراء عملائنا</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="testimonial-carousel" class="swiper">
-          <div class="swiper-wrapper">
-            <div class="carousel-item-a swiper-slide">
-              <div class="testimonials-box">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-img">
-                      <img src="{% static 'assets/img/testimonial-1.jpg' %}" alt="" class="img-fluid" />
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-ico">
-                      <i class="bi bi-chat-quote-fill"></i>
-                    </div>
-                    <div class="testimonials-content">
-                      <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium debitis hic ber quibusdam voluptatibus officia expedita corpori.</p>
-                    </div>
-                    <div class="testimonial-author-box">
-                      <img src="{% static 'assets/img/mini-testimonial-1.jpg' %}" alt="" class="testimonial-avatar" />
-                      <h5 class="testimonial-author">Albert & Erika</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-a swiper-slide">
-              <div class="testimonials-box">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-img">
-                      <img src="{% static 'assets/img/testimonial-2.jpg' %}" alt="" class="img-fluid" />
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-ico">
-                      <i class="bi bi-chat-quote-fill"></i>
-                    </div>
-                    <div class="testimonials-content">
-                      <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium debitis hic ber quibusdam voluptatibus officia expedita corpori.</p>
-                    </div>
-                    <div class="testimonial-author-box">
-                      <img src="{% static 'assets/img/mini-testimonial-2.jpg' %}" alt="" class="testimonial-avatar" />
-                      <h5 class="testimonial-author">Pablo & Emma</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-          </div>
-        </div>
-        <div class="testimonial-carousel-pagination carousel-pagination"></div>
-      </div>
-    </section>
-    <!-- End Testimonials Section -->
   </main>
   <!-- End #main -->
 {% endblock %}
