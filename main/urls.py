@@ -3,11 +3,11 @@ from django.urls import path
 
 from .views import (AboutPageView, ContactPageView, HomePageView, NewsPageView,
                     PrivacyPageView, ReportsPageView, ServicesPageView,
-                    WhoUsPageView)
+                    WhoUsPageView, home_page_view)
 
 urlpatterns = [
     path("main", HomePageView.as_view(), name="home-page"),
-    path("", HomePageView.as_view(), name="main-page"),
+    path("", home_page_view, name="main-page"),
     # path("", SoonPageView.as_view(), name="soon-page"),
     path("about", AboutPageView.as_view(), name="about-page"),
     path("reports", ReportsPageView.as_view(), name="reports-page"),
