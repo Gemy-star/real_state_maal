@@ -621,13 +621,13 @@ a:hover {
 --------------------------------------------------------------*/
 .navbar-default {
   transition: all 0.5s ease-in-out;
-  background-color: #ffffff;
-  padding-top: 28px;
-  padding-bottom: 28px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
+  background-color: transparent;
 }
+
+
 
 .navbar-default .nav-search {
   color: #000000;
@@ -663,7 +663,7 @@ a:hover {
 .navbar-default.navbar-trans .nav-link,
 .navbar-default.navbar-reduce .nav-link {
   font-size: 1.01rem;
-  color: #000000;
+  color: #ffffff;
   font-weight: 600;
   letter-spacing: 0.03em;
   transition: all 0.1s ease-in-out;
@@ -721,7 +721,7 @@ a:hover {
 .navbar-default.navbar-trans .active>.nav-link,
 .navbar-default.navbar-trans .nav-link.show,
 .navbar-default.navbar-trans .nav-link.active {
-  color: #000000;
+  color: #ffffff;
 }
 
 .navbar-default.navbar-reduce {
@@ -1062,7 +1062,7 @@ a:hover {
 .intro .intro-title {
   color: #ffffff;
   font-weight: 700;
-  font-size: 2.8rem;
+  font-size: 3.5rem;
   text-transform: uppercase;
 }
 
@@ -1080,18 +1080,18 @@ a:hover {
 
 @media (min-width: 992px) {
   .intro .intro-title {
-    font-size: 4rem;
+    font-size: 9rem;
   }
 }
 
 .intro .intro-subtitle {
-  font-size: 0.9rem;
-  font-weight: 300;
+  font-size: 1.7rem;
+  font-weight: 200;
 }
 
 @media (min-width: 768px) {
   .intro .intro-subtitle {
-    font-size: 1.8rem;
+    font-size: 3.4rem;
   }
 }
 
