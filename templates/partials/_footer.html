@@ -1,99 +1,102 @@
-<!-- ======= Footer ======= -->
 {% load static version %}
-<section class="section-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-6">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <img src="{% static 'assets/img/logo.png' %}" class="img-fluid" style="max-height: 7rem;
-    max-width: 8.1rem;" />
-          </div>
-          <div class="w-body-a">
-            <h2 class="w-text-a color-text-a text-brand noto-kufi-arabic">ثمار القابضة    </h2>
-          </div>
-          <div class="w-footer-a">
-            <ul class="list-unstyled" style="margin-inline-start: -2rem;">
-              <li class="color-a">
-                <span class="color-text-a fw-bolder">الهاتف .</span> +0591616638
-              </li>
-              <li class="color-a">
-                <span class="color-text-a  fw-bolder">البريد الألكترونى .</span> info@thimar.com.sa
-              </li>
-            </ul>
+  <section class="section-footer scrolled">
+    <div class="container">
+      <div class="row">
+        <!-- Logo and Contact Information -->
+        <div class="col-sm-12 col-md-6">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid logo-image" />
+            </div>
+            <div class="w-body-a">
+              <h2 class="w-text-a color-text-a text-brand noto-kufi-arabic text-white-50">ثمار</h2>
+            </div>
+            <div class="w-footer-a">
+              <ul class="list-unstyled contact-info">
+                <li class="color-a footer-txt footer-light">
+                  <span class="color-text-a text-white-50 footer-light">الهاتف:</span> +0591616638
+                </li>
+                <li class="color-a footer-txt footer-light">
+                  <span class="color-text-a text-white-50 footer-light">البريد الإلكتروني:</span> info@thimar.com.sa
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-3 section-md-t3">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <h3 class="w-title-a text-brand noto-kufi-arabic">الشركة</h3>
-          </div>
-          <div class="w-body-a">
+
+        <!-- About Company Links -->
+        <div class="col-sm-12 col-md-3 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand noto-kufi-arabic text-white-50">عن الشركة</h3>
+            </div>
             <div class="w-body-a">
               <ul class="list-unstyled">
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="{% url 'home-page' %}">الرئيسية</a>
+                  <i class="bi bi-chevron-left"></i> <a class="footer-txt footer-light" href="{% url 'home-page' %}">الرئيسية</a>
                 </li>
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="{% url 'about-page' %}">عن الشركة</a>
+                  <i class="bi bi-chevron-left"></i> <a class="footer-txt footer-light" href="{% url 'about-page' %}">عن الشركة</a>
                 </li>
-                 <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="{% url 'who-page' %}">من نحن </a>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-left"></i> <a class="footer-txt footer-light" href="{% url 'who-page' %}">من نحن</a>
                 </li>
-                  <li class="item-list-a">
-                  <i class="bi bi-chevron-left"></i> <a href="{% url 'services-page' %}">خدماتنا  </a>
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-left"></i> <a class="footer-txt footer-light" href="{% url 'services-page' %}">خدماتنا</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations -->
+        <div class="col-sm-12 col-md-3 section-md-t3">
+          <div class="widget-a">
+            <div class="w-header-a">
+              <h3 class="w-title-a text-brand noto-kufi-arabic text-white-50">المواقع</h3>
+            </div>
+            <div class="w-body-a">
+              <ul class="list-unstyled">
+                <li class="item-list-a">
+                  <i class="bi bi-chevron-left"></i> <a class="footer-txt footer-light" href="#">السعودية</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-3 section-md-t3">
-        <div class="widget-a">
-          <div class="w-header-a">
-            <h3 class="w-title-a text-brand noto-kufi-arabic">المواقع</h3>
-          </div>
-          <div class="w-body-a">
-            <ul class="list-unstyled">
-              <li class="item-list-a">
-                <i class="bi bi-chevron-left"></i> <a href="#">السعودية</a>
+    </div>
+
+
+  </section>
+<footer class="bg-goals">
+      <!-- Social Links and Copyright -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="socials-a">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="bi bi-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
               </li>
             </ul>
+          </div>
+          <div class="copyleft-footer">
+            <p class="copyleft color-text-a">
+              &copy; Copyleft <span class="color-a">ثمار القابضه - {% get_version as version %}{{ version }}</span> جميع الحقوق محفوظة
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<footer>
-  <div class="container">
-    <!-- <div class="row">
-      <div class="col-md-12">
-        <div class="socials-a">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a href="#"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#"><i class="bi bi-twitter" aria-hidden="true"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-            </li>
-          </ul>
-        </div>
-        <div class="copyleft-footer">
-          <p class="copyleft color-text-a">
-            &copy; Copyleft
-            <span class="color-a">ثمار القابضه - {% get_version as version %}{{ version }}</span> جميع الحقوق محفوظة
-          </p>
-        </div>
-      </div>
-    </div> -->
-  </div>
 </footer>
 <!-- End Footer -->

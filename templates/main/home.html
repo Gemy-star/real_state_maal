@@ -20,11 +20,16 @@
         font-size: 3.8rem !important;
     }
 }
+  .home-who-us {
+    background-color: #CEC9BB !important;
+  }
 
 </style>
     {% endblock %}
 {% block body %}
-  <!-- ======= Intro Section ======= -->
+
+  <main id="main">
+      <!-- ======= Intro Section ======= -->
   <div class="intro intro-carousel swiper position-relative">
     <div class="swiper-wrapper">
       <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-position: bottom;background-image: url(../../static/assets/img/home_main.jpg);background-origin: content-box;background-size: cover;">
@@ -35,8 +40,8 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="intro-body">
-                    <p class="intro-title-top"></p>
-                    <h1 class="intro-title mb-4 text-center">تسويق المنتجات الزراعية و الغذائية<br> وتجارة الجملة و التجزئة </h1>
+                    <h1 class="intro-title mb-4 text-center noto-kufi-arabic">تسويق المنتجات الزراعية و الغذائية<br> وتجارة الجملة و التجزئة </h1>
+                      <a href="#"><span class="price-a noto-kufi-arabic">شركة ثمار القابضة</span></a>
                   </div>
                 </div>
               </div>
@@ -91,86 +96,57 @@ to a different word -->
   </div>
   <!-- End Intro Section -->
 
-  <main id="main">
-    <!-- ======= Services Section ======= -->
-    <section class="section-services section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">لماذا ثمار ؟ </h2>
-                <p class="intro-subtitle">تتميز شركة "ثمار" بعدة جوانب تجعلها رائدة في مجالها، منها:</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-cart"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الجودة العالية</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تلتزم شركة ثمار بتقديم منتجات زراعية وغذائية ذات جودة ممتازة، حيث تتبع أعلى المعايير العالمية في جميع مراحل الإنتاج، من الزراعة حتى التسويق</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-calendar4-week"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الالتزام بالوقت</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تحرص الشركة على الالتزام بمواعيد تسليم المنتجات والخدمات بدقة، مما يعزز ثقة العملاء ويضمن استمرارية التعاون</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-card-checklist"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الابتكار</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تعتمد شركة ثمار على استخدام أحدث التقنيات الزراعية والابتكارات في مجال الخدمات اللوجستية، مما يساعدها على تحسين كفاءة الإنتاج وزيادة القدرة التنافسية في السوق.</p>
-              </div>
-            </div>
-          </div>
-                 <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-calculator"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الاستدامة</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تركز الشركة على الممارسات الزراعية المستدامة التي تحافظ على البيئة وتدعم التنمية الزراعية طويلة الأمد</p>
-              </div>
-            </div>
-          </div>
 
+  <section class="section-agents section-t4 home-who-us">
+
+    <div class="container">
+      <div class="row pt-2">
+        <div class="col-sm-12">
+          <div class="row d-flex justify-content-around">
+            <div class="col-md-5">
+              <div class="agent-avatar-box">
+                <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
+              </div>
+                 <div class="agent-avatar-box pt-2">
+                <img src="{% static 'assets/img/home_who.jpg' %}" style="border-radius: 12px;" alt="" class="agent-avatar img-fluid">
+              </div>
+            </div>
+            <div class="col-md-5 section-md-t3">
+              <div class="agent-info-box">
+                <div class="agent-title">
+                  <div class="title-box-d">
+                    <h5 class="title-d noto-kufi-arabic">
+                      شركة ثمار
+                    </h5>
+                  </div>
+                </div>
+                <div class="agent-content mb-3">
+                  <p class="content-d color-text-a" style="font-size: 1.25rem;">
+                    تأسست شركة ثمار التنمية القابضة كشركة مساهمة سعودية عام 1408 هـ/ 1988 م، وقد بدأت الشركة أعمالها
+                    باسم "الشركة الوطنية للتسويق الزراعي"، ومع توسع أعمال الشركة لاحقاً، تغيّر اسمها إلى "شركة ثمار
+                    التنمية القابضة" في نوفمبر 2021
+                    بدأت ثمار أعمالها في تسويق المنتجات الزراعية والغذائية وتجارة الجملة والتجزئة للمنتجات الزراعية
+                    والغذائية ومنتجات اللحوم الطازجة والمبردة والمجمدة في المملكة العربية السعودية، إضافةً إلى صيانة
+                    وإدارة وتسويق المشاريع الزراعية، وإدارة وتشغيل أسواق الجملة المركزية. ثم اتسعت دائرة أعمال ثمار
+                    القابضة إلى الاستثمار في المجال العقاري ضمن خطط الشركة الاستثمارية المستقبلية المتوافقة مع خطة
+                    التنظيم المالي.
+                    ويتمثل نشاط شركة ثمار في إدارة الشركات التابعة للشركات القابضة واستثمار أموالها، إلى جانب امتلاك
+                    العقارات والمنقولات اللازمة للشركات وتقديم القروض والكفالات والتمويل للشركات القابضة. إضافةً إلى
+                    امتلاك حقوق الملكية الصناعية للشركات التابعة للشركات القابضة وتأجيرها.
+
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <!-- End Services Section -->
+
+    </div>
+
+  </section>
+
+
 
 
     <!-- ======= Agents Section ======= -->
@@ -182,135 +158,162 @@ to a different word -->
               <div class="title-box">
                 <h2 class="title-a noto-kufi-arabic">فريق العمل</h2>
               </div>
-              <div class="title-link">
-                <a href="">
-                  المزيد
-                  <span class="bi bi-chevron-left"></span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-3">
+            <div class="card" style="border: none;">
+              <div class="card-img">
                 <img src="{% static 'assets/img/ceo/1.png' %}" alt="" class="img-d img-fluid" />
               </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="" class="link-two">
-                        المهندس/ وليد بن عبدالعزيز الشويعر
-                                    </a>
-                    </h3>
-                  </div>
-                </div>
-                <div class="card-body-d">
+              <div class="card-body">
+                   <h6 class="title-d">
+                                             المهندس/ وليد بن عبدالعزيز الشويعر
+                    </h6>
                   <p class="content-d color-text-a">رئيس مجلس الإدارة</p>
                 </div>
-              </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
+          <div class="col-md-3">
+             <div class="card" style="border: none;">
+              <div class="card-img">
                 <img src="{% static 'assets/img/ceo/2.png' %}" alt="" class="img-d img-fluid" />
               </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="" class="link-two">
+              <div class="card-body">
+                   <h6 class="title-d">
                         أ/ خالد بن أسعد خاشقجي
-                      </a>
-                    </h3>
-                  </div>
-                </div>
-                <div class="card-body-d">
+                    </h6>
                   <p class="content-d color-text-a">نائب رئيس مجلس الإدارة</p>
-
                 </div>
-              </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card-box-d">
-              <div class="card-img-d">
+          <div class="col-md-3">
+
+                <div class="card" style="border: none;">
+              <div class="card-img">
                 <img src="{% static 'assets/img/ceo/3.png' %}" alt="" class="img-d img-fluid" />
               </div>
-              <div class="card-overlay card-overlay-hover">
-                <div class="card-header-d">
-                  <div class="card-title-d align-self-center">
-                    <h3 class="title-d">
-                      <a href="" class="link-two">
+              <div class="card-body">
+                   <h6 class="title-d">
                         أ/ ملفي بن مناحي المرزوقي
-                      </a>
-                    </h3>
-                  </div>
-                </div>
-                <div class="card-body-d">
+                    </h6>
                   <p class="content-d color-text-a">عضو مجلس الإدارة  - العضو المنتدب</p>
                 </div>
+            </div>
+          </div>
+
+         <div class="col-md-3">
+             <div class="card" style="border: none;">
+              <div class="card-img">
+              <img src="{% static 'assets/img/ceo/4.png' %}" alt="" class="img-d img-fluid" />
               </div>
+              <div class="card-body">
+                   <h6 class="title-d">
+                      أ/ عزيز بن محمد القحطاني
+                    </h6>
+                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
+                </div>
+            </div>
+          </div>
+
+                <div class="col-md-3">
+             <div class="card" style="border: none;">
+              <div class="card-img">
+              <img src="{% static 'assets/img/ceo/5.png' %}" alt="" class="img-d img-fluid" />
+              </div>
+              <div class="card-body">
+                   <h6 class="title-d">
+                      أ/ عبدالكريم بن محمد النهير
+                    </h6>
+                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
+                </div>
+            </div>
+          </div>
+
+
+                <div class="col-md-3">
+             <div class="card" style="border: none;">
+              <div class="card-img">
+              <img src="{% static 'assets/img/ceo/6.png' %}" alt="" class="img-d img-fluid" />
+              </div>
+              <div class="card-body">
+                   <h6 class="title-d">
+                      أ/هيثم بن فيصل اسكوبى
+                    </h6>
+                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
+                </div>
+            </div>
+          </div>
+
+     <div class="col-md-3">
+             <div class="card" style="border: none;">
+              <div class="card-img">
+              <img src="{% static 'assets/img/ceo/7.png' %}" alt="" class="img-d img-fluid" />
+              </div>
+              <div class="card-body">
+                   <h6 class="title-d">
+                      أ/ياسر بن سليمان العقيل
+                    </h6>
+                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- End Agents Section -->
-    <section class="section-agents section-t8">
+    <section class="section-agents section-t4">
       <div class="container">
-          <h2 class="mb-4">حقائق وأرقام </h2>
+          <h2 class="noto-kufi-arabic mb-4">حقائق وأرقام </h2>
           <div class="row">
-              <div class="col-md-2 mb-4">
-                  <div class="card shadow-sm">
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm  bg-main">
                       <div class="card-body">
-                          <h3 class="card-title">36</h3>
-                          <p class="card-text">عاماً من الخبرات</p>
+                          <h3 class="card-title text-white-50">36</h3>
+                          <p class="card-text noto-kufi-arabic text-white-50">عاماً من الخبرات</p>
                       </div>
                   </div>
               </div>
-              <div class="col-md-2 mb-4">
-                  <div class="card shadow-sm">
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-sec">
                       <div class="card-body">
-                          <h3 class="card-title">410</h3>
-                          <p class="card-text">موظفاً</p>
+                          <h3 class="card-title text-white-50">410</h3>
+                          <p class="card-text noto-kufi-arabic text-white-50">موظفاً</p>
                       </div>
                   </div>
               </div>
-              <div class="col-md-2 mb-4">
-                  <div class="card shadow-sm">
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-goals">
                       <div class="card-body">
-                          <h3 class="card-title">22 </h3>
-                          <p class="card-text">مشروعاً قائماً</p>
+                          <h3 class="card-title text-white-50">22 </h3>
+                          <p class="card-text noto-kufi-arabic text-white-50">مشروعاً قائماً</p>
                       </div>
                   </div>
               </div>
-              <div class="col-md-2 mb-4">
-                  <div class="card shadow-sm">
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-main">
                       <div class="card-body">
-                          <h3 class="card-title">117</h3>
-                          <p class="card-text">شراكة</p>
+                          <h3 class="card-title text-white-50">117</h3>
+                          <p class="card-text noto-kufi-arabic text-white-50">شراكة</p>
                       </div>
                   </div>
               </div>
 
-              <div class="col-md-2 mb-4">
-                <div class="card shadow-sm">
+              <div class="col-md-2 pt-2 mb-4">
+                <div class="card shadow-sm bg-sec">
                     <div class="card-body">
-                        <h3 class="card-title">80% </h3>
-                        <p class="card-text">نسبة التوطين </p>
+                        <h3 class="card-title text-white-50">80% </h3>
+                        <p class="card-text noto-kufi-arabic text-white-50">نسبة التوطين </p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-2 mb-4">
-              <div class="card shadow-sm">
+              <div class="card shadow-sm bg-goals">
                   <div class="card-body">
-                      <h3 class="card-title"> 42 <span style="font-size: 0.6rem; color: black;">مليون ريال</span></h3>
-                      <p class="card-text">قيمة المشاريع </p>
+                      <h3 class="card-title text-white-50"> 42 <span class="text-white-50" style="font-size: 0.6rem;">مليون ريال</span></h3>
+                      <p class="card-text noto-kufi-arabic text-white-50">قيمة المشاريع </p>
                   </div>
               </div>
           </div>
@@ -318,135 +321,39 @@ to a different word -->
       </div>
   </section>
     <!-- ======= Latest News Section ======= -->
-    <section class="section-news section-t8">
+    <section class="section-news section-t8 bg-goals h-40-vh">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">أخبار ثمار</h2>
+         <div class="row d-flex justify-content-between">
+             <div class="col-md-3 pt-2">
+                 <div class="card bg-main">
+                     <div class="card-body">
+                         <h3 class="text-white noto-kufi-arabic">الرؤية </h3>
+                         <p class="text-white-50 noto-kufi-arabic">ان نكون شركة رائدة فى مسيرة البناء و التنمية فى المملكة العربية السعودية.</p>
+                     </div>
               </div>
-              <div class="title-link">
-                <a href="">
-                  جميع الأخبار
-                  <span class="bi bi-chevron-left"></span>
-                </a>
+
+             </div>
+               <div class="col-md-3 pt-2">
+                 <div class="card bg-sec">
+                     <div class="card-body">
+                         <h3 class="text-white noto-kufi-arabic">الرسالة </h3>
+                         <p class="text-white-50 noto-kufi-arabic">ان نعزز التنويع الاستثمارى فى المملكة و تدعم الأقتصاد الوطنى بشركات ناجحة و متميزة.  </p>
+                     </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <div id="news-carousel" class="swiper">
-          <div class="swiper-wrapper">
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/ksa.png' %}" alt="" class="img-b img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">أخبار</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href=">
-                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">{% now "jS F Y H:i" %}</span>
-                    </div>
-                  </div>
-                </div>
+             </div>
+               <div class="col-md-4 pt-2">
+                 <div class="card bg-goals">
+                     <div class="card-body">
+                         <h3 class="text-dark noto-kufi-arabic">الأهداف </h3>
+                         <p class="text-black-50 noto-kufi-arabic"><span class="text-bold">تمثل أبرز أهداف الشركة فى <br/></span> الدخول بمشاركات فى أنشطة ناجحة ذات عوائد مجزية وقابلة للنمو والتوسع <br>
+                          الأستثمار فى الفرص الناجحة القابلة للتصدير خارج المملكة
+                         </p>
+                     </div>
               </div>
-            </div>
-            <!-- End carousel item -->
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/post-5.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">أخبار</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="">
-                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">{% now "jS F Y H:i" %}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/ksa-sea.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">أخبار</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="">
-                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
-
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">{% now "jS F Y H:i" %}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img  src="{% static 'assets/img/back.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-                <div class="card-overlay">
-                  <div class="card-header-b">
-                    <div class="card-category-b">
-                      <a href="#" class="category-b">أخبار</a>
-                    </div>
-                    <div class="card-title-b">
-                      <h2 class="title-2">
-                        <a href="#">
-                          شركة "ثمار القابضة" تعلن عن نتائجها المالية للربع الثاني من العام الحالي
-
-                        </a>
-                      </h2>
-                    </div>
-                    <div class="card-date">
-                      <span class="date-b">{% now "jS F Y H:i" %}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-          </div>
-        </div>
-
-        <div class="news-carousel-pagination carousel-pagination"></div>
+             </div>
+         </div>
       </div>
     </section>
     <!-- End Latest News Section -->

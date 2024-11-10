@@ -9,18 +9,99 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic Primary Font/FatimahArabicITF-Black.otf') format('truetype');
+    font-weight: 900; /* Black */
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic Primary Font/FatimahArabicITF-Bold.otf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic Primary Font/FatimahArabicITF-Medium.otf') format('truetype');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic Primary Font/FatimahArabicITF-Regular.otf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic Primary Font/FatimahArabicITF-Light.otf') format('truetype');
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+
+
+.h-40-vh {
+  height: 48vh;
+}
 .noto-kufi-arabic {
-  font-family: "Cairo", sans-serif !important;
+  font-family: "FatimahArabicITF", sans-serif !important;
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 }
+@font-face {
+    font-family: 'FatimahArabicITF';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200; /* ExtraLight */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ReadexPro';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ReadexPro';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-Medium.ttf') format('truetype');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ReadexPro';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-SemiBold.ttf') format('truetype');
+    font-weight: 600; /* SemiBold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ReadexPro';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-Bold.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ReadexPro';
+    src: url('./fonts/Arabic & English Secondary Font/ReadexPro-ExtraBold.ttf') format('truetype');
+    font-weight: 800; /* ExtraBold */
+    font-style: normal;
+}
+
+
 
 body {
-  font-family: "Cairo", sans-serif;
+  font-family: "ReadexPro", sans-serif;
   font-optical-sizing: auto;
-  font-weight:500;
   font-style: normal;
   font-variation-settings:
     "slnt" 0;
@@ -85,6 +166,24 @@ a:hover {
   text-decoration: none;
 }
 
+.footer-txt {
+  color: #CEC9BB !important;
+}
+
+.footer-light {
+  font-weight: 200 !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.bg-goals {
+  background-color: #b9aac1;
+}
+.bg-main {
+  background-color: #392E37;
+}
+.bg-sec{
+background-color: #CEC9BB;
+}
 @media (min-width: 768px) {
   .link-a {
     font-size: 0.75rem;
@@ -315,6 +414,9 @@ a:hover {
   .section-md-t3 {
     padding-top: 3rem;
   }
+  .h-40-vh {
+    height: 88vh;
+  }
 }
 
 .section-b2 {
@@ -367,7 +469,7 @@ a:hover {
 
 .title-box-d .title-d {
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 2.4rem;
 }
 
 .title-box-d .title-d:after {
@@ -623,10 +725,15 @@ a:hover {
   transition: all 0.5s ease-in-out;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
+  box-shadow: 1px 2px 15px #392E37;
+  /*background-color: #392E37;*/
   background-color: transparent;
 }
 
+/* Background color when scrolled */
+.scrolled {
+  background-color: #392E37 !important; /* Change to desired color */
+}
 
 
 .navbar-default .nav-search {
@@ -731,7 +838,7 @@ a:hover {
 }
 
 .navbar-default.navbar-reduce .nav-link {
-  color: #000000;
+  color: #ffffff;
 }
 
 .navbar-default.navbar-reduce .nav-link:before {
@@ -739,18 +846,22 @@ a:hover {
 }
 
 .navbar-default.navbar-reduce .nav-link:hover {
-  color: #000000;
+  color: #CEC9BB;
+}
+
+#navbar.sticky::before {
+    background: #392E37 /* Change background when sticky */
 }
 
 .navbar-default.navbar-reduce .show>.nav-link,
 .navbar-default.navbar-reduce .active>.nav-link,
 .navbar-default.navbar-reduce .nav-link.show,
 .navbar-default.navbar-reduce .nav-link.active {
-  color: #000000;
+  color: #ffffff;
 }
 
 .navbar-default.navbar-reduce .navbar-brand {
-  color: #000000;
+  color: #ffffff;
 }
 
 .navbar-default .dropdown .dropdown-menu {
@@ -2144,7 +2255,6 @@ a:hover {
 --------------------------------------------------------------*/
 .section-footer {
   padding-top: 60px;
-  margin-top: 60px;
   background: #f3f3f3;
 }
 
@@ -2175,4 +2285,14 @@ footer .copyright-footer {
 
 footer .credits {
   font-size: 14px;
+}
+
+
+.logo-image {
+  max-height: 7rem;
+  max-width: 8.1rem;
+}
+
+.contact-info {
+  margin-inline-start: -2rem;
 }
