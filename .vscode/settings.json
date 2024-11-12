@@ -1,0 +1,69 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "tcs4ops-portal",
+      "group": "tcs4ops-portal",
+      "database": "${workspaceFolder:tcs4ops-portal}/db.sqlite3"
+    }
+  ],
+  "sqltools.useNodeRuntime": true,
+  "python.pythonPath": ".venv/Scripts/activate",
+  "editor.formatOnSave": true,
+  "beautify.language": {
+    "html": [
+      "django-html"
+    ]
+  },
+  "[django-html]": {
+    "editor.formatOnSave": false
+  },
+  "python.formatting.provider": "autopep8",
+  "editor.wordWrapColumn": 250,
+  "python.formatting.autopep8Args": [
+    "--max-line-length",
+    "250",
+    "--experimental"
+  ],
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: chromium, indent_width: 250}"
+  ],
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "250"
+  ],
+  "python.linting.pylintArgs": [
+    "--max-line-length",
+    "250",
+    "--aggressive"
+  ],
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    ".",
+    "-p",
+    "*test*.py"
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "sonarlint.connectedMode.project": {
+    "connectionId": "SonarQube Orange ",
+    "projectKey": "tcs4ops-portal"
+  }
+}

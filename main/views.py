@@ -8,11 +8,14 @@ from .models import Contact, JobRequest, News, ProjectRequest
 
 # Create your views here.
 
+
 class HomePageView(TemplateView):
-    template_name = 'main/home.html'
+    template_name = "main/home.html"
+
 
 def home_page_view(request):
-    return redirect('home-page')
+    return redirect("home-page")
+
 
 class PrivacyPageView(TemplateView):
     template_name = "main/privacy.html"
