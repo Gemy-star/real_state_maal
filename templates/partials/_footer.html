@@ -77,22 +77,46 @@
           <div class="socials-a">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="#"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+                <a href="{% url 'home-page' %}">الرئيسية</a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="bi bi-twitter" aria-hidden="true"></i></a>
+                <a href="{% url 'services-page' %}">علاقات المستثمرين </a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+                <a href="{% url 'who-page' %}">استثماراتنا </a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+                <a href="{% url 'about-page' %}">من نحن </a>
+              </li>
+              <li class="list-inline-item">
+              </li>
+              <li class="list-inline-item">
+                <a  href="{% url 'contact-page' %}"> المركز الإعلامي   </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12" style="direction:ltr;">
+          <div class="socials-a">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#"><i style="font-size: 1.25rem;" class="bi bi-facebook" aria-hidden="true"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i style="font-size: 1.25rem;" class="bi bi-twitter-x"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i style="font-size: 1.25rem;" class="bi bi-instagram" aria-hidden="true"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i style="font-size: 1.25rem;" class="bi bi-linkedin" aria-hidden="true"></i></a>
               </li>
             </ul>
           </div>
           <div class="copyleft-footer">
             <p class="copyleft color-text-a">
-              &copy; Copyleft <span class="color-a">ثمار القابضه - {% get_version as version %}{{ version }}</span> جميع الحقوق محفوظة
+              &copy; <span class="color-a">ثمار  - </span> جميع الحقوق محفوظة
             </p>
           </div>
         </div>

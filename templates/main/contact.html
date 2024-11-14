@@ -1,14 +1,167 @@
 {% extends 'base.html' %}
 {% load static crispy_forms_tags %}
+{% block style %}
+<style>
+  .intro-single {
+    padding: 6rem 0 1rem;
+  }
+
+  .card-text {
+    font-size: 1.2rem !important;
+  }
+
+  .bg-footer {
+    background-color: #c6c6c6;
+  }
+
+  .navbar {
+    background-color: #392E37 !important;
+  }
+
+  .card-box-ico {
+    padding: 0.95rem !important;
+    border: none !important;
+  }
+
+  .card-img {
+    box-shadow: 1px 2px 15px #392E37;
+  }
+
+  .radius {
+    border-radius: 20px;
+  }
+
+  .bg-main {
+    background-color: #392E37 !important;
+  }
+
+  .bg-services {
+    background-color: #c6c6c6
+  }
+
+  .services-color {
+    color: #c6c6c6 !important;
+  }
+
+  .sec-color {
+    color: #CEC9BB !important;
+  }
+</style>
+{% endblock %}
 {% block body %}
 
 <main id="main">
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single bg-services">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-lg-4 d-flex flex-column mx-auto pt-4">
+          <div class="col-12 col-md-4">
+            <h5 class="color-main noto-kufi-arabic"> المركز الأعلامى</h5>
+          </div>
+          <div class="col-12 col-md-8" style="direction:ltr;">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="noto-kufi-arabic" href="{% url 'home-page' %}">الرئيسية</a>
+                </li>
+                <li class="breadcrumb-item active noto-kufi-arabic" aria-current="page">
+                  المركز الأعلامى
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Intro Single-->
+
+
+  <!-- ======= News Section ======= -->
+  <section class="section-agents section-t4 bg-services">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box mx-auto">
+            <h1 class="title-single text-black-50 noto-kufi-arabic"> أخبار ثمار</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-4" style="padding-bottom:2rem;">
+        <!-- Card 1 -->
+        <div class="col-md-4 pt-2">
+          <div class="card bg-sec" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض </p>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other cards if needed -->
+        <!-- Card 2 -->
+        <div class="col-md-4 pt-2">
+          <div class="card bg-sec" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'assets/img/who2.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض </p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-4 pt-2">
+          <div class="col-md-4 pt-2">
+            <div class="card bg-sec" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'assets/img/who3.jpg' %}" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-4" style="padding-bottom:2rem;">
+        <!-- Card 1 -->
+        <div class="col-md-4 pt-2">
+          <div class="card bg-sec" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض </p>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other cards if needed -->
+        <!-- Card 2 -->
+        <div class="col-md-4 pt-2">
+          <div class="card bg-sec" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'assets/img/who2.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض </p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-4 pt-2">
+          <div class="col-md-4 pt-2">
+            <div class="card bg-sec" style="width: 18rem;">
+              <img class="card-img-top" src="{% static 'assets/img/who3.jpg' %}" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text noto-kufi-arabic text-black-50">ثمار تستثمر 6 ملايين ريال لتطوير برج سكنى بالرياض
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
-
-      <!-- ======= Latest News Section ======= -->
-      <section class="section-news section-t8">
+  <!-- ======= Latest News Section ======= -->
+  <!-- <section class="section-agents section-t4 bg-services">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -27,184 +180,102 @@
           </div>
        <div class="row pt-4">
   {% for new in news  %}
-  <div class="col-12">
-    <div class="card">
-      <div class="card-img">
-        <img src="{{new.image.url}}" alt="" class="img-fluid" style="max-width: 50%;" />
-      </div>
-      <div class="card-body">
-        <h2 class="title-2 text-black">
-          {{new.title}}
-      </h2>
-          <div class="card-footer">
-            <p class="text-sm">{{new.content}}</p>
+  <div class="col-md-4 pt-2">
+          <div class="card bg-sec" style="width: 18rem;">
+            <img class="card-img-top" src="{{new.image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">{{new.title}}       </p>
+            </div>
           </div>
-
-      </div>
-    </div>
-
-  </div>
-
+        </div>
   {% endfor %}
        </div>
         </div>
-      </section>
-      <!-- End Latest News Section -->
-    <!-- ======= Latest Gallery Section ======= -->
-    <section class="section-news section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">جاليرى </h2>
-              </div>
-            </div>
-          </div>
-        </div>
+      </section> -->
+  <!-- End Latest News Section -->
 
-        <div id="news-carousel" class="swiper">
-          <div class="swiper-wrapper">
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/ksa.png' %}" alt="" class="img-b img-fluid" />
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
 
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/post-5.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img src="{% static 'assets/img/ksa-sea.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-
-            <div class="carousel-item-c swiper-slide">
-              <div class="card-box-b card-shadow news-box news-frame">
-                <div class="img-box-b">
-                  <img  src="{% static 'assets/img/back.jpg' %}" alt="" class="img-b img-fluid" />
-                </div>
-              </div>
-            </div>
-            <!-- End carousel item -->
-          </div>
-        </div>
-
-        <div class="news-carousel-pagination carousel-pagination"></div>
-      </div>
-    </section>
-    <!-- End Latest Gallery Section -->
-    <section class="section-agents section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-12">
-            <div class="title-single-box">
-              <h1 class="title-single"> تواصل معنا</h1>
-              <span class="color-text-a">تواصل معنا و سيتم الرد عليك فى اسرع وقت </span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 section-t8">
-            <div class="row">
-              <div class="col-md-7">
-                <form method="post">
-                  {% csrf_token %}
-                  {{ form|crispy }}
-                  <button type="submit" class="btn btn-a">إرسال </button>
-
-                </form>
-              </div>
-
-              <div class="col-md-5 section-md-t3">
-                <div class="icon-box section-b2">
-                  <div class="icon-box-icon">
-                    <span class="bi bi-envelope"></span>
-                  </div>
-                  <div class="icon-box-content table-cell">
-                    <div class="icon-box-title">
-                      <h4 class="icon-title"> ثمار القابضة</h4>
-                    </div>
-                    <div class="icon-box-content">
-                      <p class="mb-1">البريد الألكترونى.
-                        <span class="color-a">info@thimar.com.sa</span>
-                      </p>
-                      <p class="mb-1">الهاتف.
-                        <span class="color-a">+0591616638</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-box section-b2">
-                  <div class="icon-box-icon">
-                    <span class="bi bi-geo-alt"></span>
-                  </div>
-                  <div class="icon-box-content table-cell">
-                    <div class="icon-box-title">
-                    </div>
-                    <div class="icon-box-content">
-                      <p class="mb-1">
-                        الرياض
-                        <br> السعودية
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="icon-box">
-                  <div class="icon-box-icon">
-                    <span class="bi bi-share"></span>
-                  </div>
-                  <div class="icon-box-content table-cell">
-                    <div class="icon-box-title">
-                      <h4 class="icon-title"> منصات التواصل</h4>
-                    </div>
-                    <div class="icon-box-content">
-                      <div class="socials-footer">
-                        <ul class="list-inline">
-                          <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-facebook" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-twitter" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-instagram" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="link-one">
-                              <i class="bi bi-linkedin" aria-hidden="true"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
+  <!-- ======= Latest Gallery Section ======= -->
+  <section class="section-news section-t4 bg-sec" style="padding-bottom:2rem;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="text-black-50 noto-kufi-arabic ">جاليرى </h2>
             </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <div id="news-carousel" class="swiper">
+        <div class="swiper-wrapper">
+          <div class="carousel-item-c swiper-slide">
+            <div class="card-box-b card-shadow news-box news-frame">
+              <div class="img-box-b card-img radius">
+                <img src="{% static 'assets/img/gal1.jpg' %}" alt="" class="img-b img-fluid" />
+              </div>
+            </div>
+          </div>
+          <!-- End carousel item -->
+
+          <div class="carousel-item-c swiper-slide">
+            <div class="card-box-b card-shadow news-box news-frame">
+              <div class="img-box-b card-img radius">
+                <img src="{% static 'assets/img/gal2.jpg' %}" alt="" class="img-b img-fluid" />
+              </div>
+            </div>
+          </div>
+          <!-- End carousel item -->
+
+          <div class="carousel-item-c swiper-slide">
+            <div class="card-box-b card-shadow news-box news-frame">
+              <div class="img-box-b card-img radius">
+                <img src="{% static 'assets/img/gal3.jpg' %}" alt="" class="img-b img-fluid" />
+              </div>
+            </div>
+          </div>
+          <!-- End carousel item -->
+
+          <div class="carousel-item-c swiper-slide">
+            <div class="card-box-b card-shadow news-box news-frame">
+              <div class="img-box-b card-img radius">
+                <img src="{% static 'assets/img/gal4.jpg' %}" alt="" class="img-b img-fluid" />
+              </div>
+            </div>
+          </div>
+          <!-- End carousel item -->
+        </div>
+      </div>
+
+      <div class="news-carousel-pagination carousel-pagination"></div>
+    </div>
+  </section>
+  <!-- End Latest Gallery Section -->
+  <section class="section-agents section-t4 bg-services" style="padding-bottom:2rem;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <h1 class="title-single text-black-50 noto-kufi-arabic"> تواصل معنا</h1>
+          <span class="text-black-50 noto-kufi-arabic">تواصل معنا و سيتم الرد عليك فى اسرع وقت </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 section-t4">
+          <div class="row">
+            <div class="col-md-7">
+              <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-a bg-main">إرسال </button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 
