@@ -1,27 +1,105 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block style %}
+<style>
+  .navbar {
+    background-color: #392E37 !important;
+  }
+  .card-img {
+    box-shadow: 1px 2px 15px #392E37;
+  }
+  .bg-footer {
+    background-color: #CEC9BB;
+  }
+</style>
+{% endblock style %}
 {% block body %}
+      <!-- ======= Intro Section ======= -->
+      <div class="intro intro-carousel swiper position-relative">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-position: bottom;background-image: url(../../static/assets/img/about.jpg);background-origin: content-box;background-size: cover;">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="intro-body">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TODO: change "sections"
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/back_ksa.jpg')">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+                    <p class="intro-title-top"></p>
+                    <h1 class="intro-title mb-4"></h1>
+                    <p class="intro-subtitle intro-price">
+                      مرحباً بكم في شركة ثمار، حيث نؤمن بأن الزراعة هي أساس الأمن الغذائي، وأن تقديم منتجات غذائية عالية الجودة هو رسالتنا. نسعى في ثمار لتحقيق الاستدامة والابتكار في كل ما نقوم به، بهدف دعم المزارعين وتوفير حلول زراعية متكاملة تسهم في تحسين حياتهم وتعزيز مستقبل أكثر ازدهاراً للجميع. رؤيتنا هي أن نكون الشريك الموثوق به في قطاع الزراعة والغذاء، ملتزمين بالتفوق والجودة في كل خطوة نخطوها
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/ksa22.jpg')">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="intro-body">
+                    <p class="intro-title-top"></p>
+                    <h1 class="intro-title mb-4"></h1>
+                    <p class="intro-subtitle intro-price">
+                      الجودة والابتكار في خدمة الزراعة
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+to a different word -->
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <!-- End Intro Section -->
   <main id="main">
 
-    <section class="agent-single">
+  <!-- ======= About Section ======= -->
+  <section class="section-about bg-sec">
       <div class="container">
-        <div class="row pt-4"></div>
-        <div class="row pt-4">
-          <div class="col-md-12 section-md-t3">
-            <h1 class="color-text-a text-center">عن الشركة</h1>
-            <div class="agent-info-box">
-              <div class="agent-content mb-3 mx-auto">
-                <h3 class="color-text-a text-end pt-4">النسخة العربية</h3>
-                <iframe src="{% static 'assets/files/file.pdf' %}" width="100%" height="600px"></iframe>
+        <div class="row">
+          <div class="col-md-12 section-t4 position-relative">
+            <div class="row d-flex justify-content-between">
+              <div class="col-md-4 col-lg-4 mt-8" style="margin-block:4.5rem">
+                <img src="{% static 'assets/img/who6.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
               </div>
-            </div>
-          </div>
-          <div class="col-md-12 section-md-t3">
-            <div class="agent-info-box">
-              <div class="agent-content mb-3 mx-auto">
-                <h3 class="color-text-a text-end">النسخة الأنجليزية</h3>
-                <iframe src="{% static 'assets/files/file-en.pdf' %}" width="100%" height="600px"></iframe>
+              <div class="col-md-3 col-lg-3 section-md-t3" style="margin-block:4rem;">
+                  <h5 class="title-d noto-kufi-arabic">استرايجتنا
+                  </h5>
+                <p class="color-text-a noto-kufi-arabic">
+مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الأستقرار والنمو, إذ بنت هيكلية مرنة ووضعت اتسراتيجية مبتكرة تترجم هذا التوسعو ومن أهم ملامح تلك الأستراتيجية
+                </p>
+
+              </div>
+
+              <div class="col-md-4 col-lg-4 section-md-t3">
+                <img src="{% static 'assets/img/who5.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
               </div>
             </div>
           </div>
@@ -29,85 +107,33 @@
       </div>
     </section>
 
-        <!-- ======= Services Section ======= -->
-    <section class="section-services section-t4">
+
+
+  <!-- ======= Goals Section ======= -->
+  <section class="section-about bg-sec">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-a noto-kufi-arabic">لماذا ثمار ؟ </h2>
-                <p class="intro-subtitle">تتميز شركة "ثمار" بعدة جوانب تجعلها رائدة في مجالها، منها:</p>
+          <div class="col-md-12 section-t4 position-relative">
+            <div class="row d-flex justify-content-start">
+              <div class="col-md-4 col-lg-5 mt-8" style="margin-block:4.5rem">
+                <img src="{% static 'assets/img/who6.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-cart"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الجودة العالية</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تلتزم شركة ثمار بتقديم منتجات زراعية وغذائية ذات جودة ممتازة، حيث تتبع أعلى المعايير العالمية في جميع مراحل الإنتاج، من الزراعة حتى التسويق</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-calendar4-week"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الالتزام بالوقت</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تحرص الشركة على الالتزام بمواعيد تسليم المنتجات والخدمات بدقة، مما يعزز ثقة العملاء ويضمن استمرارية التعاون</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-card-checklist"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الابتكار</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تعتمد شركة ثمار على استخدام أحدث التقنيات الزراعية والابتكارات في مجال الخدمات اللوجستية، مما يساعدها على تحسين كفاءة الإنتاج وزيادة القدرة التنافسية في السوق.</p>
-              </div>
-            </div>
-          </div>
-                 <div class="col-md-3">
-            <div class="card-box-c foo">
-              <div class="card-header-c d-flex">
-                <div class="card-box-ico">
-                  <span class="bi bi-calculator"></span>
-                </div>
-                <div class="card-title-c align-self-center m-2">
-                  <h2 class="title-c">الاستدامة</h2>
-                </div>
-              </div>
-              <div class="card-body-c">
-                <p class="content-c">تركز الشركة على الممارسات الزراعية المستدامة التي تحافظ على البيئة وتدعم التنمية الزراعية طويلة الأمد</p>
-              </div>
-            </div>
-          </div>
+              <div class="col-md-4 col-lg-4 section-md-t3" style="margin-block:4rem;background-color:#c6c6c6">
+                  <h5 class="title-d noto-kufi-arabic">استرايجتنا
+                  </h5>
+                <p class="color-text-a noto-kufi-arabic">
+مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الأستقرار والنمو, إذ بنت هيكلية مرنة ووضعت اتسراتيجية مبتكرة تترجم هذا التوسعو ومن أهم ملامح تلك الأستراتيجية
+                </p>
 
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <!-- End Services Section -->
+
+
+
 
   </main>
 {% endblock %}

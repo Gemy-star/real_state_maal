@@ -201,6 +201,10 @@ a:hover {
   background-color: #CEC9BB;
 }
 
+.bg-footer {
+  background-color: #CEC9BB;
+}
+
 @media (min-width: 768px) {
   .link-a {
     font-size: 0.75rem;

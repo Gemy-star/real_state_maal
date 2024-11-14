@@ -7,7 +7,7 @@
       <span></span>
       <span></span>
     </button>
-    <a class="navbar-brand text-brand" href="{% url 'home-page' %}"><img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid" style="max-width: 9rem;" /></a>
+    <a class="navbar-brand text-brand" href="{% url 'home-page' %}"><img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid" style="max-width:6.5rem;max-height:8vh;" /></a>
 
     <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
       <ul class="navbar-nav">
@@ -15,13 +15,13 @@
           <a class="nav-link {% if request.resolver_match.url_name|startswith:'home-page' %} active {% endif %}" href="{% url 'home-page' %}">الرئيسية</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link{% if request.resolver_match.url_name|startswith:'news-page' %} active {% endif %}" href="{% url 'news-page' %}">علاقات المستثمرين </a>
+          <a class="nav-link{% if request.resolver_match.url_name|startswith:'services-page' %} active {% endif %}" href="{% url 'services-page' %}">علاقات المستثمرين </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'services-page' %} active {% endif %}" href="{% url 'services-page' %}">استثماراتنا  </a>
+          <a class="nav-link {% if request.resolver_match.url_name|startswith:'who-page' %} active {% endif %}" href="{% url 'who-page' %}">استثماراتنا  </a>
         </li>
           <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'who-page' %} active {% endif %}" href="{% url 'who-page' %}">من نحن  </a>
+          <a class="nav-link {% if request.resolver_match.url_name|startswith:'about-page' %} active {% endif %}" href="{% url 'about-page' %}">من نحن  </a>
         </li>
           <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name|startswith:'contact-page' %} active {% endif %}" href="{% url 'contact-page' %}"> المركز الإعلامي   </a>
