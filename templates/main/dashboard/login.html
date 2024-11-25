@@ -1,4 +1,3 @@
-
 {% extends 'dash_base.html' %}
 {% load static crispy_forms_tags %}
 {% block style %}
@@ -63,14 +62,12 @@
   }
 </style>
 {% endblock %}
-
 {% block body %}
 
 <main id="main">
 
   <!-- ======= Intro Single ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
       <div class="row pt-2">
         <div class="col-12 d-flex justify-content-center">
@@ -79,13 +76,15 @@
         </div>
         </div>
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card bg-sec">
+                <div class="card-header bg-main">
+                    <h2 class="text-center text-white-50 noto-kufi-arabic">تسجيل الدخول</h2>
+                </div>
                 <div class="card-body">
-                    <h2 class="text-center noto-kufi-arabic">تسجيل الدخول</h2>
     <form method="post" class="mt-4">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-primary btn-block noto-kufi-arabic">تسجيل الدخول</button>
+        <button type="submit" class="btn bg-main btn-block text-white-50 noto-kufi-arabic">تسجيل الدخول</button>
     </form>
                 </div>
             </div>

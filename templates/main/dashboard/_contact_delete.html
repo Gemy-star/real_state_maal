@@ -62,7 +62,6 @@
   }
 </style>
 {% endblock %}
-
 {% block body %}
 
 <main id="main">
@@ -81,13 +80,20 @@
         </div>
           </div>
         <div class="col-sm-12">
-         <h1>تأكيد الحذف</h1>
-<p>هل أنت متأكد أنك تريد حذف جهة الاتصال "{{ object.name }}"؟</p>
+            <div class="card bg-sec">
+                <div class="card-header bg-main">
+         <h1 class="noto-kufi-arabic">تأكيد الحذف</h1>
+                </div>
+          <div class="card-body">
+<p class="noto-kufi-arabic">هل أنت متأكد أنك تريد حذف جهة الاتصال "{{ object.name }}"؟</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">نعم، احذف</button>
-    <a href="{% url 'contact-detail' object.pk %}">إلغاء</a>
+    <button type="submit"><i style="font-size: 1.4rem" class="bi bi-check2"></i></button>
+    <a href="{% url 'contact-detail' object.pk %}"><i  style="font-size: 1.4rem" class="bi bi-x-lg"></i></a>
 </form>
+
+          </div>
+            </div>
 
         </div>
       </div>

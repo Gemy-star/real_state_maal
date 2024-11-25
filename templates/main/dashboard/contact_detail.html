@@ -81,13 +81,19 @@
         </div>
         </div>
         <div class="col-sm-12">
-          <h1 class="noto-kufi-arabic">التفاصيل</h1>
+       <div class="card bg-sec">
+         <div class="card-header bg-main">
+                       <h1 class="noto-kufi-arabic">التفاصيل</h1>
+         </div>
+       <div class="card-body">
           <p><strong>الأسم:</strong> {{ object.name }}</p>
           <p><strong>البريد الإلكتروني:</strong> {{ object.email }}</p>
           <p><strong>رقم الهاتف:</strong> {{ object.phone }}</p>
           <p><strong>الموضوع:</strong> {{ object.subject }}</p>
           <p><strong>الرسالة:</strong> {{ object.message }}</p>
-          <a href="{% url 'contact-delete' object.pk %}"> <i class="bi bi-trash"></i></a>
+          <a href="{% url 'contact-delete' object.pk %}"> <i style="font-size: 1.4rem" class="bi bi-trash"></i></a>
+       </div>
+       </div>
         </div>
       </div>
     </div>

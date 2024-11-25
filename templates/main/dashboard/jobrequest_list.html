@@ -28,7 +28,7 @@
   }
 
   .bg-services {
-    background-color: #c6c6c6
+    background-color: #c6c6c6;
   }
 
   .services-color {
@@ -38,9 +38,30 @@
   .sec-color {
     color: #CEC9BB !important;
   }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #392E37;
+    color: #fff;
+  }
+
+  td a {
+    color: #392E37;
+    text-decoration: none;
+  }
 </style>
 {% endblock %}
-
 {% block body %}
 
 <main id="main">
@@ -77,14 +98,14 @@
                 <td>{{ jobrequest.field }}</td>
                 <td>
                     {% if jobrequest.cv %}
-                    <a href="{{ jobrequest.cv.url }}"><i class="bi bi-download"></i></a>
+                    <a href="{{ jobrequest.cv.url }}"><i style="font-size: 1.4rem" class="bi bi-download"></i></a>
                     {% else %}
                     No CV
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'jobrequest-detail' jobrequest.pk %}"><i class="bi bi-eye"></i></a>
-                    <a href="{% url 'jobrequest-delete' jobrequest.pk %}"> <i class="bi bi-trash"></i></a>
+                    <a href="{% url 'jobrequest-detail' jobrequest.pk %}"><i style="font-size: 1.4rem" class="bi bi-eye"></i></a>
+                    <a href="{% url 'jobrequest-delete' jobrequest.pk %}"> <i  style="font-size: 1.4rem" class="bi bi-trash"></i></a>
                 </td>
             </tr>
             {% endfor %}

@@ -67,19 +67,33 @@
     padding: 15px;
   }
 }
+  .nav-link {
+      color: #392E37;
+  }
+  .nav-link :hover{
+      color: #CEC9BB;
+  }
 
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #CEC9BB;
+     box-shadow: 1px 2px 15px #392E37
+}
+.nav-pills {
+    --bs-nav-pills-border-radius: var(--bs-border-radius);
+    --bs-nav-pills-link-active-color: #fff;
+    --bs-nav-pills-link-active-bg: #CEC9BB;
+}
     </style>
     {% block style %}
 
     {% endblock %}
   </head>
   <body>
-<div class="layout">
-  <aside class="sidebar">
+<div class="layout bg-services" style="height: 100%">
+  <aside class="sidebar bg-services card-img" style="border: 1px solid #c6c6c6">
     {% include 'partials/_sidebar.html' %}
   </aside>
-  <main class="main-content">
+  <main class="main-content bg-services" style="border: 4px solid #c6c6c6">
     {% block body %}
     {% endblock %}
   </main>
