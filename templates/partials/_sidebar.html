@@ -1,0 +1,30 @@
+{% load static formatter_tags %}
+
+ <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <a href="{% url 'home-page' %}" class="d-flex align-items-center link-dark text-decoration-none">
+    <img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid" style="max-width:6.5rem;max-height:8vh;" />
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link {% if request.resolver_match.url_name|startswith:'jobrequest-list' %} active {% endif %} noto-kufi-arabic" aria-current="page">
+          <i class="bi bi-person-standing"></i>
+          طلبات التوظيف
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link {% if request.resolver_match.url_name|startswith:'contact-list' %} active {% endif %} link-dark">
+<i class="bi bi-person-rolodex"></i>
+            طلبات التواصل
+        </a>
+      </li>
+         <li>
+         </li>
+         <li>
+        <a href="{% url 'logout' %}" class="nav-link {% if request.resolver_match.url_name|startswith:'logout' %} active {% endif %} link-dark">
+         <i class="bi bi-box-arrow-left"></i>
+            تسجيل الخروج
+        </a>
+      </li>
+    </ul>
+  </div>

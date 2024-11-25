@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ثمار القابضه</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <link href="{% static 'assets/img/logo_white.png' %}" rel="icon" />
+    <link href="{% static 'assets/img/logo_white.png' %}" rel="apple-touch-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <style>
+      .back-to-top{
+        cursor: pointer !important;
+      }
+/* Base layout for larger screens */
+.layout {
+  display: flex;
+  flex-direction: row; /* Side-by-side layout */
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #f8f9fa;
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  flex: 1; /* Flexible width for main content */
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* Adjustments for tablets (medium screens) */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px; /* Reduce sidebar width for medium screens */
+  }
+  .main-content {
+    padding: 15px; /* Adjust padding */
+  }
+}
+
+/* Adjustments for small screens (mobile phones) */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .sidebar {
+    width: 100%; /* Sidebar takes full width */
+    box-shadow: none; /* Remove shadow */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+}
+
+
+    </style>
+    {% block style %}
+
+    {% endblock %}
+  </head>
+  <body>
+<div class="layout">
+  <aside class="sidebar">
+    {% include 'partials/_sidebar.html' %}
+  </aside>
+  <main class="main-content">
+    {% block body %}
+    {% endblock %}
+  </main>
+</div>
+    {% include 'partials/_footer.html' %}
+    <div id="preloader"></div>
+    <a id="chat" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-whatsapp"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <script>
+   document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("chat").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.location.href = "https://api.whatsapp.com/send?phone=966591616638";
+  });
+});
+   const navbar = document.getElementById('navbar');
+
+// Add scroll event listener
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) { // Adjust 50 to your preferred scroll distance
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+(function () {
+  'use strict'
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})()
+    </script>
+  </body>
+</html>

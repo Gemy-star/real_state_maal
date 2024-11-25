@@ -1,0 +1,104 @@
+{% extends 'dash_base.html' %}
+{% load static crispy_forms_tags %}
+{% block style %}
+<style>
+  .intro-single {
+    padding: 6rem 0 1rem;
+  }
+
+  .bg-footer {
+    background-color: #c6c6c6;
+  }
+
+  .navbar {
+    background-color: #392E37 !important;
+  }
+
+  .card-box-ico {
+    padding: 0.95rem !important;
+    border: none !important;
+  }
+
+  .card-img {
+    box-shadow: 1px 2px 15px #392E37 !important;
+  }
+
+  .bg-main {
+    background-color: #392E37 !important;
+  }
+
+  .bg-services {
+    background-color: #c6c6c6
+  }
+
+  .services-color {
+    color: #c6c6c6 !important;
+  }
+
+  .sec-color {
+    color: #CEC9BB !important;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<main id="main">
+
+  <!-- ======= Intro Single ======= -->
+  <section class="section-agents section-t4 bg-services">
+
+    <div class="container">
+      <div class="row pt-2">
+          <div class="col-12 d-flex justify-content-center" >
+                  <h5 class="noto-kufi-arabic">  طلبات الاتصال</h5>
+          </div>
+            <div class="col-12 d-flex justify-content-center">
+                <div class="col-md-4">
+          {% include 'partials/_messages.html' %}
+        </div>
+        </div>
+        <div class="col-sm-12">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>الأسم</th>
+                <th>المجال</th>
+                <th>السيرة الذاتية</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jobrequest in jobrequests %}
+            <tr>
+                <td>{{ jobrequest.id }}</td>
+                <td>{{ jobrequest.name }}</td>
+                <td>{{ jobrequest.field }}</td>
+                <td>
+                    {% if jobrequest.cv %}
+                    <a href="{{ jobrequest.cv.url }}"><i class="bi bi-download"></i></a>
+                    {% else %}
+                    No CV
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'jobrequest-detail' jobrequest.pk %}"><i class="bi bi-eye"></i></a>
+                    <a href="{% url 'jobrequest-delete' jobrequest.pk %}"> <i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+</main>
+
+
+{% endblock %}
