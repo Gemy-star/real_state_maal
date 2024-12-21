@@ -43,6 +43,14 @@ class News(models.Model):
     content = models.TextField()
     image = models.ImageField(null=True, blank=True, upload_to="news/")
 
+    @property
+    def image_url(self):
+        # Check if the field is None (null) or an empty string
+        if self.image and str(self.image).strip():
+            return self.image.url
+        # Return the default static file URL
+        return static("assets/img/home_who.jpg")
+
     def __str__(self):
         return self.title
 
@@ -92,9 +100,45 @@ class RelationsPage(SingletonModel):
     first_paragraph = models.TextField(null=True, blank=True)
     second_paragraph_title = models.CharField(max_length=255, null=True, blank=True)
     second_paragraph = models.TextField(null=True, blank=True)
+    first_paragrapgh_background = models.ImageField(
+        upload_to="backgrounds/", null=True, blank=True
+    )
+    second_paragrapgh_background = models.ImageField(
+        upload_to="backgrounds/", null=True, blank=True
+    )
+
+    @property
+    def first_paragrapgh_background_url(self):
+        # Check if the field is None (null) or an empty string
+        if (
+            self.first_paragrapgh_background
+            and str(self.first_paragrapgh_background).strip()
+        ):
+            return self.first_paragrapgh_background.url
+        # Return the default static file URL
+        return static("assets/img/green.jpg")
+
+    @property
+    def second_paragrapgh_background_url(self):
+        # Check if the field is None (null) or an empty string
+        if (
+            self.second_paragrapgh_background
+            and str(self.second_paragrapgh_background).strip()
+        ):
+            return self.second_paragrapgh_background.url
+        # Return the default static file URL
+        return static("assets/img/home_1.jpg")
 
 
 class WhoUsPage(SingletonModel):
     main_title = models.CharField(max_length=255, null=True, blank=True)
     main_subtitle = models.TextField(null=True, blank=True)
     main_background = models.ImageField(upload_to="backgrounds/", null=True, blank=True)
+
+    @property
+    def main_background_url(self):
+        # Check if the field is None (null) or an empty string
+        if self.main_background and str(self.main_background).strip():
+            return self.main_background.url
+        # Return the default static file URL
+        return static("assets/img/home_1.jpg")

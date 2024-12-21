@@ -17,7 +17,7 @@
   <!-- ======= Intro Section ======= -->
   <div class="intro intro-carousel position-relative">
     <div class="col-12">
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('../../static/assets/img/home_1.jpg');">
+      <div class="swiper-slide carousel-item-a intro-item bg-image"  style="background-image: url('{{ content.main_background_url }}');">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -25,8 +25,12 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="intro-body">
-                    <h1 class="intro-title mb-4 text-center">6 ملايين ريال</h1>
-                    <p class="intro-subtitle text-center">لتطوير برج سكنى بالرياض</p>
+                    <h1 class="intro-title mb-4 text-center">
+                      {{content.main_title|default:'6 ملايين ريال'|safe}}
+                    </h1>
+                    <p class="intro-subtitle text-center">
+                      {{content.main_subtitle|default:'لتطوير برج سكنى بالرياض'|safe}}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -164,37 +168,46 @@
         </div>
       </div>
       <div class="row pt-4" style="padding-bottom:2rem;">
-        <!-- Card 1 -->
-        <div class="col-md-4 pt-2">
-          <div class="card bg-sec" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
-            </div>
-          </div>
-        </div>
-        <!-- Repeat for other cards if needed -->
-          <!-- Card 2 -->
-          <div class="col-md-4 pt-2">
-          <div class="card bg-sec" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
-            </div>
-          </div>
-        </div>
-           <!-- Card 3 -->
-           <div class="col-md-4 pt-2">
+    {% if news %}
+        {% for item in news %}
             <div class="col-md-4 pt-2">
-          <div class="card bg-sec" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
+                <div class="card bg-sec" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ item.image_url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text noto-kufi-arabic text-black-50">{{ item.title }}</p>
+                    </div>
+                </div>
             </div>
-          </div>
+        {% endfor %}
+    {% else %}
+        <!-- Fallback to default content if no news -->
+        <div class="col-md-4 pt-2">
+            <div class="card bg-sec" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
+                </div>
+            </div>
         </div>
+        <div class="col-md-4 pt-2">
+            <div class="card bg-sec" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-md-4 pt-2">
+            <div class="card bg-sec" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
     </div>
   </section>
 

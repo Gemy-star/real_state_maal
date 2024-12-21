@@ -60,6 +60,7 @@ class WhoUsPageView(TemplateView):
 
         # Add extra context data
         context["content"] = WhoUsPage.get_instance()
+        context["news"] = News.objects.all()
         return context
 
 
@@ -113,15 +114,6 @@ class ServicesPageView(CreateView):
         # Add extra context data
         context["content"] = RelationsPage.get_instance()
         return context
-
-
-from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
-from django.views.generic import DeleteView, DetailView, ListView
-
-from .models import Contact, JobRequest
 
 
 # Contact List View
