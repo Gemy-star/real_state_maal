@@ -41,7 +41,13 @@
       <!-- ======= Intro Section ======= -->
       <div class="intro intro-carousel position-relative">
     <div class="col-12">
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-position: bottom;background-image: url('../../static/assets/img/home_main.jpg');background-origin: content-box;background-size: cover;width:100%!important;">
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="
+    background-position: bottom;
+    background-image: url('{{ content.background_url }}');
+    background-origin: content-box;
+    background-size: cover;
+    width: 100% !important;
+  ">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -49,8 +55,12 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="intro-body">
-                    <h1 class="intro-title mb-4 text-center noto-kufi-arabic">تسويق المنتجات الزراعية و الغذائية<br> وتجارة الجملة و التجزئة </h1>
-                      <a href="#"><span class="price-a noto-kufi-arabic">شركة ثمار القابضة</span></a>
+                    <h1 class="intro-title mb-4 text-center noto-kufi-arabic">
+                      {{content.welcome_header|default:'تسويق المنتجات الزراعية و الغذائية<br> وتجارة الجملة و التجزئة '}}
+                    </h1>
+                      <a href="#"><span class="price-a noto-kufi-arabic">
+                        {{content.welcome_btn_text|default:'شركة ثمار القابضة'}}
+                      </span></a>
                   </div>
                 </div>
               </div>
@@ -67,38 +77,27 @@
 
     <div class="container">
       <div class="row pt-2">
-        <div class="col-sm-12">
+        <div class="col-sm-12 pt-2">
           <div class="row d-flex justify-content-around">
-            <div class="col-md-5">
+            <div class="col-md-5 pt-4">
               <div class="agent-avatar-box">
                 <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
               </div>
-                 <div class="agent-avatar-box pt-2">
-                <img src="{% static 'assets/img/home_who.jpg' %}" style="border-radius: 12px;" alt="" class="agent-avatar img-fluid">
+                 <div class="agent-avatar-box pt-4">
+                <img src="{{content.first_paragrapgh_background_url}}" style="border-radius: 12px;" alt="" class="agent-avatar img-fluid">
               </div>
             </div>
             <div class="col-md-5 section-md-t3">
               <div class="agent-info-box">
-                <div class="agent-title">
-                  <div class="title-box-d">
+                <div class="agent-content mb-3">
+                  <div class="title-box-d mt-4">
                     <h5 class="title-single text-black-50 noto-kufi-arabic">
                       شركة ثمار
                     </h5>
-                  </div>
-                </div>
-                <div class="agent-content mb-3">
-                  <p class="content-d color-text-a" style="font-size: 1.25rem;">
-                    تأسست شركة ثمار التنمية القابضة كشركة مساهمة سعودية عام 1408 هـ/ 1988 م، وقد بدأت الشركة أعمالها
-                    باسم "الشركة الوطنية للتسويق الزراعي"، ومع توسع أعمال الشركة لاحقاً، تغيّر اسمها إلى "شركة ثمار
-                    التنمية القابضة" في نوفمبر 2021
-                    بدأت ثمار أعمالها في تسويق المنتجات الزراعية والغذائية وتجارة الجملة والتجزئة للمنتجات الزراعية
-                    والغذائية ومنتجات اللحوم الطازجة والمبردة والمجمدة في المملكة العربية السعودية، إضافةً إلى صيانة
-                    وإدارة وتسويق المشاريع الزراعية، وإدارة وتشغيل أسواق الجملة المركزية. ثم اتسعت دائرة أعمال ثمار
-                    القابضة إلى الاستثمار في المجال العقاري ضمن خطط الشركة الاستثمارية المستقبلية المتوافقة مع خطة
-                    التنظيم المالي.
-                    ويتمثل نشاط شركة ثمار في إدارة الشركات التابعة للشركات القابضة واستثمار أموالها، إلى جانب امتلاك
-                    العقارات والمنقولات اللازمة للشركات وتقديم القروض والكفالات والتمويل للشركات القابضة. إضافةً إلى
-                    امتلاك حقوق الملكية الصناعية للشركات التابعة للشركات القابضة وتأجيرها.
+              </div>
+
+                  <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.25rem;">
+                    {{ content.home_first_paragraph|default:'تأسست شركة ثمار التنمية القابضة كشركة مساهمة سعودية عام 1408 هـ/ 1988 م، وقد بدأت الشركة أعمالها باسم "الشركة الوطنية للتسويق الزراعي"، ومع توسع أعمال الشركة لاحقاً، تغيّر اسمها إلى "شركة ثمار التنمية القابضة" في نوفمبر 2021 بدأت ثمار أعمالها في تسويق المنتجات الزراعية والغذائية وتجارة الجملة والتجزئة للمنتجات الزراعية والغذائية ومنتجات اللحوم الطازجة والمبردة والمجمدة في المملكة العربية السعودية، إضافةً إلى صيانة وإدارة وتسويق المشاريع الزراعية، وإدارة وتشغيل أسواق الجملة المركزية. ثم اتسعت دائرة أعمال ثمار القابضة إلى الاستثمار في المجال العقاري ضمن خطط الشركة الاستثمارية المستقبلية المتوافقة مع خطة التنظيم المالي. ويتمثل نشاط شركة ثمار في إدارة الشركات التابعة للشركات القابضة واستثمار أموالها، إلى جانب امتلاك العقارات والمنقولات اللازمة للشركات وتقديم القروض والكفالات والتمويل للشركات القابضة. إضافةً إلى امتلاك حقوق الملكية الصناعية للشركات التابعة للشركات القابضة وتأجيرها.'|linebreaks }}
 
                   </p>
                 </div>
@@ -294,7 +293,9 @@
                  <div class="card bg-main card-shadow ">
                      <div class="card-body">
                          <h2 class="text-white noto-kufi-arabic">الرؤية </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">ان نكون شركة رائدة فى مسيرة البناء و التنمية فى المملكة العربية السعودية.</p>
+                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                         {{content.roaya_paragraph|default:'ان نكون شركة رائدة فى مسيرة البناء و التنمية فى المملكة العربية السعودية.'}}
+                        </p>
                      </div>
               </div>
 
@@ -303,7 +304,9 @@
                  <div class="card bg-sec card-shadow ">
                      <div class="card-body">
                          <h2 class="text-white noto-kufi-arabic">الرسالة </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">ان نعزز التنويع الاستثمارى فى المملكة و تدعم الأقتصاد الوطنى بشركات ناجحة و متميزة.  </p>
+                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                          {{content.messages_paragraph|default:'ان نعزز التنويع الاستثمارى فى المملكة و تدعم الأقتصاد الوطنى بشركات ناجحة و متميزة.'}}
+                        </p>
                      </div>
               </div>
 
@@ -312,16 +315,27 @@
                  <div class="card bg-goals card-shadow ">
                      <div class="card-body">
                       <h2 class="text-dark noto-kufi-arabic">الأهداف </h2>
+                      {% if content.goals_paragraph %}
+    {{ content.goals_paragraph|safe }}
+{% else %}
+    <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
+        تتمثل أبرز أهداف الشركة في:
+    </p>
+    <ul>
+        <li>
+            <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
+                الدخول بمشاركات في أنشطة ناجحة ذات عوائد مجزية وقابلة للنمو والتوسع
+            </p>
+        </li>
+        <li>
+            <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
+                الاستثمار في الفرص الناجحة القابلة للتصدير خارج المملكة
+            </p>
+        </li>
+    </ul>
+{% endif %}
 
-                      <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-                    تتمثل أبرز أهداف الشركة في
-                   </p>
-                   <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-                    <ul>
-                      <li><p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">	الدخول بمشاركات في أنشطة ناجحة ذات عوائد مجزية وقابلة للنمو والتوسع</p></li>
-                      <li><p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">	الاستثمار في الفرص الناجحة القابلة للتصدير خارج المملكة.</p></li>
-                    </ul>
-                   </p>
+
                      </div>
               </div>
 
