@@ -14,11 +14,31 @@
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name|startswith:'home-page' %} active {% endif %}" href="{% url 'home-page' %}">الرئيسية</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link{% if request.resolver_match.url_name|startswith:'services-page' %} active {% endif %}" href="{% url 'services-page' %}">علاقات المستثمرين </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name|startswith:'services-page'  %} active {% endif %}" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            علاقات المستثمرين
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'services-page' %}">
+               الجمعيات العامة لمساهمى الشركة
+            </a></li>
+            <li><a class="dropdown-item" href="#">تقارير مجلس الأدارة</a></li>
+            <li><a class="dropdown-item" href="#"> القوائم المالية </a></li>
+
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name|startswith:'about-page' %} active {% endif %}" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            الحوكمة
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#"> النظام الأساس للشركة</a></li>
+            <li><a class="dropdown-item" href="#">سياسة الأبلاغ عن المخالفات</a></li>
+            <li><a class="dropdown-item" href="#">سياسة المسئولية الأجتماعية و مبادرة العمل الأجتماعى</a></li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'who-page' %} active {% endif %}" href="{% url 'who-page' %}">استثماراتنا  </a>
+          <a class="nav-link {% if request.resolver_match.url_name|startswith:'who-page' %} active {% endif %}" href="{% url 'who-page' %}">استثمارتنا</a>
         </li>
           <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name|startswith:'about-page' %} active {% endif %}" href="{% url 'about-page' %}">من نحن  </a>
