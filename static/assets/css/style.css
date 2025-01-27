@@ -1221,7 +1221,12 @@ a:hover {
   .intro .intro-title {
     font-size: 9rem;
   }
+
+  .intro .intro_title {
+    font-size: 4.9rem;
+  }
 }
+
 
 .intro .intro-subtitle {
   font-size: 1.7rem;
@@ -1231,6 +1236,10 @@ a:hover {
 @media (min-width: 768px) {
   .intro .intro-subtitle {
     font-size: 3.4rem;
+  }
+
+  .intro .intro_subtitle {
+    font-size: 1.04rem;
   }
 }
 

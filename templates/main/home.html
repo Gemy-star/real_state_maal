@@ -56,10 +56,10 @@
                 <div class="col-lg-12">
                   <div class="intro-body">
                     <h1 class="intro-title mb-4 text-center noto-kufi-arabic">
-                      {{content.welcome_header|default:'تسويق المنتجات الزراعية و الغذائية<br> وتجارة الجملة و التجزئة '}}
+                      {{ content.welcome_header|default:'نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار والتسويق.' }}
                     </h1>
-                      <a href="#"><span class="price-a noto-kufi-arabic">
-                        {{content.welcome_btn_text|default:'شركة ثمار القابضة'}}
+                      <a class="m-auto mx-auto" href="#"><span class="price-a noto-kufi-arabic">
+                        {{content.welcome_btn_text|default:'شركة ثمار '}}
                       </span></a>
                   </div>
                 </div>
@@ -79,15 +79,15 @@
       <div class="row pt-2">
         <div class="col-sm-12 pt-2">
           <div class="row d-flex justify-content-around">
-            <div class="col-md-5 pt-4">
+            <div class="col-md-5 pb-2 section-md-t3">
               <div class="agent-avatar-box">
                 <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
               </div>
-                 <div class="agent-avatar-box pt-4">
+                 <div class="agent-avatar-box">
                 <img src="{{content.first_paragrapgh_background_url}}" style="border-radius: 12px;" alt="" class="agent-avatar img-fluid">
               </div>
             </div>
-            <div class="col-md-5 section-md-t3">
+            <div class="col-md-5 section-md-t3 pb-2">
               <div class="agent-info-box">
                 <div class="agent-content mb-3">
                   <div class="title-box-d mt-4">
@@ -97,7 +97,7 @@
               </div>
 
                   <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.25rem;">
-                    {{ content.home_first_paragraph|default:'تأسست شركة ثمار التنمية القابضة كشركة مساهمة سعودية عام 1408 هـ/ 1988 م، وقد بدأت الشركة أعمالها باسم "الشركة الوطنية للتسويق الزراعي"، ومع توسع أعمال الشركة لاحقاً، تغيّر اسمها إلى "شركة ثمار التنمية القابضة" في نوفمبر 2021 بدأت ثمار أعمالها في تسويق المنتجات الزراعية والغذائية وتجارة الجملة والتجزئة للمنتجات الزراعية والغذائية ومنتجات اللحوم الطازجة والمبردة والمجمدة في المملكة العربية السعودية، إضافةً إلى صيانة وإدارة وتسويق المشاريع الزراعية، وإدارة وتشغيل أسواق الجملة المركزية. ثم اتسعت دائرة أعمال ثمار القابضة إلى الاستثمار في المجال العقاري ضمن خطط الشركة الاستثمارية المستقبلية المتوافقة مع خطة التنظيم المالي. ويتمثل نشاط شركة ثمار في إدارة الشركات التابعة للشركات القابضة واستثمار أموالها، إلى جانب امتلاك العقارات والمنقولات اللازمة للشركات وتقديم القروض والكفالات والتمويل للشركات القابضة. إضافةً إلى امتلاك حقوق الملكية الصناعية للشركات التابعة للشركات القابضة وتأجيرها.'|safe }}
+                    {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
 
                   </p>
                 </div>
@@ -111,8 +111,119 @@
 
   </section>
 
+  <section class="section-news section-t8 bg-goals h-40-vh">
+      <div class="container">
+         <div class="row d-flex justify-content-between">
+             <div class="col-md-3 pt-2 pt-4">
+                 <div class="card bg-main card-shadow ">
+                     <div class="card-body">
+                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                        نعمل
+                        </p>
+                         <h2 class="text-white noto-kufi-arabic">الرؤية </h2>
+                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                         {{content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة للتوسعوالنموز و تساهم فى دعم و تعزيز الأقتصاد الوطنى'}}
+                        </p>
+                     </div>
+              </div>
+
+             </div>
+               <div class="col-md-4 pt-4">
+                 <div class="card bg-goals card-shadow ">
+                     <div class="card-body">
+                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                        نطمح
+                        </p>
+                      <h2 class="text-dark noto-kufi-arabic">الأهداف </h2>
+                      {% if content.goals_paragraph %}
+    {{ content.goals_paragraph|safe }}
+{% else %}
+    <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
+      لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل
+    </p>
+{% endif %}
 
 
+                     </div>
+              </div>
+
+             </div>
+
+             <div class="col-md-3 pt-2 pt-4">
+                 <div class="card bg-sec card-shadow ">
+                     <div class="card-body">
+                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                        لنحقق
+                        </p>
+                         <h2 class="text-white noto-kufi-arabic">الرسالة </h2>
+                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                          {{content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'}}
+                        </p>
+                     </div>
+              </div>
+
+             </div>
+         </div>
+      </div>
+    </section>
+    <!-- End Latest News Section -->
+    <section class="section-agents section-t4">
+      <div class="container">
+          <h2 class="noto-kufi-arabic mb-4">حقائق وأرقام </h2>
+          <div class="row">
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm  bg-main card-shadow ">
+                      <div class="card-body">
+                          <h3 class="card-title text-white" style="font-size: 1.09rem;">36</h3>
+                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">عاماً من الخبرات</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-sec card-shadow ">
+                      <div class="card-body">
+                          <h3 class="card-title text-white" style="font-size: 1.09rem;">410</h3>
+                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.19rem;">موظفاً</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-goals card-shadow ">
+                      <div class="card-body">
+                          <h3 class="card-title text-white" style="font-size: 1.09rem;">22 </h3>
+                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">مشروعاً قائماً</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-2 pt-2 mb-4">
+                  <div class="card shadow-sm bg-main card-shadow ">
+                      <div class="card-body">
+                          <h3 class="card-title text-white" style="font-size: 1.09rem;">117</h3>
+                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">شراكة</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-2 pt-2 mb-4">
+                <div class="card shadow-sm bg-sec card-shadow ">
+                    <div class="card-body">
+                        <h3 class="card-title text-white" style="font-size: 1.09rem;">80% </h3>
+                        <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">نسبة التوطين </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 pt-2 mb-4">
+              <div class="card shadow-sm bg-goals card-shadow ">
+                  <div class="card-body">
+                      <h3 class="card-title text-white" style="font-size: 1.09rem;"> 42 <span class="text-white" style="font-size: 0.6rem;">مليون ريال</span></h3>
+                      <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">قيمة المشاريع </p>
+                  </div>
+              </div>
+          </div>
+          </div>
+      </div>
+  </section>
 
     <!-- ======= Agents Section ======= -->
     <section class="section-agents section-t8">
@@ -175,7 +286,7 @@
               </div>
               <div class="card-body">
                    <h6 class="title-d">
-                      أ/ عزيز بن محمد القحطاني
+                      أ/ عبد العزيز محمد القحطاني
                     </h6>
                 <p class="content-d color-text-a">عضو مجلس الإدارة</p>
                 </div>
@@ -228,122 +339,9 @@
       </div>
     </section>
     <!-- End Agents Section -->
-    <section class="section-agents section-t4">
-      <div class="container">
-          <h2 class="noto-kufi-arabic mb-4">حقائق وأرقام </h2>
-          <div class="row">
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm  bg-main card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">36</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">عاماً من الخبرات</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-sec card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">410</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.19rem;">موظفاً</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-goals card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">22 </h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">مشروعاً قائماً</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-main card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">117</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">شراكة</p>
-                      </div>
-                  </div>
-              </div>
 
-              <div class="col-md-2 pt-2 mb-4">
-                <div class="card shadow-sm bg-sec card-shadow ">
-                    <div class="card-body">
-                        <h3 class="card-title text-white" style="font-size: 1.09rem;">80% </h3>
-                        <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">نسبة التوطين </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2 pt-2 mb-4">
-              <div class="card shadow-sm bg-goals card-shadow ">
-                  <div class="card-body">
-                      <h3 class="card-title text-white" style="font-size: 1.09rem;"> 42 <span class="text-white" style="font-size: 0.6rem;">مليون ريال</span></h3>
-                      <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">قيمة المشاريع </p>
-                  </div>
-              </div>
-          </div>
-          </div>
-      </div>
-  </section>
     <!-- ======= Latest News Section ======= -->
-    <section class="section-news section-t8 bg-goals h-40-vh">
-      <div class="container">
-         <div class="row d-flex justify-content-between">
-             <div class="col-md-3 pt-2 pt-4">
-                 <div class="card bg-main card-shadow ">
-                     <div class="card-body">
-                         <h2 class="text-white noto-kufi-arabic">الرؤية </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                         {{content.roaya_paragraph|default:'ان نكون شركة رائدة فى مسيرة البناء و التنمية فى المملكة العربية السعودية.'}}
-                        </p>
-                     </div>
-              </div>
 
-             </div>
-               <div class="col-md-3 pt-2 pt-4">
-                 <div class="card bg-sec card-shadow ">
-                     <div class="card-body">
-                         <h2 class="text-white noto-kufi-arabic">الرسالة </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                          {{content.messages_paragraph|default:'ان نعزز التنويع الاستثمارى فى المملكة و تدعم الأقتصاد الوطنى بشركات ناجحة و متميزة.'}}
-                        </p>
-                     </div>
-              </div>
-
-             </div>
-               <div class="col-md-4 pt-4">
-                 <div class="card bg-goals card-shadow ">
-                     <div class="card-body">
-                      <h2 class="text-dark noto-kufi-arabic">الأهداف </h2>
-                      {% if content.goals_paragraph %}
-    {{ content.goals_paragraph|safe }}
-{% else %}
-    <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-        تتمثل أبرز أهداف الشركة في:
-    </p>
-    <ul>
-        <li>
-            <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-                الدخول بمشاركات في أنشطة ناجحة ذات عوائد مجزية وقابلة للنمو والتوسع
-            </p>
-        </li>
-        <li>
-            <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-                الاستثمار في الفرص الناجحة القابلة للتصدير خارج المملكة
-            </p>
-        </li>
-    </ul>
-{% endif %}
-
-
-                     </div>
-              </div>
-
-             </div>
-         </div>
-      </div>
-    </section>
-    <!-- End Latest News Section -->
   </main>
   <!-- End #main -->
 {% endblock %}

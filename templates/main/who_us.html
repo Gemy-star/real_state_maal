@@ -9,40 +9,51 @@
   .card {
     box-shadow: 1px 2px 15px #392E37;
   }
+
+  .bg-main {
+    background-color: #392E37 !important;
+  }
+
+  .bg-services {
+    background-color: #c6c6c6
+  }
+
+  .services-color {
+    color: #c6c6c6 !important;
+  }
+
+  .sec-color {
+    color: #CEC9BB !important;
+  }
 </style>
 {% endblock style %}
 
 {% block body %}
 <main id="main">
-  <!-- ======= Intro Section ======= -->
-  <div class="intro intro-carousel position-relative">
-    <div class="col-12">
-      <div class="swiper-slide carousel-item-a intro-item bg-image"  style="background-image: url('{{ content.main_background_url }}');">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="intro-body">
-                    <h1 class="intro-title mb-4 text-center">
-                      {{content.main_title|default:'6 ملايين ريال'|safe}}
-                    </h1>
-                    <p class="intro-subtitle text-center">
-                      {{content.main_subtitle|default:'لتطوير برج سكنى بالرياض'|safe}}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single bg-sec">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-lg-4 d-flex flex-column mx-auto pt-4">
+          <div class="col-12 col-md-4">
+            <h5 class="color-main noto-kufi-arabic" style="font-size: 1.65rem;">إستثمارات نامية</h5>
+          </div>
+          <div class="col-12 col-md-8" style="direction:ltr;">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="noto-kufi-arabic" href="{% url 'home-page' %}">الرئيسية</a>
+                </li>
+                <li class="breadcrumb-item active noto-kufi-arabic" aria-current="page">
+                  استثمارات نامية
+                </li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-  <!-- End Intro Section -->
-
+  </section><!-- End Intro Single-->
   <!-- ======= Facts and Figures Section ======= -->
   <section class="section-agents section-t4 bg-sec">
     <div class="container">

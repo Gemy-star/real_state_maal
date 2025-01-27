@@ -44,31 +44,36 @@
 {% block body %}
 
 <main id="main">
-
-  <!-- ======= Intro Single ======= -->
-  <section class="intro-single bg-services">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 col-lg-4 d-flex flex-column mx-auto pt-4">
-          <div class="col-12 col-md-4">
-            <h5 class="color-main noto-kufi-arabic" style="font-size: 1.65rem;">إستثمارات نامية</h5>
-          </div>
-          <div class="col-12 col-md-8" style="direction:ltr;">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a class="noto-kufi-arabic" href="{% url 'home-page' %}">الرئيسية</a>
-                </li>
-                <li class="breadcrumb-item active noto-kufi-arabic" aria-current="page">
-                  استثمارات نامية
-                </li>
-              </ol>
-            </nav>
+  <!-- ======= Intro Section ======= -->
+  <div class="intro intro-carousel position-relative">
+    <div class="col-12">
+      <div class="swiper-slide carousel-item-a intro-item bg-image"  style="background-image: url('{{ home_content.main_background_url }}');">
+        <div class="overlay overlay-a"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="intro-body">
+                    <h1 class="intro_title text-white mb-4 text-center">
+                      {{home_content.main_title|default:'نبني المستقبل عبر فرص نوعية تُثمر نجاحًا مستدامًا '|safe}}
+                    </h1>
+                    <p class="intro_subtitle text-white text-center">
+                      {{home_content.main_subtitle|default:' استثمارات تجسد رؤيتنا الطموحةو نغرسها فى قطاعات حيوية لتثمر فرصا مستدامة تدفع عجلة النمو نحو مستقبل واعد'|safe}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section><!-- End Intro Single-->
+    <div class="swiper-pagination"></div>
+  </div>
+  <!-- End Intro Section -->
+
+
   <section class="section-agents section-t4 bg-services">
 
     <div class="container">
@@ -89,8 +94,7 @@
                 </div>
                 <div class="agent-content mb-3">
                   <p class="content-d color-text-a" style="font-size:1.35rem;">
-                    {{ content.first_paragraph|default:"بدأت \"ثمار\" استثماراتها في القطاع الزراعي، متخصصة في تسويق المواد الزراعية والثروة الحيوانية الطازجة، إلى جانب الزراعات العضوية. وقد أسست لهذا عشرات المراكز المتخصصة في بيع المواد الطازجة والمنتجات الغذائية التكميلية، إضافة إلى تأسيس شركة \"وسمي\" التي افتتحت عشرات الفروع بدورها لبيع اللحوم الطازجة على مستوى المملكة. منذ ما يزيد على ربع قرن حتى اليوم، تمدّ \"ثمار\" القطاعات الحكومية التموينية والغذائية بمنتجاتها، كما تورّد المنتجات الزراعية للعديد من الأسواق المركزية الكبرى مثل بندة، الدانوب، السنبلة، والعديد من سلاسل المطاعم التي تهتم بجودة المنتجات والأطعمة الطازجة الموثوقة. إلى جانب ما تقدم، تعتبر \"ثمار\" من الشركات الموثوقة لإمداد كبرى المستشفيات، شركات الإعاشة، والمزارع الكبرى على مستوى المملكة، مثل نادك الزراعية، الجوف الخالدية، وغيرها."|safe }}
-                  </p>
+                    {{ content.first_paragraph|default:"منذ انطلاقتنا، كان القطاع الزراعي حجر الأساس لنجاحنا، حيث تخصصنا في تسويق المنتجات الطازجة والعضوية والثروة الحيوانية. نفخر بدورنا في توفير التموين والإمداد، حيث نقدم منتجاتنا للقطاعات الحكومية، المستشفيات، وسلاسل كبرى مثل بندة، الدانوب، والسنبلة."}}
                 </div>
               </div>
             </div>
@@ -122,7 +126,7 @@
                 </div>
                 <div class="agent-content mb-3">
                   <p class="content-d color-text-a" style="font-size:1.25rem;">
-                    {{ content.second_paragraph|default:"يعد التطوير العقاري أحد المستهدفات الهامة للشركة وصاحب النصيب الأكبر من إجمالي أعمال ثمار في هذه المرحلة، إلى جانب الاهتمام بالقطاعات الأخرى حسب خطط الشركة المعلن عنها في التنظيم المالي مثل المجالات الغذائية والتسويق الزراعي وغيرها من المجالات ذات العوائد المجزية، وذلك لخلق تنوع في استثمارات الشركة يدعم استقرارها ونموها. وفي هذا الاتجاه، تم تأسيس شركة \"أبراج ثمار العقارية\" وهي شركة مملوكة لثمار بنسبة ١٠٠٪، لتكون الذراع الاستثمارية للشركة واستغلال الفرص المتاحة في المجال العقاري، خصوصاً فيما يتعلق بالتطوير العقاري نظراً لما تشهده المملكة من نهضة اقتصادية على الأصعدة المختلفة والتي سوف تساهم في زيادة الطلبات السكنية والتجارية." }}
+                    {{ content.second_paragraph|default:'تتجه رؤية ثمار نحو القطاع العقاري كركيزة أساسية لتحقيق النمو المستدام، مع التركيز على تطوير المشاريع السكنية والتجارية التي تلبي احتياجات النهضة الاقتصادية المتسارعة. من خلال شركة "أبراج ثمار"، نقدم حلولًا مبتكرة تواكب تطلعات السوق وتعزز التنوع الاستثماري' }}
                     </p>
                 </div>
               </div>

@@ -34,8 +34,8 @@ class ProjectRequestForm(forms.ModelForm):
         fields = "__all__"
         labels = {
             "name": "الأسم ",
-            "email": " البريد الأكترونى ",
-            "phone": " الجوال ",
-            "description": " وصف المشروع ",
-            "project_file": " ارفاق ملف ",
+            "email": " بريدك الأكترونى ",
+            "phone": " رقم جوالك ",
+            "description": "  حدثنا عن مشروعك ",
+            "project_file": "  إرفق ملفت تدعم فكرتك   ",
         }

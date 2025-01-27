@@ -93,7 +93,7 @@ class ServicesPageView(CreateView):
     template_name = "main/services.html"
     form_class = ProjectRequestForm
     model = ProjectRequest
-    success_url = reverse_lazy("project-page")
+    success_url = reverse_lazy("services-page")
 
     def form_valid(self, form):
         """Called when the form is valid."""
@@ -112,6 +112,16 @@ class ServicesPageView(CreateView):
         context = super().get_context_data(**kwargs)
 
         # Add extra context data
+        context["content"] = RelationsPage.get_instance()
+        return context
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get the default context
+        context = super().get_context_data(**kwargs)
+
+        # Add extra context data
+        context["home_content"] = WhoUsPage.get_instance()
+        context["news"] = News.objects.all()
         context["content"] = RelationsPage.get_instance()
         return context
 

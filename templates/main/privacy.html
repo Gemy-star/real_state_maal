@@ -1,143 +1,100 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
+{% load static  %}
+{% block style %}
+<style>
+  .h-40-vh {
+    height: auto;
+    padding-bottom: 2rem;
+}
+  .intro .carousel-item-a {
+    position: relative;
+    height: 110vh;
+}
+  .card-box-ico{
+    padding: 0.95rem !important;
+  }
+  .card-shadow {
+    box-shadow: 1px 1px 2px #392E37 !important;
+
+  }
+  .intro .intro-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2.01rem !important;
+    text-transform: uppercase;
+}
+  @media (min-width: 992px) {
+    .intro .intro-title {
+        font-size: 3.8rem !important;
+    }
+}
+  .home-who-us {
+    background-color: #CEC9BB !important;
+  }
+  .bg-footer {
+    background-color: #b9aac1;
+  }
+span {
+    margin-inline: 0.2rem !important;
+}
+</style>
+    {% endblock %}
 {% block body %}
 
-<main id="main">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="title-single-box">
-                    <h1 class="title-single"> السياسية و الخصوصية</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+<main id="main" class="home-who-us section-agents section-t4 ">
 
 
-    <div class="container">
+    <div class="container pt-4">
         <div class="row pt-2">
             <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="agent-avatar-box">
-                            <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-md-5 section-md-t3">
-                        <div class="agent-info-box">
-                            <div class="agent-title">
-                                <div class="title-box-d">
-                                    <p class="content-d color-text-a">
-                                        نحن في شركة ثمار القابضة نقدر خصوصية عملائنا وزوار موقعنا الإلكتروني، ونعمل بجد
-                                        لحماية المعلومات الشخصية التي نتحصل عليها منك. توضح هذه السياسة كيفية جمع
-                                        واستخدام وحماية معلوماتك الشخصية عند استخدامك لموقعنا.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row d-flex justify-content-center">
+                    <h1>الإبلاغ عن الممارسات المخالفة</h1>
+    <p>
+        وفقًا للوائح حوكمة الشركات الصادرة من هيئة السوق المالية بشأن الإبلاغ عن مخالفات الغش والفساد التي قد تلحق الضرر
+        ببيئة العمل داخل شركة ثمار التنمية القابضة، يحرص مجلس إدارة الشركة على التأكيد على أهمية وضع دليل شامل للسياسات
+        والإجراءات المنظمة لآليات الإبلاغ عن تلك المخالفات، كما تتضمن هذه السياسات إرشادات واضحة تهدف إلى تشجيع جميع
+        الموظفين على رفع الأمور المهمة دون القلق من المساس بمراكزهم الوظيفية.
+    </p>
+    <p>
+        وتهدف الشركة إلى ضمان الإبلاغ عن أي مخالفات أو أعمال غش أو تلاعب بشكل فوري وفعّال، مع مراعاة تأثير هذه المخالفات
+        على سمعة الشركة ووضعها المالي، وتسعى الشركة إلى توفير قنوات آمنة للإبلاغ تضمن اتخاذ الجهات المعنية الإجراءات
+        التصحيحية اللازمة، بالإضافة إلى تقديم حماية كاملة للموظفين المبلّغين من أي انتقام أو إساءة معاملة أو إجراءات عقابية، كما
+        تؤكد الشركة على أهمية تبني الموظفين لنهج مسؤول وأخلاقي عند الإبلاغ عن أي مخالفات أو جرائم في بيئة العمل.
+    </p>
+
+    <h2>التزامات الشخص الشاكي أو المُبلّغ عن المخالفة:</h2>
+    <p>ينبغي على الشاكي أو المُبلّغ مراعاة الآتي:</p>
+    <ul>
+        <li>تحري المصداقية في الشكوى أو البلاغ قدر المستطاع، وذلك بتجنب الإشاعات والمزاعم غير المستندة على أساس حقيقي.</li>
+        <li>تقديم جميع التفاصيل المتعلقة بالمخالفة قدر الإمكان، بما يشمل ذلك وصف دقيق للحالة، تاريخ ووقت وقوع المخالفة (إن أمكن)، الأشخاص المعنيين بالمخالفة.</li>
+        <li>إرفاق جميع الأدلة المتاحة التي تدعم البلاغ مثل الوثائق، الصور، التسجيلات (إن وجدت وكانت قانونية)، وأي مستندات أخرى ذات صلة.</li>
+        <li>سرعة الإبلاغ عن المخالفة في أقرب فرصة ممكنة.</li>
+        <li>السرية التامة للشكوى أو البلاغ لتحقيق المصالح العامة للشركة.</li>
+        <li>ذكر الاسم وأرقام التواصل حتى تتمكن الشركة من تحديد المخالفة ومعرفة تفاصيلها.</li>
+        <li>عدم أحقية المُبلّغ المجهول بالحماية المنصوص عليها في هذه السياسة.</li>
+        <li>تحمل المسؤولية الكاملة عن أي ادعاءات كيدية.</li>
+    </ul>
+
+    <h2>قنوات التبليغ وفق ما يلي:</h2>
+    <p>قنوات التبليغ (وسائل تقديم الشكوى أو البلاغ):</p>
+    <ul>
+        <li>
+            تكون إدارة الحوكمة والالتزام بالشؤون القانونية الخط الأول المسؤول عن تلقي البلاغات عبر البريد الإلكتروني
+            <span class="contact-info">hotline@thimar.com.sa</span>
+            أو رقم الجوال
+            <span class="contact-info">0591616638</span>
+            ودراسة هذه الشكاوى والبلاغات والتعامل معها.
+        </li>
+        <li>
+            للمُبلّغ الخيار أن يقدم الشكوى أو البلاغ إلى مدير الحوكمة والالتزام، أو الرئيس التنفيذي، أو اللجنة التنفيذية أو أحد أعضائها، أو
+            إلى المجلس مباشرة أو أحد أعضائه.
+        </li>
+    </ul>
+
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-10 section-md-t3">
-                        <div class="agent-info-box">
-                            <div class="agent-title">
-                                <div class="title-box-d">
-                                    <h5 class="title-d">
-                                        جمع المعلومات الشخصية
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="agent-content mb-3">
-                                <p class="content-d color-text-a">
-                                    نقوم بجمع المعلومات الشخصية التي تقدمها لنا بشكل مباشر عند التسجيل في الموقع، أو عند
-                                    ملء النماذج، أو المشاركة في العروض الترويجية، أو التواصل معنا. تشمل هذه المعلومات،
-                                    على سبيل المثال لا الحصر:
-
-                                    الاسم الكامل
-                                    عنوان البريد الإلكتروني
-                                    رقم الهاتف
-                                    معلومات العنوان
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pt-2">
-                <div class="row">
-                    <div class="col-md-10 section-md-t3">
-                        <div class="agent-info-box">
-                            <div class="agent-title">
-                                <div class="title-box-d">
-                                    <h5 class="title-d">
-                                        استخدام المعلومات الشخصية
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="agent-content mb-3">
-                                <p class="content-d color-text-a">
-                                    نستخدم المعلومات الشخصية التي نجمعها للأغراض التالية:
-
-                                    تحسين تجربة المستخدم على الموقع
-                                    تقديم الدعم والمساعدة الفنية
-                                    معالجة الطلبات والمعاملات المالية
-                                    إرسال التحديثات والعروض الترويجية التي قد تهمك
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-10 section-md-t3">
-                        <div class="agent-info-box">
-                            <div class="agent-title">
-                                <div class="title-box-d">
-                                    <h5 class="title-d">
-                                        مشاركة المعلومات الشخصي
-                                      </h5>
-                                </div>
-                            </div>
-                            <div class="agent-content mb-3">
-                                <p class="content-d color-text-a">
-                                    نحن لا نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. قد نشارك المعلومات مع مقدمي الخدمات الموثوق بهم الذين يساعدوننا في تشغيل موقعنا أو إدارة الأعمال، بشرط التزامهم بسرية هذه المعلومات وعدم استخدامها لأي أغراض أخرى.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pt-2">
-                <div class="row">
-                    <div class="col-md-10 section-md-t3">
-                        <div class="agent-info-box">
-                            <div class="agent-title">
-                                <div class="title-box-d">
-                                    <h5 class="title-d">
-                                        حماية المعلومات الشخصية
-                                                                       </h5>
-                                </div>
-                            </div>
-                            <div class="agent-content mb-3">
-                                <p class="content-d color-text-a">
-                                    نحن نستخدم مجموعة متنوعة من الإجراءات الأمنية لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التغيير أو الإفصاح أو التدمير. تتضمن هذه الإجراءات التدابير الفنية والإداري
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
 
 </main>
