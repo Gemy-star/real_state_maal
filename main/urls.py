@@ -10,6 +10,7 @@ urlpatterns = [
     # path("", SoonPageView.as_view(), name="soon-page"),
     path("about/", AboutPageView.as_view(), name="about-page"),
     path("reports/", ReportsPageView.as_view(), name="reports-page"),
+    path("maaal/", MaalPageView.as_view(), name="maal-page"),
     path("who-us/", WhoUsPageView.as_view(), name="who-page"),
     path("services/", ServicesPageView.as_view(), name="services-page"),
     path("contact/", ContactPageView.as_view(), name="contact-page"),

@@ -51,6 +51,10 @@ class ReportsPageView(TemplateView):
     template_name = "main/reports.html"
 
 
+class MaalPageView(TemplateView):
+    template_name = "main/maaal.html"
+
+
 class WhoUsPageView(TemplateView):
     template_name = "main/who_us.html"
 
