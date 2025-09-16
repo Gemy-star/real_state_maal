@@ -1,224 +1,264 @@
 {% extends 'base.html' %}
-{% load static crispy_forms_tags %}
+{% load static crispy_forms_tags i18n %}
+
 {% block style %}
 <style>
   .intro-single {
     padding: 6rem 0 1rem;
   }
-
   .bg-footer {
     background-color: #c6c6c6;
   }
-
   .navbar {
     background-color: #392E37 !important;
   }
-
   .card-box-ico {
     padding: 0.95rem !important;
     border: none !important;
+    text-align: center;
   }
-
   .card-img {
     box-shadow: 1px 2px 15px #392E37 !important;
+    border-radius: 8px;
   }
-
   .bg-main {
     background-color: #392E37 !important;
   }
-
   .bg-services {
-    background-color: #c6c6c6
+    background-color: #c6c6c6;
   }
-
   .services-color {
     color: #c6c6c6 !important;
   }
-
   .sec-color {
     color: #CEC9BB !important;
   }
+  .intro-carousel .intro-item {
+    min-height: 85vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    position: relative;
+  }
+  .intro-carousel .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 8px;
+  }
+  .intro_title {
+    color: #CEC9BB !important;
+    }
+  .card-box-ico span {
+  font-size: 1.2rem;
+  color: #fff;
+}
 </style>
 {% endblock %}
 
 {% block body %}
-
 <main id="main">
+
   <!-- ======= Intro Section ======= -->
-  <div class="intro intro-carousel position-relative">
-    <div class="col-12">
-      <div class="swiper-slide carousel-item-a intro-item bg-image"  style="background-image: url('{{ home_content.main_background_url }}');">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="intro-body">
-                    <h1 class="intro_title text-white mb-4 text-center">
-                      {{home_content.main_title|default:'نبني المستقبل عبر فرص نوعية تُثمر نجاحًا مستدامًا '|safe}}
-                    </h1>
-                    <p class="intro_subtitle text-white text-center">
-                      {{home_content.main_subtitle|default:' استثمارات تجسد رؤيتنا الطموحةو نغرسها فى قطاعات حيوية لتثمر فرصا مستدامة تدفع عجلة النمو نحو مستقبل واعد'|safe}}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <section class="intro intro-carousel position-relative">
+    <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('{{ home_content.main_background_url }}');">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container text-center text-white">
+            <h1 class="intro_title mb-4">
+              {{ home_content.main_title|default:'نبني المستقبل عبر فرص نوعية تُثمر نجاحًا مستدامًا '|safe }}
+            </h1>
+            <p class="intro_subtitle lead">
+              {{ home_content.main_subtitle|default:'استثمارات تجسد رؤيتنا الطموحة ونغرسها في قطاعات حيوية لتثمر فرصًا مستدامة تدفع عجلة النمو نحو مستقبل واعد'|safe }}
+            </p>
           </div>
         </div>
       </div>
     </div>
     <div class="swiper-pagination"></div>
-  </div>
+  </section>
   <!-- End Intro Section -->
 
-
+  <!-- ======= First Sector Section ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
-      <div class="row pt-2">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="agent-avatar-box">
-                <img src="{{content.first_paragrapgh_background_url}}" alt="" class="img-fluid card-img">
-              </div>
-            </div>
-            <div class="col-md-6 section-md-t3 bg-sec">
-              <div class="agent-info-box">
-                <div class="agent-title">
-                  <h5 class="title-d noto-kufi-arabic" style="font-size:1.65rem;">
-                  {{content.first_paragraph_title|default:'القطاع الزراعي'}}
-                  </h5>
-                </div>
-                <div class="agent-content mb-3">
-                  <p class="content-d color-text-a" style="font-size:1.35rem;">
-                    {{ content.first_paragraph|default:"منذ انطلاقتنا، كان القطاع الزراعي حجر الأساس لنجاحنا، حيث تخصصنا في تسويق المنتجات الطازجة والعضوية والثروة الحيوانية. نفخر بدورنا في توفير التموين والإمداد، حيث نقدم منتجاتنا للقطاعات الحكومية، المستشفيات، وسلاسل كبرى مثل بندة، الدانوب، والسنبلة."}}
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="{{ content.first_paragrapgh_background_url }}" alt="" class="img-fluid card-img">
+        </div>
+        <div class="col-md-6">
+          <h5 class="title-d noto-kufi-arabic mb-3" style="font-size:1.65rem;">
+            {{ content.first_paragraph_title|default:'القطاع الزراعي' }}
+          </h5>
+          <p class="color-text-a" style="font-size:1.35rem;">
+            {{ content.first_paragraph|default:"منذ انطلاقتنا، كان القطاع الزراعي حجر الأساس لنجاحنا، حيث تخصصنا في تسويق المنتجات الطازجة والعضوية والثروة الحيوانية. نفخر بدورنا في توفير التموين والإمداد، حيث نقدم منتجاتنا للقطاعات الحكومية، المستشفيات، وسلاسل كبرى مثل بندة، الدانوب، والسنبلة." }}
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-
-
-  <section class="section-agents section-t4 bg-services" style="padding-bottom:3rem;">
-
-    <div class="container">
-      <div class="row pt-2">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="agent-avatar-box">
-                <img src="{{content.second_paragrapgh_background_url}}" alt="" class="img-fluid card-img">
-              </div>
-            </div>
-            <div class="col-md-6 section-md-t3 bg-sec">
-              <div class="agent-info-box">
-                <div class="agent-title">
-                  <h5 class="title-d noto-kufi-arabic" style="font-size:1.65rem;">
-                    {{content.second_paragraph_title|default:'القطاع العقاري'}}
-                  </h5>
-                </div>
-                <div class="agent-content mb-3">
-                  <p class="content-d color-text-a" style="font-size:1.25rem;">
-                    {{ content.second_paragraph|default:'تتجه رؤية ثمار نحو القطاع العقاري كركيزة أساسية لتحقيق النمو المستدام، مع التركيز على تطوير المشاريع السكنية والتجارية التي تلبي احتياجات النهضة الاقتصادية المتسارعة. من خلال شركة "أبراج ثمار"، نقدم حلولًا مبتكرة تواكب تطلعات السوق وتعزز التنوع الاستثماري' }}
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-agents section-t4 bg-main" style="padding-bottom:3rem;">
-
-    <div class="container">
-      <div class="row pt-2">
-        <div class="col-md-12">
-          <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
-              <h5 class="title-a noto-kufi-arabic services-color" style="font-size: 2.45rem;">إنجازاتنا </h2>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card-box-ico">
-                <span class="bi bi-kanban sec-color"></span>
-                <h5 class="sec-color noto-kufi-arabic" style="font-size:1.65rem;">المنتجات الحيوية</h5>
-                <p class="services-color" style="font-size:1.65rem;">5208 </p>
-              </div>
-            </div>
-            <div class="col-md-4 section-md-t3">
-
-              <div class="card-box-ico">
-                <span class="bi bi-buildings sec-color"></span>
-                <h5 class="sec-color noto-kufi-arabic" style="font-size:1.65rem;"> تقنيات عقارية</h5>
-                <p class="services-color" style="font-size:1.65rem;">3032 </p>
-              </div>
-            </div>
-            <div class="col-md-4 section-md-t3">
-              <div class="card-box-ico">
-                <span class="bi bi-building-fill-check sec-color"></span>
-                <h5 class="sec-color noto-kufi-arabic" style="font-size:1.65rem;"> تمليك عقارى</h5>
-                <p class="services-color" style="font-size:1.65rem;">108812 </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ======= Second Sector Section ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
-      <div class="row d-flex justify-content-start">
+      <div class="row align-items-center flex-md-row-reverse">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="{{ content.second_paragrapgh_background_url }}" alt="" class="img-fluid card-img">
+        </div>
+        <div class="col-md-6">
+          <h5 class="title-d noto-kufi-arabic mb-3" style="font-size:1.65rem;">
+            {{ content.second_paragraph_title|default:'القطاع العقاري' }}
+          </h5>
+          <p class="color-text-a" style="font-size:1.25rem;">
+            {{ content.second_paragraph|default:'تتجه رؤية ثمار نحو القطاع العقاري كركيزة أساسية لتحقيق النمو المستدام، مع التركيز على تطوير المشاريع السكنية والتجارية التي تلبي احتياجات النهضة الاقتصادية المتسارعة. من خلال شركة "أبراج ثمار"، نقدم حلولًا مبتكرة تواكب تطلعات السوق وتعزز التنوع الاستثماري' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- ======= Achievements Section (animated counters) ======= -->
+  <section class="section-agents section-t4 bg-main text-center py-5">
+    <div class="container">
+      <h5 class="title-a noto-kufi-arabic services-color mb-5" style="font-size: 2.45rem;">{% trans "إنجازاتنا" %}</h5>
+      <div class="row g-4">
         <div class="col-md-4">
-          {% include 'partials/_messages.html' %}
+          <div class="card-box-ico">
+            <span class="bi bi-kanban sec-color fs-2"></span>
+            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "المنتجات الحيوية" %}</h5>
+            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
+              <span class="counter" data-target="5208" aria-live="polite">0</span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="row d-flex justify-content-start">
-        <div class="col-md-8 col-lg-8 d-flex justify-content-start">
-          <div class="title-single-box">
-            <h1 class="title-single text-black-50 noto-kufi-arabic">تقدّم بمشروعك </h1>
+
+        <div class="col-md-4">
+          <div class="card-box-ico">
+            <span class="bi bi-buildings sec-color fs-2"></span>
+            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "تقنيات عقارية" %}</h5>
+            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
+              <span class="counter" data-target="3032" aria-live="polite">0</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card-box-ico">
+            <span class="bi bi-building-fill-check sec-color fs-2"></span>
+            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "تمليك عقاري" %}</h5>
+            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
+              <span class="counter" data-target="108812" aria-live="polite">0</span>
+            </p>
           </div>
         </div>
       </div>
-      <div class="row pt-4 d-flex justify-content-start">
-        <div class="col-sm-10">
-          <div class="row d-flex justify-content-start">
-            <div class="col-md-8 section-md-t3">
-              <div class="agent-info-box">
-                <div class="agent-title">
-                </div>
-                <div class="agent-content mb-3">
-                  <form method="post">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-a bg-main text-white">إرسال </button>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
+  </section>
 
+  <!-- ======= Project Submission Form ======= -->
+  <section class="section-agents section-t4 bg-services py-5">
+    <div class="container">
+      {% include 'partials/_messages.html' %}
+      <div class="row mb-4">
+        <div class="col-lg-8">
+          <h1 class="title-single text-black-50 noto-kufi-arabic">تقدّم بمشروعك</h1>
+        </div>
+      </div>
+      <div class="row justify-content-start">
+        <div class="col-md-8">
+          <form method="post" class="p-4 bg-white shadow-sm rounded">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="mt-3">
+              <button type="submit" class="btn btn-a bg-main text-white">إرسال</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
 </main>
+<script>
+  (function () {
+    // Helper: format number localized (Arabic - Saudi Arabia), fallback to default locale
+    function formatNumber(num) {
+      try {
+        return new Intl.NumberFormat('ar-SA').format(Math.round(num));
+      } catch (e) {
+        return Math.round(num).toString();
+      }
+    }
 
+    // Animate from 0 to target over given duration using requestAnimationFrame
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      const initial = 0;
+      const diff = target - initial;
+
+      function step(ts) {
+        const elapsed = ts - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // easing (easeOutCubic)
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = initial + diff * eased;
+        el.textContent = formatNumber(value);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = formatNumber(target); // ensure exact final value
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // Initialize observers for counters
+    function initCounters() {
+      const counters = Array.from(document.querySelectorAll('.counter'));
+      if (!counters.length) return;
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5, // element must be at least 50% visible
+      };
+
+      // callback for IntersectionObserver
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            // Prevent double animation
+            if (el.dataset.animated) {
+              observer.unobserve(el);
+              return;
+            }
+            const target = parseFloat(el.getAttribute('data-target')) || 0;
+            const duration = parseInt(el.getAttribute('data-duration')) || 1800; // ms
+            animateCounter(el, target, duration);
+            el.dataset.animated = 'true';
+            observer.unobserve(el);
+          }
+        });
+      };
+
+      // Use IntersectionObserver when available
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(observerCallback, options);
+        counters.forEach(c => observer.observe(c));
+      } else {
+        // Fallback: animate all immediately
+        counters.forEach(c => {
+          const target = parseFloat(c.getAttribute('data-target')) || 0;
+          const duration = parseInt(c.getAttribute('data-duration')) || 1800;
+          animateCounter(c, target, duration);
+        });
+      }
+    }
+
+    // Run on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', initCounters);
+  })();
+</script>
 
 {% endblock %}

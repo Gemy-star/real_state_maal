@@ -1,136 +1,123 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static i18n %}
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>ثمار القابضه</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <title>{% trans "ثمار القابضة" %}</title>
+    <meta content="{% trans 'وصف الموقع' %}" name="description" />
+    <meta content="{% trans 'كلمات مفتاحية' %}" name="keywords" />
+
     <link href="{% static 'assets/img/logo_white.png' %}" rel="icon" />
     <link href="{% static 'assets/img/logo_white.png' %}" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS -->
     <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+
     <style>
-      .back-to-top{
-        cursor: pointer !important;
+      .back-to-top { cursor: pointer !important; }
+      /* Base layout for larger screens */
+      .layout {
+        display: flex;
+        flex-direction: row;
+        min-height: 100vh;
       }
-/* Base layout for larger screens */
-.layout {
-  display: flex;
-  flex-direction: row; /* Side-by-side layout */
-  min-height: 100vh;
-}
-
-.sidebar {
-  width: 250px; /* Fixed width for sidebar */
-  background-color: #f8f9fa;
-  padding: 15px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.main-content {
-  flex: 1; /* Flexible width for main content */
-  padding: 20px;
-  background-color: #ffffff;
-}
-
-/* Adjustments for tablets (medium screens) */
-@media (max-width: 992px) {
-  .sidebar {
-    width: 200px; /* Reduce sidebar width for medium screens */
-  }
-  .main-content {
-    padding: 15px; /* Adjust padding */
-  }
-}
-
-/* Adjustments for small screens (mobile phones) */
-@media (max-width: 768px) {
-  .layout {
-    flex-direction: column; /* Stack sidebar and main content */
-  }
-
-  .sidebar {
-    width: 100%; /* Sidebar takes full width */
-    box-shadow: none; /* Remove shadow */
-    padding: 10px; /* Adjust padding */
-  }
-
-  .main-content {
-    padding: 15px;
-  }
-}
-  .nav-link {
-      color: #392E37;
-  }
-  .nav-link :hover{
-      color: #CEC9BB;
-  }
-
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    background-color: #CEC9BB;
-     box-shadow: 1px 2px 15px #392E37
-}
-.nav-pills {
-    --bs-nav-pills-border-radius: var(--bs-border-radius);
-    --bs-nav-pills-link-active-color: #fff;
-    --bs-nav-pills-link-active-bg: #CEC9BB;
-}
+      .sidebar {
+        width: 250px;
+        background-color: #f8f9fa;
+        padding: 15px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .main-content {
+        flex: 1;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+      @media (max-width: 992px) {
+        .sidebar { width: 200px; }
+        .main-content { padding: 15px; }
+      }
+      @media (max-width: 768px) {
+        .layout { flex-direction: column; }
+        .sidebar {
+          width: 100%;
+          box-shadow: none;
+          padding: 10px;
+        }
+        .main-content { padding: 15px; }
+      }
+      .nav-link { color: #392E37; }
+      .nav-link:hover { color: #CEC9BB; }
+      .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        background-color: #CEC9BB;
+        box-shadow: 1px 2px 15px #392E37;
+      }
+      .nav-pills {
+        --bs-nav-pills-border-radius: var(--bs-border-radius);
+        --bs-nav-pills-link-active-color: #fff;
+        --bs-nav-pills-link-active-bg: #CEC9BB;
+      }
     </style>
-    {% block style %}
 
-    {% endblock %}
+    {% block style %}{% endblock %}
   </head>
   <body>
-<div class="layout bg-services" style="height: 100%">
-  <aside class="sidebar bg-services card-img" style="border: 1px solid #c6c6c6">
-    {% include 'partials/_sidebar.html' %}
-  </aside>
-  <main class="main-content bg-services" style="border: 4px solid #c6c6c6">
-    {% block body %}
-    {% endblock %}
-  </main>
-</div>
+    <div class="layout bg-services" style="height: 100%">
+      <aside class="sidebar bg-services card-img" style="border: 1px solid #c6c6c6">
+        {% include 'partials/_sidebar.html' %}
+      </aside>
+      <main class="main-content bg-services" style="border: 4px solid #c6c6c6">
+        {% block body %}{% endblock %}
+      </main>
+    </div>
+
     {% include 'partials/_footer.html' %}
+
     <div id="preloader"></div>
-    <a id="chat" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-whatsapp"></i></a>
-    <!-- Vendor JS Files -->
+    <a id="chat" class="back-to-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-whatsapp"></i>
+      <span class="ms-2"></span>
+    </a>
+
+    <!-- Vendor JS -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <!-- Template Main JS File -->
+    <!-- Main JS -->
     <script src="{% static 'assets/js/main.js' %}"></script>
 
     <script>
-   document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("chat").addEventListener("click", function(e) {
-    e.preventDefault();
-    window.location.href = "https://api.whatsapp.com/send?phone=966591616638";
-  });
-});
-   const navbar = document.getElementById('navbar');
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("chat").addEventListener("click", function(e) {
+          e.preventDefault();
+          window.location.href = "https://api.whatsapp.com/send?phone=966591616638";
+        });
+      });
 
-// Add scroll event listener
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) { // Adjust 50 to your preferred scroll distance
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-(function () {
-  'use strict'
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-    new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-})()
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      (function () {
+        'use strict'
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+          new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+      })()
     </script>
   </body>
 </html>

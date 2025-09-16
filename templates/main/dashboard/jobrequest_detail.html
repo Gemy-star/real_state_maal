@@ -1,5 +1,5 @@
 {% extends 'dash_base.html' %}
-{% load static crispy_forms_tags %}
+{% load static crispy_forms_tags i18n %}
 {% block style %}
 <style>
   .intro-single {
@@ -27,81 +27,99 @@
     background-color: #392E37 !important;
   }
 
-  .bg-services {
-    background-color: #c6c6c6;
+  .bg-sec {
+    background-color: #CEC9BB !important;
   }
 
-  .services-color {
-    color: #c6c6c6 !important;
+  .bg-services {
+    background-color: #f8f9fa;
   }
 
   .sec-color {
     color: #CEC9BB !important;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-
-  th, td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #392E37;
-    color: #fff;
-  }
-
-  td a {
+  .info-label {
+    font-weight: bold;
     color: #392E37;
-    text-decoration: none;
+    margin-right: 6px;
+  }
+
+  .info-value {
+    color: #333;
+  }
+
+  .action-icons a {
+    margin-right: 10px;
+    font-size: 1.3rem;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .action-icons a:hover {
+    color: #6c5c68;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #392E37;
   }
 </style>
 {% endblock %}
+
 {% block body %}
-
 <main id="main">
-
-  <!-- ======= Intro Single ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
       <div class="row pt-2">
         <div class="col-12 d-flex justify-content-center">
-          <h5 class="noto-kufi-arabic">طلبات الوظائف</h5>
+          <h5 class="noto-kufi-arabic page-title">{% trans "طلبات الوظائف" %}</h5>
         </div>
-            <div class="col-12 d-flex justify-content-center">
-                <div class="col-md-4">
-          {% include 'partials/_messages.html' %}
+
+        <div class="col-12 d-flex justify-content-center">
+          <div class="col-md-6">
+            {% include 'partials/_messages.html' %}
+          </div>
         </div>
-        </div>
+
         <div class="col-sm-12">
-       <div class="card bg-main">
-         <div class="card-header bg-sec">
-                         <h1 class="noto-kufi-arabic">التفاصيل</h1>
-         </div>
-         <div class="card-body">
-          <p><strong>الأسم:</strong> {{ object.name }}</p>
-          <p><strong>المجال:</strong> {{ object.field }}</p>
-          <p><strong>السيرة الذاتية:</strong>
-            {% if object.cv %}
-              <a href="{{ object.cv.url }}"><i style="font-size: 1.4rem" class="bi bi-download"></i></a>
-            {% else %}
-              لا توجد سيرة ذاتية
-            {% endif %}
-          </p>
-          <a href="{% url 'jobrequest-delete' object.pk %}"> <i style="font-size: 1.4rem" class="bi bi-trash"></i></a>
-         </div>
-       </div>
+          <div class="card card-img">
+            <div class="card-header bg-main">
+              <h5 class="text-center text-white noto-kufi-arabic mb-0">{% trans "تفاصيل الطلب" %}</h5>
+            </div>
+            <div class="card-body bg-white">
+              <p>
+                <span class="info-label">{% trans "الاسم" %}:</span>
+                <span class="info-value">{{ object.name }}</span>
+              </p>
+              <p>
+                <span class="info-label">{% trans "المجال" %}:</span>
+                <span class="info-value">{{ object.field }}</span>
+              </p>
+              <p>
+                <span class="info-label">{% trans "السيرة الذاتية" %}:</span>
+                {% if object.cv %}
+                  <a href="{{ object.cv.url }}" title="{% trans 'تحميل السيرة الذاتية' %}">
+                    <i class="bi bi-download"></i>
+                  </a>
+                {% else %}
+                  <span class="text-muted">{% trans "لا توجد سيرة ذاتية" %}</span>
+                {% endif %}
+              </p>
+              <div class="action-icons mt-3">
+                <a href="{% url 'jobrequest-delete' object.pk %}" class="text-danger" title="{% trans 'حذف الطلب' %}">
+                  <i class="bi bi-trash"></i>
+                </a>
+                <a href="{% url 'jobrequest-list' %}" class="text-secondary" title="{% trans 'عودة للقائمة' %}">
+                  <i class="bi bi-arrow-left-circle"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>
-
 {% endblock %}

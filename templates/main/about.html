@@ -1,31 +1,68 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block style %}
 <style>
   .navbar {
     background-color: #392E37 !important;
   }
+
   .card-img {
-    box-shadow: 1px 2px 15px #392E37;
+    box-shadow: 0 4px 15px rgba(57, 46, 55, 0.3);
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
   }
+
+  .card-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(57, 46, 55, 0.4);
+  }
+
   .bg-footer {
     background-color: #CEC9BB;
+  }
+
+  .section-about {
+    padding: 4rem 0;
+  }
+
+  .noto-kufi-arabic {
+    line-height: 1.8;
+  }
+
+  .title-d {
+    color: #392E37;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-title {
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #392E37;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  .color-text-a {
+    font-size: 1.25rem;
+    color: #444;
   }
 </style>
 {% endblock style %}
 {% block body %}
-      <!-- ======= Intro Section ======= -->
-      <div class="intro intro-carousel swiper position-relative">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-position: bottom;background-image: url(../../static/assets/img/about.jpg);background-origin: content-box;background-size: cover;">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="intro-body">
-                  </div>
+<!-- ======= Intro Section ======= -->
+<div class="intro intro-carousel swiper position-relative">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide carousel-item-a intro-item bg-image"
+      style="background-position: bottom;background-image: url({% static 'assets/img/about.jpg' %});background-origin: content-box;background-size: cover;">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="intro-body">
+                  <!-- Optional caption text -->
                 </div>
               </div>
             </div>
@@ -33,79 +70,70 @@
         </div>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
   </div>
-  <!-- End Intro Section -->
-  <main id="main">
+  <div class="swiper-pagination"></div>
+</div>
+<!-- End Intro Section -->
 
+<main id="main">
   <!-- ======= About Section ======= -->
   <section class="section-about bg-sec">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 section-t4 position-relative">
-            <div class="row d-flex justify-content-between">
-              <div class="col-md-4 col-lg-4 mt-8" style="margin-block:4.5rem">
-                <img src="{% static 'assets/img/who6.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
-              </div>
-              <div class="col-md-3 col-lg-3 section-md-t3" style="margin-block:4rem;">
-                  <h5 class="title-d noto-kufi-arabic" style="font-size:1.6rem;">استرايجتنا
-                  </h5>
-                <p class="color-text-a noto-kufi-arabic" style="font-size:1.25rem;">
-مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الأستقرار والنمو, إذ بنت هيكلية مرنة ووضعت اتسراتيجية مبتكرة تترجم هذا التوسعو ومن أهم ملامح تلك الأستراتيجية
-                </p>
-
-              </div>
-
-              <div class="col-md-4 col-lg-4 section-md-t3">
-                <img src="{% static 'assets/img/who5.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 section-t4 position-relative">
+          <div class="row d-flex justify-content-between">
+            <div class="col-md-4 col-lg-4 my-5">
+              <img src="{% static 'assets/img/who6.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
+            </div>
+            <div class="col-md-3 col-lg-3 section-md-t3 my-5">
+              <h5 class="title-d noto-kufi-arabic" style="font-size:1.6rem;">
+                {% trans "استراتيجيتنا" %}
+              </h5>
+              <p class="color-text-a noto-kufi-arabic">
+                {% trans "مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح تلك الاستراتيجية." %}
+              </p>
+            </div>
+            <div class="col-md-4 col-lg-4 section-md-t3 my-5">
+              <img src="{% static 'assets/img/who5.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-
+    </div>
+  </section>
 
   <!-- ======= Goals Section ======= -->
   <section class="section-about bg-sec">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 section-t4 position-relative">
-            <div class="row d-flex justify-content-start">
-              <div class="col-md-4 col-lg-5 mt-8" style="margin-block:4.5rem">
-                <img src="{% static 'assets/img/who3.jpg' %}" alt="" class="img-fluid card-img" style="height:75vh">
-              </div>
-              <div class="col-md-8 col-lg-7 section-md-t3" style="margin-block:4rem;background-color:#c6c6c6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 section-t4 position-relative">
+          <div class="row d-flex justify-content-start">
+            <div class="col-md-4 col-lg-5 my-5">
+              <img src="{% static 'assets/img/who3.jpg' %}" alt="" class="img-fluid card-img" style="height:75vh">
+            </div>
+            <div class="col-md-8 col-lg-7 section-md-t3 my-5 p-4" style="background-color:#f0f0f0;border-radius:15px;">
+              <p class="color-text-a noto-kufi-arabic">
 
-                <p class="color-text-a noto-kufi-arabic" style="font-size:1.4rem;">
-                  <br> <p class="noto-kufi-arabic" style="font-weight:800;font-size:1.35rem; ">النمو والتوسع </p>
+                <span class="highlight-title">{% trans "النمو والتوسع" %}</span><br>
+                {% trans "استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد لتوسيع قاعدة أعمالها وتعزيز قدرتها على المنافسة." %}
 
-                  استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد لتوسيع قاعدة أعمالها وتعزيز قدرتها على المنافسة.
-                  <br> <p class="noto-kufi-arabic" style="font-weight:800;font-size:1.35rem; ">التنوع  </p>
- تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار الأرباح وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية.
-الحوكمة والشفافية
-<br> <p class="noto-kufi-arabic" style="font-weight:800;font-size:1.35rem; ">الحوكمة والشفافية </p>
+                <span class="highlight-title">{% trans "التنوع" %}</span><br>
+                {% trans "تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية." %}
 
-أعادت ثمار هيكلية إداراتها وممارساتها الداخلية، وبنت في سبيل ذلك خططاً واضحة تسهل تبادل المعلومات والشفافية بين الأقسام والإدارات، وهو ما انعكس على أداء
-الشركة على الفور.
-<br> <p class="noto-kufi-arabic" style="font-weight:800;font-size:1.35rem; ">الكفاءة  </p>
-أولت ثمار الأولية لكفاءة أعمالها وابتكرت خريطة عمل لتحقيق الوفورات بمشاركة الموارد وتبادل الخدمات بين الشركات التابعة ما قلّل التكاليف وحسّن الربحية.
-الحلول التمويلية
-<br> <p class="noto-kufi-arabic" style="font-weight:800;font-size:1.35rem; ">الحلول التمويلية</p>
+                <span class="highlight-title">{% trans "الحوكمة والشفافية" %}</span><br>
+                {% trans "أعادت ثمار هيكلية إداراتها وممارساتها الداخلية، وبنت في سبيل ذلك خططاً واضحة تسهل تبادل المعلومات والشفافية بين الأقسام والإدارات، وهو ما انعكس على أداء الشركة على الفور." %}
 
- مع تنوع استثمارات الشركة عقدت شراكات وأوجدت حلولاً تمويلية لتمويل مشاريع الشركات التابعة لها، وهو ما زاد في استقرار أعمالها وكفاءة إنتاجيتها.
-                </p>
+                <span class="highlight-title">{% trans "الكفاءة" %}</span><br>
+                {% trans "أولت ثمار الأولوية لكفاءة أعمالها وابتكرت خريطة عمل لتحقيق الوفورات بمشاركة الموارد وتبادل الخدمات بين الشركات التابعة، مما قلّل التكاليف وحسّن الربحية." %}
 
-              </div>
+                <span class="highlight-title">{% trans "الحلول التمويلية" %}</span><br>
+                {% trans "مع تنوع استثمارات الشركة عقدت شراكات وأوجدت حلولاً تمويلية لتمويل مشاريع الشركات التابعة لها، وهو ما زاد في استقرار أعمالها وكفاءة إنتاجيتها." %}
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-
-
-
-  </main>
+    </div>
+  </section>
+</main>
 {% endblock %}

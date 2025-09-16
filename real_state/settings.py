@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -44,21 +43,26 @@ INSTALLED_APPS = [
     "main",
     "crispy_forms",
     "crispy_bootstrap5",
+    "constance",
+    "constance.backends.database",
 ]
 
-# crispy forms Configuration
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 
+# Crispy Forms Configuration
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",   # Enable localization
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'main.middleware.ForceArabicDefaultMiddleware',  # force Arabic
 ]
 
 ROOT_URLCONF = "real_state.urls"
@@ -76,6 +80,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "constance.context_processors.config", 
             ],
         },
     },
@@ -86,7 +91,6 @@ WSGI_APPLICATION = "real_state.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -97,7 +101,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -116,52 +119,50 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
+LANGUAGE_CODE = "ar"   # Default language Arabic
+TIME_ZONE = "Asia/Riyadh"  # Saudi Arabia timezone
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
+
+# Available languages
+LANGUAGES = [
+    ("ar", _("Arabic")),
+    ("en", _("English")),
+]
+
+# Path for locale translations
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 DEFAULT_STATIC_FOLDER_NAME = os.environ.get(
     "DEFAULT_STATIC_FOLDER_NAME",
     default="static",
 )
-
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = f"/{DEFAULT_STATIC_FOLDER_NAME}/"
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [str(BASE_DIR / "static")]
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 
-# MEDIA
-# ------------------------------------------------------------------------------
-
+# Media files
 DEFAULT_MEDIA_FOLDER_NAME = os.environ.get("DEFAULT_MEDIA_FOLDER_NAME", default="media")
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = str(BASE_DIR / DEFAULT_MEDIA_FOLDER_NAME)
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = f"/{DEFAULT_MEDIA_FOLDER_NAME}/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# Messages style
 MESSAGE_TAGS = {
     messages.DEBUG: "alert-secondary",
     messages.INFO: "alert-info",
@@ -171,6 +172,20 @@ MESSAGE_TAGS = {
 }
 
 
-LOGIN_URL = 'login/'  # The name of your login URL
-LOGIN_REDIRECT_URL = 'contacts/'  # Redirect after login
-LOGOUT_REDIRECT_URL = 'login/'  # Redirect after logout
+# Authentication redirects
+LOGIN_URL = "login/"  
+LOGIN_REDIRECT_URL = "contacts/"  
+LOGOUT_REDIRECT_URL = "login/"  
+
+
+# Constance dynamic settings
+CONSTANCE_CONFIG = {
+    "COMPANY_NAME": ("ثمار", "اسم الشركة"),
+    "PHONE_NUMBER": ("0591616638", "رقم الهاتف"),
+    "CONTACT_EMAIL": ("info@thimar.com.sa", "البريد الإلكتروني"),
+    "FACEBOOK_URL": ("#", "رابط فيسبوك"),
+    "TWITTER_URL": ("#", "رابط تويتر"),
+    "INSTAGRAM_URL": ("#", "رابط انستقرام"),
+    "LINKEDIN_URL": ("#", "رابط لينكدإن"),
+    "ADDRESS": ("الرياض، المملكة العربية السعودية", "عنوان الشركة"),
+}

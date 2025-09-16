@@ -4,26 +4,35 @@
     .navbar {
       background-color: #392E37 !important;
     }
-    </style>
+    .coming-soon {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    .coming-soon img {
+      max-height: 40vh;
+      max-width: 25rem;
+      margin-bottom: 1.5rem;
+    }
+    .coming-soon h1 {
+      background: #392E37;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 2rem;
+    }
+  </style>
 {% endblock style %}
 {% load static %}
 
 {% block body %}
   <main id="main">
-    <section class="agent-single">
-      <div class="container">
-        <div class="row pt-4"></div>
-        <div class="row pt-4">
-          <div class="col-md-12 section-md-t3 pt-4">
-            <div class="agent-info-box pt-4">
-              <div class="agent-content mb-3 d-flex align-items-center pt-4 flex-column">
-                <img class="img-fluid pt-4" style="max-height: 43vh; max-width: 30rem;" src="{% static 'assets/img/logo.png' %}" />
-                <span class="badge badge-sm text-bg-dark pt-2" style="height: fit-content; width: fit-content;"><h1 class="text-white">سوف يتم الأصدار قريبا</h1></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="coming-soon">
+      <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
+      <h1>سوف يتم الإصدار قريبًا</h1>
     </section>
   </main>
 {% endblock %}

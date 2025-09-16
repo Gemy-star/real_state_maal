@@ -8,10 +8,12 @@ pillow = "*"
 django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 pre-commit = "*"
+django-constance = {extras = ["database"], version = "*"}
 
 [dev-packages]
 flake8 = "*"
 pylint-django = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.11"

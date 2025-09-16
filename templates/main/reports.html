@@ -1,91 +1,101 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 {% block style %}
 <style>
   .h-40-vh {
     height: auto;
     padding-bottom: 2rem;
-}
+  }
   .intro .carousel-item-a {
     position: relative;
     height: 110vh;
-}
-  .card-box-ico{
+  }
+  .card-box-ico {
     padding: 0.95rem !important;
   }
   .card-shadow {
     box-shadow: 1px 1px 2px #392E37 !important;
-
   }
   .intro .intro-title {
     color: #ffffff;
     font-weight: 700;
     font-size: 2.01rem !important;
     text-transform: uppercase;
-}
+  }
   @media (min-width: 992px) {
     .intro .intro-title {
-        font-size: 3.8rem !important;
+      font-size: 3.8rem !important;
     }
-}
+  }
   .home-who-us {
     background-color: #CEC9BB !important;
+    min-height: 100vh;
+    padding: 2rem 0;
   }
   .bg-footer {
     background-color: #b9aac1;
   }
-span {
+  span {
     margin-inline: 0.2rem !important;
-}
+  }
 </style>
-    {% endblock %}
+{% endblock %}
+
 {% block body %}
+<main id="main" class="home-who-us section-agents section-t4">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-12 text-center">
+        <h1 class="title-single">تقارير مجلس الإدارة</h1>
+      </div>
+    </div>
 
-<main id="main" class="home-who-us section-agents section-t4" style="height:100%;">
-
-
-    <div class="container pt-4">
-        <div class="row pt-2">
-            <div class="col-sm-12">
-                <div class="row d-flex justify-content-center">
-                  <h1 class="text-center mb-4">تقارير مجلس الإدارة</h1>
-        <table class="table table-striped table-bordered">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered align-middle text-center shadow-sm">
             <thead class="table-dark">
-                <tr>
-                    <th scope="col">السنة</th>
-                    <th scope="col">التقرير</th>
-                </tr>
+              <tr>
+                <th scope="col">السنة</th>
+                <th scope="col">التقرير</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>2020</td>
-                    <td><a href="{% static 'assets/reports/report_2020.pdf' %}" class="btn btn-primary btn-sm">عرض التقرير</a></td>
-                </tr>
-                <tr>
-                    <td>2021</td>
-                    <td><a href="{% static 'assets/reports/report_2021.pdf' %}" class="btn btn-primary btn-sm">عرض التقرير</a></td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td><a href="{% static 'assets/reports/report_2022.pdf' %}" class="btn btn-primary btn-sm">عرض التقرير</a></td>
-                </tr>
-                <tr>
-                    <td>2023</td>
-                    <td><a href="{% static 'assets/reports/report_2023.pdf' %}" class="btn btn-primary btn-sm">عرض التقرير</a></td>
-                </tr>
-                 <tr>
-                    <td>2024</td>
-                    <td><a href="{% static 'assets/reports/report_2024.pdf' %}" class="btn btn-primary btn-sm">عرض التقرير</a></td>
-                </tr>
+              <tr>
+                <td>2020</td>
+                <td>
+                  <a href="{% static 'assets/reports/report_2020.pdf' %}" class="btn btn-primary btn-sm" target="_blank">عرض التقرير</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2021</td>
+                <td>
+                  <a href="{% static 'assets/reports/report_2021.pdf' %}" class="btn btn-primary btn-sm" target="_blank">عرض التقرير</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td>
+                  <a href="{% static 'assets/reports/report_2022.pdf' %}" class="btn btn-primary btn-sm" target="_blank">عرض التقرير</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2023</td>
+                <td>
+                  <a href="{% static 'assets/reports/report_2023.pdf' %}" class="btn btn-primary btn-sm" target="_blank">عرض التقرير</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2024</td>
+                <td>
+                  <a href="{% static 'assets/reports/report_2024.pdf' %}" class="btn btn-primary btn-sm" target="_blank">عرض التقرير</a>
+                </td>
+              </tr>
             </tbody>
-        </table>
-                </div>
-            </div>
+          </table>
         </div>
-
-
-
+      </div>
+    </div>
+  </div>
 </main>
-
-
 {% endblock %}

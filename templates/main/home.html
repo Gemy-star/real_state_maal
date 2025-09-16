@@ -1,68 +1,141 @@
 {% extends 'base.html' %}
 {% load static %}
-  {% block style %}
+{% load i18n %}
+
+{% block style %}
 <style>
-  .h-40-vh {
-    height: auto;
-    padding-bottom: 2rem;
+  :root {
+    --color-main: #392E37;
+    --color-secondary: #CEC9BB;
+    --color-goals: #b9aac1;
+  }
+
+  /* General styles for a consistent look */
+  .container-fluid-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 576px) {
+    .container-fluid-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+.intro {
+  min-height: 80vh;
+  color: #ffffff;
+  height:auto;
 }
+  /* Intro Section */
   .intro .carousel-item-a {
     position: relative;
-    height: 110vh;
-}
-  .card-box-ico{
-    padding: 0.95rem !important;
+    min-height: 80vh; /* More responsive height */
+    height: auto;
+    display: flex; /* Use flexbox for modern centering */
+    align-items: center;
+    justify-content: center;
   }
-  .card-shadow {
-    box-shadow: 1px 1px 2px #392E37 !important;
-
+  .intro-content {
+    text-align: center;
   }
   .intro .intro-title {
     color: #ffffff;
     font-weight: 700;
-    font-size: 2.01rem !important;
+    /* Fluid font size for better responsiveness */
+    font-size: clamp(1.5rem, 6vw, 3.8rem);
     text-transform: uppercase;
-}
-  @media (min-width: 992px) {
-    .intro .intro-title {
-        font-size: 3.8rem !important;
-    }
-}
-  .home-who-us {
-    background-color: #CEC9BB !important;
   }
-  .bg-footer {
-    background-color: #b9aac1;
+  .intro .intro-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .intro .intro-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
   }
 
+  /* Card and Section styles */
+  .card-box-ico {
+    padding: 0.95rem !important;
+  }
+  .card-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .home-who-us {
+    background-color: var(--color-secondary) !important;
+  }
+  .bg-footer {
+    background-color: var(--color-goals);
+  }
+  .bg-main {
+    background-color: var(--color-main) !important;
+  }
+  .bg-sec {
+    background-color: var(--color-secondary) !important;
+  }
+  .bg-goals {
+    background-color: var(--color-goals) !important;
+  }
+
+  .section-t4 {
+    padding-top: 3rem;
+  }
+  .section-t8 {
+    padding-top: 4rem;
+  }
+
+  .h-40-vh {
+    height: auto;
+    padding-bottom: 2rem;
+  }
+
+  /* Ensure images in the "who we are" section are responsive */
+  .agent-avatar-box img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Facts and figures cards to stack better on small screens */
+  @media (max-width: 767.98px) {
+    .facts-figures .col-md-2 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .facts-figures .col-md-2 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }
+  }
 </style>
-    {% endblock %}
+{% endblock %}
+
 {% block body %}
-      <!-- ======= Intro Section ======= -->
-      <div class="intro intro-carousel position-relative">
-    <div class="col-12">
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="
-    background-position: bottom;
-    background-image: url('{{ content.background_url }}');
-    background-origin: content-box;
-    background-size: cover;
-    width: 100% !important;
-  ">
-        <div class="overlay overlay-a"></div>
-        <div class="intro-content display-table">
-          <div class="table-cell">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="intro-body">
-                    <h1 class="intro-title mb-4 text-center noto-kufi-arabic">
-                      {{ content.welcome_header|default:'نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار والتسويق.' }}
-                    </h1>
-                      <a class="m-auto mx-auto" href="#"><span class="price-a noto-kufi-arabic">
-                        {{content.welcome_btn_text|default:'شركة ثمار '}}
-                      </span></a>
-                  </div>
-                </div>
+  <div class="intro intro-carousel position-relative">
+    <div class="swiper-slide carousel-item-a intro-item bg-image" style="
+      background-position: center;
+      background-image: url('{{ content.background_url }}');
+      background-size: cover;
+      width: 100% !important;
+    ">
+      <div class="overlay overlay-a"></div>
+      <div class="intro-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="intro-body">
+                <h1 class="intro-title mb-4 text-center noto-kufi-arabic">
+                  {% trans 'نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار والتسويق.' %}
+                </h1>
+                <a class="intro-btn noto-kufi-arabic" href="#">
+                  {% trans 'شركة ثمار' %}
+                </a>
               </div>
             </div>
           </div>
@@ -70,169 +143,151 @@
       </div>
     </div>
   </div>
-  <!-- End Intro Section -->
-
   <main id="main">
-  <section class="section-agents section-t4 home-who-us">
-
-    <div class="container">
-      <div class="row pt-2">
-        <div class="col-sm-12 pt-2">
-          <div class="row d-flex justify-content-around">
-            <div class="col-md-5 pb-2 section-md-t3">
-              <div class="agent-avatar-box">
-                <img src="{% static 'assets/img/logo.png' %}" alt="" class="agent-avatar img-fluid">
-              </div>
-                 <div class="agent-avatar-box">
-                <img src="{{content.first_paragrapgh_background_url}}" style="border-radius: 12px;" alt="" class="agent-avatar img-fluid">
-              </div>
+    <section class="section-agents section-t4 home-who-us">
+      <div class="container">
+        <div class="row pt-2 align-items-center">
+          <div class="col-md-5 pb-2 section-md-t3">
+            <div class="agent-avatar-box">
+              <img src="{% static 'assets/img/logo.png' %}" alt="{% trans 'Thimar Holding Logo' %}" class="agent-avatar img-fluid">
             </div>
-            <div class="col-md-5 section-md-t3 pb-2">
-              <div class="agent-info-box">
-                <div class="agent-content mb-3">
-                  <div class="title-box-d mt-4">
-                    <h5 class="title-single text-black-50 noto-kufi-arabic">
-                      شركة ثمار
-                    </h5>
-              </div>
-
-                  <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.25rem;">
-                    {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
-
-                  </p>
+            <div class="agent-avatar-box mt-3">
+              <img src="{{content.first_paragrapgh_background_url}}" style="border-radius: 12px;" alt="{% trans 'A visual representation of the company' %}" class="agent-avatar img-fluid">
+            </div>
+          </div>
+          <div class="col-md-5 section-md-t3 pb-2">
+            <div class="agent-info-box">
+              <div class="agent-content mb-3">
+                <div class="title-box-d mt-4">
+                  <h5 class="title-single text-black-50 noto-kufi-arabic">
+                    {% trans 'شركة ثمار' %}
+                  </h5>
                 </div>
+                <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.25rem;">
+                  {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-
-  </section>
-
-  <section class="section-news section-t8 bg-goals h-40-vh">
+    <section class="section-news section-t8 bg-goals h-40-vh">
       <div class="container">
-         <div class="row d-flex justify-content-between">
-             <div class="col-md-3 pt-2 pt-4">
-                 <div class="card bg-main card-shadow ">
-                     <div class="card-body">
-                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                        نعمل
-                        </p>
-                         <h2 class="text-white noto-kufi-arabic">الرؤية </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                         {{content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'}}
-                        </p>
-                     </div>
+        <div class="row d-flex justify-content-between">
+          <div class="col-md-3 pt-2 pt-4">
+            <div class="card bg-main card-shadow">
+              <div class="card-body">
+                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                  {% trans 'نعمل' %}
+                </p>
+                <h2 class="text-white noto-kufi-arabic">{% trans 'الرؤية' %}</h2>
+                <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                  {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
+                </p>
               </div>
-
-             </div>
-               <div class="col-md-4 pt-4">
-                 <div class="card bg-goals card-shadow ">
-                     <div class="card-body">
-                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                        نطمح
-                        </p>
-                      <h2 class="text-dark noto-kufi-arabic">الأهداف </h2>
-                      {% if content.goals_paragraph %}
-    {{ content.goals_paragraph|safe }}
-{% else %}
-    <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-      لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل
-    </p>
-{% endif %}
-
-
-                     </div>
+            </div>
+          </div>
+          <div class="col-md-4 pt-4">
+            <div class="card bg-goals card-shadow">
+              <div class="card-body">
+                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                  {% trans 'نطمح' %}
+                </p>
+                <h2 class="text-dark noto-kufi-arabic">{% trans 'الأهداف' %}</h2>
+                {% if content.goals_paragraph %}
+                  {{ content.goals_paragraph|safe }}
+                {% else %}
+                  <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
+                    {% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}
+                  </p>
+                {% endif %}
               </div>
-
-             </div>
-
-             <div class="col-md-3 pt-2 pt-4">
-                 <div class="card bg-sec card-shadow ">
-                     <div class="card-body">
-                      <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                        لنحقق
-                        </p>
-                         <h2 class="text-white noto-kufi-arabic">الرسالة </h2>
-                         <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                          {{content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'}}
-                        </p>
-                     </div>
+            </div>
+          </div>
+          <div class="col-md-3 pt-2 pt-4">
+            <div class="card bg-sec card-shadow">
+              <div class="card-body">
+                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
+                  {% trans 'لنحقق' %}
+                </p>
+                <h2 class="text-white noto-kufi-arabic">{% trans 'الرسالة' %}</h2>
+                <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
+                  {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
+                </p>
               </div>
-
-             </div>
-         </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <!-- End Latest News Section -->
-    <section class="section-agents section-t4">
+    <section class="section-agents section-t4 facts-figures">
       <div class="container">
-          <h2 class="noto-kufi-arabic mb-4">حقائق وأرقام </h2>
-          <div class="row">
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm  bg-main card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">36</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">عاماً من الخبرات</p>
-                      </div>
-                  </div>
+        <h2 class="noto-kufi-arabic mb-4">{% trans 'حقائق وأرقام' %}</h2>
+        <div class="row">
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-main card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">36</h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'عاماً من الخبرات' %}</p>
               </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-sec card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">410</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.19rem;">موظفاً</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-goals card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">22 </h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">مشروعاً قائماً</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2 pt-2 mb-4">
-                  <div class="card shadow-sm bg-main card-shadow ">
-                      <div class="card-body">
-                          <h3 class="card-title text-white" style="font-size: 1.09rem;">117</h3>
-                          <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">شراكة</p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-2 pt-2 mb-4">
-                <div class="card shadow-sm bg-sec card-shadow ">
-                    <div class="card-body">
-                        <h3 class="card-title text-white" style="font-size: 1.09rem;">80% </h3>
-                        <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">نسبة التوطين </p>
-                    </div>
-                </div>
             </div>
-
-            <div class="col-md-2 pt-2 mb-4">
-              <div class="card shadow-sm bg-goals card-shadow ">
-                  <div class="card-body">
-                      <h3 class="card-title text-white" style="font-size: 1.09rem;"> 42 <span class="text-white" style="font-size: 0.6rem;">مليون ريال</span></h3>
-                      <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">قيمة المشاريع </p>
-                  </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-sec card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">410</h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.19rem;">{% trans 'موظفاً' %}</p>
               </div>
+            </div>
           </div>
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-goals card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">22</h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'مشروعاً قائماً' %}</p>
+              </div>
+            </div>
           </div>
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-main card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">117</h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'شراكة' %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-sec card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">80%</h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'نسبة التوطين' %}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
+            <div class="card shadow-sm bg-goals card-shadow">
+              <div class="card-body">
+                <h3 class="card-title text-white" style="font-size: 1.09rem;">
+                  42
+                  <span class="text-white" style="font-size: 0.6rem;">{% trans 'مليون ريال' %}</span>
+                </h3>
+                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'قيمة المشاريع' %}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-  </section>
+    </section>
 
-    <!-- ======= Agents Section ======= -->
     <section class="section-agents section-t8">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="title-wrap d-flex justify-content-between">
               <div class="title-box">
-                <h2 class="title-single text-black-50 noto-kufi-arabic">فريق العمل</h2>
+                <h2 class="title-single text-black-50 noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
               </div>
             </div>
           </div>
@@ -241,107 +296,82 @@
           <div class="col-md-3 pt-2">
             <div class="card" style="border: none;">
               <div class="card-img">
-                <img src="{% static 'assets/img/ceo/1.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'Engineer Waleed Bin Abdulaziz Al Shuwair' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                                             المهندس/ وليد بن عبدالعزيز الشويعر
-                    </h6>
-                  <p class="content-d color-text-a">رئيس مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h6>
+                <p class="content-d color-text-a">{% trans 'رئيس مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
           <div class="col-md-3 pt-2">
-             <div class="card" style="border: none;">
+            <div class="card" style="border: none;">
               <div class="card-img">
-                <img src="{% static 'assets/img/ceo/2.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'Mr. Khaled bin Asaad Khashoggi' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                        أ/ خالد بن أسعد خاشقجي
-                    </h6>
-                  <p class="content-d color-text-a">نائب رئيس مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h6>
+                <p class="content-d color-text-a">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
           <div class="col-md-3 pt-2">
-
-                <div class="card" style="border: none;">
+            <div class="card" style="border: none;">
               <div class="card-img">
-                <img src="{% static 'assets/img/ceo/3.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'Mr. Melfi bin Menahi Al Marzouqi' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                        أ/ ملفي بن مناحي المرزوقي
-                    </h6>
-                  <p class="content-d color-text-a">عضو مجلس الإدارة  - العضو المنتدب</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h6>
+                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
+              </div>
             </div>
           </div>
-
-         <div class="col-md-3 pt-2">
-             <div class="card" style="border: none;">
+          <div class="col-md-3 pt-2">
+            <div class="card" style="border: none;">
               <div class="card-img">
-              <img src="{% static 'assets/img/ceo/4.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'Mr. Abdulaziz Mohammed Al Qahtani' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                      أ/ عبد العزيز محمد القحطاني
-                    </h6>
-                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h6>
+                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
-
-                <div class="col-md-3 pt-2">
-             <div class="card" style="border: none;">
+          <div class="col-md-3 pt-2">
+            <div class="card" style="border: none;">
               <div class="card-img">
-              <img src="{% static 'assets/img/ceo/5.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'Mr. Abdulkarim bin Mohammed Al Nahir' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                      أ/ عبدالكريم بن محمد النهير
-                    </h6>
-                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h6>
+                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
-
-
-                <div class="col-md-3 pt-2">
-             <div class="card" style="border: none;">
+          <div class="col-md-3 pt-2">
+            <div class="card" style="border: none;">
               <div class="card-img">
-              <img src="{% static 'assets/img/ceo/6.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'Mr. Haitham bin Faisal Skobi' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                      أ/هيثم بن فيصل اسكوبى
-                    </h6>
-                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h6>
+                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
-
-     <div class="col-md-3 pt-2">
-             <div class="card" style="border: none;">
+          <div class="col-md-3 pt-2">
+            <div class="card" style="border: none;">
               <div class="card-img">
-              <img src="{% static 'assets/img/ceo/7.png' %}" alt="" class="img-d img-fluid" />
+                <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'Mr. Yasser bin Suleiman Al Aqeel' %}" class="img-d img-fluid" />
               </div>
               <div class="card-body">
-                   <h6 class="title-d">
-                      أ/ياسر بن سليمان العقيل
-                    </h6>
-                <p class="content-d color-text-a">عضو مجلس الإدارة</p>
-                </div>
+                <h6 class="title-d">{% trans 'أ/ياسر بن سليمان العقيل' %}</h6>
+                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- End Agents Section -->
-
-    <!-- ======= Latest News Section ======= -->
-
-  </main>
-  <!-- End #main -->
-{% endblock %}
+    </main>
+  {% endblock %}

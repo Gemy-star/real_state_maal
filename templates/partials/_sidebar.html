@@ -1,30 +1,75 @@
-{% load static formatter_tags %}
+{% load i18n static formatter_tags %}
 
- <div class="d-flex flex-column flex-shrink-0 p-3 bg-services" style="width: 280px;">
-    <a href="{% url 'home-page' %}" class="d-flex align-items-center link-dark text-decoration-none">
-    <img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid" style="max-width:6.5rem;max-height:8vh;" />
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="{% url 'jobrequest-list' %}" class="nav-link {% if request.resolver_match.url_name|startswith:'jobrequest-list' %} active {% endif %}" aria-current="page">
-          <i class="bi bi-person-standing"></i>
-          طلبات التوظيف
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'contact-list' %}" class="nav-link {% if request.resolver_match.url_name|startswith:'contact-list' %} active {% endif %} link-dark">
-<i class="bi bi-person-rolodex"></i>
-            طلبات التواصل
-        </a>
-      </li>
-         <li>
-         </li>
-         <li>
-        <a href="{% url 'logout' %}" class="nav-link {% if request.resolver_match.url_name|startswith:'logout' %} active {% endif %} link-dark">
-         <i class="bi bi-box-arrow-left"></i>
-            تسجيل الخروج
-        </a>
-      </li>
-    </ul>
-  </div>
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3">
+  <a href="{% url 'home-page' %}" 
+     class="d-flex align-items-center mb-3 mb-md-0 text-decoration-none sidebar-brand">
+    <img src="{% static 'assets/img/logo_white.png' %}" 
+         class="img-fluid logo" 
+         alt="{% trans 'Logo' %}" />
+  </a>
+  <hr>
+
+  {% if user.is_authenticated %}
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="{% url 'jobrequest-list' %}" 
+         class="nav-link {% if request.resolver_match.url_name|startswith:'jobrequest-list' %} active {% endif %}">
+        <i class="bi bi-person-standing"></i>
+        {% trans "طلبات التوظيف" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'contact-list' %}" 
+         class="nav-link {% if request.resolver_match.url_name|startswith:'contact-list' %} active {% endif %}">
+        <i class="bi bi-person-rolodex"></i>
+        {% trans "طلبات التواصل" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}" 
+         class="nav-link {% if request.resolver_match.url_name|startswith:'logout' %} active {% endif %}">
+        <i class="bi bi-box-arrow-left"></i>
+        {% trans "تسجيل الخروج" %}
+      </a>
+    </li>
+  </ul>
+  {% endif %}
+</div>
+
+<style>
+  .sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #392E37, #4c3c4f);
+    color: #fff;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+  }
+  .sidebar .logo {
+    max-width: 6rem;
+    max-height: 7vh;
+  }
+  .sidebar .nav-link {
+    color: rgba(255,255,255,0.85);
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  .sidebar .nav-link i {
+    margin-left: 0.5rem;
+  }
+  .sidebar .nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: #FFD369;
+  }
+  .sidebar .nav-link.active {
+    background: #FFD369;
+    color: #392E37 !important;
+    font-weight: 600;
+  }
+  .sidebar-brand {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+</style>

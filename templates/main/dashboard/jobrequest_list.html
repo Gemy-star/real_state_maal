@@ -1,5 +1,6 @@
 {% extends 'dash_base.html' %}
-{% load static crispy_forms_tags %}
+{% load static crispy_forms_tags i18n %}
+
 {% block style %}
 <style>
   .intro-single {
@@ -14,25 +15,12 @@
     background-color: #392E37 !important;
   }
 
-  .card-box-ico {
-    padding: 0.95rem !important;
-    border: none !important;
-  }
-
-  .card-img {
-    box-shadow: 1px 2px 15px #392E37 !important;
-  }
-
   .bg-main {
     background-color: #392E37 !important;
   }
 
   .bg-services {
-    background-color: #c6c6c6;
-  }
-
-  .services-color {
-    color: #c6c6c6 !important;
+    background-color: #f8f9fa;
   }
 
   .sec-color {
@@ -43,83 +31,111 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border-radius: 0.6rem;
+    overflow: hidden;
   }
 
   th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     border: 1px solid #ddd;
+    vertical-align: middle;
   }
 
   th {
     background-color: #392E37;
     color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  td {
+    background-color: #fff;
+  }
+
+  tr:hover td {
+    background-color: #f1f1f1;
   }
 
   td a {
     color: #392E37;
-    text-decoration: none;
+    margin: 0 6px;
+    transition: color 0.2s ease-in-out;
+  }
+
+  td a:hover {
+    color: #6c5c68;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
 </style>
 {% endblock %}
+
 {% block body %}
-
 <main id="main">
-
-  <!-- ======= Intro Single ======= -->
+  <!-- ======= Job Requests Section ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
-      <div class="row pt-2">
-          <div class="col-12 d-flex justify-content-center" >
-                  <h5 class="noto-kufi-arabic">  طلبات الاتصال</h5>
+      <div class="row pt-3">
+        <div class="col-12 d-flex justify-content-center">
+          <h5 class="noto-kufi-arabic page-title">{% trans "طلبات التوظيف" %}</h5>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+          <div class="col-md-6">
+            {% include 'partials/_messages.html' %}
           </div>
-            <div class="col-12 d-flex justify-content-center">
-                <div class="col-md-4">
-          {% include 'partials/_messages.html' %}
         </div>
-        </div>
+
         <div class="col-sm-12">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>الأسم</th>
-                <th>المجال</th>
-                <th>السيرة الذاتية</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for jobrequest in jobrequests %}
-            <tr>
+          <table>
+            <thead>
+              <tr>
+                <th>{% trans "المعرف" %}</th>
+                <th>{% trans "الاسم" %}</th>
+                <th>{% trans "المجال" %}</th>
+                <th>{% trans "السيرة الذاتية" %}</th>
+                <th>{% trans "الإجراءات" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for jobrequest in jobrequests %}
+              <tr>
                 <td>{{ jobrequest.id }}</td>
                 <td>{{ jobrequest.name }}</td>
                 <td>{{ jobrequest.field }}</td>
                 <td>
-                    {% if jobrequest.cv %}
-                    <a href="{{ jobrequest.cv.url }}"><i style="font-size: 1.4rem" class="bi bi-download"></i></a>
-                    {% else %}
-                    No CV
-                    {% endif %}
+                  {% if jobrequest.cv %}
+                  <a href="{{ jobrequest.cv.url }}" title="{% trans 'تحميل السيرة الذاتية' %}">
+                    <i class="bi bi-download" style="font-size: 1.3rem"></i>
+                  </a>
+                  {% else %}
+                  <span class="text-muted">{% trans "لا يوجد" %}</span>
+                  {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'jobrequest-detail' jobrequest.pk %}"><i style="font-size: 1.4rem" class="bi bi-eye"></i></a>
-                    <a href="{% url 'jobrequest-delete' jobrequest.pk %}"> <i  style="font-size: 1.4rem" class="bi bi-trash"></i></a>
+                  <a href="{% url 'jobrequest-detail' jobrequest.pk %}" title="{% trans 'عرض التفاصيل' %}">
+                    <i class="bi bi-eye" style="font-size: 1.3rem"></i>
+                  </a>
+                  <a href="{% url 'jobrequest-delete' jobrequest.pk %}" title="{% trans 'حذف الطلب' %}">
+                    <i class="bi bi-trash text-danger" style="font-size: 1.3rem"></i>
+                  </a>
                 </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5" class="text-muted">{% trans "لا توجد طلبات حالياً" %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </section>
-
-
-
-
 </main>
-
-
 {% endblock %}

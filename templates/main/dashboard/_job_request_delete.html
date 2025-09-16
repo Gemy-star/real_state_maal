@@ -1,5 +1,5 @@
 {% extends 'dash_base.html' %}
-{% load static crispy_forms_tags %}
+{% load static crispy_forms_tags i18n %}
 {% block style %}
 <style>
   .intro-single {
@@ -60,46 +60,74 @@
     color: #392E37;
     text-decoration: none;
   }
+
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+
+  .delete-btn:hover {
+    background-color: #b52d3a;
+  }
+
+  .cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .cancel-btn:hover {
+    background-color: #565e64;
+  }
 </style>
 {% endblock %}
+
 {% block body %}
-
 <main id="main">
-
   <!-- ======= Intro Single ======= -->
   <section class="section-agents section-t4 bg-services">
-
     <div class="container">
       <div class="row pt-2">
         <div class="col-12 d-flex justify-content-center">
-          <h5 class="noto-kufi-arabic"> طلبات الاتصال</h5>
-
+          <h5 class="noto-kufi-arabic">{% trans "طلبات الاتصال" %}</h5>
         </div>
-          <div class="col-12 pt-4">
-                  <div class="col-md-4">
-          {% include 'partials/_messages.html' %}
-        </div>
+        <div class="col-12 pt-4">
+          <div class="col-md-4">
+            {% include 'partials/_messages.html' %}
           </div>
+        </div>
         <div class="col-sm-12">
-                  <div class="col-sm-12">
-            <div class="card bg-sec">
-                <div class="card-header bg-main">
-         <h1 class="noto-kufi-arabic">تأكيد الحذف</h1>
-                </div>
-          <div class="card-body">
-<p class="noto-kufi-arabic">هل أنت متأكد أنك تريد حذف جهة الاتصال "{{ object.name }}"؟</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit"><i style="font-size: 1.4rem" class="bi bi-check2"></i></button>
-    <a href="{% url 'contact-detail' object.pk %}"><i style="font-size: 1.4rem" class="bi bi-x-lg"></i></a>
-</form>
-          </div>
+          <div class="card bg-sec shadow-lg rounded-3">
+            <div class="card-header bg-main text-white text-center">
+              <h1 class="noto-kufi-arabic">{% trans "تأكيد الحذف" %}</h1>
             </div>
+            <div class="card-body text-center">
+              <p class="noto-kufi-arabic">
+                {% blocktrans with name=object.name %}
+                  هل أنت متأكد أنك تريد حذف جهة الاتصال "{{ name }}"؟
+                {% endblocktrans %}
+              </p>
+              <form method="post" class="d-flex justify-content-center gap-2">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">
+                  <i class="bi bi-check2"></i> {% trans "نعم، احذف" %}
+                </button>
+                <a href="{% url 'contact-detail' object.pk %}" class="cancel-btn">
+                  <i class="bi bi-x-lg"></i> {% trans "إلغاء" %}
+                </a>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>
-
 {% endblock %}

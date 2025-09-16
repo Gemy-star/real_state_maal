@@ -1,21 +1,43 @@
 # -*- coding: utf-8 -*-
+"""
+Template tag to expose the application version.
+Reads from a RELEASE file in the project root.
+"""
 
 import os
+from functools import lru_cache
 
 from django import template
 from django.conf import settings
 
 register = template.Library()
 
-_version = None
+
+@lru_cache(maxsize=1)
+def _read_version() -> str:
+    """
+    Read version string from RELEASE file, if available.
+    Falls back to settings.VERSION or 'dev' if not found.
+    """
+    release_path = os.path.join(settings.BASE_DIR, "RELEASE")
+
+    try:
+        with open(release_path, encoding="utf-8") as f:
+            return f.read().strip()
+    except FileNotFoundError:
+        return getattr(settings, "VERSION", "dev")
+    except Exception as e:
+        # Log if needed
+        return f"unknown ({e.__class__.__name__})"
 
 
-@register.simple_tag
+@register.simple_tag(name="get_version")
 def get_version() -> str:
-    """Return application version defined in RELEASE file"""
-    global _version
-    if not _version:
-        with open(os.path.join(settings.BASE_DIR, "RELEASE"), encoding="utf-8") as f:
-            _version = f.read()
+    """
+    Django template tag to return the current application version.
 
-    return _version
+    Usage in templates:
+        {% load version_tags %}
+        Version: {% get_version %}
+    """
+    return _read_version()

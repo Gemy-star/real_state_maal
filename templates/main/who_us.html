@@ -3,275 +3,115 @@
 
 {% block style %}
 <style>
-  .navbar {
-    background-color: #392E37 !important;
-  }
-  .card {
-    box-shadow: 1px 2px 15px #392E37;
-  }
-
-  .bg-main {
-    background-color: #392E37 !important;
-  }
-
-  .bg-services {
-    background-color: #c6c6c6
-  }
-
-  .services-color {
-    color: #c6c6c6 !important;
-  }
-
-  .sec-color {
-    color: #CEC9BB !important;
-  }
+  .navbar { background-color: #392E37 !important; }
+  .card { box-shadow: 1px 2px 15px #392E37; }
+  .bg-main { background-color: #392E37 !important; }
+  .bg-sec { background-color: #f7f7f7; } /* بدل bg-services عشان أوضح */
+  .sec-color { color: #CEC9BB !important; }
 </style>
 {% endblock style %}
 
 {% block body %}
 <main id="main">
-  <!-- ======= Intro Single ======= -->
-  <section class="intro-single bg-sec">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 col-lg-4 d-flex flex-column mx-auto pt-4">
-          <div class="col-12 col-md-4">
-            <h5 class="color-main noto-kufi-arabic" style="font-size: 1.65rem;">إستثمارات نامية</h5>
-          </div>
-          <div class="col-12 col-md-8" style="direction:ltr;">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a class="noto-kufi-arabic" href="{% url 'home-page' %}">الرئيسية</a>
-                </li>
-                <li class="breadcrumb-item active noto-kufi-arabic" aria-current="page">
-                  استثمارات نامية
-                </li>
-              </ol>
-            </nav>
-          </div>
+
+  <!-- ======= Intro ======= -->
+  <section class="intro-single bg-sec py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h5 class="noto-kufi-arabic" style="font-size: 1.65rem;">إستثمارات نامية</h5>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-lg-end">
+              <li class="breadcrumb-item"><a href="{% url 'home-page' %}">الرئيسية</a></li>
+              <li class="breadcrumb-item active">استثمارات نامية</li>
+            </ol>
+          </nav>
         </div>
       </div>
     </div>
-  </section><!-- End Intro Single-->
-  <!-- ======= Facts and Figures Section ======= -->
-  <section class="section-agents section-t4 bg-sec">
+  </section>
+
+  <!-- ======= Facts Section ======= -->
+  <section class="section-t4 bg-sec py-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box mx-auto">
-            <h1 class="title-single text-black-50 noto-kufi-arabic">حقائق وأرقام</h1>
-          </div>
-        </div>
+      <div class="text-center mb-4">
+        <h1 class="noto-kufi-arabic text-black-50">حقائق وأرقام</h1>
       </div>
-      <div class="row pt-4">
-        <!-- Card 1 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
+      <div class="row g-4">
+        {% for fact in facts %}
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="{{ fact.image_url }}" alt="{{ fact.title }}">
+            <div class="card-body text-center">
+              <h5 class="card-title noto-kufi-arabic">{{ fact.title }}</h5>
+              <p class="card-text">{{ fact.value }}</p>
             </div>
           </div>
         </div>
-        <!-- Repeat for other cards if needed -->
-          <!-- Card 2 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who2.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-           <!-- Card 3 -->
-           <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who3.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row pt-4">
-        <!-- Card 1 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-        <!-- Repeat for other cards if needed -->
-          <!-- Card 2 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who2.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-           <!-- Card 3 -->
-           <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who3.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row pt-4" style="padding-bottom: 2rem;">
-        <!-- Card 1 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-        <!-- Repeat for other cards if needed -->
-          <!-- Card 2 -->
-        <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who2.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
-           <!-- Card 3 -->
-           <div class="col-md-4 pt-2">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{% static 'assets/img/who3.jpg' %}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title noto-kufi-arabic">الحد الأعلى</h5>
-              <p class="card-text">5260</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
 
   <!-- ======= News Section ======= -->
-  <section class="section-agents section-t4 bg-main">
+  <section class="section-t4 bg-main py-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box mx-auto">
-            <h1 class="title-single text-black-50 noto-kufi-arabic"> أخبار ثمار</h1>
+      <div class="text-center mb-4">
+        <h1 class="noto-kufi-arabic text-white">أخبار ثمار</h1>
+      </div>
+      <div class="row g-4">
+        {% for item in news %}
+        <div class="col-md-4">
+          <div class="card h-100 bg-sec">
+            <img class="card-img-top" src="{{ item.image_url }}" alt="{{ item.title }}">
+            <div class="card-body">
+              <p class="card-text noto-kufi-arabic text-black-50">{{ item.title }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row pt-4" style="padding-bottom:2rem;">
-    {% if news %}
-        {% for item in news %}
-            <div class="col-md-4 pt-2">
-                <div class="card bg-sec" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ item.image_url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text noto-kufi-arabic text-black-50">{{ item.title }}</p>
-                    </div>
-                </div>
-            </div>
+        {% empty %}
+        <p class="text-center text-white">لا توجد أخبار حالياً</p>
         {% endfor %}
-    {% else %}
-        <!-- Fallback to default content if no news -->
-        <div class="col-md-4 pt-2">
-            <div class="card bg-sec" style="width: 18rem;">
-                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 pt-2">
-            <div class="card bg-sec" style="width: 18rem;">
-                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 pt-2">
-            <div class="card bg-sec" style="width: 18rem;">
-                <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text noto-kufi-arabic text-black-50">شركة ثمار القابضة تعلن عن نتائجها المالية عن الربع الثانى للعام الحالى </p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-</div>
-
+      </div>
     </div>
   </section>
 
-    <!-- ======= Main News Section ======= -->
-  <!-- ======= Testimonials Section ======= -->
-  <section class="section-testimonials section-t8 nav-arrow-a bg-sec" style="padding-bottom:2rem;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h1 class="title-single text-black-50 noto-kufi-arabic"> أخبار ثمار</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="testimonial-carousel" class="swiper">
-          <div class="swiper-wrapper">
-
-            <div class="carousel-item-a swiper-slide">
-              <div class="testimonials-box">
-                <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-img" style="box-shadow: 1px 2px 15px #392E37">
-                      <img src="{% static 'assets/img/who4.jpg' %}" alt="" class="img-fluid" style="border-radius:2px;">
-                    </div>
+  <!-- ======= Testimonials ======= -->
+  <section class="section-testimonials section-t8 bg-sec py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h1 class="noto-kufi-arabic text-black-50">أخبار ثمار</h1>
+      </div>
+      <div id="testimonial-carousel" class="swiper">
+        <div class="swiper-wrapper">
+          {% for testimonial in testimonials %}
+          <div class="swiper-slide">
+            <div class="testimonials-box">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="testimonial-img">
+                    <img src="{{ testimonial.image_url }}" class="img-fluid rounded" />
                   </div>
-                  <div class="col-sm-12 col-md-6">
-                    <div class="testimonial-ico">
-                      <i class="bi bi-chat-quote-fill"></i>
-                    </div>
-                    <div class="testimonials-content" style="width:65%;box-shadow: 1px 2px 15px #392E37">
-                      <p class="testimonial-text noto-kufi-arabic">
-                        شركة ثمار القابضة تعلن عن نتائجها المالية للربع الثانى عن العام الحالى
-                      </p>
-                    </div>
-                    <div class="testimonial-author-box">
-                      <img src="{% static 'assets/img/who3.jpg' %}" style="box-shadow: 1px 2px 15px #392E37" alt="" class="testimonial-avatar">
-                      <h5 class="testimonial-author noto-kufi-arabic">شركة ثمار القابضة</h5>
-                    </div>
+                </div>
+                <div class="col-md-6">
+                  <p class="testimonial-text noto-kufi-arabic">{{ testimonial.text }}</p>
+                  <div class="testimonial-author-box">
+                    <h5 class="testimonial-author">{{ testimonial.author }}</h5>
                   </div>
                 </div>
               </div>
-            </div><!-- End carousel item -->
-
-
+            </div>
           </div>
+          {% endfor %}
         </div>
-
+        <!-- Add Swiper controls -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
-    </section><!-- End Testimonials Section -->
-
+    </div>
+  </section>
 
 </main>
 {% endblock %}
