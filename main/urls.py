@@ -18,6 +18,7 @@ urlpatterns = [
     path("privacy/", PrivacyPageView.as_view(), name="privacy-page"),
     path("contacts/", ContactListView.as_view(), name="contact-list"),
     path("jobrequests/", JobRequestListView.as_view(), name="jobrequest-list"),
+    path("report/thimar/", ThimarReportsPageView.as_view(), name="report-thimar"),
     path("contact/<int:pk>/", ContactDetailView.as_view(), name="contact-detail"),
     path(
         "contact/<int:pk>/delete/", ContactDeleteView.as_view(), name="contact-delete"

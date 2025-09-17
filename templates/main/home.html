@@ -9,7 +9,67 @@
     --color-secondary: #CEC9BB;
     --color-goals: #b9aac1;
   }
+  /* Staff Swiper Slide */
+  .swiper-staff .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .swiper-staff .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+  }
+
+  .swiper-staff .card-img img {
+    border-radius: 50%;
+    max-width: 120px;
+    margin-bottom: 12px;
+  }
+
+  .swiper-staff .title-d {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .swiper-staff .content-d {
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  /* Swiper Navigation Buttons */
+  .swiper-staff .swiper-button-next,
+  .swiper-staff .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(90deg, #392E37, #4c3c4f);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .swiper-staff .swiper-button-next:hover,
+  .swiper-staff .swiper-button-prev:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .swiper-staff .swiper-button-next::after,
+  .swiper-staff .swiper-button-prev::after {
+    font-size: 24px;
+    font-weight: bold;
+  }
   /* General styles for a consistent look */
   .container-fluid-custom {
     padding-left: 1rem;
@@ -222,156 +282,241 @@
         </div>
       </div>
     </section>
-    <section class="section-agents section-t4 facts-figures">
-      <div class="container">
-        <h2 class="noto-kufi-arabic mb-4">{% trans 'حقائق وأرقام' %}</h2>
-        <div class="row">
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-main card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">36</h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'عاماً من الخبرات' %}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-sec card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">410</h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.19rem;">{% trans 'موظفاً' %}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-goals card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">22</h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'مشروعاً قائماً' %}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-main card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">117</h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'شراكة' %}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-sec card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">80%</h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'نسبة التوطين' %}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2 pt-2 mb-4">
-            <div class="card shadow-sm bg-goals card-shadow">
-              <div class="card-body">
-                <h3 class="card-title text-white" style="font-size: 1.09rem;">
-                  42
-                  <span class="text-white" style="font-size: 0.6rem;">{% trans 'مليون ريال' %}</span>
-                </h3>
-                <p class="card-text noto-kufi-arabic text-white" style="font-size: 1.09rem;">{% trans 'قيمة المشاريع' %}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
+<!-- Facts & Figures Swiper (Mobile Friendly) -->
+<section class="section-agents section-t4 facts-figures">
+  <div class="container">
+    <h2 class="noto-kufi-arabic mb-4">{% trans 'حقائق وأرقام' %}</h2>
+    <div class="row d-flex justify-content-between">
 
-    <section class="section-agents section-t8">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
-              <div class="title-box">
-                <h2 class="title-single text-black-50 noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
-              </div>
+      <!-- Fact 1 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-main card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="35">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'سنوات من الخبرة' %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact 2 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-sec card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="500">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'شركاء النجاح' %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact 3 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-goals card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="100">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'مشروع ناجح' %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact 4 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-main card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="10">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'قطاعات استثمارية' %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact 5 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-sec card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="24">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'خدمة العملاء' %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact 6 -->
+      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
+        <div class="card shadow-sm bg-goals card-shadow">
+          <div class="card-body text-center">
+            <h3 class="card-title text-white counter" data-count="15">0</h3>
+            <p class="card-text noto-kufi-arabic text-white">{% trans 'جوائز وتكريمات' %}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="section-agents section-t8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-wrap d-flex justify-content-between">
+          <div class="title-box">
+            <h2 class="title-single text-black-50 noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Swiper Staff Section -->
+    <div class="swiper swiper-staff pt-4">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'Engineer Waleed Bin Abdulaziz Al Shuwair' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h6>
+              <p class="content-d color-text-a">{% trans 'رئيس مجلس الإدارة' %}</p>
             </div>
           </div>
         </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'Engineer Waleed Bin Abdulaziz Al Shuwair' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h6>
-                <p class="content-d color-text-a">{% trans 'رئيس مجلس الإدارة' %}</p>
-              </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'Mr. Khaled bin Asaad Khashoggi' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h6>
+              <p class="content-d color-text-a">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
             </div>
           </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'Mr. Khaled bin Asaad Khashoggi' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h6>
-                <p class="content-d color-text-a">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
-              </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'Mr. Melfi bin Menahi Al Marzouqi' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h6>
+              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
             </div>
           </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'Mr. Melfi bin Menahi Al Marzouqi' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h6>
-                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
-              </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'Mr. Abdulaziz Mohammed Al Qahtani' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h6>
+              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
             </div>
           </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'Mr. Abdulaziz Mohammed Al Qahtani' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h6>
-                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
-              </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'Mr. Abdulkarim bin Mohammed Al Nahir' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h6>
+              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
             </div>
           </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'Mr. Abdulkarim bin Mohammed Al Nahir' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h6>
-                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
-              </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'Mr. Haitham bin Faisal Skobi' %}" class="img-d img-fluid" />
+            </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h6>
+              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
             </div>
           </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'Mr. Haitham bin Faisal Skobi' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h6>
-                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
-              </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card-img">
+              <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'Mr. Yasser bin Suleiman Al Aqeel' %}" class="img-d img-fluid" />
             </div>
-          </div>
-          <div class="col-md-3 pt-2">
-            <div class="card" style="border: none;">
-              <div class="card-img">
-                <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'Mr. Yasser bin Suleiman Al Aqeel' %}" class="img-d img-fluid" />
-              </div>
-              <div class="card-body">
-                <h6 class="title-d">{% trans 'أ/ياسر بن سليمان العقيل' %}</h6>
-                <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
-              </div>
+            <div class="card-body">
+              <h6 class="title-d">{% trans 'أ/ياسر بن سليمان العقيل' %}</h6>
+              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <!-- Swiper Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+
     </main>
   {% endblock %}
+{% block js %}
+<script>
+  var swiperStaff = new Swiper('.swiper-staff', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: '.swiper-staff .swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-staff .swiper-button-next',
+      prevEl: '.swiper-staff .swiper-button-prev',
+    },
+    breakpoints: {
+      576: { slidesPerView: 2 },
+      768: { slidesPerView: 3 },
+      992: { slidesPerView: 4 },
+      1200: { slidesPerView: 5 },
+    },
+  });
+</script>
+<script>
+  function animateCounter(el) {
+    const target = +el.getAttribute("data-count");
+    const duration = 2000; // 2 seconds
+    const stepTime = Math.abs(Math.floor(duration / target));
+    let count = 0;
+
+    const timer = setInterval(() => {
+      count++;
+      el.textContent = count + (target >= 100 ? "+" : "");
+      if (count >= target) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+  }
+
+  // Trigger when section is visible
+  const counters = document.querySelectorAll(".counter");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target); // Run once
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(counter => observer.observe(counter));
+</script>
+{% endblock %}

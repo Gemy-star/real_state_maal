@@ -22,7 +22,7 @@
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
-
+<!-- Swiper CSS -->
     <style>
       .back-to-top {
         cursor: pointer !important;
@@ -32,19 +32,15 @@
     {% block style %}{% endblock %}
   </head>
   <body>
-    {% include 'partials/_navbar.html' %}
-
-    {% block body %}{% endblock %}
-
-    {% block js %}{% endblock %}
-
-    {% include 'partials/_footer.html' %}
-
-    <div id="preloader"></div>
+     <div id="preloader"></div>
     <a id="chat" class="back-to-top d-flex align-items-center justify-content-center">
       <i class="bi bi-whatsapp"></i>
       <span class="ms-2"></span>
     </a>
+    {% include 'partials/_navbar.html' %}
+
+    {% block body %}{% endblock %}
+        {% include 'partials/_footer.html' %}
 
     <!-- Vendor JS -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -69,5 +65,11 @@
         }
       });
     </script>
+    {% block js %}{% endblock %}
+
+
+ 
+
+
   </body>
 </html>

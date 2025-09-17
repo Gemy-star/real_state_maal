@@ -47,7 +47,9 @@ class NewsPageView(ListView):
 class SoonPageView(TemplateView):
     template_name = "main/soon.html"
 
-
+class ThimarReportsPageView(TemplateView):
+    template_name="main/reports_pdf.html"
+    
 class AboutPageView(TemplateView):
     template_name = "main/about.html"
 

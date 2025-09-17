@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags i18n %}
+
+{% block style %}
+<style>
+  .swiper {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  .swiper-slide {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 250px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #392E37, #4c3c4f);;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .download-btn:hover {
+    background: linear-gradient(90deg, #4c3c4f, #392E37);;
+    transform: scale(1.05);
+  }
+
+  /* Custom Swiper Navigation Buttons */
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(90deg, #392E37, #4c3c4f);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 24px;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<main id="main">
+  <!-- Strategy Section -->
+  <section class="section-agents section-t8">
+    <div class="container">
+      <div class="row pt-4">
+        <h2 class="mb-4 text-center">نشرة إصدار</h2>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+          <!-- First Card -->
+          <div class="swiper-slide">
+            <div class="card-title">إصدار 1</div>
+            <a href="{% static 'assets/reports/thimar1.pdf' %}" download class="download-btn">⬇ تحميل</a>
+          </div>
+
+          <!-- Second Card -->
+          <div class="swiper-slide">
+            <div class="card-title">إصدار 2</div>
+            <a href="{% static 'assets/reports/thimar2.pdf' %}" download class="download-btn">⬇ تحميل</a>
+          </div>
+
+        </div>
+        <!-- Swiper navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}
+
+{% block js %}
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 2,
+    spaceBetween: 20,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    loop: true,
+    breakpoints: {
+      0: { slidesPerView: 1 },   // mobile
+      768: { slidesPerView: 2 }, // tablet & up
+    }
+  });
+</script>
+{% endblock %}
