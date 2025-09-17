@@ -17,28 +17,30 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    min-height: 250px;
+    min-height: 220px;
+    text-align: center;
   }
 
   .card-title {
     font-weight: bold;
-    margin-bottom: 16px;
-    text-align: center;
+    margin-bottom: 15px;
     font-size: 18px;
   }
 
   .download-btn {
     display: inline-block;
-    padding: 10px 20px;
-    background: linear-gradient(90deg, #392E37, #4c3c4f);;
+    padding: 8px 14px;
+    background: linear-gradient(90deg, #392E37, #4c3c4f);
     color: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     text-decoration: none;
     transition: background 0.3s ease, transform 0.2s ease;
+    margin: 4px;
+    font-size: 14px;
   }
 
   .download-btn:hover {
-    background: linear-gradient(90deg, #4c3c4f, #392E37);;
+    background: linear-gradient(90deg, #4c3c4f, #392E37);
     transform: scale(1.05);
   }
 
@@ -74,36 +76,35 @@
 
 {% block body %}
 <main id="main">
-  <!-- Strategy Section -->
+  <!-- PDF Swiper Section -->
   <section class="section-agents section-t8">
     <div class="container">
       <div class="row pt-4">
         <h2 class="mb-4 text-center">نشرة إصدار</h2>
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
 
-          <!-- First Card -->
-          <div class="swiper-slide">
-            <div class="card-title">إصدار 1</div>
-            <a href="{% static 'assets/reports/thimar1.pdf' %}" download class="download-btn">⬇ تحميل</a>
+            <!-- English Version -->
+            <div class="swiper-slide">
+              <div class="card-title">التقرير بالإنجليزية</div>
+              <a href="{% static 'assets/reports/thimar1.pdf' %}" download class="download-btn">⬇ Download EN</a>
+            </div>
+
+            <!-- Arabic Version -->
+            <div class="swiper-slide">
+              <div class="card-title">التقرير بالعربية</div>
+              <a href="{% static 'assets/reports/thimar2.pdf' %}" download class="download-btn">⬇ تحميل AR</a>
+            </div>
+
           </div>
-
-          <!-- Second Card -->
-          <div class="swiper-slide">
-            <div class="card-title">إصدار 2</div>
-            <a href="{% static 'assets/reports/thimar2.pdf' %}" download class="download-btn">⬇ تحميل</a>
-          </div>
-
+          <!-- Swiper navigation -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
-        <!-- Swiper navigation -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-      </div>
       </div>
     </div>
   </section>
-
 </main>
 {% endblock %}
 
