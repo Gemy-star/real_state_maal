@@ -25,6 +25,13 @@
         {% trans "طلبات التواصل" %}
       </a>
     </li>
+    <li data-aos="fade-right" data-aos-delay="225">
+      <a href="{% url 'chatbot-list' %}"
+         class="nav-link {% if 'chatbot' in request.resolver_match.url_name %} active {% endif %}">
+        <i class="fas fa-robot"></i>
+        {% trans "إدارة الشات بوت" %}
+      </a>
+    </li>
     <li data-aos="fade-right" data-aos-delay="250">
       <a href="{% url 'translation-management' %}"
          class="nav-link {% if request.resolver_match.url_name == 'translation-management' %} active {% endif %}">

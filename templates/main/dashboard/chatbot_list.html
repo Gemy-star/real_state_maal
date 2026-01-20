@@ -1,0 +1,165 @@
+{% extends 'dash_base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "إدارة الشات بوت" %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">
+            <i class="fas fa-robot me-2"></i>
+            {% trans "إدارة الشات بوت" %}
+          </h4>
+          <a href="{% url 'chatbot-add' %}" class="btn btn-light btn-sm">
+            <i class="fas fa-plus me-1"></i>
+            {% trans "إضافة سؤال جديد" %}
+          </a>
+        </div>
+        <div class="card-body">
+          <!-- Statistics -->
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <div class="stat-card">
+                <i class="fas fa-comments text-primary"></i>
+                <h3>{{ chatbot_qas.count }}</h3>
+                <p>{% trans "إجمالي الأسئلة" %}</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <i class="fas fa-check-circle text-success"></i>
+                <h3>{{ active_qas_count }}</h3>
+                <p>{% trans "الأسئلة النشطة" %}</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <i class="fas fa-eye text-info"></i>
+                <h3>{{ total_views }}</h3>
+                <p>{% trans "إجمالي المشاهدات" %}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q&A List -->
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>{% trans "السؤال" %}</th>
+                  <th>{% trans "الفئة" %}</th>
+                  <th>{% trans "الترتيب" %}</th>
+                  <th>{% trans "الحالة" %}</th>
+                  <th>{% trans "المشاهدات" %}</th>
+                  <th>{% trans "الإجراءات" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for qa in chatbot_qas %}
+                <tr>
+                  <td>
+                    <strong>{{ qa.question|truncatewords:10 }}</strong>
+                  </td>
+                  <td>
+                    {% if qa.category %}
+                      <span class="badge bg-info">{{ qa.category }}</span>
+                    {% else %}
+                      <span class="badge bg-secondary">{% trans "عام" %}</span>
+                    {% endif %}
+                  </td>
+                  <td>{{ qa.order }}</td>
+                  <td>
+                    {% if qa.is_active %}
+                      <span class="badge bg-success">{% trans "نشط" %}</span>
+                    {% else %}
+                      <span class="badge bg-danger">{% trans "غير نشط" %}</span>
+                    {% endif %}
+                  </td>
+                  <td>{{ qa.view_count }}</td>
+                  <td>
+                    <a href="{% url 'chatbot-detail' qa.pk %}" class="btn btn-sm btn-info" title="{% trans 'عرض' %}">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'chatbot-delete' qa.pk %}" class="btn btn-sm btn-danger" title="{% trans 'حذف' %}">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="6" class="text-center text-muted py-5">
+                    <i class="fas fa-inbox fa-3x mb-3"></i>
+                    <p>{% trans "لا توجد أسئلة حالياً" %}</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          {% if is_paginated %}
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "السابق" %}</a>
+              </li>
+              {% endif %}
+              
+              <li class="page-item active">
+                <span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+              </li>
+              
+              {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "التالي" %}</a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #392E37, #5a4a54);
+}
+
+.stat-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  margin: 0;
+  color: #6c757d;
+}
+</style>
+{% endblock %}

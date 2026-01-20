@@ -1,0 +1,149 @@
+{% extends 'dash_base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "تفاصيل السؤال" %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">
+            <i class="fas fa-info-circle me-2"></i>
+            {% trans "تفاصيل السؤال والجواب" %}
+          </h4>
+          <a href="{% url 'chatbot-list' %}" class="btn btn-light btn-sm">
+            <i class="fas fa-arrow-left me-1"></i>
+            {% trans "العودة" %}
+          </a>
+        </div>
+        <div class="card-body">
+          <div class="detail-section">
+            <h5 class="section-title">{% trans "السؤال" %}</h5>
+            <p class="section-content">{{ qa.question }}</p>
+          </div>
+
+          <div class="detail-section">
+            <h5 class="section-title">{% trans "الجواب" %}</h5>
+            <p class="section-content">{{ qa.answer }}</p>
+          </div>
+
+          {% if qa.keywords %}
+          <div class="detail-section">
+            <h5 class="section-title">{% trans "الكلمات المفتاحية" %}</h5>
+            <p class="section-content">
+              {% for keyword in qa.keywords.split:',' %}
+                <span class="badge bg-secondary me-1">{{ keyword }}</span>
+              {% endfor %}
+            </p>
+          </div>
+          {% endif %}
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "الفئة" %}</h5>
+                <p class="section-content">
+                  {% if qa.category %}
+                    <span class="badge bg-info">{{ qa.category }}</span>
+                  {% else %}
+                    <span class="badge bg-secondary">{% trans "عام" %}</span>
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "الترتيب" %}</h5>
+                <p class="section-content">{{ qa.order }}</p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "الحالة" %}</h5>
+                <p class="section-content">
+                  {% if qa.is_active %}
+                    <span class="badge bg-success">{% trans "نشط" %}</span>
+                  {% else %}
+                    <span class="badge bg-danger">{% trans "غير نشط" %}</span>
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "عدد المشاهدات" %}</h5>
+                <p class="section-content">
+                  <i class="fas fa-eye text-info me-1"></i>
+                  {{ qa.view_count }}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "تاريخ الإنشاء" %}</h5>
+                <p class="section-content">{{ qa.created_at|date:"Y-m-d H:i" }}</p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="detail-section">
+                <h5 class="section-title">{% trans "آخر تحديث" %}</h5>
+                <p class="section-content">{{ qa.updated_at|date:"Y-m-d H:i" }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 d-flex gap-2">
+            <a href="{% url 'chatbot-delete' qa.pk %}" class="btn btn-danger">
+              <i class="fas fa-trash me-1"></i>
+              {% trans "حذف" %}
+            </a>
+            <a href="{% url 'chatbot-list' %}" class="btn btn-secondary">
+              <i class="fas fa-arrow-left me-1"></i>
+              {% trans "العودة للقائمة" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #392E37, #5a4a54);
+}
+
+.detail-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  color: #392E37;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.section-content {
+  color: #495057;
+  margin: 0;
+  line-height: 1.6;
+}
+</style>
+{% endblock %}

@@ -51,5 +51,16 @@ urlpatterns = [
         "settings/update/",
         SiteSettingsUpdateView.as_view(),
         name="site-settings-update",
+    ),    # Chatbot management
+    path("chatbot/", ChatbotListView.as_view(), name="chatbot-list"),
+    path("chatbot/add/", ChatbotCreateView.as_view(), name="chatbot-add"),
+    path("chatbot/<int:pk>/", ChatbotDetailView.as_view(), name="chatbot-detail"),
+    path(
+        "chatbot/<int:pk>/update/", ChatbotUpdateView.as_view(), name="chatbot-update"
     ),
-]
+    path(
+        "chatbot/<int:pk>/delete/", ChatbotDeleteView.as_view(), name="chatbot-delete"
+    ),
+    # Chatbot API
+    path("api/chatbot/search/", ChatbotSearchView.as_view(), name="chatbot-search"),
+    path("api/chatbot/all/", ChatbotGetAllView.as_view(), name="chatbot-all"),]

@@ -10,6 +10,7 @@ from .models import (
     RelationsPage,
     WhoUsPage,
     Report,
+    ChatbotQA,
 )
 
 
@@ -73,3 +74,17 @@ class ReportAdmin(admin.ModelAdmin):
     search_fields = ("year", "title", "description")
     ordering = ("-year",)
     list_editable = ("is_active",)
+
+
+@admin.register(ChatbotQA)
+class ChatbotQAAdmin(admin.ModelAdmin):
+    list_display = ("question_preview", "category", "order", "is_active", "view_count", "created_at")
+    list_filter = ("is_active", "category", "created_at")
+    search_fields = ("question", "answer", "keywords", "category")
+    ordering = ("order", "-created_at")
+    list_editable = ("order", "is_active")
+    readonly_fields = ("view_count", "created_at", "updated_at")
+
+    def question_preview(self, obj):
+        return obj.question[:50] + "..." if len(obj.question) > 50 else obj.question
+    question_preview.short_description = "Question"

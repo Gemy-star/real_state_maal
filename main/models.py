@@ -284,3 +284,49 @@ class Report(models.Model):
     def pdf_url(self):
         """Returns the URL of the PDF file"""
         return self.pdf_file.url if self.pdf_file else None
+
+
+class ChatbotQA(models.Model):
+    """Model for chatbot questions and answers"""
+
+    question = models.TextField(
+        _("Question"), help_text=_("The question that users might ask")
+    )
+    answer = models.TextField(_("Answer"), help_text=_("The answer to the question"))
+    keywords = models.CharField(
+        _("Keywords"),
+        max_length=500,
+        blank=True,
+        help_text=_("Comma-separated keywords for better matching (optional)"),
+    )
+    category = models.CharField(
+        _("Category"),
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text=_("Category for organizing questions (e.g., Services, About Us)"),
+    )
+    order = models.IntegerField(
+        _("Order"), default=0, help_text=_("Order for display (lower numbers first)")
+    )
+    is_active = models.BooleanField(
+        _("Active"), default=True, help_text=_("Show this Q&A in the chatbot")
+    )
+    view_count = models.IntegerField(
+        _("View Count"), default=0, help_text=_("Number of times this answer was shown")
+    )
+    created_at = models.DateTimeField(_("Created At"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated At"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Chatbot Q&A")
+        verbose_name_plural = _("Chatbot Q&As")
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return self.question[:50]
+
+    def increment_view_count(self):
+        """Increment the view count when this answer is shown"""
+        self.view_count += 1
+        self.save(update_fields=["view_count"])

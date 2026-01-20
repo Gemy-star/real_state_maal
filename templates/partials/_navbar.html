@@ -27,7 +27,7 @@
 
         <!-- علاقات المستثمرين -->
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="investorRelationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="investorRelationsDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
             <i class="fas fa-chart-line nav-icon"></i>
             {% trans "علاقات المستثمرين" %}
           </a>
@@ -56,24 +56,18 @@
                 {% trans "نشرة إصدار" %}
               </a>
             </li>
-            <li>
-              <a class="dropdown-item" href="{{ config.ADS_LINK }}">
-                <i class="fas fa-bullhorn me-2"></i>
-                {{ config.ADS_TITLE }}
-              </a>
-            </li>
           </ul>
         </li>
 
         <!-- الحوكمة -->
         <li class="nav-item dropdown mega-dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="governanceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="governanceDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
             <i class="fas fa-shield-alt nav-icon"></i>
             {% trans "الحوكمة" %}
           </a>
           <ul class="dropdown-menu mega-menu" aria-labelledby="governanceDropdown">
             <li>
-              <a class="dropdown-item" href="{% static 'assets/thimar_system.pdf' %}">
+              <a class="dropdown-item" href="{% static 'assets/thimar_system.pdf' %}" target="_blank">
                 <i class="fas fa-file-pdf me-2"></i>
                 {% trans "النظام الأساس للشركة" %}
               </a>
@@ -116,7 +110,7 @@
 
         <!-- Language Switcher -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle language-switcher" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle language-switcher" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
             <i class="fas fa-globe nav-icon"></i>
             {% get_current_language as LANGUAGE_CODE %}
             {% if LANGUAGE_CODE == "ar" %}العربية{% else %}English{% endif %}
@@ -265,12 +259,22 @@
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: inherit;
 }
 
 .dropdown-item:hover {
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   color: var(--navbar-bg-start);
   transform: translateX(-5px);
+}
+
+.dropdown-item:focus {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  color: var(--navbar-bg-start);
+  outline: none;
 }
 
 .dropdown-item i {
@@ -280,6 +284,23 @@
 
 .dropdown-item:hover i {
   color: var(--navbar-accent);
+}
+
+/* Dropdown Toggle */
+.dropdown-toggle::after {
+  margin-inline-start: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown.show .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Desktop hover effect */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
 
 /* Language Switcher */
@@ -376,34 +397,64 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Initialize Bootstrap dropdowns
-  const dropdownElements = document.querySelectorAll('.dropdown-toggle');
-  dropdownElements.forEach(function(dropdownToggle) {
-    new bootstrap.Dropdown(dropdownToggle);
-  });
-
-  // Auto-close mobile menu on link click
-  document.querySelectorAll('.navbar-collapse .nav-link:not(.dropdown-toggle)').forEach(function(link) {
+  // Auto-close mobile menu on link click (excluding dropdown toggles)
+  document.querySelectorAll('.navbar-collapse .dropdown-item').forEach(function(link) {
     link.addEventListener('click', function() {
       if (window.innerWidth < 992) {
         const navbarCollapse = document.getElementById('navbarDefault');
         if (navbarCollapse.classList.contains('show')) {
-          new bootstrap.Collapse(navbarCollapse).hide();
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false
+          });
+          bsCollapse.hide();
         }
       }
     });
   });
 
-  // Smooth dropdown animations
-  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-    dropdown.addEventListener('show.bs.dropdown', function() {
-      const menu = this.querySelector('.dropdown-menu');
-      menu.style.display = 'block';
-      menu.style.opacity = '0';
-      setTimeout(function() {
-        menu.style.opacity = '1';
-      }, 10);
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (window.innerWidth < 992) {
+      const navbarCollapse = document.getElementById('navbarDefault');
+      const navbarToggler = document.querySelector('.navbar-toggler');
+      
+      if (navbarCollapse.classList.contains('show') && 
+          !navbarCollapse.contains(event.target) && 
+          !navbarToggler.contains(event.target)) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
+    }
+  });
+
+  // Prevent dropdown from closing when clicking inside (for mobile)
+  document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+      e.stopPropagation();
     });
   });
+
+  // Handle dropdown hover on desktop
+  if (window.innerWidth >= 992) {
+    document.querySelectorAll('.navbar .dropdown').forEach(function(dropdown) {
+      dropdown.addEventListener('mouseenter', function() {
+        const dropdownMenu = this.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+          const bsDropdown = new bootstrap.Dropdown(this.querySelector('.dropdown-toggle'));
+          bsDropdown.show();
+        }
+      });
+
+      dropdown.addEventListener('mouseleave', function() {
+        const dropdownMenu = this.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+          const bsDropdown = new bootstrap.Dropdown(this.querySelector('.dropdown-toggle'));
+          bsDropdown.hide();
+        }
+      });
+    });
+  }
 });
 </script>

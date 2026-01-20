@@ -2,153 +2,821 @@
 {% load static i18n %}
 {% block style %}
 <style>
-  .h-40-vh {
-    height: auto;
-    padding-bottom: 2rem;
-  }
-
-  .intro .carousel-item-a {
+  /* Hero Section */
+  .financial-hero {
+    background: linear-gradient(135deg, #392E37 0%, #5a4a54 50%, #392E37 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    height: 110vh;
+    overflow: hidden;
+    padding: 8rem 0 4rem 0;
   }
 
-  .card-box-ico {
-    padding: 0.95rem !important;
+  @keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
-  .card-shadow {
-    box-shadow: 1px 1px 2px #392E37 !important;
+  .financial-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
   }
 
-  .intro .intro-title {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 2.01rem !important;
+  @keyframes moveGrid {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+  }
+
+  .hero-icon-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  .hero-icon {
+    font-size: 4.5rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Main Section */
+  .financial-section {
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+    padding: 5rem 0;
+    min-height: 60vh;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+  }
+
+  .section-subtitle {
+    color: #FFD369;
+    font-weight: 600;
+    font-size: 1rem;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
   }
 
-  @media (min-width: 992px) {
-    .intro .intro-title {
-      font-size: 3.8rem !important;
-    }
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #392E37;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
   }
 
-  .home-who-us {
-    background-color: #CEC9BB !important;
-    min-height: 100vh;
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD369, #FFA500);
+    border-radius: 2px;
   }
 
-  .bg-footer {
-    background-color: #b9aac1;
+  .section-description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-top: 2rem;
   }
 
-  span {
-    margin-inline: 0.2rem !important;
+  /* Financial Cards Grid */
+  .financial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
-  .table {
-    background: #fff;
+  .financial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+
+  .financial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FFD369, #FFA500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .financial-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .financial-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    border-color: #FFD369;
+  }
+
+  .card-year-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(57, 46, 55, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .financial-card:hover .card-year-badge {
+    background: linear-gradient(135deg, #FFD369, #FFA500);
+    color: #392E37;
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  .card-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem auto 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .financial-card:hover .card-icon {
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .card-icon i {
+    font-size: 2.5rem;
+    color: #392E37;
+    transition: all 0.3s ease;
+  }
+
+  .financial-card:hover .card-icon i {
+    color: white;
+    transform: scale(1.2);
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #392E37;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
     border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .info-item:hover {
+    background: #392E37;
+    color: white;
+    transform: translateX(-5px);
+  }
+
+  .info-item i {
+    margin-left: 1rem;
+    font-size: 1.1rem;
+    color: #FFD369;
+  }
+
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-action {
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
     overflow: hidden;
   }
 
-  .table thead {
-    background-color: #392E37;
-    color: #fff;
+  .btn-view {
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    color: white;
+  }
+
+  .btn-view::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-view:hover::before {
+    width: 400px;
+    height: 400px;
+  }
+
+  .btn-view:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(57, 46, 55, 0.4);
+  }
+
+  .btn-download {
+    background: linear-gradient(135deg, #00875a, #00a66e);
+    color: white;
+  }
+
+  .btn-download:hover {
+    background: linear-gradient(135deg, #006b47, #008558);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 135, 90, 0.4);
+  }
+
+  .btn-action i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-view:hover i {
+    transform: scale(1.2);
+  }
+
+  .btn-download:hover i {
+    transform: translateY(3px);
+  }
+
+  /* Stats Banner */
+  .stats-banner {
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    padding: 4rem 0;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
     text-align: center;
+    color: white;
+    padding: 1.5rem;
+  }
+
+  .stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #FFD369;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #FFD369;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
     font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
   }
 
-  .table tbody td {
-    vertical-align: middle;
+  /* Timeline */
+  .timeline-section {
+    background: white;
+    padding: 5rem 0;
+  }
+
+  .timeline-title {
     text-align: center;
-    font-size: 1rem;
-  }
-
-  .table-hover tbody tr:hover {
-    background-color: #f5f5f5;
-  }
-
-  .btn-report {
-    background-color: #392E37;
-    border: none;
-    border-radius: 8px;
-    padding: 0.35rem 1rem;
-    font-size: 0.95rem;
-    transition: background 0.3s ease-in-out;
-  }
-
-  .btn-report:hover {
-    background-color: #5a4861;
-  }
-
-  .title-section {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: #392E37;
+    margin-bottom: 3rem;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(180deg, #FFD369, #FFA500);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+  }
+
+  .timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+  }
+
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -13px;
+    background-color: #FFD369;
+    border: 4px solid white;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 0 4px rgba(255, 211, 105, 0.2);
+  }
+
+  .timeline-item:nth-child(odd) {
+    left: 0;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 50%;
+  }
+
+  .timeline-item:nth-child(even)::after {
+    left: -13px;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .timeline-content:hover {
+    border-color: #FFD369;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .timeline-year {
+    color: #FFD369;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .financial-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .timeline::after {
+      left: 31px;
+    }
+
+    .timeline-item {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+
+    .timeline-item::after {
+      left: 18px;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 0%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-icon {
+      font-size: 3rem;
+    }
+
+    .financial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>
 {% endblock %}
 {% block body %}
-<main id="main" class="home-who-us section-agents section-t4">
-  <div class="container pt-5">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1 class="text-center mb-4 noto-kufi-arabic title-section">{% trans "القوائم المالية" %}</h1>
-        <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover">
-            <thead>
-              <tr>
-                <th scope="col" class="noto-kufi-arabic">{% trans "السنة" %}</th>
-                <th scope="col" class="noto-kufi-arabic">{% trans "التقرير" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2020</td>
-                <td>
-                  <a href="{% static 'assets/maal/maal_2020.pdf' %}" class="btn btn-report text-white noto-kufi-arabic">
-                    {% trans "عرض التقرير" %}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>2021</td>
-                <td>
-                  <a href="{% static 'assets/maal/maal_2021.pdf' %}" class="btn btn-report text-white noto-kufi-arabic">
-                    {% trans "عرض التقرير" %}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>2022</td>
-                <td>
-                  <a href="{% static 'assets/maal/maal_2022.pdf' %}" class="btn btn-report text-white noto-kufi-arabic">
-                    {% trans "عرض التقرير" %}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>2023</td>
-                <td>
-                  <a href="{% static 'assets/maal/maal_2023.pdf' %}" class="btn btn-report text-white noto-kufi-arabic">
-                    {% trans "عرض التقرير" %}
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>2024</td>
-                <td>
-                  <a href="{% static 'assets/maal/maal_2024.pdf' %}" class="btn btn-report text-white noto-kufi-arabic">
-                    {% trans "عرض التقرير" %}
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+<main id="main">
+  <!-- Hero Section -->
+  <section class="financial-hero">
+    <div class="hero-content">
+      <div class="hero-icon-wrapper">
+        <i class="fas fa-chart-line hero-icon"></i>
+      </div>
+      <h1 class="hero-title">{% trans "القوائم المالية" %}</h1>
+      <p class="hero-subtitle">
+        {% trans "تقارير مالية شاملة وشفافة لجميع السنوات المالية" %}
+      </p>
+    </div>
+  </section>
+
+  <!-- Financial Reports Section -->
+  <section class="financial-section">
+    <div class="container">
+      <div class="section-intro" data-aos="fade-up">
+        <span class="section-subtitle">{% trans "الشفافية المالية" %}</span>
+        <h2 class="section-title">{% trans "التقارير السنوية" %}</h2>
+        <p class="section-description">
+          {% trans "اطلع على القوائم المالية المدققة لشركة ثمار القابضة. جميع التقارير متاحة للتحميل والمراجعة بصيغة PDF." %}
+        </p>
+      </div>
+
+      <div class="financial-grid">
+        <!-- 2024 Report -->
+        <div class="financial-card" data-aos="fade-up" data-aos-delay="100">
+          <span class="card-year-badge">2024</span>
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="card-title">{% trans "التقرير المالي" %} 2024</h3>
+          <div class="card-info">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{% trans "السنة المالية" %}: 2024</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-file-pdf"></i>
+              <span>{% trans "صيغة" %}: PDF</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "مدقق ومعتمد" %}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% static 'assets/maal/maal_2024.pdf' %}" target="_blank" class="btn-action btn-view">
+              <i class="fas fa-eye"></i>
+              <span>{% trans "عرض التقرير" %}</span>
+            </a>
+            <a href="{% static 'assets/maal/maal_2024.pdf' %}" download class="btn-action btn-download">
+              <i class="fas fa-download"></i>
+              <span>{% trans "تحميل PDF" %}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2023 Report -->
+        <div class="financial-card" data-aos="fade-up" data-aos-delay="200">
+          <span class="card-year-badge">2023</span>
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="card-title">{% trans "التقرير المالي" %} 2023</h3>
+          <div class="card-info">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{% trans "السنة المالية" %}: 2023</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-file-pdf"></i>
+              <span>{% trans "صيغة" %}: PDF</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "مدقق ومعتمد" %}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% static 'assets/maal/maal_2023.pdf' %}" target="_blank" class="btn-action btn-view">
+              <i class="fas fa-eye"></i>
+              <span>{% trans "عرض التقرير" %}</span>
+            </a>
+            <a href="{% static 'assets/maal/maal_2023.pdf' %}" download class="btn-action btn-download">
+              <i class="fas fa-download"></i>
+              <span>{% trans "تحميل PDF" %}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2022 Report -->
+        <div class="financial-card" data-aos="fade-up" data-aos-delay="300">
+          <span class="card-year-badge">2022</span>
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="card-title">{% trans "التقرير المالي" %} 2022</h3>
+          <div class="card-info">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{% trans "السنة المالية" %}: 2022</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-file-pdf"></i>
+              <span>{% trans "صيغة" %}: PDF</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "مدقق ومعتمد" %}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% static 'assets/maal/maal_2022.pdf' %}" target="_blank" class="btn-action btn-view">
+              <i class="fas fa-eye"></i>
+              <span>{% trans "عرض التقرير" %}</span>
+            </a>
+            <a href="{% static 'assets/maal/maal_2022.pdf' %}" download class="btn-action btn-download">
+              <i class="fas fa-download"></i>
+              <span>{% trans "تحميل PDF" %}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2021 Report -->
+        <div class="financial-card" data-aos="fade-up" data-aos-delay="100">
+          <span class="card-year-badge">2021</span>
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="card-title">{% trans "التقرير المالي" %} 2021</h3>
+          <div class="card-info">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{% trans "السنة المالية" %}: 2021</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-file-pdf"></i>
+              <span>{% trans "صيغة" %}: PDF</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "مدقق ومعتمد" %}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% static 'assets/maal/maal_2021.pdf' %}" target="_blank" class="btn-action btn-view">
+              <i class="fas fa-eye"></i>
+              <span>{% trans "عرض التقرير" %}</span>
+            </a>
+            <a href="{% static 'assets/maal/maal_2021.pdf' %}" download class="btn-action btn-download">
+              <i class="fas fa-download"></i>
+              <span>{% trans "تحميل PDF" %}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2020 Report -->
+        <div class="financial-card" data-aos="fade-up" data-aos-delay="200">
+          <span class="card-year-badge">2020</span>
+          <div class="card-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="card-title">{% trans "التقرير المالي" %} 2020</h3>
+          <div class="card-info">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{% trans "السنة المالية" %}: 2020</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-file-pdf"></i>
+              <span>{% trans "صيغة" %}: PDF</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "مدقق ومعتمد" %}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% static 'assets/maal/maal_2020.pdf' %}" target="_blank" class="btn-action btn-view">
+              <i class="fas fa-eye"></i>
+              <span>{% trans "عرض التقرير" %}</span>
+            </a>
+            <a href="{% static 'assets/maal/maal_2020.pdf' %}" download class="btn-action btn-download">
+              <i class="fas fa-download"></i>
+              <span>{% trans "تحميل PDF" %}</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">{% trans "سنوات من التقارير" %}</div>
+        </div>
+
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon">
+            <i class="fas fa-shield-check"></i>
+          </div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">{% trans "شفافية مالية" %}</div>
+        </div>
+
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <div class="stat-number">{% trans "مدققة" %}</div>
+          <div class="stat-label">{% trans "تقارير معتمدة" %}</div>
+        </div>
+
+        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">{% trans "متاحة للمساهمين" %}</div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
+{% endblock %}
+
+{% block js %}
+<script>
+  // Animate cards on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.financial-card');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.btn-action');
+    buttons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        this.appendChild(ripple);
+        
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  });
+</script>
 {% endblock %}

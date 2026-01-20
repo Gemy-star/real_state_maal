@@ -2,6 +2,31 @@
 {% load static i18n %}
 <html lang="ar" dir="rtl">
   <head>
+    <!-- Google Tag Manager -->
+    {% if config.GOOGLE_TAG_MANAGER_ID %}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ config.GOOGLE_TAG_MANAGER_ID }}');</script>
+    {% endif %}
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Analytics -->
+    {% if config.GOOGLE_ANALYTICS_ID %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.GOOGLE_ANALYTICS_ID }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ config.GOOGLE_ANALYTICS_ID }}');
+      {% if config.GOOGLE_ADS_CONVERSION_ID %}
+      gtag('config', '{{ config.GOOGLE_ADS_CONVERSION_ID }}');
+      {% endif %}
+    </script>
+    {% endif %}
+    <!-- End Google Analytics -->
+
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>{% trans "ثمار القابضة" %}</title>
@@ -14,7 +39,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
     <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
@@ -28,11 +53,131 @@
 
     <!-- Loader Styles -->
     <style>
+      /* Modern WhatsApp Button */
+      #chat {
+        position: fixed;
+        bottom: 110px;
+        left: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        cursor: pointer;
+        z-index: 999;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        overflow: visible;
+        animation: whatsappPulse 2s ease-in-out infinite;
+      }
+
+      #chat:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+      }
+
+      #chat i {
+        font-size: 28px;
+        transition: transform 0.3s ease;
+      }
+
+      #chat:hover i {
+        transform: scale(1.2) rotate(-5deg);
+      }
+
+      /* Tooltip/Helper Text */
+      #chat::before {
+        content: 'تحدث معنا';
+        position: absolute;
+        right: 70px;
+        background: white;
+        color: #128C7E;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      #chat:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Pulse Animation */
+      @keyframes whatsappPulse {
+        0%, 100% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+        50% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4),
+                      0 0 0 10px rgba(37, 211, 102, 0.2),
+                      0 0 0 20px rgba(37, 211, 102, 0.1);
+        }
+      }
+
+      /* Status Indicator */
+      #chat::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 12px;
+        height: 12px;
+        background: #00ff00;
+        border: 2px solid white;
+        border-radius: 50%;
+        animation: blink 2s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      /* RTL Support */
+      [dir="rtl"] #chat {
+        left: auto;
+        right: 30px;
+      }
+
+      [dir="rtl"] #chat::before {
+        right: auto;
+        left: 70px;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        #chat {
+          width: 55px;
+          height: 55px;
+          bottom: 100px;
+        }
+        
+        #chat i {
+          font-size: 24px;
+        }
+
+        #chat::before {
+          display: none;
+        }
+      }
+
       .back-to-top {
         cursor: pointer !important;
       }
 
-      /* Custom Loader */
+      /* Modern Loader */
       #preloader {
         position: fixed;
         top: 0;
@@ -48,6 +193,7 @@
         align-items: center;
         justify-content: center;
         transition: opacity 0.5s ease, visibility 0.5s ease;
+        overflow: hidden;
       }
 
       #preloader.loaded {
@@ -61,113 +207,243 @@
         100% { background-position: 0% 50%; }
       }
 
+      /* Floating particles background */
+      .loader-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        font-size: 1.5rem;
+        color: rgba(255, 211, 105, 0.3);
+        animation: floatParticle 15s linear infinite;
+      }
+
+      .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+      .particle:nth-child(2) { left: 25%; animation-delay: 2s; }
+      .particle:nth-child(3) { left: 40%; animation-delay: 4s; }
+      .particle:nth-child(4) { left: 55%; animation-delay: 1s; }
+      .particle:nth-child(5) { left: 70%; animation-delay: 3s; }
+      .particle:nth-child(6) { left: 85%; animation-delay: 5s; }
+
+      @keyframes floatParticle {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
       .loader-container {
         text-align: center;
-      }
-
-      .loader-icon {
         position: relative;
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 30px;
+        z-index: 1;
       }
 
-      .loader-icon .main-icon {
-        font-size: 3.5rem;
-        color: #CEC9BB;
+      /* Logo container with circular background */
+      .loader-logo-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 2rem;
+      }
+
+      .logo-circle {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        animation: iconPulse 2s ease-in-out infinite;
-      }
-
-      .loader-icon .ring {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 4px solid transparent;
-        border-top-color: #CEC9BB;
+        width: 140px;
+        height: 140px;
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
-        animation: spin 1.2s linear infinite;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        animation: logoGlow 2s ease-in-out infinite;
       }
 
-      .loader-icon .ring:nth-child(2) {
+      @keyframes logoGlow {
+        0%, 100% {
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                      0 0 20px rgba(255, 211, 105, 0.3);
+        }
+        50% {
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                      0 0 40px rgba(255, 211, 105, 0.6);
+        }
+      }
+
+      .loader-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 90px;
         height: 90px;
-        top: 15px;
-        left: 15px;
-        border-top-color: #FFD369;
-        animation: spinReverse 1s linear infinite;
+        object-fit: contain;
+        animation: logoFloat 3s ease-in-out infinite;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        z-index: 2;
       }
 
-      .loader-icon .ring:nth-child(3) {
-        width: 60px;
-        height: 60px;
-        top: 30px;
-        left: 30px;
-        border-top-color: #a29bfe;
-        animation: spin 0.8s linear infinite;
+      @keyframes logoFloat {
+        0%, 100% {
+          transform: translate(-50%, -50%) translateY(0px);
+        }
+        50% {
+          transform: translate(-50%, -50%) translateY(-10px);
+        }
       }
 
-      @keyframes spin {
+      /* Orbiting icons */
+      .orbit-icon {
+        position: absolute;
+        font-size: 1.8rem;
+        color: #FFD369;
+        animation: orbitRotate 8s linear infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 211, 105, 0.5));
+      }
+
+      .orbit-icon:nth-child(1) {
+        top: 10%;
+        left: 50%;
+        animation-delay: 0s;
+      }
+
+      .orbit-icon:nth-child(2) {
+        top: 50%;
+        right: 10%;
+        animation-delay: -2s;
+      }
+
+      .orbit-icon:nth-child(3) {
+        bottom: 10%;
+        left: 50%;
+        animation-delay: -4s;
+      }
+
+      .orbit-icon:nth-child(4) {
+        top: 50%;
+        left: 10%;
+        animation-delay: -6s;
+      }
+
+      @keyframes orbitRotate {
+        0% {
+          transform: rotate(0deg) translateX(90px) rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg) translateX(90px) rotate(-360deg);
+        }
+      }
+
+      /* Rotating rings */
+      .loader-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 3px solid transparent;
+      }
+
+      .loader-ring:nth-child(5) {
+        width: 180px;
+        height: 180px;
+        margin: -90px 0 0 -90px;
+        border-top-color: rgba(255, 211, 105, 0.5);
+        border-right-color: rgba(255, 211, 105, 0.3);
+        animation: ringRotate 2s linear infinite;
+      }
+
+      .loader-ring:nth-child(6) {
+        width: 160px;
+        height: 160px;
+        margin: -80px 0 0 -80px;
+        border-top-color: rgba(206, 201, 187, 0.5);
+        border-left-color: rgba(206, 201, 187, 0.3);
+        animation: ringRotate 1.5s linear infinite reverse;
+      }
+
+      @keyframes ringRotate {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
 
-      @keyframes spinReverse {
-        0% { transform: rotate(360deg); }
-        100% { transform: rotate(0deg); }
-      }
-
-      @keyframes iconPulse {
-        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-      }
-
+      /* Loading text */
       .loader-text {
-        color: #CEC9BB;
-        font-size: 1.2rem;
+        color: #FFD369;
+        font-size: 1.3rem;
         font-weight: 600;
-        letter-spacing: 3px;
+        letter-spacing: 4px;
         text-transform: uppercase;
-        margin-bottom: 15px;
-        animation: textFade 1.5s ease-in-out infinite;
+        margin-bottom: 1.5rem;
+        animation: textPulse 1.5s ease-in-out infinite;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       }
 
-      @keyframes textFade {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+      @keyframes textPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
       }
 
-      .loader-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
+      /* Progress bar */
+      .loader-progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+        margin: 0 auto;
       }
 
-      .loader-dots span {
-        width: 12px;
-        height: 12px;
-        background: #CEC9BB;
-        border-radius: 50%;
-        animation: dotBounce 1.4s ease-in-out infinite;
+      .loader-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #FFD369, #FFA500);
+        border-radius: 2px;
+        animation: progressLoad 2s ease-in-out infinite;
       }
 
-      .loader-dots span:nth-child(1) { animation-delay: 0s; }
-      .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
-      .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes progressLoad {
+        0% { width: 0%; transform: translateX(0); }
+        50% { width: 70%; }
+        100% { width: 100%; transform: translateX(0); }
+      }
 
-      @keyframes dotBounce {
-        0%, 80%, 100% {
-          transform: scale(0.6);
-          opacity: 0.5;
+      /* Responsive */
+      @media (max-width: 768px) {
+        .loader-logo-wrapper {
+          width: 140px;
+          height: 140px;
         }
-        40% {
-          transform: scale(1);
-          opacity: 1;
+
+        .logo-circle {
+          width: 110px;
+          height: 110px;
+        }
+
+        .loader-logo {
+          width: 70px;
+          height: 70px;
+        }
+
+        .orbit-icon {
+          font-size: 1.3rem;
+        }
+
+        .particle {
+          font-size: 1.2rem;
         }
       }
     </style>
@@ -175,32 +451,60 @@
     {% block style %}{% endblock %}
   </head>
   <body>
-    <!-- Custom Loader -->
+    <!-- Google Tag Manager (noscript) -->
+    {% if config.GOOGLE_TAG_MANAGER_ID %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config.GOOGLE_TAG_MANAGER_ID }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {% endif %}
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Modern Loader -->
     <div id="preloader">
+      <!-- Floating Particles -->
+      <div class="loader-particles">
+        <i class="fas fa-building particle"></i>
+        <i class="fas fa-chart-line particle"></i>
+        <i class="fas fa-seedling particle"></i>
+        <i class="fas fa-home particle"></i>
+        <i class="fas fa-handshake particle"></i>
+        <i class="fas fa-chart-pie particle"></i>
+      </div>
+
       <div class="loader-container">
-        <div class="loader-icon">
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <div class="ring"></div>
-          <i class="fas fa-building main-icon"></i>
+        <!-- Logo with rings and orbiting icons -->
+        <div class="loader-logo-wrapper">
+          <div class="logo-circle"></div>
+          <img src="{% static 'assets/img/logo_white.png' %}" alt="ثمار القابضة" class="loader-logo" />
+          <i class="fas fa-building orbit-icon"></i>
+          <i class="fas fa-chart-line orbit-icon"></i>
+          <i class="fas fa-seedling orbit-icon"></i>
+          <i class="fas fa-handshake orbit-icon"></i>
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
         </div>
+
+        <!-- Loading text -->
         <div class="loader-text">ثمار القابضة</div>
-        <div class="loader-dots">
-          <span></span>
-          <span></span>
-          <span></span>
+
+        <!-- Progress bar -->
+        <div class="loader-progress">
+          <div class="loader-progress-bar"></div>
         </div>
       </div>
     </div>
 
-    <a id="chat" class="back-to-top d-flex align-items-center justify-content-center">
-      <i class="bi bi-whatsapp"></i>
-      <span class="ms-2"></span>
-    </a>
     {% include 'partials/_navbar.html' %}
 
     {% block body %}{% endblock %}
         {% include 'partials/_footer.html' %}
+
+    <!-- Chatbot Widget -->
+    {% include 'partials/_chatbot.html' %}
+
+    <!-- WhatsApp Button -->
+    <a id="chat" href="https://api.whatsapp.com/send?phone=966591616638" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Vendor JS -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -218,13 +522,6 @@
             preloader.style.display = 'none';
           }, 500);
         }
-      });
-
-      document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("chat").addEventListener("click", function(e) {
-          e.preventDefault();
-          window.location.href = "https://api.whatsapp.com/send?phone=966591616638";
-        });
       });
 
       const navbar = document.getElementById('navbar');

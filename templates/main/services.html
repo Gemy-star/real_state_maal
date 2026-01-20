@@ -3,112 +3,462 @@
 
 {% block style %}
 <style>
-  .intro-single {
-    padding: 6rem 0 1rem;
+  /* Hero Section */
+  .services-hero {
+    background: linear-gradient(135deg, #392E37 0%, #5a4a54 50%, #392E37 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 0 4rem 0;
   }
-  .bg-footer {
-    background-color: #c6c6c6;
+
+  @keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
-  .navbar {
-    background-color: #392E37 !important;
+
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 20s linear infinite;
   }
-  .card-box-ico {
-    padding: 0.95rem !important;
-    border: none !important;
+
+  @keyframes moveGrid {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+
+  .hero-icon-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  .hero-icon {
+    font-size: 4.5rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* Sectors Section */
+  .sectors-section {
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+    padding: 5rem 0;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+  }
+
+  .section-subtitle {
+    color: #FFD369;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #392E37;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD369, #FFA500);
+    border-radius: 2px;
+  }
+
+  .section-description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-top: 2rem;
+  }
+
+  /* Sector Cards */
+  .sector-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 3rem;
+    border: 2px solid transparent;
+  }
+
+  .sector-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    border-color: #FFD369;
+  }
+
+  .sector-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+  }
+
+  .sector-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .sector-card:hover .sector-image {
+    transform: scale(1.1) rotate(2deg);
+  }
+
+  .sector-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(57, 46, 55, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .sector-card:hover .sector-overlay {
+    opacity: 1;
+  }
+
+  .sector-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, #FFD369, #FFA500);
+    color: #392E37;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 211, 105, 0.4);
+  }
+
+  .sector-content {
+    padding: 2.5rem;
+  }
+
+  .sector-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .sector-card:hover .sector-icon {
+    background: linear-gradient(135deg, #FFD369, #FFA500);
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .sector-icon i {
+    font-size: 2rem;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .sector-card:hover .sector-icon i {
+    color: #392E37;
+    transform: scale(1.2);
+  }
+
+  .sector-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #392E37;
+    margin-bottom: 1.5rem;
+  }
+
+  .sector-description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  /* Achievements Section */
+  .achievements-section {
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .achievements-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  .achievements-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .achievement-card {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 211, 105, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .achievement-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFD369;
+    transform: translateY(-10px);
+  }
+
+  .achievement-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #FFD369;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .achievement-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #FFD369;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+
+  /* Project Form Section */
+  .project-form-section {
+    background: white;
+    padding: 5rem 0;
+  }
+
+  .form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f8f9fa;
+  }
+
+  .form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #392E37;
+    margin-bottom: 1.5rem;
     text-align: center;
   }
-  .card-img {
-    box-shadow: 1px 2px 15px #392E37 !important;
-    border-radius: 8px;
+
+  .form-subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
-  .bg-main {
-    background-color: #392E37 !important;
+
+  .btn-submit {
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    width: 100%;
   }
-  .bg-services {
-    background-color: #c6c6c6;
+
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #5a4a54, #392E37);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(57, 46, 55, 0.4);
   }
-  .services-color {
-    color: #c6c6c6 !important;
-  }
-  .sec-color {
-    color: #CEC9BB !important;
-  }
-  .intro-carousel .intro-item {
-    min-height: 85vh;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    position: relative;
-  }
-  .intro-carousel .overlay {
-    background: rgba(0, 0, 0, 0.55);
-    border-radius: 8px;
-  }
-  .intro_title {
-    color: #CEC9BB !important;
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .hero-title {
+      font-size: 2.5rem;
     }
-  .card-box-ico span {
-  font-size: 1.2rem;
-  color: #c6c6c6;
-}
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .sector-image-wrapper {
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-icon {
+      font-size: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .achievements-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-container {
+      padding: 2rem 1.5rem;
+    }
+  }
 </style>
 {% endblock %}
 
 {% block body %}
 <main id="main">
-
-  <!-- ======= Intro Section ======= -->
-  <section class="intro intro-carousel position-relative">
-    <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url('{{ home_content.main_background_url }}');">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content display-table">
-        <div class="table-cell">
-          <div class="container text-center text-white">
-            <h1 class="intro_title mb-4">
-              {{ home_content.main_title|default:'نبني المستقبل عبر فرص نوعية تُثمر نجاحًا مستدامًا '|safe }}
-            </h1>
-            <p class="intro_subtitle lead">
-              {{ home_content.main_subtitle|default:'استثمارات تجسد رؤيتنا الطموحة ونغرسها في قطاعات حيوية لتثمر فرصًا مستدامة تدفع عجلة النمو نحو مستقبل واعد'|safe }}
-            </p>
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="services-hero">
+    <div class="hero-content">
+      <div class="hero-icon-wrapper">
+        <i class="fas fa-handshake hero-icon"></i>
       </div>
+      <h1 class="hero-title">{% trans "الجمعيات العامة للمساهمين" %}</h1>
+      <p class="hero-subtitle">
+        {% trans "نؤمن بأن التعاون مع المساهمين والشركاء الاستراتيجيين هو مفتاح النمو المستدام. نقدم لكم نظرة شاملة على قطاعاتنا الرئيسية وإنجازاتنا المتميزة" %}
+      </p>
     </div>
-    <div class="swiper-pagination"></div>
   </section>
-  <!-- End Intro Section -->
 
-  <!-- ======= First Sector Section ======= -->
-  <section class="section-agents section-t4 bg-services">
+  <!-- Sectors Section -->
+  <section class="sectors-section">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{{ content.first_paragrapgh_background_url }}" alt="" class="img-fluid card-img">
+      <div class="section-intro" data-aos="fade-up">
+        <span class="section-subtitle">{% trans "قطاعاتنا الاستثمارية" %}</span>
+        <h2 class="section-title">{% trans "نبني المستقبل معاً" %}</h2>
+        <p class="section-description">
+          {% trans "تتنوع استثماراتنا بين القطاعات الحيوية التي تساهم في دفع عجلة التنمية والنمو الاقتصادي المستدام" %}
+        </p>
+      </div>
+
+      <!-- Agricultural Sector Card -->
+      <div class="sector-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="sector-image-wrapper">
+          <img src="{{ content.first_paragrapgh_background_url }}" alt="{% trans 'القطاع الزراعي' %}" class="sector-image">
+          <div class="sector-overlay"></div>
+          <span class="sector-badge">{% trans "قطاع رئيسي" %}</span>
         </div>
-        <div class="col-md-6">
-          <h5 class="title-d noto-kufi-arabic mb-3" style="font-size:1.65rem;">
-            {{ content.first_paragraph_title|default:'القطاع الزراعي' }}
-          </h5>
-          <p class="color-text-a" style="font-size:1.35rem;">
+        <div class="sector-content">
+          <div class="sector-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3 class="sector-title">{{ content.first_paragraph_title|default:'القطاع الزراعي' }}</h3>
+          <p class="sector-description">
             {{ content.first_paragraph|default:"منذ انطلاقتنا، كان القطاع الزراعي حجر الأساس لنجاحنا، حيث تخصصنا في تسويق المنتجات الطازجة والعضوية والثروة الحيوانية. نفخر بدورنا في توفير التموين والإمداد، حيث نقدم منتجاتنا للقطاعات الحكومية، المستشفيات، وسلاسل كبرى مثل بندة، الدانوب، والسنبلة." }}
           </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ======= Second Sector Section ======= -->
-  <section class="section-agents section-t4 bg-services">
-    <div class="container">
-      <div class="row align-items-center flex-md-row-reverse">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{{ content.second_paragrapgh_background_url }}" alt="" class="img-fluid card-img">
+      <!-- Real Estate Sector Card -->
+      <div class="sector-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="sector-image-wrapper">
+          <img src="{{ content.second_paragrapgh_background_url }}" alt="{% trans 'القطاع العقاري' %}" class="sector-image">
+          <div class="sector-overlay"></div>
+          <span class="sector-badge">{% trans "قطاع استراتيجي" %}</span>
         </div>
-        <div class="col-md-6">
-          <h5 class="title-d noto-kufi-arabic mb-3" style="font-size:1.65rem;">
-            {{ content.second_paragraph_title|default:'القطاع العقاري' }}
-          </h5>
-          <p class="color-text-a" style="font-size:1.25rem;">
+        <div class="sector-content">
+          <div class="sector-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3 class="sector-title">{{ content.second_paragraph_title|default:'القطاع العقاري' }}</h3>
+          <p class="sector-description">
             {{ content.second_paragraph|default:'تتجه رؤية ثمار نحو القطاع العقاري كركيزة أساسية لتحقيق النمو المستدام، مع التركيز على تطوير المشاريع السكنية والتجارية التي تلبي احتياجات النهضة الاقتصادية المتسارعة. من خلال شركة "أبراج ثمار"، نقدم حلولًا مبتكرة تواكب تطلعات السوق وتعزز التنوع الاستثماري' }}
           </p>
         </div>
@@ -116,68 +466,71 @@
     </div>
   </section>
 
-   <!-- ======= Achievements Section (animated counters) ======= -->
-  <section class="section-agents section-t4 bg-main text-center py-5">
+  <!-- Achievements Section -->
+  <section class="achievements-section">
     <div class="container">
-      <h5 class="title-a noto-kufi-arabic services-color mb-5" style="font-size: 2.45rem;">{% trans "إنجازاتنا" %}</h5>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card-box-ico">
-            <span class="bi bi-kanban sec-color fs-2"></span>
-            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "المنتجات الحيوية" %}</h5>
-            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
-              <span class="counter" data-target="5208" aria-live="polite">0</span>
-            </p>
+      <h2 class="achievements-title" data-aos="fade-up">{% trans "إنجازاتنا البارزة" %}</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="achievement-icon">
+            <i class="fas fa-apple-alt"></i>
           </div>
+          <div class="achievement-number">
+            <span class="counter" data-target="5208">0</span>
+          </div>
+          <div class="achievement-label">{% trans "المنتجات الحيوية" %}</div>
         </div>
 
-        <div class="col-md-4">
-          <div class="card-box-ico">
-            <span class="bi bi-buildings sec-color fs-2"></span>
-            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "تقنيات عقارية" %}</h5>
-            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
-              <span class="counter" data-target="3032" aria-live="polite">0</span>
-            </p>
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="achievement-icon">
+            <i class="fas fa-city"></i>
           </div>
+          <div class="achievement-number">
+            <span class="counter" data-target="3032">0</span>
+          </div>
+          <div class="achievement-label">{% trans "تقنيات عقارية" %}</div>
         </div>
 
-        <div class="col-md-4">
-          <div class="card-box-ico">
-            <span class="bi bi-building-fill-check sec-color fs-2"></span>
-            <h5 class="sec-color noto-kufi-arabic mt-2" style="font-size:1.35rem;color:#fff">{% trans "تمليك عقاري" %}</h5>
-            <p class="services-color fw-bold" style="font-size:1.15rem;color:#fff">
-              <span class="counter" data-target="108812" aria-live="polite">0</span>
-            </p>
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="achievement-icon">
+            <i class="fas fa-home"></i>
           </div>
+          <div class="achievement-number">
+            <span class="counter" data-target="108812">0</span>
+          </div>
+          <div class="achievement-label">{% trans "تمليك عقاري" %}</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======= Project Submission Form ======= -->
-  <section class="section-agents section-t4 bg-services py-5">
+  <!-- Project Submission Form -->
+  <section class="project-form-section">
     <div class="container">
       {% include 'partials/_messages.html' %}
-      <div class="row mb-4">
-        <div class="col-lg-8">
-          <h1 class="title-single text-black-50 noto-kufi-arabic">تقدّم بمشروعك</h1>
-        </div>
-      </div>
-      <div class="row justify-content-start">
-        <div class="col-md-8">
-          <form method="post" class="p-4 bg-white shadow-sm rounded">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <div class="mt-3">
-              <button type="submit" class="btn btn-a bg-main text-white">إرسال</button>
-            </div>
-          </form>
-        </div>
+      <div class="form-container" data-aos="fade-up">
+        <h2 class="form-title">{% trans "تقدّم بمشروعك" %}</h2>
+        <p class="form-subtitle">
+          {% trans "نرحب باستقبال المشاريع والأفكار الاستثمارية. شاركنا مقترحك وسنقوم بدراسته بعناية" %}
+        </p>
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="mt-4">
+            <button type="submit" class="btn btn-submit text-white">
+              <i class="fas fa-paper-plane me-2"></i>
+              {% trans "إرسال المشروع" %}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
 
 </main>
+{% endblock %}
+
+{% block js %}
 <script>
   (function () {
     // Helper: format number localized (Arabic - Saudi Arabia), fallback to default locale
@@ -260,5 +613,4 @@
     document.addEventListener('DOMContentLoaded', initCounters);
   })();
 </script>
-
 {% endblock %}

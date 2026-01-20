@@ -25,6 +25,7 @@ from .models import (
     RelationsPage,
     WhoUsPage,
     Report,
+    ChatbotQA,
 )
 
 
@@ -392,3 +393,194 @@ class ReportDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, _("تم حذف التقرير بنجاح."))
         return super().delete(request, *args, **kwargs)
+
+
+# -------------------- CHATBOT MANAGEMENT --------------------
+
+
+class ChatbotListView(LoginRequiredMixin, ListView):
+    """Dashboard view to list all chatbot Q&As"""
+
+    template_name = "main/dashboard/chatbot_list.html"
+    model = ChatbotQA
+    context_object_name = "chatbot_qas"
+    login_url = reverse_lazy("login")
+    paginate_by = 20
+
+    def get_queryset(self):
+        return ChatbotQA.objects.all().order_by("order", "-created_at")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_qas_count"] = ChatbotQA.objects.filter(is_active=True).count()
+        context["total_views"] = sum(
+            ChatbotQA.objects.values_list("view_count", flat=True)
+        )
+        return context
+
+
+class ChatbotCreateView(LoginRequiredMixin, CreateView):
+    """Dashboard view to create a new chatbot Q&A"""
+
+    template_name = "main/dashboard/chatbot_form.html"
+    model = ChatbotQA
+    fields = ["question", "answer", "keywords", "category", "order", "is_active"]
+    success_url = reverse_lazy("chatbot-list")
+    login_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        messages.success(self.request, _("تم إضافة السؤال والجواب بنجاح."))
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(
+            self.request, _("حدث خطأ أثناء إضافة السؤال. يرجى التحقق من البيانات.")
+        )
+        return super().form_invalid(form)
+
+
+class ChatbotUpdateView(LoginRequiredMixin, View):
+    """Dashboard view to update a chatbot Q&A"""
+
+    login_url = reverse_lazy("login")
+
+    def get(self, request, pk):
+        qa = ChatbotQA.objects.get(pk=pk)
+        return JsonResponse(
+            {
+                "id": qa.id,
+                "question": qa.question,
+                "answer": qa.answer,
+                "keywords": qa.keywords,
+                "category": qa.category,
+                "order": qa.order,
+                "is_active": qa.is_active,
+            }
+        )
+
+    def post(self, request, pk):
+        try:
+            qa = ChatbotQA.objects.get(pk=pk)
+            qa.question = request.POST.get("question", qa.question)
+            qa.answer = request.POST.get("answer", qa.answer)
+            qa.keywords = request.POST.get("keywords", qa.keywords)
+            qa.category = request.POST.get("category", qa.category)
+            qa.order = request.POST.get("order", qa.order)
+            qa.is_active = request.POST.get("is_active") == "true"
+            qa.save()
+            messages.success(request, _("تم تحديث السؤال والجواب بنجاح."))
+            return JsonResponse({"success": True, "message": _("تم التحديث بنجاح.")})
+        except ChatbotQA.DoesNotExist:
+            messages.error(request, _("السؤال غير موجود."))
+            return JsonResponse(
+                {"success": False, "message": _("السؤال غير موجود.")}, status=404
+            )
+        except Exception as e:
+            messages.error(request, _("حدث خطأ أثناء التحديث."))
+            return JsonResponse(
+                {"success": False, "message": str(e)}, status=400
+            )
+
+
+class ChatbotDetailView(LoginRequiredMixin, DetailView):
+    """Dashboard view to view chatbot Q&A details"""
+
+    template_name = "main/dashboard/chatbot_detail.html"
+    model = ChatbotQA
+    context_object_name = "qa"
+    login_url = reverse_lazy("login")
+
+
+class ChatbotDeleteView(LoginRequiredMixin, DeleteView):
+    """Dashboard view to delete a chatbot Q&A"""
+
+    template_name = "main/dashboard/chatbot_delete.html"
+    model = ChatbotQA
+    success_url = reverse_lazy("chatbot-list")
+    login_url = reverse_lazy("login")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, _("تم حذف السؤال والجواب بنجاح."))
+        return super().delete(request, *args, **kwargs)
+
+
+class ChatbotSearchView(View):
+    """API view for chatbot search"""
+
+    def post(self, request):
+        from django.db.models import Q
+
+        query = request.POST.get("query", "").strip()
+
+        if not query:
+            return JsonResponse(
+                {"success": False, "message": _("يرجى إدخال سؤال.")}, status=400
+            )
+
+        # Search for matching Q&As
+        qas = ChatbotQA.objects.filter(is_active=True)
+
+        # Filter by question, answer, or keywords
+        qas = qas.filter(
+            Q(question__icontains=query)
+            | Q(answer__icontains=query)
+            | Q(keywords__icontains=query)
+        )
+
+        if qas.exists():
+            # Get the best match (first one)
+            best_match = qas.first()
+            best_match.increment_view_count()
+
+            # Get all matches
+            results = [
+                {
+                    "id": qa.id,
+                    "question": qa.question,
+                    "answer": qa.answer,
+                    "category": qa.category,
+                }
+                for qa in qas[:5]  # Limit to 5 results
+            ]
+
+            return JsonResponse(
+                {
+                    "success": True,
+                    "results": results,
+                    "best_match": {
+                        "id": best_match.id,
+                        "question": best_match.question,
+                        "answer": best_match.answer,
+                        "category": best_match.category,
+                    },
+                }
+            )
+        else:
+            # No matches found
+            return JsonResponse(
+                {
+                    "success": False,
+                    "message": _("عذراً، لم نجد إجابة لسؤالك. يرجى التواصل معنا مباشرة."),
+                }
+            )
+
+
+class ChatbotGetAllView(View):
+    """API view to get all active chatbot Q&As"""
+
+    def get(self, request):
+        qas = ChatbotQA.objects.filter(is_active=True).order_by("order", "-created_at")
+
+        # Group by category
+        categories = {}
+        for qa in qas:
+            category = qa.category or _("عام")
+            if category not in categories:
+                categories[category] = []
+            categories[category].append(
+                {"id": qa.id, "question": qa.question, "answer": qa.answer}
+            )
+
+        return JsonResponse(
+            {"success": True, "categories": categories, "total": qas.count()}
+        )

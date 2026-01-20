@@ -188,9 +188,14 @@ CONSTANCE_CONFIG = {
     "TWITTER_URL": ("#", "رابط تويتر"),
     "INSTAGRAM_URL": ("#", "رابط انستقرام"),
     "LINKEDIN_URL": ("#", "رابط لينكدإن"),
+    "YOUTUBE_URL": ("#", "رابط يوتيوب"),
     "ADDRESS": ("الرياض، المملكة العربية السعودية", "عنوان الشركة"),
     "ADS_LINK": ("http://google/.com", "رابط الأعلان"),
     "ADS_TITLE": ("رابط  الأعلان", "عنوان الأعلان"),
+    "GOOGLE_TAG_MANAGER_ID": ("", "Google Tag Manager ID (GTM-XXXXXXX)"),
+    "GOOGLE_ANALYTICS_ID": ("", "Google Analytics ID (G-XXXXXXXXXX or UA-XXXXXXXXX-X)"),
+    "GOOGLE_ADS_CONVERSION_ID": ("", "Google Ads Conversion ID (AW-XXXXXXXXX)"),
+    "GOOGLE_ADS_CONVERSION_LABEL": ("", "Google Ads Conversion Label"),
 }
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, "locale"),
