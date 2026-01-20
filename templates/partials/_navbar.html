@@ -1,14 +1,14 @@
 {% load static i18n formatter_tags %}
 
-<nav id="navbar" class="navbar navbar-expand-lg fixed-top custom-navbar">
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top modern-navbar">
   <div class="container">
     <!-- Brand / Logo -->
-    <a class="navbar-brand text-brand" href="{% url 'home-page' %}">
-      <img src="{% static 'assets/img/logo_white.png' %}" class="img-fluid logo" alt="Logo" />
+    <a class="navbar-brand" href="{% url 'home-page' %}">
+      <img src="{% static 'assets/img/logo_white.png' %}" class="navbar-logo" alt="{% trans 'الشعار' %}" />
     </a>
 
     <!-- Hamburger / Toggler -->
-    <button class="navbar-toggler collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="{% trans 'القائمة' %}">
       <span class="toggler-icon top-bar"></span>
       <span class="toggler-icon middle-bar"></span>
       <span class="toggler-icon bottom-bar"></span>
@@ -19,63 +19,127 @@
       <ul class="navbar-nav align-items-center">
 
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'home-page' %} active {% endif %}" href="{% url 'home-page' %}">{% trans "الرئيسية" %}</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'home-page' %}active{% endif %}" href="{% url 'home-page' %}">
+            <i class="fas fa-home nav-icon"></i>
+            {% trans "الرئيسية" %}
+          </a>
         </li>
 
         <!-- علاقات المستثمرين -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name|startswith:'services-page' %} active {% endif %}" href="#" id="investorRelationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="investorRelationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-chart-line nav-icon"></i>
             {% trans "علاقات المستثمرين" %}
           </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="investorRelationsDropdown">
-            <li><a class="dropdown-item" href="{% url 'reports-page' %}">{% trans "تقارير مجلس الإدارة" %}</a></li>
-            <li><a class="dropdown-item" href="{% url 'services-page' %}">{% trans "الجمعيات العامة لمساهمين الشركة" %}</a></li>
-            <li><a class="dropdown-item" href="{% url 'maal-page' %}">{% trans "القوائم المالية" %}</a></li>
-            <li><a class="dropdown-item" href="{% url 'report-thimar' %}">{% trans "نشرة إصدار" %}</a></li>
+          <ul class="dropdown-menu mega-menu" aria-labelledby="investorRelationsDropdown">
+            <li>
+              <a class="dropdown-item" href="{% url 'reports-page' %}">
+                <i class="fas fa-file-alt me-2"></i>
+                {% trans "تقارير مجلس الإدارة" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'services-page' %}">
+                <i class="fas fa-users me-2"></i>
+                {% trans "الجمعيات العامة لمساهمين الشركة" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'maal-page' %}">
+                <i class="fas fa-calculator me-2"></i>
+                {% trans "القوائم المالية" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'report-thimar' %}">
+                <i class="fas fa-newspaper me-2"></i>
+                {% trans "نشرة إصدار" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ config.ADS_LINK }}">
+                <i class="fas fa-bullhorn me-2"></i>
+                {{ config.ADS_TITLE }}
+              </a>
+            </li>
           </ul>
         </li>
 
         <!-- الحوكمة -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name|startswith:'services-page' %} active {% endif %}" href="#" id="governanceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown mega-dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="governanceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-shield-alt nav-icon"></i>
             {% trans "الحوكمة" %}
           </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="governanceDropdown">
-            <li><a class="dropdown-item" href="{% static 'assets/thimar_system.pdf' %}">{% trans "النظام الأساس للشركة" %}</a></li>
-            <li><a class="dropdown-item" href="{% url 'privacy-page' %}">{% trans "سياسة الإبلاغ عن المخالفات" %}</a></li>
-            <li><a class="dropdown-item" href="#">{% trans "سياسة المسؤولية الاجتماعية ومبادرة العمل الاجتماعي" %}</a></li>
+          <ul class="dropdown-menu mega-menu" aria-labelledby="governanceDropdown">
+            <li>
+              <a class="dropdown-item" href="{% static 'assets/thimar_system.pdf' %}">
+                <i class="fas fa-file-pdf me-2"></i>
+                {% trans "النظام الأساس للشركة" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'privacy-page' %}">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                {% trans "سياسة الإبلاغ عن المخالفات" %}
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="fas fa-hands-helping me-2"></i>
+                {% trans "سياسة المسؤولية الاجتماعية ومبادرة العمل الاجتماعي" %}
+              </a>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'who-page' %} active {% endif %}" href="{% url 'who-page' %}">{% trans "استثماراتنا" %}</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'who-page' %}active{% endif %}" href="{% url 'who-page' %}">
+            <i class="fas fa-briefcase nav-icon"></i>
+            {% trans "استثماراتنا" %}
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'about-page' %} active {% endif %}" href="{% url 'about-page' %}">{% trans "من نحن" %}</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'about-page' %}active{% endif %}" href="{% url 'about-page' %}">
+            <i class="fas fa-info-circle nav-icon"></i>
+            {% trans "من نحن" %}
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name|startswith:'contact-page' %} active {% endif %}" href="{% url 'contact-page' %}">{% trans "المركز الإعلامي" %}</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'contact-page' %}active{% endif %}" href="{% url 'contact-page' %}">
+            <i class="fas fa-newspaper nav-icon"></i>
+            {% trans "المركز الإعلامي" %}
+          </a>
         </li>
 
         <!-- Language Switcher -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            🌐 {% get_current_language as LANGUAGE_CODE %}
-            {% if LANGUAGE_CODE == "ar" %} العربية {% else %} English {% endif %}
+          <a class="nav-link dropdown-toggle language-switcher" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-globe nav-icon"></i>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}العربية{% else %}English{% endif %}
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
             <li>
-              <form action="{% url 'set_language' %}" method="post">
+              <form action="{% url 'set_language' %}" method="post" class="d-inline">
                 {% csrf_token %}
                 <input type="hidden" name="language" value="ar">
-                <button type="submit" class="dropdown-item">العربية</button>
+                <button type="submit" class="dropdown-item">
+                  <i class="fas fa-language me-2"></i>
+                  العربية
+                </button>
               </form>
             </li>
             <li>
-              <form action="{% url 'set_language' %}" method="post">
+              <form action="{% url 'set_language' %}" method="post" class="d-inline">
                 {% csrf_token %}
                 <input type="hidden" name="language" value="en">
-                <button type="submit" class="dropdown-item">English</button>
+                <button type="submit" class="dropdown-item">
+                  <i class="fas fa-language me-2"></i>
+                  English
+                </button>
               </form>
             </li>
           </ul>
@@ -87,42 +151,258 @@
 </nav>
 
 <style>
-.custom-navbar { background: linear-gradient(90deg, #392E37, #4c3c4f); padding: 0.8rem 1rem; transition: all 0.3s ease; }
-.custom-navbar .logo { max-width: 6rem; max-height: 7vh; }
-.navbar-nav .nav-link { color: #f5f5f5; font-weight: 500; padding: 0.6rem 1rem; transition: color 0.3s ease, transform 0.2s ease; }
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #FFD369; transform: translateY(-2px); }
+:root {
+  --navbar-bg-start: #392E37;
+  --navbar-bg-end: #4c3c4f;
+  --navbar-accent: #FFD369;
+  --navbar-text: #f5f5f5;
+  --navbar-text-hover: #FFD369;
+}
 
-.dropdown-menu { border-radius: 0.6rem; border: none; box-shadow: 0 6px 20px rgba(0,0,0,0.15); padding: 0.5rem; text-align: right; }
-.dropdown-item { padding: 0.6rem 1rem; color: #333; transition: background 0.2s; }
-.dropdown-item:hover { background: #f8f9fa; border-radius: 0.4rem; }
+/* Modern Navbar */
+.modern-navbar {
+  background: linear-gradient(135deg, var(--navbar-bg-start), var(--navbar-bg-end));
+  padding: 0.8rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
 
-.toggler-icon { display: block; width: 24px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: #CEC9BB; border-radius: 2px; }
-.navbar-toggler.collapsed .toggler-icon.top-bar { transform: rotate(0); }
-.navbar-toggler:not(.collapsed) .toggler-icon.top-bar { transform: rotate(45deg) translateY(7px); }
-.navbar-toggler:not(.collapsed) .toggler-icon.middle-bar { opacity: 0; }
-.navbar-toggler:not(.collapsed) .toggler-icon.bottom-bar { transform: rotate(-45deg) translateY(-7px); }
+.modern-navbar.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+}
 
-/* Ensure dropdown relative positioning */
-.nav-item.dropdown { position: relative; }
+/* Logo */
+.navbar-logo {
+  max-width: 120px;
+  max-height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-logo {
+  transform: scale(1.05);
+}
+
+/* Navigation Links */
+.navbar-nav .nav-link {
+  color: var(--navbar-text);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  margin: 0 0.2rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--navbar-accent);
+  background: rgba(255, 211, 105, 0.1);
+  transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link:hover .nav-icon {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--navbar-accent);
+  background: rgba(255, 211, 105, 0.15);
+  box-shadow: 0 2px 10px rgba(255, 211, 105, 0.2);
+}
+
+.navbar-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: var(--navbar-accent);
+  border-radius: 2px;
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  min-width: 280px;
+  animation: dropdownSlide 0.3s ease-out;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 0.8rem 1.2rem;
+  color: #333;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  color: var(--navbar-bg-start);
+  transform: translateX(-5px);
+}
+
+.dropdown-item i {
+  color: var(--navbar-bg-start);
+  transition: color 0.2s ease;
+}
+
+.dropdown-item:hover i {
+  color: var(--navbar-accent);
+}
+
+/* Language Switcher */
+.language-switcher {
+  background: rgba(255, 211, 105, 0.1);
+  border: 2px solid rgba(255, 211, 105, 0.3);
+}
+
+.language-switcher:hover {
+  background: rgba(255, 211, 105, 0.2);
+  border-color: var(--navbar-accent);
+}
+
+/* Mobile Toggler */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  background: rgba(255, 211, 105, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 211, 105, 0.25);
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 211, 105, 0.2);
+}
+
+.toggler-icon {
+  display: block;
+  width: 26px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--navbar-accent);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon.top-bar {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon.middle-bar {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon.bottom-bar {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: linear-gradient(135deg, var(--navbar-bg-start), var(--navbar-bg-end));
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.8rem 1rem;
+    margin: 0.3rem 0;
+  }
+
+  .dropdown-menu {
+    background: rgba(255, 255, 255, 0.95);
+    margin-right: 1rem;
+  }
+}
+
+/* Scroll Effect */
+@media (min-width: 992px) {
+  .modern-navbar.scrolled .navbar-logo {
+    max-width: 100px;
+    max-height: 50px;
+  }
+}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // Only initialize Bootstrap dropdowns
-  var dropdownElements = document.querySelectorAll('.dropdown-toggle');
-  dropdownElements.forEach(function(dropdownToggle) {
-    new bootstrap.Dropdown(dropdownToggle, { popperConfig: { placement: 'bottom-end' } });
+  const navbar = document.getElementById('navbar');
+
+  // Scroll effect
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   });
 
-  // Collapse navbar when a normal link is clicked
+  // Initialize Bootstrap dropdowns
+  const dropdownElements = document.querySelectorAll('.dropdown-toggle');
+  dropdownElements.forEach(function(dropdownToggle) {
+    new bootstrap.Dropdown(dropdownToggle);
+  });
+
+  // Auto-close mobile menu on link click
   document.querySelectorAll('.navbar-collapse .nav-link:not(.dropdown-toggle)').forEach(function(link) {
     link.addEventListener('click', function() {
       if (window.innerWidth < 992) {
-        var navbarCollapse = document.getElementById('navbarDefault');
+        const navbarCollapse = document.getElementById('navbarDefault');
         if (navbarCollapse.classList.contains('show')) {
-          new bootstrap.Collapse(navbarCollapse).toggle();
+          new bootstrap.Collapse(navbarCollapse).hide();
         }
       }
+    });
+  });
+
+  // Smooth dropdown animations
+  document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+    dropdown.addEventListener('show.bs.dropdown', function() {
+      const menu = this.querySelector('.dropdown-menu');
+      menu.style.display = 'block';
+      menu.style.opacity = '0';
+      setTimeout(function() {
+        menu.style.opacity = '1';
+      }, 10);
     });
   });
 });

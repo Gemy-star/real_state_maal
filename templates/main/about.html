@@ -1,139 +1,561 @@
 {% extends 'base.html' %}
 {% load static i18n %}
+
 {% block style %}
 <style>
+  :root {
+    --primary-color: #392E37;
+    --secondary-color: #CEC9BB;
+    --accent-color: #FFD369;
+    --text-dark: #2c2c2c;
+    --text-light: #666;
+  }
+
   .navbar {
-    background-color: #392E37 !important;
+    background: linear-gradient(135deg, var(--primary-color), #5a4861) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
 
-  .card-img {
-    box-shadow: 0 4px 15px rgba(57, 46, 55, 0.3);
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
+  /* Hero Section */
+  .about-hero {
+    min-height: 70vh;
+    background: linear-gradient(135deg, rgba(57,46,55,0.95), rgba(76,60,79,0.9)), url('{% static "assets/img/about.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
   }
 
-  .card-img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(57, 46, 55, 0.4);
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,211,105,0.1), transparent 50%);
+    animation: pulseGlow 8s ease-in-out infinite;
   }
 
-  .bg-footer {
-    background-color: #CEC9BB;
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 
-  .section-about {
-    padding: 4rem 0;
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
   }
 
-  .noto-kufi-arabic {
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    opacity: 0.95;
     line-height: 1.8;
   }
 
-  .title-d {
-    color: #392E37;
-    font-weight: 700;
-    margin-bottom: 1rem;
+  /* Stats Section */
+  .stats-section {
+    background: linear-gradient(135deg, var(--primary-color), #5a4861);
+    color: white;
+    padding: 4rem 0;
+    margin-top: -50px;
+    position: relative;
+    z-index: 3;
   }
 
-  .highlight-title {
+  .stat-box {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+  }
+
+  .stat-box:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
+
+  .stat-number {
+    font-size: 3.5rem;
     font-weight: 800;
-    font-size: 1.35rem;
-    color: #392E37;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(255,211,105,0.5);
   }
 
-  .color-text-a {
-    font-size: 1.25rem;
-    color: #444;
+  .stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+  }
+
+  /* Strategy Section */
+  .strategy-section {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, white 100%);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
+  }
+
+  .section-title p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .strategy-card {
+    background: white;
+    border-radius: 25px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    height: 100%;
+  }
+
+  .strategy-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 60px rgba(57,46,55,0.15);
+    border-color: var(--accent-color);
+  }
+
+  .strategy-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), #5a4861);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 30px rgba(57,46,55,0.3);
+    transition: all 0.4s ease;
+  }
+
+  .strategy-card:hover .strategy-icon {
+    transform: rotateY(360deg);
+  }
+
+  .strategy-icon i {
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  .strategy-card h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .strategy-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  /* Values Section */
+  .values-section {
+    padding: 6rem 0;
+    background: white;
+  }
+
+  .value-item {
+    background: linear-gradient(135deg, #f8f9fa, white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--accent-color);
+    transition: all 0.4s ease;
+  }
+
+  .value-item:hover {
+    background: linear-gradient(135deg, white, #f8f9fa);
+    transform: translateX(-10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+
+  .value-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .value-title i {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+  }
+
+  .value-description {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+  }
+
+  /* Image Gallery */
+  .image-showcase {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+  }
+
+  .image-showcase:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  .image-showcase img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .image-showcase:hover img {
+    transform: scale(1.1);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--primary-color), #5a4861);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .btn-cta {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255,211,105,0.4);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255,211,105,0.6);
+    color: var(--primary-color);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-section {
+      margin-top: 0;
+    }
+
+    .stat-box {
+      margin-bottom: 1.5rem;
+    }
+
+    .strategy-section, .values-section {
+      padding: 3rem 0;
+    }
+
+    .value-item:hover {
+      transform: translateX(0);
+    }
   }
 </style>
 {% endblock style %}
+
 {% block body %}
-<!-- ======= Intro Section ======= -->
-<div class="intro intro-carousel swiper position-relative">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide carousel-item-a intro-item bg-image"
-      style="background-position: bottom;background-image: url({% static 'assets/img/about.jpg' %});background-origin: content-box;background-size: cover;">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content display-table">
-        <div class="table-cell">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="intro-body">
-                  <!-- Optional caption text -->
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- Hero Section -->
+<section class="about-hero">
+  <div class="hero-content">
+    <h1 class="hero-title" data-aos="fade-up">{% trans "من نحن" %}</h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+      {% trans "نحن نبني المستقبل من خلال الابتكار والتميز في مجال العقارات والتنمية" %}
+    </p>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-number counter" data-count="15">0</div>
+          <div class="stat-label">{% trans "سنة من الخبرة" %}</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-building"></i></div>
+          <div class="stat-number counter" data-count="50">0</div>
+          <div class="stat-label">{% trans "مشروع منجز" %}</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-number counter" data-count="200">0</div>
+          <div class="stat-label">{% trans "عميل راضٍ" %}</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-award"></i></div>
+          <div class="stat-number counter" data-count="10">0</div>
+          <div class="stat-label">{% trans "جائزة محلية ودولية" %}</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="swiper-pagination"></div>
-</div>
-<!-- End Intro Section -->
+</section>
 
 <main id="main">
-  <!-- ======= About Section ======= -->
-  <section class="section-about bg-sec">
+  <!-- Strategy Section -->
+  <section class="strategy-section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 section-t4 position-relative">
-          <div class="row d-flex justify-content-between">
-            <div class="col-md-4 col-lg-4 my-5">
-              <img src="{% static 'assets/img/who6.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "استراتيجيتنا" %}</h2>
+        <p>{% trans "مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو" %}</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-chart-line"></i>
             </div>
-            <div class="col-md-3 col-lg-3 section-md-t3 my-5">
-              <h5 class="title-d noto-kufi-arabic" style="font-size:1.6rem;">
-                {% trans "استراتيجيتنا" %}
-              </h5>
-              <p class="color-text-a noto-kufi-arabic">
-                {% trans "مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح تلك الاستراتيجية." %}
-              </p>
+            <h3>{% trans "النمو والتوسع" %}</h3>
+            <p>{% trans "استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد" %}</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-project-diagram"></i>
             </div>
-            <div class="col-md-4 col-lg-4 section-md-t3 my-5">
-              <img src="{% static 'assets/img/who5.jpg' %}" alt="" class="img-fluid card-img" style="height:60vh">
+            <h3>{% trans "التنوع" %}</h3>
+            <p>{% trans "تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية" %}</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-shield-alt"></i>
             </div>
+            <h3>{% trans "الحوكمة والشفافية" %}</h3>
+            <p>{% trans "أعادت ثمار هيكلية إداراتها وممارساتها الداخلية، وبنت خططاً واضحة تسهل تبادل المعلومات والشفافية بين الأقسام والإدارات" %}</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3>{% trans "الكفاءة" %}</h3>
+            <p>{% trans "أولت ثمار الأولوية لكفاءة أعمالها وابتكرت خريطة عمل لتحقيق الوفورات بمشاركة الموارد وتبادل الخدمات بين الشركات التابعة" %}</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <h3>{% trans "الحلول التمويلية" %}</h3>
+            <p>{% trans "مع تنوع استثمارات الشركة عقدت شراكات وأوجدت حلولاً تمويلية لتمويل مشاريع الشركات التابعة لها" %}</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="strategy-card">
+            <div class="strategy-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>{% trans "الابتكار" %}</h3>
+            <p>{% trans "نؤمن بأن الابتكار هو المحرك الرئيسي للنجاح، ونستثمر في التقنيات الحديثة والأفكار الجديدة" %}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ======= Goals Section ======= -->
-  <section class="section-about bg-sec">
+  <!-- Values Section -->
+  <section class="values-section">
     <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "قيمنا الجوهرية" %}</h2>
+        <p>{% trans "القيم التي نؤمن بها وتوجه عملنا اليومي" %}</p>
+      </div>
+
       <div class="row">
-        <div class="col-md-12 section-t4 position-relative">
-          <div class="row d-flex justify-content-start">
-            <div class="col-md-4 col-lg-5 my-5">
-              <img src="{% static 'assets/img/who3.jpg' %}" alt="" class="img-fluid card-img" style="height:75vh">
+        <div class="col-lg-6">
+          <div class="image-showcase" data-aos="fade-right">
+            <img src="{% static 'assets/img/who6.jpg' %}" alt="{% trans 'صورة الشركة' %}" style="height: 600px;">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="value-item" data-aos="fade-left" data-aos-delay="100">
+            <div class="value-title">
+              <i class="fas fa-check-circle"></i>
+              <span>{% trans "النزاهة والشفافية" %}</span>
             </div>
-            <div class="col-md-8 col-lg-7 section-md-t3 my-5 p-4" style="background-color:#f0f0f0;border-radius:15px;">
-              <p class="color-text-a noto-kufi-arabic">
+            <p class="value-description">
+              {% trans "نلتزم بأعلى معايير النزاهة والشفافية في جميع تعاملاتنا مع عملائنا وشركائنا" %}
+            </p>
+          </div>
 
-                <span class="highlight-title">{% trans "النمو والتوسع" %}</span><br>
-                {% trans "استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد لتوسيع قاعدة أعمالها وتعزيز قدرتها على المنافسة." %}
-
-                <span class="highlight-title">{% trans "التنوع" %}</span><br>
-                {% trans "تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية." %}
-
-                <span class="highlight-title">{% trans "الحوكمة والشفافية" %}</span><br>
-                {% trans "أعادت ثمار هيكلية إداراتها وممارساتها الداخلية، وبنت في سبيل ذلك خططاً واضحة تسهل تبادل المعلومات والشفافية بين الأقسام والإدارات، وهو ما انعكس على أداء الشركة على الفور." %}
-
-                <span class="highlight-title">{% trans "الكفاءة" %}</span><br>
-                {% trans "أولت ثمار الأولوية لكفاءة أعمالها وابتكرت خريطة عمل لتحقيق الوفورات بمشاركة الموارد وتبادل الخدمات بين الشركات التابعة، مما قلّل التكاليف وحسّن الربحية." %}
-
-                <span class="highlight-title">{% trans "الحلول التمويلية" %}</span><br>
-                {% trans "مع تنوع استثمارات الشركة عقدت شراكات وأوجدت حلولاً تمويلية لتمويل مشاريع الشركات التابعة لها، وهو ما زاد في استقرار أعمالها وكفاءة إنتاجيتها." %}
-              </p>
+          <div class="value-item" data-aos="fade-left" data-aos-delay="200">
+            <div class="value-title">
+              <i class="fas fa-star"></i>
+              <span>{% trans "التميز في الأداء" %}</span>
             </div>
+            <p class="value-description">
+              {% trans "نسعى دائماً لتقديم أفضل الخدمات والمنتجات بأعلى مستويات الجودة" %}
+            </p>
+          </div>
+
+          <div class="value-item" data-aos="fade-left" data-aos-delay="300">
+            <div class="value-title">
+              <i class="fas fa-handshake"></i>
+              <span>{% trans "الشراكة المستدامة" %}</span>
+            </div>
+            <p class="value-description">
+              {% trans "نبني علاقات طويلة الأمد مع عملائنا وشركائنا تقوم على الثقة المتبادلة" %}
+            </p>
+          </div>
+
+          <div class="value-item" data-aos="fade-left" data-aos-delay="400">
+            <div class="value-title">
+              <i class="fas fa-leaf"></i>
+              <span>{% trans "المسؤولية الاجتماعية" %}</span>
+            </div>
+            <p class="value-description">
+              {% trans "نلتزم بمسؤوليتنا تجاه المجتمع والبيئة في جميع مشاريعنا وأعمالنا" %}
+            </p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" data-aos="fade-up">
+    <div class="container">
+      <h2>{% trans "هل أنت مستعد للعمل معنا؟" %}</h2>
+      <p>{% trans "دعنا نبني المستقبل معاً" %}</p>
+      <a href="{% url 'contact-page' %}" class="btn-cta">
+        <i class="fas fa-envelope me-2"></i>
+        {% trans "تواصل معنا الآن" %}
+      </a>
     </div>
   </section>
 </main>
+
+<script>
+  // Counter Animation
+  function animateCounter(el) {
+    const target = +el.getAttribute("data-count");
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let count = 0;
+
+    const timer = setInterval(() => {
+      count += step;
+      if (count >= target) {
+        el.textContent = Math.floor(target) + "+";
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(count);
+      }
+    }, 16);
+  }
+
+  // Initialize counters on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.counter').forEach(counter => {
+    observer.observe(counter);
+  });
+</script>
 {% endblock %}

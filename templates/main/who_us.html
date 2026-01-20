@@ -1,117 +1,452 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block style %}
 <style>
-  .navbar { background-color: #392E37 !important; }
-  .card { box-shadow: 1px 2px 15px #392E37; }
-  .bg-main { background-color: #392E37 !important; }
-  .bg-sec { background-color: #f7f7f7; } /* بدل bg-services عشان أوضح */
-  .sec-color { color: #CEC9BB !important; }
+  :root {
+    --primary-color: #392E37;
+    --secondary-color: #CEC9BB;
+    --accent-color: #FFD369;
+    --dark-purple: #4c3c4f;
+    --text-dark: #2c2c2c;
+    --text-light: #666;
+  }
+
+  /* Hero Section */
+  .who-us-hero {
+    min-height: 50vh;
+    background: linear-gradient(135deg, rgba(57,46,55,0.95), rgba(76,60,79,0.9)), url('{% static "assets/img/home_who.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .who-us-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,211,105,0.1), transparent 50%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .breadcrumb {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .breadcrumb-item a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb-item a:hover {
+    color: var(--accent-color);
+  }
+
+  .breadcrumb-item.active {
+    color: var(--accent-color);
+  }
+
+  /* Section Styling */
+  .modern-section {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
+  }
+
+  /* Stats Card */
+  .stat-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,211,105,0.1), transparent 50%);
+    transition: transform 0.6s ease;
+  }
+
+  .stat-card:hover::before {
+    transform: scale(1.5);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(57,46,55,0.3);
+  }
+
+  .stat-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  /* News Section */
+  .news-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+    color: white;
+  }
+
+  .news-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+    height: 100%;
+  }
+
+  .news-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
+
+  .news-card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .news-card:hover .news-card-img {
+    transform: scale(1.1);
+  }
+
+  .card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, rgba(57,46,55,0.8));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .news-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .news-card-body {
+    padding: 1.5rem;
+  }
+
+  .news-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.6;
+  }
+
+  /* Testimonial Section */
+  .testimonial-swiper {
+    padding: 2rem 0;
+  }
+
+  .testimonial-slide {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+
+  .testimonial-img {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  .testimonial-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: var(--secondary-color);
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--accent-color);
+    width: 30px;
+    border-radius: 6px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .modern-section {
+      padding: 3rem 0;
+    }
+
+    .stat-card {
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
 </style>
 {% endblock style %}
 
 {% block body %}
 <main id="main">
 
-  <!-- ======= Intro ======= -->
-  <section class="intro-single bg-sec py-4">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <h5 class="noto-kufi-arabic" style="font-size: 1.65rem;">إستثمارات نامية</h5>
-        </div>
-        <div class="col-lg-6 text-lg-end">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-lg-end">
-              <li class="breadcrumb-item"><a href="{% url 'home-page' %}">الرئيسية</a></li>
-              <li class="breadcrumb-item active">استثمارات نامية</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
+  <!-- Hero Section -->
+  <section class="who-us-hero">
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">{% trans "استثماراتنا" %}</h1>
+      <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home-page' %}">{% trans "الرئيسية" %}</a></li>
+          <li class="breadcrumb-item active">{% trans "استثماراتنا" %}</li>
+        </ol>
+      </nav>
     </div>
   </section>
 
-  <!-- ======= Facts Section ======= -->
-  <section class="section-t4 bg-sec py-5">
+  <!-- Facts Section -->
+  <section class="modern-section" style="background: #f8f9fa;">
     <div class="container">
-      <div class="text-center mb-4">
-        <h1 class="noto-kufi-arabic text-black-50">حقائق وأرقام</h1>
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "حقائق وأرقام" %}</h2>
       </div>
       <div class="row g-4">
-        {% for fact in facts %}
-        <div class="col-md-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="{{ fact.image_url }}" alt="{{ fact.title }}">
-            <div class="card-body text-center">
-              <h5 class="card-title noto-kufi-arabic">{{ fact.title }}</h5>
-              <p class="card-text">{{ fact.value }}</p>
-            </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-number counter" data-count="100">0</div>
+            <div class="stat-label">{% trans "مشروع منجز" %}</div>
           </div>
         </div>
-        {% endfor %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-number counter" data-count="500">0</div>
+            <div class="stat-label">{% trans "عميل راضٍ" %}</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-building"></i></div>
+            <div class="stat-number counter" data-count="50">0</div>
+            <div class="stat-label">{% trans "فرع حول العالم" %}</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======= News Section ======= -->
-  <section class="section-t4 bg-main py-5">
+  <!-- News Section -->
+  <section class="modern-section news-section">
     <div class="container">
-      <div class="text-center mb-4">
-        <h1 class="noto-kufi-arabic text-white">أخبار ثمار</h1>
+      <div class="section-title" data-aos="fade-up">
+        <h2 style="color: white;">{% trans "أخبار ثمار" %}</h2>
       </div>
       <div class="row g-4">
         {% for item in news %}
-        <div class="col-md-4">
-          <div class="card h-100 bg-sec">
-            <img class="card-img-top" src="{{ item.image_url }}" alt="{{ item.title }}">
-            <div class="card-body">
-              <p class="card-text noto-kufi-arabic text-black-50">{{ item.title }}</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+          <div class="news-card">
+            <div class="card-img-wrapper">
+              <img class="news-card-img" src="{{ item.image_url }}" alt="{{ item.title }}">
+              <div class="card-overlay"></div>
+            </div>
+            <div class="news-card-body">
+              <p class="news-card-title">{{ item.title }}</p>
             </div>
           </div>
         </div>
         {% empty %}
-        <p class="text-center text-white">لا توجد أخبار حالياً</p>
+        <div class="col-12">
+          <p class="text-center" style="opacity: 0.8;">{% trans "لا توجد أخبار حالياً" %}</p>
+        </div>
         {% endfor %}
       </div>
     </div>
   </section>
 
-  <!-- ======= Testimonials ======= -->
-  <section class="section-testimonials section-t8 bg-sec py-5">
+  <!-- Testimonials Section -->
+  <section class="modern-section" style="background: white;">
     <div class="container">
-      <div class="text-center mb-4">
-        <h1 class="noto-kufi-arabic text-black-50">أخبار ثمار</h1>
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "شهادات العملاء" %}</h2>
       </div>
-      <div id="testimonial-carousel" class="swiper">
+      <div class="testimonial-swiper swiper" data-aos="fade-up" data-aos-delay="200">
         <div class="swiper-wrapper">
           {% for testimonial in testimonials %}
           <div class="swiper-slide">
-            <div class="testimonials-box">
-              <div class="row">
-                <div class="col-md-6">
+            <div class="testimonial-slide">
+              <div class="row align-items-center">
+                <div class="col-md-5 mb-3 mb-md-0">
                   <div class="testimonial-img">
-                    <img src="{{ testimonial.image_url }}" class="img-fluid rounded" />
+                    <img src="{{ testimonial.image_url }}" class="img-fluid rounded" alt="{{ testimonial.author }}" />
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <p class="testimonial-text noto-kufi-arabic">{{ testimonial.text }}</p>
-                  <div class="testimonial-author-box">
-                    <h5 class="testimonial-author">{{ testimonial.author }}</h5>
-                  </div>
+                <div class="col-md-7">
+                  <p class="testimonial-text">{{ testimonial.text }}</p>
+                  <h5 class="testimonial-author">{{ testimonial.author }}</h5>
                 </div>
               </div>
             </div>
           </div>
           {% endfor %}
         </div>
-        <!-- Add Swiper controls -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </section>
 
 </main>
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
+  });
+
+  // Counter Animation
+  function animateCounter(el) {
+    const target = +el.getAttribute('data-count');
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let count = 0;
+
+    const timer = setInterval(() => {
+      count += step;
+      if (count >= target) {
+        el.textContent = Math.floor(target) + '+';
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(count);
+      }
+    }, 16);
+  }
+
+  // Initialize counters on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.counter').forEach(counter => {
+    observer.observe(counter);
+  });
+
+  // Initialize Testimonial Swiper
+  new Swiper('.testimonial-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+  });
+</script>
 {% endblock %}

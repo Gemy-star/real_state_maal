@@ -1,0 +1,367 @@
+{% extends 'dash_base.html' %}
+{% load static i18n %}
+
+{% block style %}
+<style>
+  .translation-card {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .translation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .lang-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #392E37, #4c3c4f);
+    color: white;
+    box-shadow: 0 4px 15px rgba(57, 46, 55, 0.3);
+  }
+
+  .status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .status-active {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+  }
+
+  .status-inactive {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+  }
+
+  .rosetta-btn {
+    background: linear-gradient(135deg, #FFD369, #FFA500);
+    color: #392E37;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 211, 105, 0.3);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .rosetta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 211, 105, 0.5);
+    color: #392E37;
+  }
+
+  .info-box {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #392E37;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .command-box {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin: 1rem 0;
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .command-box code {
+    color: #68d391;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #392E37, #4c3c4f);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="row mb-4" data-aos="fade-down">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h2 class="mb-2 noto-kufi-arabic">
+            <i class="fas fa-language text-primary"></i>
+            {% trans "إدارة الترجمة" %}
+          </h2>
+          <p class="text-muted noto-kufi-arabic">
+            {% trans "إدارة ترجمات الموقع للغات المختلفة" %}
+          </p>
+        </div>
+        <div>
+          <a href="/rosetta/" class="rosetta-btn" target="_blank">
+            <i class="fas fa-external-link-alt me-2"></i>
+            {% trans "فتح واجهة الترجمة" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Languages Status -->
+  <div class="row mb-4">
+    {% for lang_code, lang_info in po_files_status.items %}
+    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'00' }}">
+      <div class="card translation-card">
+        <div class="card-body text-center p-4">
+          <div class="lang-icon mx-auto">
+            {% if lang_code == 'ar' %}
+              <i class="fas fa-flag"></i>
+            {% elif lang_code == 'en' %}
+              <i class="fas fa-globe-americas"></i>
+            {% else %}
+              <i class="fas fa-language"></i>
+            {% endif %}
+          </div>
+          <h4 class="card-title mb-3 noto-kufi-arabic">{{ lang_info.name }}</h4>
+          <p class="text-muted mb-2">
+            <strong>{% trans "رمز اللغة:" %}</strong> {{ lang_code }}
+          </p>
+
+          {% if lang_info.exists %}
+            <span class="status-badge status-active">
+              <i class="fas fa-check-circle"></i>
+              {% trans "ملف الترجمة موجود" %}
+            </span>
+            <div class="mt-3">
+              <a href="/rosetta/?filter={{ lang_code }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                <i class="fas fa-edit"></i>
+                {% trans "تحرير الترجمة" %}
+              </a>
+            </div>
+          {% else %}
+            <span class="status-badge status-inactive">
+              <i class="fas fa-times-circle"></i>
+              {% trans "ملف الترجمة غير موجود" %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Information Cards -->
+  <div class="row">
+    <!-- How to use -->
+    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="mb-0 noto-kufi-arabic">
+            <i class="fas fa-info-circle text-info"></i>
+            {% trans "كيفية الاستخدام" %}
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="d-flex align-items-start mb-3">
+            <div class="feature-icon">
+              <i class="fas fa-mouse-pointer"></i>
+            </div>
+            <div>
+              <h6 class="noto-kufi-arabic">{% trans "1. افتح واجهة الترجمة" %}</h6>
+              <p class="text-muted small noto-kufi-arabic">
+                {% trans "اضغط على زر 'فتح واجهة الترجمة' للوصول إلى نظام Rosetta" %}
+              </p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start mb-3">
+            <div class="feature-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <div>
+              <h6 class="noto-kufi-arabic">{% trans "2. اختر اللغة" %}</h6>
+              <p class="text-muted small noto-kufi-arabic">
+                {% trans "حدد ملف اللغة الذي تريد ترجمته من القائمة" %}
+              </p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start mb-3">
+            <div class="feature-icon">
+              <i class="fas fa-edit"></i>
+            </div>
+            <div>
+              <h6 class="noto-kufi-arabic">{% trans "3. عدّل الترجمات" %}</h6>
+              <p class="text-muted small noto-kufi-arabic">
+                {% trans "أضف أو عدل الترجمات للنصوص المختلفة" %}
+              </p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start">
+            <div class="feature-icon">
+              <i class="fas fa-save"></i>
+            </div>
+            <div>
+              <h6 class="noto-kufi-arabic">{% trans "4. احفظ التغييرات" %}</h6>
+              <p class="text-muted small noto-kufi-arabic">
+                {% trans "اضغط على زر الحفظ لتطبيق الترجمات الجديدة" %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commands & Tips -->
+    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="mb-0 noto-kufi-arabic">
+            <i class="fas fa-terminal text-success"></i>
+            {% trans "أوامر مفيدة" %}
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="info-box mb-3">
+            <h6 class="noto-kufi-arabic">
+              <i class="fas fa-code"></i>
+              {% trans "تحديث ملفات الترجمة" %}
+            </h6>
+            <div class="command-box">
+              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py makemessages -l ar')">
+                <i class="fas fa-copy"></i>
+              </button>
+              <code>python manage.py makemessages -l ar</code>
+            </div>
+            <div class="command-box">
+              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py makemessages -l en')">
+                <i class="fas fa-copy"></i>
+              </button>
+              <code>python manage.py makemessages -l en</code>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <h6 class="noto-kufi-arabic">
+              <i class="fas fa-sync"></i>
+              {% trans "تطبيق الترجمات" %}
+            </h6>
+            <div class="command-box">
+              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py compilemessages')">
+                <i class="fas fa-copy"></i>
+              </button>
+              <code>python manage.py compilemessages</code>
+            </div>
+            <p class="text-muted small mt-2 mb-0 noto-kufi-arabic">
+              <i class="fas fa-lightbulb text-warning"></i>
+              {% trans "قم بتشغيل هذا الأمر بعد تحديث الترجمات لتطبيقها على الموقع" %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Info -->
+  <div class="row">
+    <div class="col-12" data-aos="fade-up" data-aos-delay="500">
+      <div class="card">
+        <div class="card-header bg-gradient-primary text-white">
+          <h5 class="mb-0 noto-kufi-arabic">
+            <i class="fas fa-book"></i>
+            {% trans "معلومات إضافية" %}
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="d-flex align-items-center">
+                <div class="feature-icon me-3">
+                  <i class="fas fa-folder"></i>
+                </div>
+                <div>
+                  <small class="text-muted noto-kufi-arabic">{% trans "مسار ملفات الترجمة" %}</small>
+                  <p class="mb-0 small"><code>{{ locale_path }}</code></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="d-flex align-items-center">
+                <div class="feature-icon me-3">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <div>
+                  <small class="text-muted noto-kufi-arabic">{% trans "اللغات المتاحة" %}</small>
+                  <p class="mb-0 small">{% for lang in languages %}{{ lang.1 }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="d-flex align-items-center">
+                <div class="feature-icon me-3">
+                  <i class="fas fa-cog"></i>
+                </div>
+                <div>
+                  <small class="text-muted noto-kufi-arabic">{% trans "النظام" %}</small>
+                  <p class="mb-0 small">Django Rosetta</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyCommand(button, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const originalHTML = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => {
+        button.innerHTML = originalHTML;
+      }, 2000);
+    });
+  }
+</script>
+{% endblock %}

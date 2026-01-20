@@ -1,0 +1,137 @@
+{% extends 'dash_base.html' %}
+{% load static i18n %}
+
+{% block style %}
+<style>
+  .delete-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .warning-icon {
+    font-size: 5rem;
+    color: #dc3545;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .report-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-right: 4px solid #dc3545;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="row mb-4" data-aos="fade-down">
+    <div class="col-12">
+      <h2 class="mb-2 noto-kufi-arabic">
+        <i class="fas fa-trash text-danger"></i>
+        {% trans "حذف تقرير" %}
+      </h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'report-list' %}">{% trans "التقارير" %}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'report-detail' report.pk %}">{{ report.title }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{% trans "حذف" %}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Card -->
+  <div class="row">
+    <div class="col-12" data-aos="zoom-in">
+      <div class="card delete-card">
+        <div class="card-body text-center">
+          <!-- Warning Icon -->
+          <div class="warning-icon mb-4">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+
+          <!-- Warning Message -->
+          <h4 class="text-danger mb-3 noto-kufi-arabic">
+            {% trans "تحذير!" %}
+          </h4>
+          <p class="lead noto-kufi-arabic mb-4">
+            {% trans "هل أنت متأكد من حذف هذا التقرير؟" %}
+          </p>
+
+          <!-- Report Info -->
+          <div class="report-info mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <strong class="noto-kufi-arabic">{% trans "العنوان:" %}</strong>
+              <span class="noto-kufi-arabic">{{ report.title }}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <strong class="noto-kufi-arabic">{% trans "السنة:" %}</strong>
+              <span class="badge" style="background: linear-gradient(135deg, #392E37, #4c3c4f); color: white;">{{ report.year }}</span>
+            </div>
+            {% if report.description %}
+            <div class="d-flex justify-content-between align-items-start">
+              <strong class="noto-kufi-arabic">{% trans "الوصف:" %}</strong>
+              <span class="noto-kufi-arabic">{{ report.description|truncatewords:10 }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Warning Note -->
+          <div class="alert alert-danger" role="alert" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-info-circle me-2"></i>
+            <span class="noto-kufi-arabic">
+              {% trans "لا يمكن التراجع عن هذا الإجراء. سيتم حذف التقرير نهائياً." %}
+            </span>
+          </div>
+
+          <!-- Form -->
+          <form method="post" class="mt-4" data-aos="fade-up" data-aos-delay="400">
+            {% csrf_token %}
+            <div class="d-flex gap-2 justify-content-center">
+              <a href="{% url 'report-detail' report.pk %}" class="btn btn-secondary btn-lg">
+                <i class="fas fa-times me-2"></i>
+                {% trans "إلغاء" %}
+              </a>
+              <button type="submit" class="btn btn-danger btn-lg">
+                <i class="fas fa-trash me-2"></i>
+                {% trans "نعم، احذف التقرير" %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Warning -->
+  <div class="row mt-4">
+    <div class="col-12" data-aos="fade-up" data-aos-delay="500">
+      <div class="card delete-card">
+        <div class="card-body">
+          <h6 class="noto-kufi-arabic text-danger">
+            <i class="fas fa-exclamation-circle"></i>
+            {% trans "ملاحظة هامة" %}
+          </h6>
+          <ul class="mb-0 noto-kufi-arabic">
+            <li>{% trans "سيتم حذف التقرير بشكل نهائي من قاعدة البيانات" %}</li>
+            <li>{% trans "سيتم حذف ملف PDF المرفق" %}</li>
+            <li>{% trans "لن يظهر التقرير في الموقع" %}</li>
+            <li>{% trans "لا يمكن استرجاع البيانات بعد الحذف" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

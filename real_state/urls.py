@@ -12,6 +12,8 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     # Language switcher
     path("i18n/", include("django.conf.urls.i18n")),
+    # Rosetta translation interface (staff only)
+    path("rosetta/", include("rosetta.urls")),
 ]
 
 # Localized URL patterns (Arabic is default language in settings)

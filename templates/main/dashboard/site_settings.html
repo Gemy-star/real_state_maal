@@ -1,0 +1,529 @@
+{% extends 'dash_base.html' %}
+{% load static crispy_forms_tags i18n %}
+{% block style %}
+<style>
+  .intro-single {
+    padding: 6rem 0 1rem;
+  }
+
+  .bg-footer {
+    background-color: #c6c6c6;
+  }
+
+  .navbar {
+    background-color: #392E37 !important;
+  }
+
+  .card-img {
+    box-shadow: 1px 2px 15px #392E37 !important;
+  }
+
+  .bg-main {
+    background-color: #392E37 !important;
+  }
+
+  .bg-services {
+    background-color: #f8f9fa;
+  }
+
+  .sec-color {
+    color: #CEC9BB !important;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #392E37;
+  }
+
+  /* Settings Cards */
+  .settings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .setting-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .setting-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: #CEC9BB;
+  }
+
+  .setting-card.editing {
+    border-color: #FFD369;
+    box-shadow: 0 8px 30px rgba(255, 211, 105, 0.3);
+  }
+
+  .setting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .setting-key {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6c757d;
+    background: #f8f9fa;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .setting-key i {
+    color: #392E37;
+  }
+
+  .setting-help {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #392E37;
+    margin-bottom: 0.75rem;
+  }
+
+  .setting-value-container {
+    position: relative;
+  }
+
+  .setting-value {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+
+  .setting-value:focus {
+    outline: none;
+    border-color: #392E37;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(57, 46, 55, 0.1);
+  }
+
+  .setting-value:disabled {
+    background: #f8f9fa;
+    cursor: not-allowed;
+  }
+
+  .setting-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .btn-edit {
+    background: linear-gradient(135deg, #392E37 0%, #5a4a54 100%);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-edit:hover {
+    background: linear-gradient(135deg, #4c3c4f 0%, #6a5a64 100%);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .btn-save {
+    background: linear-gradient(135deg, #00875a 0%, #00a66e 100%);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-save:hover {
+    background: linear-gradient(135deg, #006b47 0%, #008558 100%);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .btn-cancel {
+    background: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-cancel:hover {
+    background: #5a6268;
+    color: #fff;
+  }
+
+  .btn-reset {
+    background: transparent;
+    color: #6c757d;
+    border: 2px solid #e9ecef;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-reset:hover {
+    background: #f8f9fa;
+    border-color: #6c757d;
+    color: #495057;
+  }
+
+  .default-badge {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .default-badge i {
+    font-size: 0.7rem;
+  }
+
+  /* Toast notification */
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+
+  .custom-toast {
+    background: linear-gradient(135deg, #392E37 0%, #5a4a54 100%);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: slideDown 0.3s ease;
+  }
+
+  .custom-toast.success {
+    background: linear-gradient(135deg, #00875a 0%, #00a66e 100%);
+  }
+
+  .custom-toast.error {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Loading state */
+  .btn-loading {
+    position: relative;
+    pointer-events: none;
+  }
+
+  .btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: 2px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Icon mapping */
+  .icon-COMPANY_NAME::before { content: '\f1ad'; }
+  .icon-PHONE_NUMBER::before { content: '\f095'; }
+  .icon-CONTACT_EMAIL::before { content: '\f0e0'; }
+  .icon-FACEBOOK_URL::before { content: '\f39e'; }
+  .icon-TWITTER_URL::before { content: '\f099'; }
+  .icon-INSTAGRAM_URL::before { content: '\f16d'; }
+  .icon-LINKEDIN_URL::before { content: '\f0e1'; }
+  .icon-ADDRESS::before { content: '\f3c5'; }
+
+  @media (max-width: 768px) {
+    .settings-container {
+      grid-template-columns: 1fr;
+    }
+
+    .setting-actions {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<main id="main">
+  <section class="section-agents section-t4 bg-services">
+    <div class="container-fluid px-4">
+      <div class="row pt-2">
+        <div class="col-12 d-flex justify-content-between align-items-center mb-4">
+          <h5 class="noto-kufi-arabic page-title mb-0">
+            <i class="fas fa-cog me-2"></i>
+            {% trans "إعدادات الموقع" %}
+          </h5>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+          <div class="col-md-6">
+            {% include 'partials/_messages.html' %}
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="settings-container">
+            {% for setting in settings_list %}
+            <div class="setting-card" data-key="{{ setting.key }}">
+              <div class="setting-header">
+                <span class="setting-key">
+                  {% if setting.key == 'COMPANY_NAME' %}
+                    <i class="fas fa-building"></i>
+                  {% elif setting.key == 'PHONE_NUMBER' %}
+                    <i class="fas fa-phone"></i>
+                  {% elif setting.key == 'CONTACT_EMAIL' %}
+                    <i class="fas fa-envelope"></i>
+                  {% elif setting.key == 'FACEBOOK_URL' %}
+                    <i class="fab fa-facebook"></i>
+                  {% elif setting.key == 'TWITTER_URL' %}
+                    <i class="fab fa-twitter"></i>
+                  {% elif setting.key == 'INSTAGRAM_URL' %}
+                    <i class="fab fa-instagram"></i>
+                  {% elif setting.key == 'LINKEDIN_URL' %}
+                    <i class="fab fa-linkedin"></i>
+                  {% elif setting.key == 'ADDRESS' %}
+                    <i class="fas fa-map-marker-alt"></i>
+                  {% elif setting.key == 'ADS_LINK' %}
+                    <i class="fas fa-ad"></i>
+                  {% elif setting.key == 'ADS_TITLE' %}
+                    <i class="fas fa-heading"></i>
+                  {% else %}
+                    <i class="fas fa-cog"></i>
+                  {% endif %}
+                  {{ setting.key }}
+                </span>
+              </div>
+
+              <div class="setting-help">{{ setting.help_text }}</div>
+
+              <div class="setting-value-container">
+                <input
+                  type="text"
+                  class="setting-value"
+                  value="{{ setting.value }}"
+                  data-original="{{ setting.value }}"
+                  data-default="{{ setting.default }}"
+                  disabled
+                >
+              </div>
+
+              <div class="default-badge">
+                <i class="fas fa-info-circle"></i>
+                {% trans "القيمة الافتراضية:" %} {{ setting.default }}
+              </div>
+
+              <div class="setting-actions">
+                <button type="button" class="btn-edit" onclick="enableEdit(this)">
+                  <i class="fas fa-edit"></i>
+                  {% trans "تعديل" %}
+                </button>
+                <button type="button" class="btn-save" style="display: none;" onclick="saveSettings(this)">
+                  <i class="fas fa-check"></i>
+                  {% trans "حفظ" %}
+                </button>
+                <button type="button" class="btn-cancel" style="display: none;" onclick="cancelEdit(this)">
+                  <i class="fas fa-times"></i>
+                  {% trans "إلغاء" %}
+                </button>
+                <button type="button" class="btn-reset" style="display: none;" onclick="resetToDefault(this)">
+                  <i class="fas fa-undo"></i>
+                  {% trans "استعادة الافتراضي" %}
+                </button>
+              </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+              <i class="fas fa-cog fa-3x text-muted mb-3"></i>
+              <p class="text-muted">{% trans "لا توجد إعدادات متاحة" %}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+{% endblock %}
+
+{% block js %}
+<script>
+  function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `custom-toast ${type}`;
+    toast.innerHTML = `
+      <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+      <span>${message}</span>
+    `;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.animation = 'slideDown 0.3s ease reverse';
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  function enableEdit(btn) {
+    const card = btn.closest('.setting-card');
+    const input = card.querySelector('.setting-value');
+    const editBtn = card.querySelector('.btn-edit');
+    const saveBtn = card.querySelector('.btn-save');
+    const cancelBtn = card.querySelector('.btn-cancel');
+    const resetBtn = card.querySelector('.btn-reset');
+
+    card.classList.add('editing');
+    input.disabled = false;
+    input.focus();
+
+    editBtn.style.display = 'none';
+    saveBtn.style.display = 'inline-flex';
+    cancelBtn.style.display = 'inline-flex';
+    resetBtn.style.display = 'inline-flex';
+  }
+
+  function cancelEdit(btn) {
+    const card = btn.closest('.setting-card');
+    const input = card.querySelector('.setting-value');
+    const editBtn = card.querySelector('.btn-edit');
+    const saveBtn = card.querySelector('.btn-save');
+    const cancelBtn = card.querySelector('.btn-cancel');
+    const resetBtn = card.querySelector('.btn-reset');
+
+    card.classList.remove('editing');
+    input.value = input.dataset.original;
+    input.disabled = true;
+
+    editBtn.style.display = 'inline-flex';
+    saveBtn.style.display = 'none';
+    cancelBtn.style.display = 'none';
+    resetBtn.style.display = 'none';
+  }
+
+  function resetToDefault(btn) {
+    const card = btn.closest('.setting-card');
+    const input = card.querySelector('.setting-value');
+    input.value = input.dataset.default;
+  }
+
+  function saveSettings(btn) {
+    const card = btn.closest('.setting-card');
+    const input = card.querySelector('.setting-value');
+    const key = card.dataset.key;
+    const value = input.value;
+
+    // Add loading state
+    btn.classList.add('btn-loading');
+    btn.innerHTML = '<span style="visibility: hidden;"><i class="fas fa-check"></i> {% trans "حفظ" %}</span>';
+
+    // Get CSRF token
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value ||
+                      document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1];
+
+    fetch('{% url "site-settings-update" %}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken,
+      },
+      body: `key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+      btn.classList.remove('btn-loading');
+      btn.innerHTML = '<i class="fas fa-check"></i> {% trans "حفظ" %}';
+
+      if (data.success) {
+        showToast(data.message, 'success');
+        input.dataset.original = value;
+
+        // Reset to view mode
+        const editBtn = card.querySelector('.btn-edit');
+        const saveBtn = card.querySelector('.btn-save');
+        const cancelBtn = card.querySelector('.btn-cancel');
+        const resetBtn = card.querySelector('.btn-reset');
+
+        card.classList.remove('editing');
+        input.disabled = true;
+
+        editBtn.style.display = 'inline-flex';
+        saveBtn.style.display = 'none';
+        cancelBtn.style.display = 'none';
+        resetBtn.style.display = 'none';
+      } else {
+        showToast(data.message, 'error');
+      }
+    })
+    .catch(error => {
+      btn.classList.remove('btn-loading');
+      btn.innerHTML = '<i class="fas fa-check"></i> {% trans "حفظ" %}';
+      showToast('{% trans "حدث خطأ أثناء الحفظ" %}', 'error');
+      console.error('Error:', error);
+    });
+  }
+</script>
+
+<!-- CSRF Token for AJAX -->
+{% csrf_token %}
+{% endblock %}

@@ -9,6 +9,7 @@ from .models import (
     HomePageContent,
     RelationsPage,
     WhoUsPage,
+    Report,
 )
 
 
@@ -63,3 +64,12 @@ class RelationsPageAdmin(admin.ModelAdmin):
 class WhoUsPageAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return not WhoUsPage.objects.exists()
+
+
+@admin.register(Report)
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ("year", "title", "is_active", "created_at")
+    list_filter = ("is_active", "year")
+    search_fields = ("year", "title", "description")
+    ordering = ("-year",)
+    list_editable = ("is_active",)

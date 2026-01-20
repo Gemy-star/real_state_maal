@@ -1,0 +1,1704 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-20 13:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\main\forms.py:13
+#, fuzzy
+#| msgid "القوائم المالية"
+msgid "الاسم الثلاثي"
+msgstr "القوائم المالية"
+
+#: .\main\forms.py:14
+msgid "التخصص"
+msgstr ""
+
+#: .\main\forms.py:15
+#, fuzzy
+#| msgid "سنوات من الخبرة"
+msgid "المرفقات وشهادات الخبرة"
+msgstr "سنوات من الخبرة"
+
+#: .\main\forms.py:24 .\main\forms.py:37
+#: .\templates\main\dashboard\contact_list.html:96
+#: .\templates\main\dashboard\jobrequest_detail.html:93
+#: .\templates\main\dashboard\jobrequest_list.html:99
+msgid "الاسم"
+msgstr ""
+
+#: .\main\forms.py:25 .\templates\main\dashboard\contact_detail.html:87
+#: .\templates\main\dashboard\contact_list.html:97
+#: .\templates\partials\_footer.html:54
+msgid "البريد الإلكتروني"
+msgstr ""
+
+#: .\main\forms.py:26
+#, fuzzy
+#| msgid "القوائم المالية"
+msgid "رقم الجوال"
+msgstr "القوائم المالية"
+
+#: .\main\forms.py:27 .\templates\main\dashboard\report_detail.html:102
+#: .\templates\main\dashboard\report_form.html:92
+#: .\templates\main\dashboard\report_list.html:81
+msgid "العنوان"
+msgstr ""
+
+#: .\main\forms.py:28 .\templates\main\dashboard\contact_detail.html:90
+#: .\templates\main\home.html:1035
+msgid "الرسالة"
+msgstr ""
+
+#: .\main\forms.py:38
+msgid "بريدك الإلكتروني"
+msgstr ""
+
+#: .\main\forms.py:39
+msgid "رقم جوالك"
+msgstr ""
+
+#: .\main\forms.py:40
+msgid "حدثنا عن مشروعك"
+msgstr ""
+
+#: .\main\forms.py:41
+msgid "أرفق ملفات تدعم فكرتك"
+msgstr ""
+
+#: .\main\models.py:12 .\main\models.py:27 .\main\models.py:57
+msgid "Name"
+msgstr "الاسم"
+
+#: .\main\models.py:13 .\main\models.py:28
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: .\main\models.py:14 .\main\models.py:29
+msgid "Phone"
+msgstr "رقم الجوال"
+
+#: .\main\models.py:15
+msgid "Subject"
+msgstr ""
+
+#: .\main\models.py:16
+msgid "Message"
+msgstr "الرسالة"
+
+#: .\main\models.py:19
+msgid "Contact"
+msgstr "جهة اتصال"
+
+#: .\main\models.py:20
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+#: .\main\models.py:30 .\main\models.py:267
+msgid "Description"
+msgstr "الوصف"
+
+#: .\main\models.py:32
+msgid "Project File"
+msgstr "ملف المشروع"
+
+#: .\main\models.py:49
+msgid "Project Request"
+msgstr "طلب مشروع"
+
+#: .\main\models.py:50
+msgid "Project Requests"
+msgstr "طلبات المشاريع"
+
+#: .\main\models.py:58
+msgid "Field"
+msgstr "المجال"
+
+#: .\main\models.py:59
+msgid "CV"
+msgstr "السيرة الذاتية"
+
+#: .\main\models.py:62
+msgid "Job Request"
+msgstr "طلب وظيفة"
+
+#: .\main\models.py:63
+msgid "Job Requests"
+msgstr "طلبات الوظائف"
+
+#: .\main\models.py:70 .\main\models.py:259
+msgid "Title"
+msgstr "العنوان"
+
+#: .\main\models.py:71
+msgid "Content"
+msgstr "المحتوى"
+
+#: .\main\models.py:72
+msgid "Image"
+msgstr "صورة"
+
+#: .\main\models.py:100 .\main\models.py:101
+msgid "News"
+msgstr "الأخبار"
+
+#: .\main\models.py:108
+msgid "Site Name"
+msgstr "اسم الموقع"
+
+#: .\main\models.py:109
+msgid "Maintenance Mode"
+msgstr "وضع الصيانة"
+
+#: .\main\models.py:112 .\main\models.py:113
+msgid "Site Configuration"
+msgstr "إعدادات الموقع"
+
+#: .\main\models.py:117
+msgid "Welcome Header"
+msgstr "عنوان الترحيب"
+
+#: .\main\models.py:119
+msgid "Welcome Background"
+msgstr "خلفية الترحيب"
+
+#: .\main\models.py:122
+msgid "Welcome Button Text"
+msgstr "نص زر الترحيب"
+
+#: .\main\models.py:125 .\main\models.py:174
+msgid "First Paragraph"
+msgstr "الفقرة الأولى"
+
+#: .\main\models.py:128 .\main\models.py:180
+msgid "First Paragraph Background"
+msgstr "خلفية الفقرة الأولى"
+
+#: .\main\models.py:130
+msgid "Vision Paragraph"
+msgstr "فقرة الرؤية"
+
+#: .\main\models.py:132
+msgid "Messages Paragraph"
+msgstr "فقرة الرسائل"
+
+#: .\main\models.py:134
+msgid "Goals Paragraph"
+msgstr "فقرة الأهداف"
+
+#: .\main\models.py:166 .\main\models.py:167
+msgid "Home Page Content"
+msgstr "محتوى الصفحة الرئيسية"
+
+#: .\main\models.py:172
+msgid "First Paragraph Title"
+msgstr "عنوان الفقرة الأولى"
+
+#: .\main\models.py:176
+msgid "Second Paragraph Title"
+msgstr "عنوان الفقرة الثانية"
+
+#: .\main\models.py:178
+msgid "Second Paragraph"
+msgstr "الفقرة الثانية"
+
+#: .\main\models.py:183
+msgid "Second Paragraph Background"
+msgstr "خلفية الفقرة الثانية"
+
+#: .\main\models.py:219
+msgid "Relations Page"
+msgstr "صفحة العلاقات"
+
+#: .\main\models.py:220
+msgid "Relations Pages"
+msgstr "صفحات العلاقات"
+
+#: .\main\models.py:225
+msgid "Main Title"
+msgstr "العنوان الرئيسي"
+
+#: .\main\models.py:227
+msgid "Main Subtitle"
+msgstr "العنوان الفرعي"
+
+#: .\main\models.py:229
+msgid "Main Background"
+msgstr "الخلفية الرئيسية"
+
+#: .\main\models.py:248
+msgid "Who Us Page"
+msgstr "صفحة من نحن"
+
+#: .\main\models.py:249
+msgid "Who Us Pages"
+msgstr "صفحات من نحن"
+
+#: .\main\models.py:256
+msgid "Year"
+msgstr ""
+
+#: .\main\models.py:256
+msgid "Report year (e.g., 2024)"
+msgstr ""
+
+#: .\main\models.py:261
+msgid "Report title (e.g., التقرير السنوي 2024)"
+msgstr ""
+
+#: .\main\models.py:264
+#, fuzzy
+#| msgid "Project File"
+msgid "PDF File"
+msgstr "ملف المشروع"
+
+#: .\main\models.py:264
+msgid "Upload the report PDF file"
+msgstr ""
+
+#: .\main\models.py:267
+#, fuzzy
+#| msgid "Description"
+msgid "Optional description"
+msgstr "الوصف"
+
+#: .\main\models.py:270
+msgid "Active"
+msgstr ""
+
+#: .\main\models.py:270
+msgid "Show this report on the website"
+msgstr ""
+
+#: .\main\models.py:272
+msgid "Created At"
+msgstr ""
+
+#: .\main\models.py:273
+msgid "Updated At"
+msgstr ""
+
+#: .\main\models.py:276
+msgid "Report"
+msgstr ""
+
+#: .\main\models.py:277
+msgid "Reports"
+msgstr ""
+
+#: .\main\views.py:107
+msgid "تم إرسال رسالتك بنجاح!"
+msgstr ""
+
+#: .\main\views.py:112
+msgid "حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى."
+msgstr ""
+
+#: .\main\views.py:124
+msgid "تم إرسال طلبك بنجاح! سنتواصل معك قريبًا."
+msgstr ""
+
+#: .\main\views.py:129
+msgid "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى."
+msgstr ""
+
+#: .\main\views.py:151
+msgid "تم تحميل قائمة جهات الاتصال بنجاح."
+msgstr ""
+
+#: .\main\views.py:162
+msgid "تم تحميل قائمة طلبات الوظائف بنجاح."
+msgstr ""
+
+#: .\main\views.py:174
+#, python-format
+msgid "عرض تفاصيل جهة الاتصال: %(name)s."
+msgstr ""
+
+#: .\main\views.py:188
+#, python-format
+msgid "تم حذف جهة الاتصال: %(name)s بنجاح."
+msgstr ""
+
+#: .\main\views.py:201
+#, python-format
+msgid "عرض تفاصيل طلب الوظيفة: %(name)s."
+msgstr ""
+
+#: .\main\views.py:215
+#, python-format
+msgid "تم حذف طلب الوظيفة: %(name)s بنجاح."
+msgstr ""
+
+#: .\main\views.py:231
+msgid "فشل تسجيل الدخول. يرجى التحقق من اسم المستخدم وكلمة المرور."
+msgstr ""
+
+#: .\main\views.py:236
+#, fuzzy
+#| msgid "تسجيل الدخول"
+msgid "تم تسجيل الدخول بنجاح."
+msgstr "تسجيل الدخول"
+
+#: .\main\views.py:249
+#: .\templates\main\dashboard\translation_management.html:132
+#: .\templates\partials\_sidebar.html:32
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "إدارة الترجمة"
+msgstr "عرض التقرير"
+
+#: .\main\views.py:289 .\templates\main\dashboard\site_settings.html:313
+#: .\templates\partials\_sidebar.html:46
+#, fuzzy
+#| msgid "وصف الموقع"
+msgid "إعدادات الموقع"
+msgstr "وصف الموقع"
+
+#: .\main\views.py:323 .\main\views.py:325
+msgid "تم تحديث الإعداد بنجاح."
+msgstr ""
+
+#: .\main\views.py:328 .\main\views.py:330
+msgid "حدث خطأ أثناء تحديث الإعداد."
+msgstr ""
+
+#: .\main\views.py:360
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "تم إضافة التقرير بنجاح."
+msgstr "عرض التقرير"
+
+#: .\main\views.py:365
+msgid "حدث خطأ أثناء إضافة التقرير. يرجى التحقق من البيانات."
+msgstr ""
+
+#: .\main\views.py:388
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "تم حذف التقرير بنجاح."
+msgstr "عرض التقرير"
+
+#: .\real_state\settings.py:132
+msgid "Arabic"
+msgstr "العربية"
+
+#: .\real_state\settings.py:133
+msgid "English"
+msgstr "الإنجليزية"
+
+#: .\templates\base.html:7 .\templates\dash_base.html:7
+msgid "ثمار القابضة"
+msgstr "ثمار القابضة"
+
+#: .\templates\base.html:8 .\templates\dash_base.html:8
+msgid "وصف الموقع"
+msgstr "وصف الموقع"
+
+#: .\templates\base.html:9 .\templates\dash_base.html:9
+msgid "كلمات مفتاحية"
+msgstr "كلمات مفتاحية"
+
+#: .\templates\main\about.html:340 .\templates\main\home.html:981
+#: .\templates\partials\_footer.html:67 .\templates\partials\_navbar.html:55
+msgid "من نحن"
+msgstr ""
+
+#: .\templates\main\about.html:342
+msgid "نحن نبني المستقبل من خلال الابتكار والتميز في مجال العقارات والتنمية"
+msgstr ""
+
+#: .\templates\main\about.html:355
+#, fuzzy
+#| msgid "سنوات من الخبرة"
+msgid "سنة من الخبرة"
+msgstr "سنوات من الخبرة"
+
+#: .\templates\main\about.html:362
+#, fuzzy
+#| msgid "مشروع ناجح"
+msgid "مشروع منجز"
+msgstr "مشروع ناجح"
+
+#: .\templates\main\about.html:369
+msgid "عميل راضٍ"
+msgstr ""
+
+#: .\templates\main\about.html:376
+msgid "جائزة محلية ودولية"
+msgstr ""
+
+#: .\templates\main\about.html:388 .\templates\main\news.html:58
+msgid "استراتيجيتنا"
+msgstr "استراتيجيتنا"
+
+#: .\templates\main\about.html:389
+#, fuzzy
+#| msgid ""
+#| "مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار "
+#| "والنمو، إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن "
+#| "أهم ملامح تلك الاستراتيجية."
+msgid ""
+"مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو"
+msgstr ""
+"مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، "
+"إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح "
+"تلك الاستراتيجية."
+
+#: .\templates\main\about.html:398
+msgid "النمو والتوسع"
+msgstr "النمو والتوسع"
+
+#: .\templates\main\about.html:399
+#, fuzzy
+#| msgid ""
+#| "استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على "
+#| "شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد لتوسيع قاعدة "
+#| "أعمالها وتعزيز قدرتها على المنافسة."
+msgid ""
+"استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على "
+"شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد"
+msgstr ""
+"استمرت ثمار في نموها وتوسعها من خلال تبني الأفكار المبتكرة والاستحواذ على "
+"شركات قائمة، إضافة إلى الوصول إلى أسواق جديدة وعملاء جدد لتوسيع قاعدة "
+"أعمالها وتعزيز قدرتها على المنافسة."
+
+#: .\templates\main\about.html:408
+msgid "التنوع"
+msgstr "التنوع"
+
+#: .\templates\main\about.html:409
+#, fuzzy
+#| msgid ""
+#| "تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق "
+#| "استقرار الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية."
+msgid ""
+"تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار "
+"الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية"
+msgstr ""
+"تبنت الشركة استراتيجية التنويع في مجالات عملها لتقليل المخاطر وتحقيق استقرار "
+"الأرباح، وهو ما عزّز قدرتها على الصمود في وجه التحديات الاقتصادية."
+
+#: .\templates\main\about.html:418
+#, fuzzy
+#| msgid "النمو والتوسع"
+msgid "الحوكمة والشفافية"
+msgstr "النمو والتوسع"
+
+#: .\templates\main\about.html:419
+msgid ""
+"أعادت ثمار هيكلية إداراتها وممارساتها الداخلية، وبنت خططاً واضحة تسهل تبادل "
+"المعلومات والشفافية بين الأقسام والإدارات"
+msgstr ""
+
+#: .\templates\main\about.html:428
+msgid "الكفاءة"
+msgstr ""
+
+#: .\templates\main\about.html:429
+msgid ""
+"أولت ثمار الأولوية لكفاءة أعمالها وابتكرت خريطة عمل لتحقيق الوفورات بمشاركة "
+"الموارد وتبادل الخدمات بين الشركات التابعة"
+msgstr ""
+
+#: .\templates\main\about.html:438
+msgid "الحلول التمويلية"
+msgstr ""
+
+#: .\templates\main\about.html:439
+msgid ""
+"مع تنوع استثمارات الشركة عقدت شراكات وأوجدت حلولاً تمويلية لتمويل مشاريع "
+"الشركات التابعة لها"
+msgstr ""
+
+#: .\templates\main\about.html:448
+msgid "الابتكار"
+msgstr ""
+
+#: .\templates\main\about.html:449
+msgid ""
+"نؤمن بأن الابتكار هو المحرك الرئيسي للنجاح، ونستثمر في التقنيات الحديثة "
+"والأفكار الجديدة"
+msgstr ""
+
+#: .\templates\main\about.html:460
+#, fuzzy
+#| msgid "القوائم المالية"
+msgid "قيمنا الجوهرية"
+msgstr "القوائم المالية"
+
+#: .\templates\main\about.html:461
+msgid "القيم التي نؤمن بها وتوجه عملنا اليومي"
+msgstr ""
+
+#: .\templates\main\about.html:467
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "صورة الشركة"
+msgstr "عرض التقرير"
+
+#: .\templates\main\about.html:474
+#, fuzzy
+#| msgid "النمو والتوسع"
+msgid "النزاهة والشفافية"
+msgstr "النمو والتوسع"
+
+#: .\templates\main\about.html:477
+msgid ""
+"نلتزم بأعلى معايير النزاهة والشفافية في جميع تعاملاتنا مع عملائنا وشركائنا"
+msgstr ""
+
+#: .\templates\main\about.html:484
+msgid "التميز في الأداء"
+msgstr ""
+
+#: .\templates\main\about.html:487
+msgid "نسعى دائماً لتقديم أفضل الخدمات والمنتجات بأعلى مستويات الجودة"
+msgstr ""
+
+#: .\templates\main\about.html:494
+#, fuzzy
+#| msgid "طلبات التواصل"
+msgid "الشراكة المستدامة"
+msgstr "طلبات التواصل"
+
+#: .\templates\main\about.html:497
+msgid "نبني علاقات طويلة الأمد مع عملائنا وشركائنا تقوم على الثقة المتبادلة"
+msgstr ""
+
+#: .\templates\main\about.html:504
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "المسؤولية الاجتماعية"
+msgstr "عرض التقرير"
+
+#: .\templates\main\about.html:507
+msgid "نلتزم بمسؤوليتنا تجاه المجتمع والبيئة في جميع مشاريعنا وأعمالنا"
+msgstr ""
+
+#: .\templates\main\about.html:518
+msgid "هل أنت مستعد للعمل معنا؟"
+msgstr ""
+
+#: .\templates\main\about.html:519
+#, fuzzy
+#| msgid "علاقات المستثمرين"
+msgid "دعنا نبني المستقبل معاً"
+msgstr "علاقات المستثمرين"
+
+#: .\templates\main\about.html:522
+msgid "تواصل معنا الآن"
+msgstr ""
+
+#: .\templates\main\contact.html:97 .\templates\main\contact.html:106
+#: .\templates\partials\_navbar.html:58
+msgid "المركز الإعلامي"
+msgstr ""
+
+#: .\templates\main\contact.html:103 .\templates\partials\_footer.html:65
+#: .\templates\partials\_navbar.html:22
+msgid "الرئيسية"
+msgstr ""
+
+#: .\templates\main\contact.html:123
+#, fuzzy
+#| msgid "شركة ثمار"
+msgid "أخبار ثمار"
+msgstr "شركة ثمار"
+
+#: .\templates\main\contact.html:133
+msgid "ثمار تستثمر 6 ملايين ريال لتطوير برج سكني بالرياض"
+msgstr ""
+
+#: .\templates\main\contact.html:148
+msgid "جاليري"
+msgstr ""
+
+#: .\templates\main\contact.html:181
+msgid "تواصل معنا"
+msgstr ""
+
+#: .\templates\main\contact.html:182
+msgid "تواصل معنا وسيتم الرد عليك في أسرع وقت"
+msgstr ""
+
+#: .\templates\main\contact.html:192 .\templates\main\news.html:136
+msgid "إرسال"
+msgstr ""
+
+#: .\templates\main\dashboard\_contact_delete.html:99
+#: .\templates\main\dashboard\_job_request_delete.html:99
+#: .\templates\main\dashboard\contact_list.html:82
+#, fuzzy
+#| msgid "طلبات التواصل"
+msgid "طلبات الاتصال"
+msgstr "طلبات التواصل"
+
+#: .\templates\main\dashboard\_contact_delete.html:109
+#: .\templates\main\dashboard\_job_request_delete.html:109
+msgid "تأكيد الحذف"
+msgstr ""
+
+#: .\templates\main\dashboard\_contact_delete.html:113
+#: .\templates\main\dashboard\_job_request_delete.html:113
+#, python-format
+msgid ""
+"\n"
+"                  هل أنت متأكد أنك تريد حذف جهة الاتصال \"%(name)s\"؟\n"
+"                "
+msgstr ""
+
+#: .\templates\main\dashboard\_contact_delete.html:120
+#: .\templates\main\dashboard\_job_request_delete.html:120
+msgid "نعم، احذف"
+msgstr ""
+
+#: .\templates\main\dashboard\_contact_delete.html:123
+#: .\templates\main\dashboard\_job_request_delete.html:123
+#: .\templates\main\dashboard\report_delete.html:104
+#: .\templates\main\dashboard\report_form.html:158
+#: .\templates\main\dashboard\site_settings.html:385
+msgid "إلغاء"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_detail.html:73
+msgid "تفاصيل طلب الاتصال"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_detail.html:83
+#: .\templates\main\dashboard\report_list.html:118
+msgid "التفاصيل"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_detail.html:86
+msgid "الأسم"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_detail.html:88
+msgid "رقم الهاتف"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_detail.html:89
+#: .\templates\main\dashboard\contact_list.html:99
+#, fuzzy
+#| msgid "وصف الموقع"
+msgid "الموضوع"
+msgstr "وصف الموقع"
+
+#: .\templates\main\dashboard\contact_detail.html:92
+#: .\templates\main\dashboard\contact_list.html:115
+#: .\templates\main\dashboard\report_delete.html:48
+#: .\templates\main\dashboard\report_detail.html:77
+#: .\templates\main\dashboard\report_list.html:121
+msgid "حذف"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_list.html:95
+#: .\templates\main\dashboard\jobrequest_list.html:98
+msgid "المعرف"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_list.html:98
+#: .\templates\partials\_footer.html:51
+msgid "الهاتف"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_list.html:100
+#: .\templates\main\dashboard\jobrequest_list.html:102
+#: .\templates\main\dashboard\report_list.html:84
+msgid "الإجراءات"
+msgstr ""
+
+#: .\templates\main\dashboard\contact_list.html:112
+#: .\templates\main\dashboard\jobrequest_list.html:121
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "عرض التفاصيل"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\contact_list.html:122
+#: .\templates\main\dashboard\jobrequest_list.html:131
+#, fuzzy
+#| msgid "طلبات التواصل"
+msgid "لا توجد طلبات حالياً"
+msgstr "طلبات التواصل"
+
+#: .\templates\main\dashboard\jobrequest_detail.html:77
+#, fuzzy
+#| msgid "طلبات التوظيف"
+msgid "طلبات الوظائف"
+msgstr "طلبات التوظيف"
+
+#: .\templates\main\dashboard\jobrequest_detail.html:89
+#, fuzzy
+#| msgid "تسجيل الدخول"
+msgid "تفاصيل الطلب"
+msgstr "تسجيل الدخول"
+
+#: .\templates\main\dashboard\jobrequest_detail.html:97
+#: .\templates\main\dashboard\jobrequest_list.html:100
+msgid "المجال"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_detail.html:101
+#: .\templates\main\dashboard\jobrequest_list.html:101
+msgid "السيرة الذاتية"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_detail.html:103
+#: .\templates\main\dashboard\jobrequest_list.html:113
+msgid "تحميل السيرة الذاتية"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_detail.html:107
+msgid "لا توجد سيرة ذاتية"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_detail.html:111
+#: .\templates\main\dashboard\jobrequest_list.html:124
+msgid "حذف الطلب"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_detail.html:114
+msgid "عودة للقائمة"
+msgstr ""
+
+#: .\templates\main\dashboard\jobrequest_list.html:85
+#: .\templates\partials\_sidebar.html:18
+msgid "طلبات التوظيف"
+msgstr "طلبات التوظيف"
+
+#: .\templates\main\dashboard\jobrequest_list.html:117
+msgid "لا يوجد"
+msgstr "لا يوجد"
+
+#: .\templates\main\dashboard\login.html:116
+#: .\templates\main\dashboard\login.html:123
+msgid "تسجيل الدخول"
+msgstr "تسجيل الدخول"
+
+#: .\templates\main\dashboard\login.html:127
+msgid "نسيت كلمة المرور؟"
+msgstr "نسيت كلمة المرور؟"
+
+#: .\templates\main\dashboard\login.html:130
+msgid "إنشاء حساب جديد"
+msgstr "إنشاء حساب جديد"
+
+#: .\templates\main\dashboard\report_delete.html:42
+#, fuzzy
+#| msgid "التقرير"
+msgid "حذف تقرير"
+msgstr "التقرير"
+
+#: .\templates\main\dashboard\report_delete.html:46
+#: .\templates\main\dashboard\report_detail.html:49
+#: .\templates\main\dashboard\report_form.html:52
+#, fuzzy
+#| msgid "التقرير"
+msgid "التقارير"
+msgstr "التقرير"
+
+#: .\templates\main\dashboard\report_delete.html:66
+msgid "تحذير!"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:69
+msgid "هل أنت متأكد من حذف هذا التقرير؟"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:75
+msgid "العنوان:"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:79
+#, fuzzy
+#| msgid "السنة"
+msgid "السنة:"
+msgstr "السنة"
+
+#: .\templates\main\dashboard\report_delete.html:84
+msgid "الوصف:"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:94
+msgid "لا يمكن التراجع عن هذا الإجراء. سيتم حذف التقرير نهائياً."
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:108
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "نعم، احذف التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_delete.html:124
+msgid "ملاحظة هامة"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:127
+msgid "سيتم حذف التقرير بشكل نهائي من قاعدة البيانات"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:128
+msgid "سيتم حذف ملف PDF المرفق"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:129
+msgid "لن يظهر التقرير في الموقع"
+msgstr ""
+
+#: .\templates\main\dashboard\report_delete.html:130
+msgid "لا يمكن استرجاع البيانات بعد الحذف"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:45
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "تفاصيل التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_detail.html:69
+msgid "فتح"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:73
+msgid "تحميل"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:88
+#: .\templates\main\dashboard\report_form.html:77
+#: .\templates\main\dashboard\report_list.html:80
+#: .\templates\main\maaal.html:102
+msgid "السنة"
+msgstr "السنة"
+
+#: .\templates\main\dashboard\report_detail.html:115
+#: .\templates\main\dashboard\report_form.html:127
+msgid "الوصف"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:128
+#: .\templates\main\dashboard\report_list.html:82
+msgid "الحالة"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:133
+#: .\templates\main\dashboard\report_list.html:102
+msgid "نشط"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:137
+#: .\templates\main\dashboard\report_list.html:106
+msgid "غير نشط"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:148
+#: .\templates\main\dashboard\report_list.html:83
+#, fuzzy
+#| msgid "تقارير مجلس الإدارة"
+msgid "تاريخ الإضافة"
+msgstr "تقارير مجلس الإدارة"
+
+#: .\templates\main\dashboard\report_detail.html:160
+msgid "آخر تحديث"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:172
+#: .\templates\main\dashboard\report_form.html:107
+msgid "ملف PDF"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:177
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "عرض الملف"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_detail.html:187
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "معاينة التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_detail.html:196
+msgid "العودة للقائمة"
+msgstr ""
+
+#: .\templates\main\dashboard\report_detail.html:200
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "حذف التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_form.html:48
+#: .\templates\main\dashboard\report_list.html:57
+#, fuzzy
+#| msgid "إنشاء حساب جديد"
+msgid "إضافة تقرير جديد"
+msgstr "إنشاء حساب جديد"
+
+#: .\templates\main\dashboard\report_form.html:53
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "إضافة تقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_form.html:66
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "معلومات التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_form.html:85
+msgid "مثال: 2024"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:100
+msgid "مثال: التقرير السنوي 2024"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:118
+msgid "الرجاء تحميل ملف PDF فقط. الحد الأقصى لحجم الملف: 50 ميجابايت"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:127
+msgid "اختياري"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:135
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "وصف مختصر للتقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_form.html:144
+#, fuzzy
+#| msgid "وصف الموقع"
+msgid "نشط (إظهار في الموقع)"
+msgstr "وصف الموقع"
+
+#: .\templates\main\dashboard\report_form.html:162
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "حفظ التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_form.html:178
+msgid "تعليمات"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:181
+msgid "يجب إدخال السنة والعنوان وملف PDF"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:182
+msgid "تأكد من أن ملف PDF يعمل بشكل صحيح قبل الرفع"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:183
+msgid "يمكنك إلغاء تفعيل التقرير لإخفائه من الموقع دون حذفه"
+msgstr ""
+
+#: .\templates\main\dashboard\report_form.html:184
+msgid "التقرير النشط فقط سيظهر للزوار"
+msgstr ""
+
+#: .\templates\main\dashboard\report_list.html:48
+#: .\templates\partials\_sidebar.html:39
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "إدارة التقارير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_list.html:51
+msgid "إدارة التقارير السنوية للموقع"
+msgstr ""
+
+#: .\templates\main\dashboard\report_list.html:71
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "قائمة التقارير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_list.html:115
+msgid "عرض"
+msgstr ""
+
+#: .\templates\main\dashboard\report_list.html:134
+msgid "لا توجد تقارير متاحة حالياً"
+msgstr ""
+
+#: .\templates\main\dashboard\report_list.html:149
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "إجمالي التقارير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\report_list.html:158
+#, fuzzy
+#| msgid "التقرير"
+msgid "التقارير النشطة"
+msgstr "التقرير"
+
+#: .\templates\main\dashboard\report_list.html:167
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "آخر تقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\site_settings.html:371
+msgid "القيمة الافتراضية:"
+msgstr ""
+
+#: .\templates\main\dashboard\site_settings.html:377
+msgid "تعديل"
+msgstr ""
+
+#: .\templates\main\dashboard\site_settings.html:381
+#: .\templates\main\dashboard\site_settings.html:478
+#: .\templates\main\dashboard\site_settings.html:495
+#: .\templates\main\dashboard\site_settings.html:520
+msgid "حفظ"
+msgstr ""
+
+#: .\templates\main\dashboard\site_settings.html:389
+msgid "استعادة الافتراضي"
+msgstr ""
+
+#: .\templates\main\dashboard\site_settings.html:396
+msgid "لا توجد إعدادات متاحة"
+msgstr ""
+
+#: .\templates\main\dashboard\site_settings.html:521
+msgid "حدث خطأ أثناء الحفظ"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:135
+msgid "إدارة ترجمات الموقع للغات المختلفة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:141
+msgid "فتح واجهة الترجمة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:165
+msgid "رمز اللغة:"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:171
+msgid "ملف الترجمة موجود"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:176
+#, fuzzy
+#| msgid "عرض التقرير"
+msgid "تحرير الترجمة"
+msgstr "عرض التقرير"
+
+#: .\templates\main\dashboard\translation_management.html:182
+msgid "ملف الترجمة غير موجود"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:199
+msgid "كيفية الاستخدام"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:208
+msgid "1. افتح واجهة الترجمة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:210
+msgid "اضغط على زر 'فتح واجهة الترجمة' للوصول إلى نظام Rosetta"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:220
+msgid "2. اختر اللغة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:222
+msgid "حدد ملف اللغة الذي تريد ترجمته من القائمة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:232
+msgid "3. عدّل الترجمات"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:234
+msgid "أضف أو عدل الترجمات للنصوص المختلفة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:244
+msgid "4. احفظ التغييرات"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:246
+msgid "اضغط على زر الحفظ لتطبيق الترجمات الجديدة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:260
+msgid "أوامر مفيدة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:267
+msgid "تحديث ملفات الترجمة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:286
+msgid "تطبيق الترجمات"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:296
+msgid "قم بتشغيل هذا الأمر بعد تحديث الترجمات لتطبيقها على الموقع"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:311
+#, fuzzy
+#| msgid "كلمات مفتاحية"
+msgid "معلومات إضافية"
+msgstr "كلمات مفتاحية"
+
+#: .\templates\main\dashboard\translation_management.html:322
+msgid "مسار ملفات الترجمة"
+msgstr ""
+
+#: .\templates\main\dashboard\translation_management.html:333
+#, fuzzy
+#| msgid "طلبات التواصل"
+msgid "اللغات المتاحة"
+msgstr "طلبات التواصل"
+
+#: .\templates\main\dashboard\translation_management.html:344
+msgid "النظام"
+msgstr ""
+
+#: .\templates\main\home.html:902
+msgid "نزرع النجاح، نحصد التميز"
+msgstr ""
+
+#: .\templates\main\home.html:904
+msgid "ونبني مستقبلًا مزدهرًا"
+msgstr ""
+
+#: .\templates\main\home.html:907
+msgid "بخطى رائدة في الاستثمار والتسويق"
+msgstr ""
+
+#: .\templates\main\home.html:910
+#, fuzzy
+#| msgid "القوائم المالية"
+msgid "اكتشف المزيد"
+msgstr "القوائم المالية"
+
+#: .\templates\main\home.html:918
+msgid "اكتشف"
+msgstr ""
+
+#: .\templates\main\home.html:935 .\templates\main\home.html:955
+msgid "مرحباً بكم في شركة ثمار القابضة"
+msgstr ""
+
+#: .\templates\main\home.html:939 .\templates\main\home.html:959
+msgid "أكثر من 35 عاماً من الخبرة والتميز"
+msgstr ""
+
+#: .\templates\main\home.html:943 .\templates\main\home.html:963
+msgid "نفخر بخدمة أكثر من 500 شريك نجاح"
+msgstr ""
+
+#: .\templates\main\home.html:975
+msgid "Thimar Holding Logo"
+msgstr "شعار شركة ثمار القابضة"
+
+#: .\templates\main\home.html:976
+msgid "About Thimar"
+msgstr ""
+
+#: .\templates\main\home.html:982
+msgid "شركة ثمار"
+msgstr "شركة ثمار"
+
+#: .\templates\main\home.html:1002
+msgid "نعمل"
+msgstr "نعمل"
+
+#: .\templates\main\home.html:1003
+msgid "الرؤية"
+msgstr "الرؤية"
+
+#: .\templates\main\home.html:1016
+msgid "نطمح"
+msgstr "نطمح"
+
+#: .\templates\main\home.html:1017
+msgid "الأهداف"
+msgstr "الأهداف"
+
+#: .\templates\main\home.html:1022
+msgid "لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل"
+msgstr "لريادة استثمارية تدعم الاقتصاد وتحقق تطلعات المستقبل"
+
+#: .\templates\main\home.html:1034
+msgid "لنحقق"
+msgstr "لنحقق"
+
+#: .\templates\main\home.html:1049
+msgid "حقائق وأرقام"
+msgstr "حقائق وأرقام"
+
+#: .\templates\main\home.html:1060
+msgid "سنوات من الخبرة"
+msgstr "سنوات من الخبرة"
+
+#: .\templates\main\home.html:1071
+msgid "شركاء النجاح"
+msgstr "شركاء النجاح"
+
+#: .\templates\main\home.html:1082
+msgid "مشروع ناجح"
+msgstr "مشروع ناجح"
+
+#: .\templates\main\home.html:1093
+msgid "قطاعات استثمارية"
+msgstr "قطاعات استثمارية"
+
+#: .\templates\main\home.html:1104
+msgid "خدمة العملاء"
+msgstr "خدمة العملاء"
+
+#: .\templates\main\home.html:1115
+msgid "جوائز وتكريمات"
+msgstr "جوائز وتكريمات"
+
+#: .\templates\main\home.html:1126
+msgid "فريق العمل"
+msgstr "فريق العمل"
+
+#: .\templates\main\home.html:1135 .\templates\main\home.html:1138
+msgid "المهندس/ وليد بن عبدالعزيز الشويعر"
+msgstr "المهندس/ وليد بن عبدالعزيز الشويعر"
+
+#: .\templates\main\home.html:1139
+msgid "رئيس مجلس الإدارة"
+msgstr "رئيس مجلس الإدارة"
+
+#: .\templates\main\home.html:1152 .\templates\main\home.html:1155
+msgid "أ/ خالد بن أسعد خاشقجي"
+msgstr "أ/ خالد بن أسعد خاشقجي"
+
+#: .\templates\main\home.html:1156
+msgid "نائب رئيس مجلس الإدارة"
+msgstr "نائب رئيس مجلس الإدارة"
+
+#: .\templates\main\home.html:1169 .\templates\main\home.html:1172
+msgid "أ/ ملفي بن مناحي المرزوقي"
+msgstr "أ/ ملفي بن مناحي المرزوقي"
+
+#: .\templates\main\home.html:1173
+msgid "عضو مجلس الإدارة - العضو المنتدب"
+msgstr "عضو مجلس الإدارة - العضو المنتدب"
+
+#: .\templates\main\home.html:1186 .\templates\main\home.html:1189
+msgid "أ/ عبد العزيز محمد القحطاني"
+msgstr "أ/ عبد العزيز محمد القحطاني"
+
+#: .\templates\main\home.html:1190 .\templates\main\home.html:1207
+#: .\templates\main\home.html:1224 .\templates\main\home.html:1241
+msgid "عضو مجلس الإدارة"
+msgstr "عضو مجلس الإدارة"
+
+#: .\templates\main\home.html:1203 .\templates\main\home.html:1206
+msgid "أ/ عبدالكريم بن محمد النهير"
+msgstr "أ/ عبدالكريم بن محمد النهير"
+
+#: .\templates\main\home.html:1220 .\templates\main\home.html:1223
+msgid "أ/هيثم بن فيصل اسكوبى"
+msgstr "أ/هيثم بن فيصل اسكوبى"
+
+#: .\templates\main\home.html:1237 .\templates\main\home.html:1240
+msgid "أ/ياسر بن سليمان العقيل"
+msgstr "أ/ياسر بن سليمان العقيل"
+
+#: .\templates\main\maaal.html:97 .\templates\partials\_navbar.html:33
+msgid "القوائم المالية"
+msgstr "القوائم المالية"
+
+#: .\templates\main\maaal.html:103
+msgid "التقرير"
+msgstr "التقرير"
+
+#: .\templates\main\maaal.html:111 .\templates\main\maaal.html:119
+#: .\templates\main\maaal.html:127 .\templates\main\maaal.html:135
+#: .\templates\main\maaal.html:143
+msgid "عرض التقرير"
+msgstr "عرض التقرير"
+
+#: .\templates\main\news.html:63
+#, fuzzy
+#| msgid ""
+#| "مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار "
+#| "والنمو، إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن "
+#| "أهم ملامح تلك الاستراتيجية."
+msgid ""
+"مرّت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، "
+"إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح "
+"تلك الاستراتيجية:"
+msgstr ""
+"مرت ثمار التنمية القابضة بعدة منعطفات حتى وصلت إلى مرحلة الاستقرار والنمو، "
+"إذ بنت هيكلية مرنة ووضعت استراتيجية مبتكرة تترجم هذا التوسع، ومن أهم ملامح "
+"تلك الاستراتيجية."
+
+#: .\templates\main\news.html:75
+msgid "أسئلة شائعة"
+msgstr ""
+
+#: .\templates\main\news.html:80
+msgid "كيف أتقدّم إلى وظيفة في ثمار القابضة؟"
+msgstr ""
+
+#: .\templates\main\news.html:85
+msgid ""
+"هنالك خانة لتقديم أوراقكم الوظيفية، وكن أكيداً أننا لا نهمل أية أوراق تصل عبر "
+"الرابط."
+msgstr ""
+
+#: .\templates\main\news.html:93
+#, fuzzy
+#| msgid "ثمار القابضة"
+msgid "متى تأسست ثمار القابضة؟"
+msgstr "ثمار القابضة"
+
+#: .\templates\main\news.html:98
+msgid ""
+"تأسست ثمار كشركة مساهمة سعودية، في السادس من يناير عام 1988 م في الرياض، "
+"المملكة العربية السعودية، برأس مال مئة مليون ريال سعودي... وفي أكتوبر 2021 "
+"وافقت الجمعية العامة غير العادية على تغيير اسم الشركة من الشركة الوطنية "
+"للتسويق الزراعي – ثمار إلى شركة ثمار التنمية القابضة."
+msgstr ""
+
+#: .\templates\main\news.html:106
+#, fuzzy
+#| msgid "ثمار القابضة"
+msgid "ما حجم رأس مال ثمار القابضة؟"
+msgstr "ثمار القابضة"
+
+#: .\templates\main\news.html:111
+msgid ""
+"يبلغ رأس مال الشركة 65.000.000 ريال سعودي، (خمسة وستون مليون ريال سعودي)، "
+"ويتكون من 65 مليون سهم قيمة كل سهم 10 ريالات."
+msgstr ""
+
+#: .\templates\main\news.html:125
+#, fuzzy
+#| msgid "طلبات التوظيف"
+msgid "التوظيف"
+msgstr "طلبات التوظيف"
+
+#: .\templates\main\privacy.html:77
+#, fuzzy
+#| msgid "سياسة الإبلاغ عن المخالفات"
+msgid "الإبلاغ عن الممارسات المخالفة"
+msgstr "سياسة الإبلاغ عن المخالفات"
+
+#: .\templates\main\privacy.html:79
+msgid ""
+"وفقًا للوائح حوكمة الشركات الصادرة من هيئة السوق المالية بشأن الإبلاغ عن "
+"مخالفات الغش والفساد التي قد تلحق الضرر ببيئة العمل داخل شركة ثمار التنمية "
+"القابضة، يحرص مجلس إدارة الشركة على التأكيد على أهمية وضع دليل شامل للسياسات "
+"والإجراءات المنظمة لآليات الإبلاغ عن تلك المخالفات، كما تتضمن هذه السياسات "
+"إرشادات واضحة تهدف إلى تشجيع جميع الموظفين على رفع الأمور المهمة دون القلق "
+"من المساس بمراكزهم الوظيفية."
+msgstr ""
+
+#: .\templates\main\privacy.html:82
+msgid ""
+"وتهدف الشركة إلى ضمان الإبلاغ عن أي مخالفات أو أعمال غش أو تلاعب بشكل فوري "
+"وفعّال، مع مراعاة تأثير هذه المخالفات على سمعة الشركة ووضعها المالي، وتسعى "
+"الشركة إلى توفير قنوات آمنة للإبلاغ تضمن اتخاذ الجهات المعنية الإجراءات "
+"التصحيحية اللازمة، بالإضافة إلى تقديم حماية كاملة للموظفين المبلّغين من أي "
+"انتقام أو إساءة معاملة أو إجراءات عقابية، كما تؤكد الشركة على أهمية تبني "
+"الموظفين لنهج مسؤول وأخلاقي عند الإبلاغ عن أي مخالفات أو جرائم في بيئة العمل."
+msgstr ""
+
+#: .\templates\main\privacy.html:85
+msgid "التزامات الشخص الشاكي أو المُبلّغ عن المخالفة:"
+msgstr ""
+
+#: .\templates\main\privacy.html:86
+msgid "ينبغي على الشاكي أو المُبلّغ مراعاة الآتي:"
+msgstr ""
+
+#: .\templates\main\privacy.html:88
+msgid ""
+"تحري المصداقية في الشكوى أو البلاغ قدر المستطاع، وذلك بتجنب الإشاعات "
+"والمزاعم غير المستندة على أساس حقيقي."
+msgstr ""
+
+#: .\templates\main\privacy.html:89
+msgid ""
+"تقديم جميع التفاصيل المتعلقة بالمخالفة قدر الإمكان، بما يشمل ذلك وصف دقيق "
+"للحالة، تاريخ ووقت وقوع المخالفة (إن أمكن)، الأشخاص المعنيين بالمخالفة."
+msgstr ""
+
+#: .\templates\main\privacy.html:90
+msgid ""
+"إرفاق جميع الأدلة المتاحة التي تدعم البلاغ مثل الوثائق، الصور، التسجيلات (إن "
+"وجدت وكانت قانونية)، وأي مستندات أخرى ذات صلة."
+msgstr ""
+
+#: .\templates\main\privacy.html:91
+#, fuzzy
+#| msgid "سياسة الإبلاغ عن المخالفات"
+msgid "سرعة الإبلاغ عن المخالفة في أقرب فرصة ممكنة."
+msgstr "سياسة الإبلاغ عن المخالفات"
+
+#: .\templates\main\privacy.html:92
+msgid "السرية التامة للشكوى أو البلاغ لتحقيق المصالح العامة للشركة."
+msgstr ""
+
+#: .\templates\main\privacy.html:93
+msgid ""
+"ذكر الاسم وأرقام التواصل حتى تتمكن الشركة من تحديد المخالفة ومعرفة تفاصيلها."
+msgstr ""
+
+#: .\templates\main\privacy.html:94
+msgid "عدم أحقية المُبلّغ المجهول بالحماية المنصوص عليها في هذه السياسة."
+msgstr ""
+
+#: .\templates\main\privacy.html:95
+msgid "تحمل المسؤولية الكاملة عن أي ادعاءات كيدية."
+msgstr ""
+
+#: .\templates\main\privacy.html:98
+msgid "قنوات التبليغ وفق ما يلي:"
+msgstr ""
+
+#: .\templates\main\privacy.html:99
+msgid "قنوات التبليغ (وسائل تقديم الشكوى أو البلاغ):"
+msgstr ""
+
+#: .\templates\main\privacy.html:102
+msgid ""
+"تكون إدارة الحوكمة والالتزام بالشؤون القانونية الخط الأول المسؤول عن تلقي "
+"البلاغات عبر البريد الإلكتروني"
+msgstr ""
+
+#: .\templates\main\privacy.html:104
+#, fuzzy
+#| msgid "القوائم المالية"
+msgid "أو رقم الجوال"
+msgstr "القوائم المالية"
+
+#: .\templates\main\privacy.html:106
+msgid "ودراسة هذه الشكاوى والبلاغات والتعامل معها."
+msgstr ""
+
+#: .\templates\main\privacy.html:109
+msgid ""
+"للمُبلّغ الخيار أن يقدم الشكوى أو البلاغ إلى مدير الحوكمة والالتزام، أو الرئيس "
+"التنفيذي، أو اللجنة التنفيذية أو أحد أعضائها، أو إلى المجلس مباشرة أو أحد "
+"أعضائه."
+msgstr ""
+
+#: .\templates\main\services.html:122
+#, fuzzy
+#| msgid "استثماراتنا"
+msgid "إنجازاتنا"
+msgstr "استثماراتنا"
+
+#: .\templates\main\services.html:127
+#, fuzzy
+#| msgid "طلبات التوظيف"
+msgid "المنتجات الحيوية"
+msgstr "طلبات التوظيف"
+
+#: .\templates\main\services.html:137
+#, fuzzy
+#| msgid "قطاعات استثمارية"
+msgid "تقنيات عقارية"
+msgstr "قطاعات استثمارية"
+
+#: .\templates\main\services.html:147
+msgid "تمليك عقاري"
+msgstr ""
+
+#: .\templates\partials\_footer.html:63 .\templates\partials\_footer.html:66
+msgid "عن الشركة"
+msgstr ""
+
+#: .\templates\partials\_footer.html:68
+#, fuzzy
+#| msgid "استثماراتنا"
+msgid "خدماتنا"
+msgstr "استثماراتنا"
+
+#: .\templates\partials\_footer.html:76
+#, fuzzy
+#| msgid "وصف الموقع"
+msgid "المواقع"
+msgstr "وصف الموقع"
+
+#: .\templates\partials\_footer.html:78
+msgid "السعودية"
+msgstr ""
+
+#: .\templates\partials\_footer.html:98
+msgid "جميع الحقوق محفوظة"
+msgstr ""
+
+#: .\templates\partials\_navbar.html:28
+msgid "علاقات المستثمرين"
+msgstr "علاقات المستثمرين"
+
+#: .\templates\partials\_navbar.html:31
+msgid "تقارير مجلس الإدارة"
+msgstr "تقارير مجلس الإدارة"
+
+#: .\templates\partials\_navbar.html:32
+msgid "الجمعيات العامة لمساهمين الشركة"
+msgstr "الجمعيات العامة لمساهمين الشركة"
+
+#: .\templates\partials\_navbar.html:34
+msgid "نشرة إصدار"
+msgstr "نشرة إصدار"
+
+#: .\templates\partials\_navbar.html:42
+msgid "الحوكمة"
+msgstr "الحوكمة"
+
+#: .\templates\partials\_navbar.html:45
+msgid "النظام الأساس للشركة"
+msgstr "النظام الأساس للشركة"
+
+#: .\templates\partials\_navbar.html:46
+msgid "سياسة الإبلاغ عن المخالفات"
+msgstr "سياسة الإبلاغ عن المخالفات"
+
+#: .\templates\partials\_navbar.html:47
+msgid "سياسة المسؤولية الاجتماعية ومبادرة العمل الاجتماعي"
+msgstr "سياسة المسؤولية الاجتماعية ومبادرة العمل الاجتماعي"
+
+#: .\templates\partials\_navbar.html:52
+msgid "استثماراتنا"
+msgstr "استثماراتنا"
+
+#: .\templates\partials\_sidebar.html:8
+msgid "Logo"
+msgstr "الشعار"
+
+#: .\templates\partials\_sidebar.html:25
+msgid "طلبات التواصل"
+msgstr "طلبات التواصل"
+
+#: .\templates\partials\_sidebar.html:53
+msgid "تسجيل الخروج"
+msgstr "تسجيل الخروج"
+
+#~ msgid "Full Name"
+#~ msgstr "الاسم الثلاثي"
+
+#~ msgid "Specialization"
+#~ msgstr "التخصص"
+
+#~ msgid "Attachments and Experience Certificates"
+#~ msgstr "المرفقات وشهادات الخبرة"
+
+#~ msgid "Address"
+#~ msgstr "العنوان"
+
+#~ msgid "Your Email"
+#~ msgstr "بريدك الإلكتروني"
+
+#~ msgid "Your Phone"
+#~ msgstr "رقم جوالك"
+
+#~ msgid "Tell us about your project"
+#~ msgstr "حدثنا عن مشروعك"
+
+#~ msgid "Attach files that support your idea"
+#~ msgstr "أرفق ملفات تدعم فكرتك"
+
+#~ msgid "Your message has been sent successfully!"
+#~ msgstr "تم إرسال رسالتك بنجاح!"
+
+#~ msgid "An error occurred while sending your message. Please try again."
+#~ msgstr "حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى."
+
+#~ msgid "Your request has been sent successfully! We will contact you soon."
+#~ msgstr "تم إرسال طلبك بنجاح! سنتواصل معك قريبًا."
+
+#~ msgid "An error occurred while sending your request. Please try again."
+#~ msgstr "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى."
+
+#~ msgid "Contact list loaded successfully."
+#~ msgstr "تم تحميل قائمة جهات الاتصال بنجاح."
+
+#~ msgid "Job requests list loaded successfully."
+#~ msgstr "تم تحميل قائمة طلبات الوظائف بنجاح."
+
+#, python-format
+#~ msgid "Viewing contact details: %(name)s."
+#~ msgstr "عرض تفاصيل جهة الاتصال: %(name)s."
+
+#, python-format
+#~ msgid "Contact deleted successfully: %(name)s."
+#~ msgstr "تم حذف جهة الاتصال: %(name)s بنجاح."
+
+#, python-format
+#~ msgid "Viewing job request details: %(name)s."
+#~ msgstr "عرض تفاصيل طلب الوظيفة: %(name)s."
+
+#, python-format
+#~ msgid "Job request deleted successfully: %(name)s."
+#~ msgstr "تم حذف طلب الوظيفة: %(name)s بنجاح."
+
+#~ msgid "Login failed. Please check your username and password."
+#~ msgstr "فشل تسجيل الدخول. يرجى التحقق من اسم المستخدم وكلمة المرور."
+
+#~ msgid "Logged in successfully."
+#~ msgstr "تم تسجيل الدخول بنجاح."
+
+#~ msgid ""
+#~ "نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار "
+#~ "والتسويق."
+#~ msgstr ""
+#~ "نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار "
+#~ "والتسويق."
+
+#~ msgid "A visual representation of the company"
+#~ msgstr "تمثيل بصري للشركة"
+
+#~ msgid "Engineer Waleed Bin Abdulaziz Al Shuwair"
+#~ msgstr "المهندس وليد بن عبدالعزيز الشويعر"
+
+#~ msgid "Mr. Khaled bin Asaad Khashoggi"
+#~ msgstr "الأستاذ خالد بن أسعد خاشقجي"
+
+#~ msgid "Mr. Melfi bin Menahi Al Marzouqi"
+#~ msgstr "الأستاذ ملفي بن مناحي المرزوقي"
+
+#~ msgid "Mr. Abdulaziz Mohammed Al Qahtani"
+#~ msgstr "الأستاذ عبدالعزيز محمد القحطاني"
+
+#~ msgid "Mr. Abdulkarim bin Mohammed Al Nahir"
+#~ msgstr "الأستاذ عبدالكريم بن محمد النهير"
+
+#~ msgid "Mr. Haitham bin Faisal Skobi"
+#~ msgstr "الأستاذ هيثم بن فيصل اسكوبى"
+
+#~ msgid "Mr. Yasser bin Suleiman Al Aqeel"
+#~ msgstr "الأستاذ ياسر بن سليمان العقيل"

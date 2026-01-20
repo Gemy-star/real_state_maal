@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "constance",
     "constance.backends.database",
+    "rosetta",
 ]
 
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
@@ -56,13 +57,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",   # Enable localization
+    "django.middleware.locale.LocaleMiddleware",  # Enable localization
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'main.middleware.ForceArabicDefaultMiddleware',  # force Arabic
+    "main.middleware.ForceArabicDefaultMiddleware",  # force Arabic
 ]
 
 ROOT_URLCONF = "real_state.urls"
@@ -80,7 +81,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "constance.context_processors.config", 
+                "constance.context_processors.config",
             ],
         },
     },
@@ -119,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-LANGUAGE_CODE = "ar"   # Default language Arabic
+LANGUAGE_CODE = "ar"  # Default language Arabic
 TIME_ZONE = "Asia/Riyadh"  # Saudi Arabia timezone
 
 USE_I18N = True
@@ -173,9 +174,9 @@ MESSAGE_TAGS = {
 
 
 # Authentication redirects
-LOGIN_URL = "login/"  
-LOGIN_REDIRECT_URL = "contacts/"  
-LOGOUT_REDIRECT_URL = "login/"  
+LOGIN_URL = "login/"
+LOGIN_REDIRECT_URL = "contacts/"
+LOGOUT_REDIRECT_URL = "login/"
 
 
 # Constance dynamic settings
@@ -188,4 +189,16 @@ CONSTANCE_CONFIG = {
     "INSTAGRAM_URL": ("#", "رابط انستقرام"),
     "LINKEDIN_URL": ("#", "رابط لينكدإن"),
     "ADDRESS": ("الرياض، المملكة العربية السعودية", "عنوان الشركة"),
+    "ADS_LINK": ("http://google/.com", "رابط الأعلان"),
+    "ADS_TITLE": ("رابط  الأعلان", "عنوان الأعلان"),
 }
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
+# Rosetta Configuration
+ROSETTA_MESSAGES_PER_PAGE = 50
+ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
+ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = "ar"
+ROSETTA_MESSAGES_SOURCE_LANGUAGE_NAME = "Arabic"
+ROSETTA_SHOW_AT_ADMIN_PANEL = True
+ROSETTA_REQUIRES_AUTH = True  # Only authenticated users can access

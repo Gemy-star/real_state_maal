@@ -23,12 +23,77 @@
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <style>
+    :root {
+      --primary-color: #392E37;
+      --secondary-color: #CEC9BB;
+      --accent-color: #FFD369;
+      --dark-purple: #4c3c4f;
+      --light-gray: #f8f9fa;
+    }
+
     body {
       font-family: 'Cairo', sans-serif;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
     }
 
     /* Layout */
@@ -38,43 +103,289 @@
       min-height: 100vh;
       width: 100%;
       box-sizing: border-box;
+      animation: fadeInUp 0.6s ease-out;
     }
 
     .sidebar {
-      width: 250px;
-      background-color: #f8f9fa;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      width: 280px;
+      background: linear-gradient(180deg, var(--primary-color), var(--dark-purple));
+      padding: 25px;
+      box-shadow:
+        4px 0 20px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(57, 46, 55, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      animation: slideInRight 0.5s ease-out;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+      );
+      animation: shimmer 3s infinite;
     }
 
     .sidebar.collapsed {
       transform: translateX(100%);
+      box-shadow: none;
     }
 
     .main-content {
       flex: 1;
-      padding: 20px;
-      background-color: #ffffff;
-      transition: margin 0.3s ease;
+      padding: 30px;
+      background-color: transparent;
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Enhanced Cards */
+    .card {
+      border-radius: 15px;
+      box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 8px 40px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: none;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        0 12px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+      color: white;
+      border-bottom: none;
+      padding: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* Table Enhancements */
+    .table {
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .table thead th {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+      color: white;
+      border: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+      background-color: rgba(206, 201, 187, 0.1);
+      transform: scale(1.01);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Button Enhancements */
+    .btn {
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+      border: none;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      border: none;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #28a745, #218838);
+      border: none;
     }
 
     /* Navigation & pills */
-    .nav-link { color: #392E37; }
-    .nav-link:hover { color: #CEC9BB; }
+    .nav-link {
+      color: var(--primary-color);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link:hover {
+      color: var(--secondary-color);
+      transform: translateX(5px);
+    }
+
     .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-      background-color: #CEC9BB;
-      box-shadow: 1px 2px 15px #392E37;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      box-shadow:
+        0 4px 15px rgba(57, 46, 55, 0.3),
+        0 0 20px rgba(255, 211, 105, 0.2);
+      animation: pulse 2s infinite;
+    }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+      border: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-toggle:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Back to top / Chat button */
+    .back-to-top {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow:
+        0 4px 20px rgba(37, 211, 102, 0.4),
+        0 0 30px rgba(37, 211, 102, 0.2);
+      animation: float 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.15);
+      box-shadow:
+        0 6px 30px rgba(37, 211, 102, 0.6),
+        0 0 50px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Alert Enhancements */
+    .alert {
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    /* Badge Enhancements */
+    .badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Control Enhancements */
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary-color);
+      box-shadow:
+        0 0 0 0.2rem rgba(57, 46, 55, 0.15),
+        0 4px 15px rgba(57, 46, 55, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Icon Animations */
+    .fa, .fas, .far, .fab {
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover .fa,
+    .nav-link:hover .fas,
+    .nav-link:hover .far,
+    .btn:hover .fa,
+    .btn:hover .fas {
+      transform: scale(1.2) rotate(5deg);
     }
 
     /* Mobile adjustments */
     @media (max-width: 992px) {
-      .sidebar { width: 200px; padding: 15px; }
-      .main-content { padding: 15px; }
+      .sidebar {
+        width: 250px;
+        padding: 20px;
+      }
+      .main-content {
+        padding: 20px;
+      }
     }
 
     @media (max-width: 768px) {
-      .layout { flex-direction: column; }
+      .layout {
+        flex-direction: column;
+      }
       .sidebar {
         position: fixed;
         top: 0;
@@ -82,26 +393,177 @@
         height: 100%;
         z-index: 999;
         transform: translateX(100%);
+        width: 280px;
       }
       .sidebar.active {
         transform: translateX(0);
+        animation: slideInRight 0.4s ease-out;
       }
       .main-content {
-        padding: 15px;
+        padding: 20px 15px;
       }
       .sidebar-toggle {
         display: block;
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        z-index: 1000;
-        background: #CEC9BB;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-size: 18px;
-        cursor: pointer;
       }
+    }
+
+    /* Custom Loader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-purple) 50%, var(--primary-color) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .loader-container {
+      text-align: center;
+    }
+
+    .loader-icon {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
+    }
+
+    .loader-icon .main-icon {
+      font-size: 3.5rem;
+      color: var(--secondary-color);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+
+    .loader-icon .ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid transparent;
+      border-top-color: var(--secondary-color);
+      border-radius: 50%;
+      animation: loaderSpin 1.2s linear infinite;
+    }
+
+    .loader-icon .ring:nth-child(2) {
+      width: 90px;
+      height: 90px;
+      top: 15px;
+      left: 15px;
+      border-top-color: var(--accent-color);
+      animation: loaderSpinReverse 1s linear infinite;
+    }
+
+    .loader-icon .ring:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 30px;
+      left: 30px;
+      border-top-color: #a29bfe;
+      animation: loaderSpin 0.8s linear infinite;
+    }
+
+    @keyframes loaderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes loaderSpinReverse {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+    }
+
+    .loader-text {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      animation: textFade 1.5s ease-in-out infinite;
+    }
+
+    @keyframes textFade {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .loader-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .loader-dots span {
+      width: 12px;
+      height: 12px;
+      background: var(--secondary-color);
+      border-radius: 50%;
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+
+    .loader-dots span:nth-child(1) { animation-delay: 0s; }
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--dark-purple), var(--primary-color));
     }
   </style>
 
@@ -110,33 +572,73 @@
 <body>
 
   <!-- Mobile Sidebar Toggle -->
-  <button class="sidebar-toggle d-md-none" id="sidebarToggle">☰</button>
+  <button class="sidebar-toggle d-md-none" id="sidebarToggle">
+    <i class="fas fa-bars"></i>
+  </button>
 
   <div class="layout bg-services">
-    <aside class="sidebar bg-services card-img" id="sidebar">
+    <aside class="sidebar bg-services card-img" id="sidebar" data-aos="fade-left">
       {% include 'partials/_sidebar.html' %}
     </aside>
 
-    <main class="main-content bg-services">
+    <main class="main-content bg-services" data-aos="fade-up" data-aos-delay="200">
       {% block body %}{% endblock %}
     </main>
   </div>
 
   {% include 'partials/_footer.html' %}
 
-  <div id="preloader"></div>
-  <a id="chat" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-whatsapp"></i>
-    <span class="ms-2"></span>
+  <!-- Custom Loader -->
+  <div id="preloader">
+    <div class="loader-container">
+      <div class="loader-icon">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <i class="fas fa-building main-icon"></i>
+      </div>
+      <div class="loader-text">ثمار القابضة</div>
+      <div class="loader-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <a id="chat" class="back-to-top d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="500">
+    <i class="fab fa-whatsapp fa-2x"></i>
   </a>
 
   <!-- Vendor JS -->
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- Main JS -->
   <script src="{% static 'assets/js/main.js' %}"></script>
 
   <script>
+    // Hide preloader when page is fully loaded
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.classList.add('loaded');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+    });
+
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+      offset: 100
+    });
+
     // WhatsApp click
     document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("chat").addEventListener("click", function(e) {
@@ -145,31 +647,115 @@
       });
     });
 
-    // Sidebar toggle for mobile
+    // Sidebar toggle for mobile with animation
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('active');
-    });
+
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+
+        // Toggle icon animation
+        const icon = this.querySelector('i');
+        if (sidebar.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnToggle = sidebarToggle.contains(event.target);
+
+        if (!isClickInsideSidebar && !isClickOnToggle && sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          const icon = sidebarToggle.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+    }
 
     // Navbar scroll effect (if exists)
     const navbar = document.getElementById('navbar');
     if (navbar) {
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
       });
     }
 
-    // Bootstrap tooltips
+    // Bootstrap tooltips with animation
     (function () {
       'use strict'
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
       tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl)
+        new bootstrap.Tooltip(tooltipTriggerEl, {
+          animation: true,
+          delay: { show: 100, hide: 100 }
+        })
       })
     })()
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId !== '#' && document.querySelector(targetId)) {
+          e.preventDefault();
+          document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add loading state to forms
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function() {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
+
+          // Re-enable after 5 seconds as fallback
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }, 5000);
+        }
+      });
+    });
   </script>
 
-</body>
+  {% block js %}{% endblock %}</body>
 </html>

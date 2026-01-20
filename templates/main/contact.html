@@ -2,200 +2,439 @@
 {% load static crispy_forms_tags i18n %}
 {% block style %}
 <style>
-  .intro-single {
-    padding: 6rem 0 1rem;
+  :root {
+    --primary-color: #392E37;
+    --secondary-color: #CEC9BB;
+    --accent-color: #FFD369;
+    --dark-purple: #4c3c4f;
+    --text-dark: #2c2c2c;
+    --text-light: #666;
   }
 
-  .card-text {
-    font-size: 1.1rem !important;
-    line-height: 1.6;
+  /* Hero Section */
+  .contact-hero {
+    min-height: 50vh;
+    background: linear-gradient(135deg, rgba(57,46,55,0.95), rgba(76,60,79,0.9)), url('{% static "assets/img/slide-2.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
   }
 
-  .bg-footer {
-    background-color: #c6c6c6;
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,211,105,0.1), transparent 50%);
   }
 
-  .navbar {
-    background-color: #392E37 !important;
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
   }
 
-  .card {
-    border: none;
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  }
-
-  .card-img-top {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .radius {
-    border-radius: 20px;
-  }
-
-  .bg-main {
-    background-color: #392E37 !important;
-    color: #fff !important;
-  }
-
-  .bg-services {
-    background-color: #f7f7f7;
-  }
-
-  .sec-color {
-    color: #CEC9BB !important;
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
 
   .breadcrumb {
-    background: transparent;
-    padding: 0;
-    margin-bottom: 0;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   }
 
   .breadcrumb-item a {
-    color: #392E37;
-    font-weight: 500;
+    color: rgba(255,255,255,0.8);
     text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb-item a:hover {
+    color: var(--accent-color);
   }
 
   .breadcrumb-item.active {
-    color: #6c757d;
-    font-weight: 600;
+    color: var(--accent-color);
   }
 
-  .btn-a {
-    border-radius: 10px;
-    padding: 0.5rem 1.2rem;
+  /* Modern Section */
+  .modern-section {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-top: 1.5rem;
+  }
+
+  /* Contact Info Cards */
+  .contact-info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    height: 100%;
+    border: 2px solid transparent;
+  }
+
+  .contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(57,46,55,0.2);
+    border-color: var(--accent-color);
+  }
+
+  .contact-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(57,46,55,0.3);
+    transition: all 0.4s ease;
+  }
+
+  .contact-info-card:hover .contact-icon {
+    transform: rotateY(360deg);
+    background: linear-gradient(135deg, var(--accent-color), #ffb700);
+    color: var(--primary-color);
+  }
+
+  .contact-info-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .contact-info-text {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  .contact-info-text a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info-text a:hover {
+    color: var(--accent-color);
+  }
+
+  /* Contact Form */
+  .contact-form-wrapper {
+    background: white;
+    border-radius: 25px;
+    padding: 3rem;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+  }
+
+  .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
     font-size: 1rem;
-    transition: background 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
   }
 
-  .btn-a:hover {
-    opacity: 0.9;
+  .form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem rgba(255,211,105,0.25);
+    background: white;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-purple));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(57,46,55,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .submit-btn:hover::before {
+    left: 100%;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(57,46,55,0.4);
+  }
+
+  .submit-btn i {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .submit-btn:hover i {
+    transform: translateX(5px);
+  }
+
+  /* Map Section */
+  .map-wrapper {
+    background: white;
+    border-radius: 25px;
+    padding: 2rem;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 450px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-light);
+  }
+
+  /* Success Message Animation */
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .alert {
+    animation: slideInDown 0.5s ease;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .modern-section {
+      padding: 3rem 0;
+    }
+
+    .contact-form-wrapper,
+    .map-wrapper {
+      padding: 2rem;
+    }
+
+    .contact-info-card {
+      margin-bottom: 2rem;
+    }
   }
 </style>
 {% endblock %}
 {% block body %}
 
 <main id="main">
-  <!-- ======= Intro Single ======= -->
-  <section class="intro-single bg-services">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 col-lg-8 d-flex flex-column mx-auto pt-4">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <h5 class="color-main noto-kufi-arabic" style="font-size: 1.65rem;">{% trans "المركز الإعلامي" %}</h5>
-            </div>
-            <div class="col-12 col-md-6" style="direction:ltr;">
-              <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a class="noto-kufi-arabic" href="{% url 'home-page' %}">{% trans "الرئيسية" %}</a>
-                  </li>
-                  <li class="breadcrumb-item active noto-kufi-arabic" aria-current="page">
-                    {% trans "المركز الإعلامي" %}
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section><!-- End Intro Single-->
 
-  <!-- ======= News Section ======= -->
-  <section class="section-agents section-t4 bg-services">
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up">{% trans "تواصل معنا" %}</h1>
+      <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home-page' %}">{% trans "الرئيسية" %}</a></li>
+          <li class="breadcrumb-item active">{% trans "تواصل معنا" %}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Contact Info Section -->
+  <section class="modern-section" style="background: #f8f9fa;">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box mx-auto text-center">
-            <h1 class="title-single text-black-50 noto-kufi-arabic">{% trans "أخبار ثمار" %}</h1>
-          </div>
-        </div>
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "معلومات الاتصال" %}</h2>
+        <p class="section-subtitle">{% trans "نحن هنا لخدمتك والإجابة على جميع استفساراتك" %}</p>
       </div>
-      <div class="row pt-4" style="padding-bottom:2rem;">
-        <!-- Example Card -->
-        <div class="col-md-4 pt-2">
-          <div class="card">
-            <img class="card-img-top" src="{% static 'assets/img/who1.jpg' %}" alt="Card image">
-            <div class="card-body">
-              <p class="card-text noto-kufi-arabic text-black-50">{% trans "ثمار تستثمر 6 ملايين ريال لتطوير برج سكني بالرياض" %}</p>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
+            <h4 class="contact-info-title">{% trans "العنوان" %}</h4>
+            <p class="contact-info-text">
+              {% trans "الرياض، المملكة العربية السعودية" %}<br>
+              {% trans "حي الملك فهد" %}
+            </p>
           </div>
         </div>
-        <!-- Repeat cards dynamically later -->
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <h4 class="contact-info-title">{% trans "الهاتف" %}</h4>
+            <p class="contact-info-text">
+              <a href="tel:+966112345678">+966 11 234 5678</a><br>
+              <a href="tel:+966501234567">+966 50 123 4567</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h4 class="contact-info-title">{% trans "البريد الإلكتروني" %}</h4>
+            <p class="contact-info-text">
+              <a href="mailto:info@thamar.com">info@thamar.com</a><br>
+              <a href="mailto:support@thamar.com">support@thamar.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h4 class="contact-info-title">{% trans "ساعات العمل" %}</h4>
+            <p class="contact-info-text">
+              {% trans "الأحد - الخميس" %}<br>
+              {% trans "8:00 ص - 5:00 م" %}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ======= Gallery Section ======= -->
-  <section class="section-news section-t4 bg-sec" style="padding-bottom:2rem;">
+  <!-- Contact Form Section -->
+  <section class="modern-section" style="background: white;">
     <div class="container">
-      <div class="row mb-3">
-        <div class="col-md-12">
-          <div class="title-wrap">
-            <h2 class="text-black-50 noto-kufi-arabic">{% trans "جاليري" %}</h2>
-          </div>
-        </div>
+      <div class="section-title" data-aos="fade-up">
+        <h2>{% trans "أرسل لنا رسالة" %}</h2>
+        <p class="section-subtitle">{% trans "تواصل معنا وسيتم الرد عليك في أسرع وقت" %}</p>
       </div>
-
-      <div id="news-carousel" class="swiper">
-        <div class="swiper-wrapper">
-          <div class="carousel-item-c swiper-slide">
-            <div class="card-box-b card-shadow news-box news-frame">
-              <div class="img-box-b card-img radius">
-                <img src="{% static 'assets/img/gal1.jpg' %}" alt="" class="img-b img-fluid" />
-              </div>
-            </div>
-          </div>
-          <!-- Repeat gallery items -->
-        </div>
-      </div>
-
-      <div class="news-carousel-pagination carousel-pagination"></div>
-    </div>
-  </section>
-  <!-- End Gallery Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section class="section-agents section-t4 bg-services" style="padding-bottom:2rem;">
-    <div class="container">
-      <div class="row d-flex justify-content-start">
-        <div class="col-md-4">
+      <div class="row">
+        <div class="col-12 mb-4" data-aos="fade-up">
           {% include 'partials/_messages.html' %}
         </div>
       </div>
-      <div class="row pt-2 mb-3">
-        <div class="col-md-12">
-          <h1 class="title-single text-black-50 noto-kufi-arabic">{% trans "تواصل معنا" %}</h1>
-          <span class="text-black-50 noto-kufi-arabic">{% trans "تواصل معنا وسيتم الرد عليك في أسرع وقت" %}</span>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+          <div class="contact-form-wrapper h-100">
+            <form method="post">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="submit-btn">
+                {% trans "إرسال الرسالة" %} <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 section-t4">
-          <div class="row">
-            <div class="col-md-7">
-              <form method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-a bg-main">{% trans "إرسال" %}</button>
-              </form>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="map-wrapper h-100">
+            <div class="map-placeholder">
+              <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--primary-color);"></i>
+              <p style="margin: 1rem 0 0 0;">{% trans "خريطة الموقع" %}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 </main>
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
+  });
+</script>
 {% endblock %}

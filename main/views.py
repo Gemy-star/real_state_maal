@@ -6,17 +6,30 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
-    CreateView, DeleteView, DetailView, ListView, TemplateView
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+    View,
 )
+from django.http import JsonResponse
 
 from .forms import ContactForm, JobRequestForm, ProjectRequestForm
 from .models import (
-    Contact, HomePageContent, JobRequest, News,
-    ProjectRequest, RelationsPage, WhoUsPage
+    Contact,
+    HomePageContent,
+    JobRequest,
+    News,
+    ProjectRequest,
+    RelationsPage,
+    WhoUsPage,
+    Report,
 )
 
 
 # -------------------- PUBLIC VIEWS --------------------
+
 
 class HomePageView(TemplateView):
     template_name = "main/home.html"
@@ -47,15 +60,22 @@ class NewsPageView(ListView):
 class SoonPageView(TemplateView):
     template_name = "main/soon.html"
 
+
 class ThimarReportsPageView(TemplateView):
-    template_name="main/reports_pdf.html"
-    
+    template_name = "main/reports_pdf.html"
+
+
 class AboutPageView(TemplateView):
     template_name = "main/about.html"
 
 
-class ReportsPageView(TemplateView):
+class ReportsPageView(ListView):
     template_name = "main/reports.html"
+    model = Report
+    context_object_name = "reports"
+
+    def get_queryset(self):
+        return Report.objects.filter(is_active=True).order_by("-year")
 
 
 class MaalPageView(TemplateView):
@@ -88,7 +108,9 @@ class ContactPageView(CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, _("حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى."))
+        messages.error(
+            self.request, _("حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى.")
+        )
         return super().form_invalid(form)
 
 
@@ -103,7 +125,9 @@ class ServicesPageView(CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, _("حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى."))
+        messages.error(
+            self.request, _("حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى.")
+        )
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -115,6 +139,7 @@ class ServicesPageView(CreateView):
 
 
 # -------------------- DASHBOARD VIEWS --------------------
+
 
 class ContactListView(LoginRequiredMixin, ListView):
     model = Contact
@@ -144,9 +169,10 @@ class ContactDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy("login")
 
     def get(self, request, *args, **kwargs):
-        messages.info(self.request, _("عرض تفاصيل جهة الاتصال: %(name)s.") % {
-            "name": self.get_object().name
-        })
+        messages.info(
+            self.request,
+            _("عرض تفاصيل جهة الاتصال: %(name)s.") % {"name": self.get_object().name},
+        )
         return super().get(request, *args, **kwargs)
 
 
@@ -157,9 +183,10 @@ class ContactDeleteView(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy("login")
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, _("تم حذف جهة الاتصال: %(name)s بنجاح.") % {
-            "name": self.get_object().name
-        })
+        messages.success(
+            self.request,
+            _("تم حذف جهة الاتصال: %(name)s بنجاح.") % {"name": self.get_object().name},
+        )
         return super().delete(request, *args, **kwargs)
 
 
@@ -169,9 +196,10 @@ class JobRequestDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy("login")
 
     def get(self, request, *args, **kwargs):
-        messages.info(self.request, _("عرض تفاصيل طلب الوظيفة: %(name)s.") % {
-            "name": self.get_object().name
-        })
+        messages.info(
+            self.request,
+            _("عرض تفاصيل طلب الوظيفة: %(name)s.") % {"name": self.get_object().name},
+        )
         return super().get(request, *args, **kwargs)
 
 
@@ -182,13 +210,15 @@ class JobRequestDeleteView(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy("login")
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, _("تم حذف طلب الوظيفة: %(name)s بنجاح.") % {
-            "name": self.get_object().name
-        })
+        messages.success(
+            self.request,
+            _("تم حذف طلب الوظيفة: %(name)s بنجاح.") % {"name": self.get_object().name},
+        )
         return super().delete(request, *args, **kwargs)
 
 
 # -------------------- AUTH --------------------
+
 
 class ThimarLoginView(LoginView):
     template_name = "main/dashboard/login.html"
@@ -196,9 +226,169 @@ class ThimarLoginView(LoginView):
     next_page = reverse_lazy("contact-list")
 
     def form_invalid(self, form):
-        messages.error(self.request, _("فشل تسجيل الدخول. يرجى التحقق من اسم المستخدم وكلمة المرور."))
+        messages.error(
+            self.request,
+            _("فشل تسجيل الدخول. يرجى التحقق من اسم المستخدم وكلمة المرور."),
+        )
         return super().form_invalid(form)
 
     def form_valid(self, form):
         messages.success(self.request, _("تم تسجيل الدخول بنجاح."))
         return super().form_valid(form)
+
+
+# -------------------- TRANSLATION MANAGEMENT --------------------
+
+
+class TranslationManagementView(LoginRequiredMixin, TemplateView):
+    template_name = "main/dashboard/translation_management.html"
+    login_url = reverse_lazy("login")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("إدارة الترجمة")
+
+        # Get available languages
+        from django.conf import settings
+
+        context["languages"] = settings.LANGUAGES
+
+        # Get locale path info
+        import os
+
+        locale_path = settings.LOCALE_PATHS[0] if settings.LOCALE_PATHS else None
+        context["locale_path"] = locale_path
+
+        # Check if .po files exist for each language
+        po_files_status = {}
+        if locale_path:
+            for lang_code, lang_name in settings.LANGUAGES:
+                po_file_path = os.path.join(
+                    locale_path, lang_code, "LC_MESSAGES", "django.po"
+                )
+                po_files_status[lang_code] = {
+                    "name": lang_name,
+                    "exists": os.path.exists(po_file_path),
+                    "path": po_file_path if os.path.exists(po_file_path) else None,
+                }
+
+        context["po_files_status"] = po_files_status
+
+        return context
+
+
+# -------------------- SITE SETTINGS --------------------
+
+
+class SiteSettingsView(LoginRequiredMixin, TemplateView):
+    template_name = "main/dashboard/site_settings.html"
+    login_url = reverse_lazy("login")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("إعدادات الموقع")
+
+        # Get constance config
+        from django.conf import settings
+        from constance import config
+
+        # Build settings list with current values
+        settings_list = []
+        for key, (default, help_text) in settings.CONSTANCE_CONFIG.items():
+            settings_list.append(
+                {
+                    "key": key,
+                    "value": getattr(config, key),
+                    "default": default,
+                    "help_text": help_text,
+                }
+            )
+
+        context["settings_list"] = settings_list
+        return context
+
+
+class SiteSettingsUpdateView(LoginRequiredMixin, View):
+    login_url = reverse_lazy("login")
+
+    def post(self, request, *args, **kwargs):
+        from constance import config
+        from django.conf import settings as django_settings
+
+        key = request.POST.get("key")
+        value = request.POST.get("value")
+
+        if key and key in django_settings.CONSTANCE_CONFIG:
+            setattr(config, key, value)
+            messages.success(request, _("تم تحديث الإعداد بنجاح."))
+            return JsonResponse(
+                {"success": True, "message": _("تم تحديث الإعداد بنجاح.")}
+            )
+
+        messages.error(request, _("حدث خطأ أثناء تحديث الإعداد."))
+        return JsonResponse(
+            {"success": False, "message": _("حدث خطأ أثناء تحديث الإعداد.")}, status=400
+        )
+
+
+# -------------------- REPORTS MANAGEMENT --------------------
+
+
+class ReportListView(LoginRequiredMixin, ListView):
+    """Dashboard view to list all reports"""
+
+    template_name = "main/dashboard/report_list.html"
+    model = Report
+    context_object_name = "reports"
+    login_url = reverse_lazy("login")
+    paginate_by = 20
+
+    def get_queryset(self):
+        return Report.objects.all().order_by("-year")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_reports_count"] = Report.objects.filter(is_active=True).count()
+        return context
+
+
+class ReportCreateView(LoginRequiredMixin, CreateView):
+    """Dashboard view to create a new report"""
+
+    template_name = "main/dashboard/report_form.html"
+    model = Report
+    fields = ["year", "title", "pdf_file", "description", "is_active"]
+    success_url = reverse_lazy("report-list")
+    login_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        messages.success(self.request, _("تم إضافة التقرير بنجاح."))
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(
+            self.request, _("حدث خطأ أثناء إضافة التقرير. يرجى التحقق من البيانات.")
+        )
+        return super().form_invalid(form)
+
+
+class ReportDetailView(LoginRequiredMixin, DetailView):
+    """Dashboard view to view report details"""
+
+    template_name = "main/dashboard/report_detail.html"
+    model = Report
+    context_object_name = "report"
+    login_url = reverse_lazy("login")
+
+
+class ReportDeleteView(LoginRequiredMixin, DeleteView):
+    """Dashboard view to delete a report"""
+
+    template_name = "main/dashboard/report_delete.html"
+    model = Report
+    success_url = reverse_lazy("report-list")
+    login_url = reverse_lazy("login")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, _("تم حذف التقرير بنجاح."))
+        return super().delete(request, *args, **kwargs)

@@ -18,6 +18,19 @@ urlpatterns = [
     path("privacy/", PrivacyPageView.as_view(), name="privacy-page"),
     path("contacts/", ContactListView.as_view(), name="contact-list"),
     path("jobrequests/", JobRequestListView.as_view(), name="jobrequest-list"),
+    path(
+        "translations/",
+        TranslationManagementView.as_view(),
+        name="translation-management",
+    ),
+    path("reports-manage/", ReportListView.as_view(), name="report-list"),
+    path("reports-manage/add/", ReportCreateView.as_view(), name="report-add"),
+    path("reports-manage/<int:pk>/", ReportDetailView.as_view(), name="report-detail"),
+    path(
+        "reports-manage/<int:pk>/delete/",
+        ReportDeleteView.as_view(),
+        name="report-delete",
+    ),
     path("report/thimar/", ThimarReportsPageView.as_view(), name="report-thimar"),
     path("contact/<int:pk>/", ContactDetailView.as_view(), name="contact-detail"),
     path(
@@ -33,4 +46,10 @@ urlpatterns = [
     ),
     path("login/", ThimarLoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("settings/", SiteSettingsView.as_view(), name="site-settings"),
+    path(
+        "settings/update/",
+        SiteSettingsUpdateView.as_view(),
+        name="site-settings-update",
+    ),
 ]

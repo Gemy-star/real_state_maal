@@ -1,0 +1,173 @@
+{% extends 'dash_base.html' %}
+{% load static i18n %}
+
+{% block style %}
+<style>
+  .report-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .badge-year {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #392E37, #4c3c4f);
+  }
+
+  .report-row {
+    transition: all 0.3s ease;
+  }
+
+  .report-row:hover {
+    background-color: rgba(206, 201, 187, 0.1);
+    transform: translateX(-3px);
+  }
+
+  .btn-add-report {
+    background: linear-gradient(135deg, #28a745, #218838);
+    border: none;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  }
+
+  .btn-add-report:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(40, 167, 69, 0.5);
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="row mb-4" data-aos="fade-down">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h2 class="mb-2 noto-kufi-arabic">
+            <i class="fas fa-file-pdf text-danger"></i>
+            {% trans "إدارة التقارير" %}
+          </h2>
+          <p class="text-muted noto-kufi-arabic">
+            {% trans "إدارة التقارير السنوية للموقع" %}
+          </p>
+        </div>
+        <div>
+          <a href="{% url 'report-add' %}" class="btn btn-add-report btn-primary text-white">
+            <i class="fas fa-plus me-2"></i>
+            {% trans "إضافة تقرير جديد" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reports Table -->
+  <div class="row">
+    <div class="col-12" data-aos="fade-up">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0 noto-kufi-arabic">
+            <i class="fas fa-list"></i>
+            {% trans "قائمة التقارير" %} ({{ reports|length }})
+          </h5>
+        </div>
+        <div class="card-body">
+          {% if reports %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th class="noto-kufi-arabic">{% trans "السنة" %}</th>
+                  <th class="noto-kufi-arabic">{% trans "العنوان" %}</th>
+                  <th class="noto-kufi-arabic">{% trans "الحالة" %}</th>
+                  <th class="noto-kufi-arabic">{% trans "تاريخ الإضافة" %}</th>
+                  <th class="text-center noto-kufi-arabic">{% trans "الإجراءات" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for report in reports %}
+                <tr class="report-row" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'00' }}">
+                  <td>
+                    <span class="badge badge-year text-white">{{ report.year }}</span>
+                  </td>
+                  <td class="noto-kufi-arabic">
+                    <strong>{{ report.title }}</strong>
+                    {% if report.description %}
+                    <br><small class="text-muted">{{ report.description|truncatewords:15 }}</small>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if report.is_active %}
+                    <span class="badge bg-success">
+                      <i class="fas fa-check-circle"></i> {% trans "نشط" %}
+                    </span>
+                    {% else %}
+                    <span class="badge bg-secondary">
+                      <i class="fas fa-times-circle"></i> {% trans "غير نشط" %}
+                    </span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <small>{{ report.created_at|date:"Y/m/d - H:i" }}</small>
+                  </td>
+                  <td class="text-center">
+                    <div class="report-actions justify-content-center">
+                      <a href="{{ report.pdf_url }}" target="_blank" class="btn btn-sm btn-info text-white" title="{% trans 'عرض' %}">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                      <a href="{% url 'report-detail' report.pk %}" class="btn btn-sm btn-primary" title="{% trans 'التفاصيل' %}">
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      <a href="{% url 'report-delete' report.pk %}" class="btn btn-sm btn-danger" title="{% trans 'حذف' %}">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <div class="alert alert-info text-center" data-aos="fade-up">
+            <i class="fas fa-info-circle me-2"></i>
+            <span class="noto-kufi-arabic">{% trans "لا توجد تقارير متاحة حالياً" %}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="row mt-4">
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+          <h3>{{ reports|length }}</h3>
+          <p class="text-muted noto-kufi-arabic">{% trans "إجمالي التقارير" %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+          <h3>{{ active_reports_count }}</h3>
+          <p class="text-muted noto-kufi-arabic">{% trans "التقارير النشطة" %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fas fa-calendar fa-3x text-primary mb-3"></i>
+          <h3>{% if reports %}{{ reports.first.year }}{% else %}-{% endif %}</h3>
+          <p class="text-muted noto-kufi-arabic">{% trans "آخر تقرير" %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

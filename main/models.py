@@ -128,7 +128,9 @@ class HomePageContent(SingletonModel):
         _("First Paragraph Background"), upload_to="backgrounds/", null=True, blank=True
     )
     roaya_paragraph = models.TextField(_("Vision Paragraph"), null=True, blank=True)
-    messages_paragraph = models.TextField(_("Messages Paragraph"), null=True, blank=True)
+    messages_paragraph = models.TextField(
+        _("Messages Paragraph"), null=True, blank=True
+    )
     goals_paragraph = models.TextField(_("Goals Paragraph"), null=True, blank=True)
 
     welcome_background_large = ImageSpecField(
@@ -146,8 +148,10 @@ class HomePageContent(SingletonModel):
 
     @property
     def background_url(self):
-        return self.welcome_background_large.url if self.welcome_background else static(
-            "assets/img/home_main.jpg"
+        return (
+            self.welcome_background_large.url
+            if self.welcome_background
+            else static("assets/img/home_main.jpg")
         )
 
     @property
@@ -176,7 +180,10 @@ class RelationsPage(SingletonModel):
         _("First Paragraph Background"), upload_to="backgrounds/", null=True, blank=True
     )
     second_paragrapgh_background = models.ImageField(
-        _("Second Paragraph Background"), upload_to="backgrounds/", null=True, blank=True
+        _("Second Paragraph Background"),
+        upload_to="backgrounds/",
+        null=True,
+        blank=True,
     )
 
     first_paragrapgh_background_large = ImageSpecField(
@@ -214,7 +221,9 @@ class RelationsPage(SingletonModel):
 
 
 class WhoUsPage(SingletonModel):
-    main_title = models.CharField(_("Main Title"), max_length=255, null=True, blank=True)
+    main_title = models.CharField(
+        _("Main Title"), max_length=255, null=True, blank=True
+    )
     main_subtitle = models.TextField(_("Main Subtitle"), null=True, blank=True)
     main_background = models.ImageField(
         _("Main Background"), upload_to="backgrounds/", null=True, blank=True
@@ -229,10 +238,49 @@ class WhoUsPage(SingletonModel):
 
     @property
     def main_background_url(self):
-        return self.main_background_large.url if self.main_background else static(
-            "assets/img/home_1.jpg"
+        return (
+            self.main_background_large.url
+            if self.main_background
+            else static("assets/img/home_1.jpg")
         )
 
     class Meta:
         verbose_name = _("Who Us Page")
         verbose_name_plural = _("Who Us Pages")
+
+
+class Report(models.Model):
+    """Model for annual reports"""
+
+    year = models.IntegerField(
+        _("Year"), unique=True, help_text=_("Report year (e.g., 2024)")
+    )
+    title = models.CharField(
+        _("Title"),
+        max_length=255,
+        help_text=_("Report title (e.g., التقرير السنوي 2024)"),
+    )
+    pdf_file = models.FileField(
+        _("PDF File"), upload_to="reports/", help_text=_("Upload the report PDF file")
+    )
+    description = models.TextField(
+        _("Description"), blank=True, null=True, help_text=_("Optional description")
+    )
+    is_active = models.BooleanField(
+        _("Active"), default=True, help_text=_("Show this report on the website")
+    )
+    created_at = models.DateTimeField(_("Created At"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated At"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Report")
+        verbose_name_plural = _("Reports")
+        ordering = ["-year"]
+
+    def __str__(self):
+        return f"{self.title} - {self.year}"
+
+    @property
+    def pdf_url(self):
+        """Returns the URL of the PDF file"""
+        return self.pdf_file.url if self.pdf_file else None

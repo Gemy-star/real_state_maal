@@ -1,0 +1,211 @@
+{% extends 'dash_base.html' %}
+{% load static i18n %}
+
+{% block style %}
+<style>
+  .form-card {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #392E37;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #392E37;
+    box-shadow: 0 0 0 0.2rem rgba(57, 46, 55, 0.15);
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, #392E37, #4c3c4f);
+    border: none;
+    padding: 0.75rem 2rem;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(57, 46, 55, 0.4);
+  }
+
+  .file-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="row mb-4" data-aos="fade-down">
+    <div class="col-12">
+      <h2 class="mb-2 noto-kufi-arabic">
+        <i class="fas fa-plus-circle text-success"></i>
+        {% trans "إضافة تقرير جديد" %}
+      </h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'report-list' %}">{% trans "التقارير" %}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{% trans "إضافة تقرير" %}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Form Card -->
+  <div class="row">
+    <div class="col-12" data-aos="fade-up">
+      <div class="card form-card">
+        <div class="card-header">
+          <h5 class="mb-0 noto-kufi-arabic">
+            <i class="fas fa-file-upload"></i>
+            {% trans "معلومات التقرير" %}
+          </h5>
+        </div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" id="reportForm">
+            {% csrf_token %}
+
+            <!-- Year Field -->
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="100">
+              <label for="{{ form.year.id_for_label }}" class="form-label noto-kufi-arabic">
+                <i class="fas fa-calendar-alt text-primary"></i>
+                {% trans "السنة" %} <span class="text-danger">*</span>
+              </label>
+              {{ form.year }}
+              {% if form.year.errors %}
+                <div class="text-danger small mt-1">
+                  {{ form.year.errors }}
+                </div>
+              {% endif %}
+              <small class="text-muted">{% trans "مثال: 2024" %}</small>
+            </div>
+
+            <!-- Title Field -->
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
+              <label for="{{ form.title.id_for_label }}" class="form-label noto-kufi-arabic">
+                <i class="fas fa-heading text-primary"></i>
+                {% trans "العنوان" %} <span class="text-danger">*</span>
+              </label>
+              {{ form.title }}
+              {% if form.title.errors %}
+                <div class="text-danger small mt-1">
+                  {{ form.title.errors }}
+                </div>
+              {% endif %}
+              <small class="text-muted">{% trans "مثال: التقرير السنوي 2024" %}</small>
+            </div>
+
+            <!-- PDF File Field -->
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="300">
+              <label for="{{ form.pdf_file.id_for_label }}" class="form-label noto-kufi-arabic">
+                <i class="fas fa-file-pdf text-danger"></i>
+                {% trans "ملف PDF" %} <span class="text-danger">*</span>
+              </label>
+              {{ form.pdf_file }}
+              {% if form.pdf_file.errors %}
+                <div class="text-danger small mt-1">
+                  {{ form.pdf_file.errors }}
+                </div>
+              {% endif %}
+              <div class="file-info">
+                <i class="fas fa-info-circle text-info"></i>
+                <small class="text-muted noto-kufi-arabic">
+                  {% trans "الرجاء تحميل ملف PDF فقط. الحد الأقصى لحجم الملف: 50 ميجابايت" %}
+                </small>
+              </div>
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="400">
+              <label for="{{ form.description.id_for_label }}" class="form-label noto-kufi-arabic">
+                <i class="fas fa-align-left text-primary"></i>
+                {% trans "الوصف" %} <small>({% trans "اختياري" %})</small>
+              </label>
+              {{ form.description }}
+              {% if form.description.errors %}
+                <div class="text-danger small mt-1">
+                  {{ form.description.errors }}
+                </div>
+              {% endif %}
+              <small class="text-muted">{% trans "وصف مختصر للتقرير" %}</small>
+            </div>
+
+            <!-- Active Field -->
+            <div class="mb-4" data-aos="fade-up" data-aos-delay="500">
+              <div class="form-check form-switch">
+                {{ form.is_active }}
+                <label class="form-check-label noto-kufi-arabic" for="{{ form.is_active.id_for_label }}">
+                  <i class="fas fa-toggle-on text-success"></i>
+                  {% trans "نشط (إظهار في الموقع)" %}
+                </label>
+              </div>
+              {% if form.is_active.errors %}
+                <div class="text-danger small mt-1">
+                  {{ form.is_active.errors }}
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex gap-2 justify-content-end" data-aos="fade-up" data-aos-delay="600">
+              <a href="{% url 'report-list' %}" class="btn btn-secondary">
+                <i class="fas fa-times me-2"></i>
+                {% trans "إلغاء" %}
+              </a>
+              <button type="submit" class="btn btn-submit btn-primary text-white">
+                <i class="fas fa-save me-2"></i>
+                {% trans "حفظ التقرير" %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Section -->
+  <div class="row mt-4">
+    <div class="col-12" data-aos="fade-up" data-aos-delay="700">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="noto-kufi-arabic">
+            <i class="fas fa-question-circle text-info"></i>
+            {% trans "تعليمات" %}
+          </h6>
+          <ul class="mb-0 noto-kufi-arabic">
+            <li>{% trans "يجب إدخال السنة والعنوان وملف PDF" %}</li>
+            <li>{% trans "تأكد من أن ملف PDF يعمل بشكل صحيح قبل الرفع" %}</li>
+            <li>{% trans "يمكنك إلغاء تفعيل التقرير لإخفائه من الموقع دون حذفه" %}</li>
+            <li>{% trans "التقرير النشط فقط سيظهر للزوار" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Add Bootstrap classes to form fields
+  document.addEventListener('DOMContentLoaded', function() {
+    const yearInput = document.querySelector('#{{ form.year.id_for_label }}');
+    const titleInput = document.querySelector('#{{ form.title.id_for_label }}');
+    const pdfInput = document.querySelector('#{{ form.pdf_file.id_for_label }}');
+    const descInput = document.querySelector('#{{ form.description.id_for_label }}');
+    const activeInput = document.querySelector('#{{ form.is_active.id_for_label }}');
+
+    if (yearInput) yearInput.className = 'form-control';
+    if (titleInput) titleInput.className = 'form-control';
+    if (pdfInput) pdfInput.className = 'form-control';
+    if (descInput) {
+      descInput.className = 'form-control';
+      descInput.rows = 4;
+    }
+    if (activeInput) activeInput.className = 'form-check-input';
+  });
+</script>
+{% endblock %}

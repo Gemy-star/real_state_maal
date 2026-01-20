@@ -9,6 +9,8 @@ django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 pre-commit = "*"
 django-constance = {extras = ["database"], version = "*"}
+django-imagekit = "*"
+django-rosetta = "*"
 
 [dev-packages]
 flake8 = "*"

@@ -3,484 +3,1263 @@
 {% load i18n %}
 
 {% block style %}
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 <style>
   :root {
     --color-main: #392E37;
     --color-secondary: #CEC9BB;
     --color-goals: #b9aac1;
-  }
-  /* Staff Swiper Slide */
-  .swiper-staff .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    --color-accent: #FFD369;
+    --color-dark-purple: #4c3c4f;
   }
 
-  .swiper-staff .card {
-    border: none;
-    border-radius: 12px;
+  /* ============================================
+     KEYFRAME ANIMATIONS
+     ============================================ */
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* ============================================
+     HERO / INTRO SECTION
+     ============================================ */
+
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: transform 0.5s ease;
+  }
+
+  .hero-section:hover .hero-background {
+    transform: scale(1.02);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(57, 46, 55, 0.85) 0%, rgba(76, 60, 79, 0.75) 100%);
+  }
+
+  .hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+  .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; width: 15px; height: 15px; }
+  .particle:nth-child(3) { top: 40%; left: 60%; animation-delay: 2s; }
+  .particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 3s; width: 8px; height: 8px; }
+  .particle:nth-child(5) { top: 30%; left: 90%; animation-delay: 4s; }
+  .particle:nth-child(6) { top: 70%; left: 40%; animation-delay: 5s; width: 12px; height: 12px; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    padding: 15px;
-    background: #fff;
+    padding: 2rem;
   }
 
-  .swiper-staff .card-img img {
-    border-radius: 50%;
-    max-width: 120px;
-    margin-bottom: 12px;
-  }
-
-  .swiper-staff .title-d {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-
-  .swiper-staff .content-d {
-    font-size: 14px;
-    color: #6c757d;
-  }
-
-  /* Swiper Navigation Buttons */
-  .swiper-staff .swiper-button-next,
-  .swiper-staff .swiper-button-prev {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(90deg, #392E37, #4c3c4f);
-    border-radius: 50%;
+  .hero-title {
     color: #fff;
-    display: flex;
-    justify-content: center;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s ease-out;
+    text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-title .highlight {
+    color: var(--color-accent);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-title .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    animation: scaleX 1s ease-out 0.5s forwards;
+  }
+
+  @keyframes scaleX {
+    to { transform: scaleX(1); }
+  }
+
+  .hero-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+  }
+
+  .hero-btn {
+    display: inline-flex;
     align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ffa500 100%);
+    color: var(--color-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 40px rgba(255, 211, 105, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: bounceIn 1s ease-out 0.6s backwards;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-btn::before {
+    content: '';
+    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .hero-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 60px rgba(255, 211, 105, 0.5);
+    color: var(--color-main);
+  }
+
+  .hero-btn i {
     transition: transform 0.3s ease;
   }
 
-  .swiper-staff .swiper-button-next:hover,
-  .swiper-staff .swiper-button-prev:hover {
-    transform: translateY(-50%) scale(1.1);
+  .hero-btn:hover i {
+    transform: translateX(-5px);
   }
 
-  .swiper-staff .swiper-button-next::after,
-  .swiper-staff .swiper-button-prev::after {
-    font-size: 24px;
-    font-weight: bold;
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: float 2s ease-in-out infinite;
   }
-  /* General styles for a consistent look */
-  .container-fluid-custom {
-    padding-left: 1rem;
-    padding-right: 1rem;
+
+  .scroll-indicator a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
   }
-  @media (min-width: 576px) {
-    .container-fluid-custom {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
+
+  .scroll-indicator a:hover {
+    opacity: 1;
   }
-.intro {
-  min-height: 80vh;
-  color: #ffffff;
-  height:auto;
-}
-  /* Intro Section */
-  .intro .carousel-item-a {
+
+  .scroll-indicator i {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    animation: bounceDown 1.5s ease-in-out infinite;
+  }
+
+  @keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  /* ============================================
+     ABOUT SECTION
+     ============================================ */
+
+  .about-section {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #e0dbd0 100%);
+    padding: 6rem 0;
     position: relative;
-    min-height: 80vh; /* More responsive height */
-    height: auto;
-    display: flex; /* Use flexbox for modern centering */
+    overflow: hidden;
+  }
+
+  .about-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(57, 46, 55, 0.05);
+    border-radius: 50%;
+  }
+
+  .about-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: rgba(57, 46, 55, 0.03);
+    border-radius: 50%;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+  }
+
+  .about-logo {
+    max-width: 180px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+    transition: transform 0.5s ease;
+  }
+
+  .about-logo:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
+
+  .about-main-image {
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .about-main-image:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+  }
+
+  .about-content {
+    padding: 2rem 0;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-main) 0%, var(--color-dark-purple) 100%);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 20px rgba(57, 46, 55, 0.3);
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-main);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .about-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #555;
+  }
+
+  /* ============================================
+     VISION/MISSION CARDS SECTION
+     ============================================ */
+
+  .vision-section {
+    background: linear-gradient(180deg, var(--color-goals) 0%, #c9bdd0 100%);
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .vision-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.5rem;
+    height: 100%;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+
+  .vision-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--color-main), var(--color-accent));
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+
+  .vision-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .vision-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-accent);
+  }
+
+  .vision-card.card-dark {
+    background: linear-gradient(135deg, var(--color-main) 0%, var(--color-dark-purple) 100%);
+    color: #fff;
+  }
+
+  .vision-card.card-dark .vision-card-title,
+  .vision-card.card-dark .vision-card-text {
+    color: #fff;
+  }
+
+  .vision-card.card-dark .vision-card-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .vision-card.card-secondary {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #d8d3c5 100%);
+  }
+
+  .vision-card-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ffa500 100%);
+    border-radius: 20px;
+    display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(255, 211, 105, 0.3);
+    transition: transform 0.5s ease;
   }
-  .intro-content {
+
+  .vision-card:hover .vision-card-icon {
+    transform: rotateY(180deg);
+  }
+
+  .vision-card-icon i {
+    font-size: 1.8rem;
+    color: var(--color-main);
+  }
+
+  .vision-card-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .vision-card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-main);
+    margin-bottom: 1rem;
+  }
+
+  .vision-card-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #666;
+  }
+
+  /* ============================================
+     FACTS & FIGURES SECTION
+     ============================================ */
+
+  .facts-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-main);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-main));
+    border-radius: 2px;
+  }
+
+  .fact-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-main) 0%, var(--color-dark-purple) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .fact-card:hover::before {
+    opacity: 1;
+  }
+
+  .fact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(57, 46, 55, 0.2);
+  }
+
+  .fact-card:hover .fact-number,
+  .fact-card:hover .fact-label {
+    color: #fff;
+  }
+
+  .fact-card:hover .fact-icon {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-main);
+  }
+
+  .fact-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #e0dbd0 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-main);
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+
+  .fact-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-main);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    transition: color 0.5s ease;
+  }
+
+  .fact-label {
+    font-size: 1rem;
+    color: #666;
+    position: relative;
+    z-index: 1;
+    transition: color 0.5s ease;
+  }
+
+  /* ============================================
+     TEAM SECTION - SWIPER
+     ============================================ */
+
+  .team-section {
+    background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%);
+    padding: 6rem 0;
+  }
+
+  .swiper-team {
+    padding: 2rem 0 4rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
   }
-  .intro .intro-title {
-    color: #ffffff;
+
+  .team-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+  }
+
+  .team-card-image {
+    position: relative;
+    padding: 2rem 2rem 0;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #e0dbd0 100%);
+  }
+
+  .team-card-image::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .team-card-image img {
+    position: relative;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease;
+  }
+
+  .team-card:hover .team-card-image img {
+    transform: scale(1.1);
+  }
+
+  .team-card-body {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .team-card-name {
+    font-size: 1.1rem;
     font-weight: 700;
-    /* Fluid font size for better responsiveness */
-    font-size: clamp(1.5rem, 6vw, 3.8rem);
-    text-transform: uppercase;
-  }
-  .intro .intro-btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid #ffffff;
-    border-radius: 50px;
-    color: #ffffff;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  .intro .intro-btn:hover {
-    background-color: rgba(255, 255, 255, 0.4);
+    color: var(--color-main);
+    margin-bottom: 0.5rem;
   }
 
-  /* Card and Section styles */
-  .card-box-ico {
-    padding: 0.95rem !important;
-  }
-  .card-shadow {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .home-who-us {
-    background-color: var(--color-secondary) !important;
-  }
-  .bg-footer {
-    background-color: var(--color-goals);
-  }
-  .bg-main {
-    background-color: var(--color-main) !important;
-  }
-  .bg-sec {
-    background-color: var(--color-secondary) !important;
-  }
-  .bg-goals {
-    background-color: var(--color-goals) !important;
+  .team-card-role {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 1rem;
   }
 
-  .section-t4 {
-    padding-top: 3rem;
-  }
-  .section-t8 {
-    padding-top: 4rem;
-  }
-
-  .h-40-vh {
-    height: auto;
-    padding-bottom: 2rem;
+  .team-card-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
   }
 
-  /* Ensure images in the "who we are" section are responsive */
-  .agent-avatar-box img {
-    max-width: 100%;
-    height: auto;
+  .team-card-social a {
+    width: 40px;
+    height: 40px;
+    background: var(--color-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-main);
+    transition: all 0.3s ease;
   }
 
-  /* Facts and figures cards to stack better on small screens */
-  @media (max-width: 767.98px) {
-    .facts-figures .col-md-2 {
-      flex: 0 0 50%;
-      max-width: 50%;
+  .team-card-social a:hover {
+    background: var(--color-main);
+    color: #fff;
+    transform: translateY(-3px);
+  }
+
+  /* Swiper Pagination Only (No Arrows) */
+
+  .swiper-team .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: var(--color-secondary);
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  .swiper-team .swiper-pagination-bullet-active {
+    background: var(--color-main);
+    width: 30px;
+    border-radius: 6px;
+  }
+
+  /* ============================================
+     NEWS TICKER / MARQUEE
+     ============================================ */
+
+  .news-ticker {
+    background: linear-gradient(135deg, var(--color-main) 0%, var(--color-dark-purple) 100%);
+    padding: 1rem 0;
+    overflow: hidden;
+  }
+
+  .ticker-wrapper {
+    display: flex;
+    animation: ticker 30s linear infinite;
+  }
+
+  .ticker-item {
+    white-space: nowrap;
+    padding: 0 3rem;
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ticker-item i {
+    color: var(--color-accent);
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ============================================
+     RESPONSIVE ADJUSTMENTS
+     ============================================ */
+
+  @media (max-width: 991.98px) {
+    .hero-title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .about-section,
+    .vision-section,
+    .facts-section,
+    .team-section {
+      padding: 4rem 0;
+    }
+
+    .vision-card {
+      margin-bottom: 1.5rem;
     }
   }
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    .facts-figures .col-md-2 {
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
+
+  @media (max-width: 767.98px) {
+    .hero-section {
+      min-height: 80vh;
+    }
+
+    .about-image-wrapper {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Mobile pagination styling */
+    .swiper-team .swiper-pagination {
+      bottom: 10px !important;
     }
   }
 </style>
 {% endblock %}
 
 {% block body %}
-  <div class="intro intro-carousel position-relative">
-    <div class="swiper-slide carousel-item-a intro-item bg-image" style="
-      background-position: center;
-      background-image: url('{{ content.background_url }}');
-      background-size: cover;
-      width: 100% !important;
-    ">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="intro-body">
-                <h1 class="intro-title mb-4 text-center noto-kufi-arabic">
-                  {% trans 'نزرع النجاح، نحصد التميز ونبني مستقبلًا مزدهرًا، بخطى رائدة في الاستثمار والتسويق.' %}
-                </h1>
-                <a class="intro-btn noto-kufi-arabic" href="#">
-                  {% trans 'شركة ثمار' %}
-                </a>
-              </div>
-            </div>
-          </div>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background" style="background-image: url('{{ content.background_url }}');"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Floating Particles -->
+  <div class="hero-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="hero-title noto-kufi-arabic" data-aos="fade-down" data-aos-duration="1000">
+        {% trans 'نزرع النجاح، نحصد التميز' %}
+        <br>
+        <span class="highlight">{% trans 'ونبني مستقبلًا مزدهرًا' %}</span>
+      </h1>
+      <p class="hero-subtitle noto-kufi-arabic" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+        {% trans 'بخطى رائدة في الاستثمار والتسويق' %}
+      </p>
+      <a href="{% url 'about-page' %}" class="hero-btn noto-kufi-arabic" data-aos="zoom-in" data-aos-delay="600">
+        <span>{% trans 'اكتشف المزيد' %}</span>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1000">
+    <a href="#about">
+      <span class="noto-kufi-arabic">{% trans 'اكتشف' %}</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </div>
+</section>
+
+<!-- News Ticker -->
+<div class="news-ticker">
+  <div class="ticker-wrapper">
+    {% for item in news %}
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {{ item.title }}
+    </div>
+    {% empty %}
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'مرحباً بكم في شركة ثمار القابضة' %}
+    </div>
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'أكثر من 35 عاماً من الخبرة والتميز' %}
+    </div>
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'نفخر بخدمة أكثر من 500 شريك نجاح' %}
+    </div>
+    {% endfor %}
+    <!-- Duplicate for seamless loop -->
+    {% for item in news %}
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {{ item.title }}
+    </div>
+    {% empty %}
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'مرحباً بكم في شركة ثمار القابضة' %}
+    </div>
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'أكثر من 35 عاماً من الخبرة والتميز' %}
+    </div>
+    <div class="ticker-item noto-kufi-arabic">
+      <i class="fas fa-circle"></i>
+      {% trans 'نفخر بخدمة أكثر من 500 شريك نجاح' %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <div class="about-image-wrapper" data-aos="fade-left" data-aos-duration="1000">
+          <img src="{% static 'assets/img/logo.png' %}" alt="{% trans 'Thimar Holding Logo' %}" class="about-logo">
+          <img src="{{ content.first_paragrapgh_background_url }}" alt="{% trans 'About Thimar' %}" class="about-main-image img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="about-content" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+          <span class="section-badge noto-kufi-arabic">{% trans 'من نحن' %}</span>
+          <h2 class="about-title noto-kufi-arabic">{% trans 'شركة ثمار' %}</h2>
+          <p class="about-text noto-kufi-arabic">
+            {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <main id="main">
-    <section class="section-agents section-t4 home-who-us">
-      <div class="container">
-        <div class="row pt-2 align-items-center">
-          <div class="col-md-5 pb-2 section-md-t3">
-            <div class="agent-avatar-box">
-              <img src="{% static 'assets/img/logo.png' %}" alt="{% trans 'Thimar Holding Logo' %}" class="agent-avatar img-fluid">
-            </div>
-            <div class="agent-avatar-box mt-3">
-              <img src="{{content.first_paragrapgh_background_url}}" style="border-radius: 12px;" alt="{% trans 'A visual representation of the company' %}" class="agent-avatar img-fluid">
-            </div>
-          </div>
-          <div class="col-md-5 section-md-t3 pb-2">
-            <div class="agent-info-box">
-              <div class="agent-content mb-3">
-                <div class="title-box-d mt-4">
-                  <h5 class="title-single text-black-50 noto-kufi-arabic">
-                    {% trans 'شركة ثمار' %}
-                  </h5>
-                </div>
-                <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.25rem;">
-                  {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <section class="section-news section-t8 bg-goals h-40-vh">
-      <div class="container">
-        <div class="row d-flex justify-content-between">
-          <div class="col-md-3 pt-2 pt-4">
-            <div class="card bg-main card-shadow">
-              <div class="card-body">
-                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                  {% trans 'نعمل' %}
-                </p>
-                <h2 class="text-white noto-kufi-arabic">{% trans 'الرؤية' %}</h2>
-                <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                  {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 pt-4">
-            <div class="card bg-goals card-shadow">
-              <div class="card-body">
-                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                  {% trans 'نطمح' %}
-                </p>
-                <h2 class="text-dark noto-kufi-arabic">{% trans 'الأهداف' %}</h2>
-                {% if content.goals_paragraph %}
-                  {{ content.goals_paragraph|safe }}
-                {% else %}
-                  <p class="content-d color-text-a noto-kufi-arabic" style="font-size: 1.09rem;">
-                    {% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}
-                  </p>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 pt-2 pt-4">
-            <div class="card bg-sec card-shadow">
-              <div class="card-body">
-                <p class="text-white-50 noto-kufi-arabic" style="font-size: 1.03rem;">
-                  {% trans 'لنحقق' %}
-                </p>
-                <h2 class="text-white noto-kufi-arabic">{% trans 'الرسالة' %}</h2>
-                <p class="text-white noto-kufi-arabic" style="font-size: 1.09rem;">
-                  {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-<!-- Facts & Figures Swiper (Mobile Friendly) -->
-<section class="section-agents section-t4 facts-figures">
+<!-- Vision/Mission Section -->
+<section class="vision-section">
   <div class="container">
-    <h2 class="noto-kufi-arabic mb-4">{% trans 'حقائق وأرقام' %}</h2>
-    <div class="row d-flex justify-content-between">
-
-      <!-- Fact 1 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-main card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="35">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'سنوات من الخبرة' %}</p>
+    <div class="row g-4">
+      <!-- Vision Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="800">
+        <div class="vision-card card-dark">
+          <div class="vision-card-icon">
+            <i class="fas fa-eye"></i>
           </div>
+          <span class="vision-card-label noto-kufi-arabic">{% trans 'نعمل' %}</span>
+          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الرؤية' %}</h3>
+          <p class="vision-card-text noto-kufi-arabic">
+            {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Goals Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+        <div class="vision-card">
+          <div class="vision-card-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <span class="vision-card-label noto-kufi-arabic">{% trans 'نطمح' %}</span>
+          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الأهداف' %}</h3>
+          <div class="vision-card-text noto-kufi-arabic">
+            {% if content.goals_paragraph %}
+              {{ content.goals_paragraph|safe }}
+            {% else %}
+              <p>{% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Card -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+        <div class="vision-card card-secondary">
+          <div class="vision-card-icon">
+            <i class="fas fa-paper-plane"></i>
+          </div>
+          <span class="vision-card-label noto-kufi-arabic">{% trans 'لنحقق' %}</span>
+          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الرسالة' %}</h3>
+          <p class="vision-card-text noto-kufi-arabic">
+            {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Facts & Figures Section -->
+<section class="facts-section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title noto-kufi-arabic">{% trans 'حقائق وأرقام' %}</h2>
+    </div>
+
+    <div class="row g-4">
+      <!-- Fact 1 -->
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="fact-number counter" data-count="35">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'سنوات من الخبرة' %}</p>
         </div>
       </div>
 
       <!-- Fact 2 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-sec card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="500">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'شركاء النجاح' %}</p>
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="200">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-handshake"></i>
           </div>
+          <h3 class="fact-number counter" data-count="500">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'شركاء النجاح' %}</p>
         </div>
       </div>
 
       <!-- Fact 3 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-goals card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="100">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'مشروع ناجح' %}</p>
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-project-diagram"></i>
           </div>
+          <h3 class="fact-number counter" data-count="100">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'مشروع ناجح' %}</p>
         </div>
       </div>
 
       <!-- Fact 4 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-main card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="10">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'قطاعات استثمارية' %}</p>
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="400">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-chart-pie"></i>
           </div>
+          <h3 class="fact-number counter" data-count="10">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'قطاعات استثمارية' %}</p>
         </div>
       </div>
 
       <!-- Fact 5 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-sec card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="24">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'خدمة العملاء' %}</p>
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="500">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-headset"></i>
           </div>
+          <h3 class="fact-number counter" data-count="24">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'خدمة العملاء' %}</p>
         </div>
       </div>
 
       <!-- Fact 6 -->
-      <div class="col-12 col-md-4 col-lg-2 pt-2 mb-4">
-        <div class="card shadow-sm bg-goals card-shadow">
-          <div class="card-body text-center">
-            <h3 class="card-title text-white counter" data-count="15">0</h3>
-            <p class="card-text noto-kufi-arabic text-white">{% trans 'جوائز وتكريمات' %}</p>
+      <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="600">
+        <div class="fact-card">
+          <div class="fact-icon">
+            <i class="fas fa-trophy"></i>
           </div>
+          <h3 class="fact-number counter" data-count="15">0</h3>
+          <p class="fact-label noto-kufi-arabic">{% trans 'جوائز وتكريمات' %}</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-<section class="section-agents section-t8">
+
+<!-- Team Section with Swiper -->
+<section class="team-section">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="title-wrap d-flex justify-content-between">
-          <div class="title-box">
-            <h2 class="title-single text-black-50 noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
-          </div>
-        </div>
-      </div>
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
     </div>
 
-    <!-- Swiper Staff Section -->
-    <div class="swiper swiper-staff pt-4">
+    <div class="swiper swiper-team" data-aos="fade-up" data-aos-delay="200">
       <div class="swiper-wrapper">
-        <!-- Slide 1 -->
+        <!-- Team Member 1 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'Engineer Waleed Bin Abdulaziz Al Shuwair' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h6>
-              <p class="content-d color-text-a">{% trans 'رئيس مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'رئيس مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 2 -->
+        <!-- Team Member 2 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'Mr. Khaled bin Asaad Khashoggi' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'أ/ خالد بن أسعد خاشقجي' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h6>
-              <p class="content-d color-text-a">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 3 -->
+        <!-- Team Member 3 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'Mr. Melfi bin Menahi Al Marzouqi' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'أ/ ملفي بن مناحي المرزوقي' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h6>
-              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 4 -->
+        <!-- Team Member 4 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'Mr. Abdulaziz Mohammed Al Qahtani' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'أ/ عبد العزيز محمد القحطاني' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h6>
-              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 5 -->
+        <!-- Team Member 5 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'Mr. Abdulkarim bin Mohammed Al Nahir' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'أ/ عبدالكريم بن محمد النهير' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h6>
-              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 6 -->
+        <!-- Team Member 6 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'Mr. Haitham bin Faisal Skobi' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'أ/هيثم بن فيصل اسكوبى' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h6>
-              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Slide 7 -->
+        <!-- Team Member 7 -->
         <div class="swiper-slide">
-          <div class="card">
-            <div class="card-img">
-              <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'Mr. Yasser bin Suleiman Al Aqeel' %}" class="img-d img-fluid" />
+          <div class="team-card">
+            <div class="team-card-image">
+              <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'أ/ياسر بن سليمان العقيل' %}">
             </div>
-            <div class="card-body">
-              <h6 class="title-d">{% trans 'أ/ياسر بن سليمان العقيل' %}</h6>
-              <p class="content-d color-text-a">{% trans 'عضو مجلس الإدارة' %}</p>
+            <div class="team-card-body">
+              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ياسر بن سليمان العقيل' %}</h4>
+              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <div class="team-card-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Swiper Navigation -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+
+      <!-- Pagination Only -->
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </section>
+{% endblock %}
 
-
-    </main>
-  {% endblock %}
 {% block js %}
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
-  var swiperStaff = new Swiper('.swiper-staff', {
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false,
+    offset: 100
+  });
+
+  // Initialize Team Swiper
+  var swiperTeam = new Swiper('.swiper-team', {
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 30,
     loop: true,
-    pagination: {
-      el: '.swiper-staff .swiper-pagination',
-      clickable: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
     },
-    navigation: {
-      nextEl: '.swiper-staff .swiper-button-next',
-      prevEl: '.swiper-staff .swiper-button-prev',
+    pagination: {
+      el: '.swiper-team .swiper-pagination',
+      clickable: true,
+      dynamicBullets: true
     },
     breakpoints: {
       576: { slidesPerView: 2 },
@@ -489,34 +1268,59 @@
       1200: { slidesPerView: 5 },
     },
   });
-</script>
-<script>
+
+  // Counter Animation
   function animateCounter(el) {
     const target = +el.getAttribute("data-count");
-    const duration = 2000; // 2 seconds
-    const stepTime = Math.abs(Math.floor(duration / target));
+    const duration = 2000;
+    const stepTime = Math.max(Math.floor(duration / target), 20);
     let count = 0;
+    const increment = Math.ceil(target / (duration / stepTime));
 
     const timer = setInterval(() => {
-      count++;
-      el.textContent = count + (target >= 100 ? "+" : "");
+      count += increment;
       if (count >= target) {
+        count = target;
         clearInterval(timer);
       }
+      el.textContent = count + (target >= 100 ? "+" : "");
     }, stepTime);
   }
 
-  // Trigger when section is visible
+  // Intersection Observer for counters
   const counters = document.querySelectorAll(".counter");
-  const observer = new IntersectionObserver(entries => {
+  const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         animateCounter(entry.target);
-        observer.unobserve(entry.target); // Run once
+        counterObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
 
-  counters.forEach(counter => observer.observe(counter));
+  counters.forEach(counter => counterObserver.observe(counter));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId !== '#' && document.querySelector(targetId)) {
+        e.preventDefault();
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Parallax effect on hero background
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const heroBackground = document.querySelector('.hero-background');
+    if (heroBackground && scrolled < window.innerHeight) {
+      heroBackground.style.transform = `translateY(${scrolled * 0.5}px) scale(1.02)`;
+    }
+  });
 </script>
 {% endblock %}
