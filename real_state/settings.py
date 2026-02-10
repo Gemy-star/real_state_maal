@@ -146,6 +146,7 @@ DEFAULT_STATIC_FOLDER_NAME = os.environ.get(
     default="static",
 )
 STATIC_URL = f"/{DEFAULT_STATIC_FOLDER_NAME}/"
+STATIC_ROOT = str(BASE_DIR / "staticfiles")  # Directory for collectstatic
 STATICFILES_DIRS = [str(BASE_DIR / "static")]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
