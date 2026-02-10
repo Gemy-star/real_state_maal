@@ -1,5 +1,5 @@
 {% extends 'dash_base.html' %}
-{% load i18n static %}
+{% load i18n static formatter_tags %}
 
 {% block title %}{% trans "تفاصيل السؤال" %}{% endblock %}
 
@@ -33,7 +33,7 @@
           <div class="detail-section">
             <h5 class="section-title">{% trans "الكلمات المفتاحية" %}</h5>
             <p class="section-content">
-              {% for keyword in qa.keywords.split:',' %}
+              {% for keyword in qa.keywords|split:',' %}
                 <span class="badge bg-secondary me-1">{{ keyword }}</span>
               {% endfor %}
             </p>

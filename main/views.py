@@ -11,6 +11,7 @@ from django.views.generic import (
     DetailView,
     ListView,
     TemplateView,
+    UpdateView,
     View,
 )
 from django.http import JsonResponse
@@ -439,47 +440,18 @@ class ChatbotCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
-class ChatbotUpdateView(LoginRequiredMixin, View):
+class ChatbotUpdateView(LoginRequiredMixin, UpdateView):
     """Dashboard view to update a chatbot Q&A"""
 
+    template_name = "main/dashboard/chatbot_edit.html"
+    model = ChatbotQA
+    fields = ["question", "answer", "keywords", "category", "order", "is_active"]
+    success_url = reverse_lazy("chatbot-list")
     login_url = reverse_lazy("login")
 
-    def get(self, request, pk):
-        qa = ChatbotQA.objects.get(pk=pk)
-        return JsonResponse(
-            {
-                "id": qa.id,
-                "question": qa.question,
-                "answer": qa.answer,
-                "keywords": qa.keywords,
-                "category": qa.category,
-                "order": qa.order,
-                "is_active": qa.is_active,
-            }
-        )
-
-    def post(self, request, pk):
-        try:
-            qa = ChatbotQA.objects.get(pk=pk)
-            qa.question = request.POST.get("question", qa.question)
-            qa.answer = request.POST.get("answer", qa.answer)
-            qa.keywords = request.POST.get("keywords", qa.keywords)
-            qa.category = request.POST.get("category", qa.category)
-            qa.order = request.POST.get("order", qa.order)
-            qa.is_active = request.POST.get("is_active") == "true"
-            qa.save()
-            messages.success(request, _("تم تحديث السؤال والجواب بنجاح."))
-            return JsonResponse({"success": True, "message": _("تم التحديث بنجاح.")})
-        except ChatbotQA.DoesNotExist:
-            messages.error(request, _("السؤال غير موجود."))
-            return JsonResponse(
-                {"success": False, "message": _("السؤال غير موجود.")}, status=404
-            )
-        except Exception as e:
-            messages.error(request, _("حدث خطأ أثناء التحديث."))
-            return JsonResponse(
-                {"success": False, "message": str(e)}, status=400
-            )
+    def form_valid(self, form):
+        messages.success(self.request, _("تم تحديث السؤال والجواب بنجاح."))
+        return super().form_valid(form)
 
 
 class ChatbotDetailView(LoginRequiredMixin, DetailView):

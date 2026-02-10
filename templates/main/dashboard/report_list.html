@@ -43,11 +43,11 @@
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center">
         <div>
-          <h2 class="mb-2 noto-kufi-arabic">
+          <h2 class="mb-2">
             <i class="fas fa-file-pdf text-danger"></i>
             {% trans "إدارة التقارير" %}
           </h2>
-          <p class="text-muted noto-kufi-arabic">
+          <p class="text-muted">
             {% trans "إدارة التقارير السنوية للموقع" %}
           </p>
         </div>
@@ -66,7 +66,7 @@
     <div class="col-12" data-aos="fade-up">
       <div class="card">
         <div class="card-header">
-          <h5 class="mb-0 noto-kufi-arabic">
+          <h5 class="mb-0">
             <i class="fas fa-list"></i>
             {% trans "قائمة التقارير" %} ({{ reports|length }})
           </h5>
@@ -77,11 +77,11 @@
             <table class="table table-hover align-middle">
               <thead>
                 <tr>
-                  <th class="noto-kufi-arabic">{% trans "السنة" %}</th>
-                  <th class="noto-kufi-arabic">{% trans "العنوان" %}</th>
-                  <th class="noto-kufi-arabic">{% trans "الحالة" %}</th>
-                  <th class="noto-kufi-arabic">{% trans "تاريخ الإضافة" %}</th>
-                  <th class="text-center noto-kufi-arabic">{% trans "الإجراءات" %}</th>
+                  <th>{% trans "السنة" %}</th>
+                  <th>{% trans "العنوان" %}</th>
+                  <th>{% trans "الحالة" %}</th>
+                  <th>{% trans "تاريخ الإضافة" %}</th>
+                  <th class="text-center">{% trans "الإجراءات" %}</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,7 +90,7 @@
                   <td>
                     <span class="badge badge-year text-white">{{ report.year }}</span>
                   </td>
-                  <td class="noto-kufi-arabic">
+                  <td>
                     <strong>{{ report.title }}</strong>
                     {% if report.description %}
                     <br><small class="text-muted">{{ report.description|truncatewords:15 }}</small>
@@ -131,7 +131,7 @@
           {% else %}
           <div class="alert alert-info text-center" data-aos="fade-up">
             <i class="fas fa-info-circle me-2"></i>
-            <span class="noto-kufi-arabic">{% trans "لا توجد تقارير متاحة حالياً" %}</span>
+            <span>{% trans "لا توجد تقارير متاحة حالياً" %}</span>
           </div>
           {% endif %}
         </div>
@@ -146,7 +146,7 @@
         <div class="card-body">
           <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
           <h3>{{ reports|length }}</h3>
-          <p class="text-muted noto-kufi-arabic">{% trans "إجمالي التقارير" %}</p>
+          <p class="text-muted">{% trans "إجمالي التقارير" %}</p>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
         <div class="card-body">
           <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
           <h3>{{ active_reports_count }}</h3>
-          <p class="text-muted noto-kufi-arabic">{% trans "التقارير النشطة" %}</p>
+          <p class="text-muted">{% trans "التقارير النشطة" %}</p>
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@
         <div class="card-body">
           <i class="fas fa-calendar fa-3x text-primary mb-3"></i>
           <h3>{% if reports %}{{ reports.first.year }}{% else %}-{% endif %}</h3>
-          <p class="text-muted noto-kufi-arabic">{% trans "آخر تقرير" %}</p>
+          <p class="text-muted">{% trans "آخر تقرير" %}</p>
         </div>
       </div>
     </div>

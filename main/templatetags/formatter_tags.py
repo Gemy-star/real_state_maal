@@ -67,3 +67,17 @@ def truncate_chars(value: Any, max_length: int = 50) -> str:
     if len(value) <= max_length:
         return value
     return value[: max_length - 3] + "..."
+
+
+@register.filter(name="split")
+def split(value: Any, delimiter: str = ",") -> list:
+    """
+    Split a string by a delimiter and return a list.
+    Returns an empty list if value is None or not a string.
+    Strips whitespace from each item.
+    """
+    if not value:
+        return []
+    if not isinstance(value, str):
+        value = str(value)
+    return [item.strip() for item in value.split(delimiter) if item.strip()]

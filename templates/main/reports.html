@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block style %}
 <style>
   .reports-section {
@@ -268,7 +268,7 @@
             {% endif %}
             <button type="button" class="btn btn-view-report" onclick="openReportModal('{{ report.year }}', '{{ report.pdf_url }}')">
               <i class="bi bi-eye me-2"></i>
-              عرض التقرير
+              {% trans "عرض التقرير" %}
             </button>
           </div>
         </div>
@@ -277,7 +277,7 @@
       <div class="col-12 text-center">
         <div class="alert alert-info">
           <i class="bi bi-info-circle me-2"></i>
-          لا توجد تقارير متاحة حالياً
+          {% trans "لا توجد تقارير متاحة حالياً" %}
         </div>
       </div>
       {% endfor %}
@@ -292,9 +292,9 @@
       <div class="modal-header">
         <h5 class="modal-title" id="reportModalLabel">
           <i class="bi bi-file-earmark-pdf me-2"></i>
-          التقرير السنوي <span id="modalReportYear"></span>
+          {% trans "التقرير السنوي" %} <span id="modalReportYear"></span>
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'إغلاق' %}"></button>
       </div>
       <div class="modal-body">
         <div class="report-iframe-container" id="reportContainer">
@@ -307,11 +307,11 @@
       <div class="modal-footer">
         <a href="#" id="downloadBtn" class="btn btn-download" download>
           <i class="bi bi-download me-2"></i>
-          تحميل التقرير
+          {% trans "تحميل التقرير" %}
         </a>
         <button type="button" class="btn btn-close-modal" data-bs-dismiss="modal">
           <i class="bi bi-x-lg me-2"></i>
-          إغلاق
+          {% trans "إغلاق" %}
         </button>
       </div>
     </div>
@@ -322,6 +322,15 @@
 {% block js %}
 <script>
   let currentReportUrl = '';
+  // Translatable strings
+  const translations = {
+    loadingReport: "{% trans 'جاري تحميل التقرير...' %}",
+    annualReport: "{% trans 'التقرير السنوي' %}",
+    cannotDisplay: "{% trans 'لا يمكن عرض الملف.' %}",
+    openInNewWindow: "{% trans 'فتح في نافذة جديدة' %}",
+    or: "{% trans 'أو' %}",
+    download: "{% trans 'تحميل' %}"
+  };
 
   function openReportModal(year, pdfUrl) {
     currentReportUrl = pdfUrl;
@@ -337,7 +346,7 @@
     container.innerHTML = `
       <div class="loading-spinner" id="loadingSpinner">
         <div class="spinner-border" aria-hidden="true"></div>
-        <output>جاري تحميل التقرير...</output>
+        <output>${translations.loadingReport}</output>
       </div>
     `;
 
@@ -347,7 +356,15 @@
 
     // Load PDF after a brief delay to show loading state
     setTimeout(() => {
-      container.innerHTML = `<iframe src="${pdfUrl}" title="التقرير السنوي ${year}"></iframe>`;
+      container.innerHTML = `<object data="${pdfUrl}" type="application/pdf" style="width:100%;height:100%;" title="${translations.annualReport} ${year}">
+        <p style="text-align:center;padding:3rem;">
+          <i class="bi bi-exclamation-triangle text-warning" style="font-size:2rem;display:block;margin-bottom:1rem;"></i>
+          ${translations.cannotDisplay}
+          <a href="${pdfUrl}" target="_blank">${translations.openInNewWindow}</a>
+          ${translations.or}
+          <a href="${pdfUrl}" download>${translations.download}</a>
+        </p>
+      </object>`;
     }, 500);
   }
 
@@ -356,7 +373,7 @@
     document.getElementById('reportContainer').innerHTML = `
       <div class="loading-spinner" id="loadingSpinner">
         <div class="spinner-border" aria-hidden="true"></div>
-        <output>جاري تحميل التقرير...</output>
+        <output>${translations.loadingReport}</output>
       </div>
     `;
   });

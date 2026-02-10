@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static i18n %}
 {% block style %}
   <style>
     .navbar {
@@ -26,13 +27,12 @@
     }
   </style>
 {% endblock style %}
-{% load static %}
 
 {% block body %}
   <main id="main">
     <section class="coming-soon">
       <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
-      <h1>سوف يتم الإصدار قريبًا</h1>
+      <h1>{% trans "سوف يتم الإصدار قريبًا" %}</h1>
     </section>
   </main>
 {% endblock %}

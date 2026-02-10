@@ -3,349 +3,577 @@
 
 {% block style %}
 <style>
-  .translation-card {
-    transition: all 0.3s ease;
-    border-radius: 15px;
+  /* Page Header */
+  .page-hero {
+    background: linear-gradient(135deg, #392E37 0%, #5a4a54 60%, #7b6b80 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    color: #fff;
+    position: relative;
     overflow: hidden;
   }
 
-  .translation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,211,105,0.15), transparent 70%);
+    border-radius: 50%;
   }
 
-  .lang-icon {
-    width: 60px;
-    height: 60px;
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
     border-radius: 50%;
+  }
+
+  .page-hero h2 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-hero p {
+    opacity: 0.85;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-btn {
+    background: linear-gradient(135deg, #FFD369, #f0b830);
+    color: #392E37;
+    border: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 211, 105, 0.4);
+    color: #392E37;
+  }
+
+  /* Language Cards */
+  .lang-card {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lang-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .lang-card.lang-ar::before {
+    background: linear-gradient(90deg, #FFD369, #f0b830);
+  }
+
+  .lang-card.lang-en::before {
+    background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+  }
+
+  .lang-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+
+  .lang-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #392E37, #4c3c4f);
-    color: white;
-    box-shadow: 0 4px 15px rgba(57, 46, 55, 0.3);
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 1.25rem;
   }
 
-  .status-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-    display: inline-block;
-    margin-top: 0.5rem;
-  }
-
-  .status-active {
-    background: linear-gradient(135deg, #28a745, #218838);
-    color: white;
-  }
-
-  .status-inactive {
-    background: linear-gradient(135deg, #dc3545, #c82333);
-    color: white;
-  }
-
-  .rosetta-btn {
-    background: linear-gradient(135deg, #FFD369, #FFA500);
+  .lang-ar .lang-avatar {
+    background: linear-gradient(135deg, #FFD369, #f0b830);
     color: #392E37;
-    border: none;
-    padding: 0.75rem 2rem;
+  }
+
+  .lang-en .lang-avatar {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  }
+
+  .lang-card h4 {
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 0.25rem;
+  }
+
+  .lang-code {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .status-pill.active {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .status-pill.inactive {
+    background: #fde8ea;
+    color: #c0392b;
+  }
+
+  .lang-card .btn-edit-lang {
+    border: 2px solid #e9ecef;
+    background: transparent;
+    color: #555;
+    padding: 0.5rem 1.2rem;
     border-radius: 10px;
     font-weight: 600;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 211, 105, 0.3);
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  .rosetta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(255, 211, 105, 0.5);
-    color: #392E37;
+  .lang-card .btn-edit-lang:hover {
+    border-color: #392E37;
+    background: #392E37;
+    color: #fff;
   }
 
-  .info-box {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border-left: 4px solid #392E37;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-
-  .command-box {
-    background: #2d3748;
-    color: #e2e8f0;
-    padding: 1rem;
-    border-radius: 8px;
-    font-family: 'Courier New', monospace;
-    margin: 1rem 0;
-    position: relative;
-    overflow-x: auto;
-  }
-
-  .command-box code {
-    color: #68d391;
-  }
-
-  .copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+  /* Steps Section */
+  .steps-card {
+    background: #fff;
     border: none;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
   }
 
-  .copy-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .steps-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.5rem 2rem;
   }
 
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #392E37, #4c3c4f);
-    color: white;
+  .steps-card .card-header h5 {
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0;
+  }
+
+  .steps-card .card-body {
+    padding: 2rem;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  .step-item:not(:last-child) {
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #392E37, #5a4a54);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 1rem;
-    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .step-item h6 {
+    font-weight: 600;
+    color: #2d2d2d;
+    margin-bottom: 0.25rem;
+  }
+
+  .step-item p {
+    color: #888;
+    font-size: 0.88rem;
+    margin: 0;
+  }
+
+  /* Terminal / Command Section */
+  .terminal-card {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .terminal-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.5rem 2rem;
+  }
+
+  .terminal-card .card-header h5 {
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0;
+  }
+
+  .terminal-card .card-body {
+    padding: 2rem;
+  }
+
+  .cmd-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .cmd-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .cmd-group-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cmd-group-label i {
+    color: #FFD369;
+  }
+
+  .cmd-line {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 0.85rem 1.2rem;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .cmd-line code {
+    color: #a6e3a1;
+  }
+
+  .cmd-line .cmd-copy {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #e2e8f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+  }
+
+  .cmd-line .cmd-copy:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  .cmd-tip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff3cd;
+    color: #664d03;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Info Bar */
+  .info-bar {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    padding: 1.5rem 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: #ede9fe;
+    color: #5341c5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .info-item small {
+    color: #999;
+    font-size: 0.78rem;
+  }
+
+  .info-item p {
+    margin: 0;
+    font-weight: 600;
+    color: #2d2d2d;
+    font-size: 0.9rem;
   }
 </style>
 {% endblock %}
 
 {% block body %}
 <div class="container-fluid py-4">
-  <!-- Page Header -->
-  <div class="row mb-4" data-aos="fade-down">
-    <div class="col-12">
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <h2 class="mb-2 noto-kufi-arabic">
-            <i class="fas fa-language text-primary"></i>
-            {% trans "إدارة الترجمة" %}
-          </h2>
-          <p class="text-muted noto-kufi-arabic">
-            {% trans "إدارة ترجمات الموقع للغات المختلفة" %}
-          </p>
-        </div>
-        <div>
-          <a href="/rosetta/" class="rosetta-btn" target="_blank">
-            <i class="fas fa-external-link-alt me-2"></i>
-            {% trans "فتح واجهة الترجمة" %}
-          </a>
-        </div>
+  <!-- Hero Header -->
+  <div class="page-hero mb-4" data-aos="fade-down">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <h2 class="mb-1">
+          <i class="fas fa-language me-2"></i>
+          {% trans "إدارة الترجمة" %}
+        </h2>
+        <p class="mb-0">{% trans "إدارة ترجمات الموقع للغات المختلفة" %}</p>
       </div>
+      <a href="/rosetta/" class="hero-btn" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        {% trans "فتح واجهة الترجمة" %}
+      </a>
     </div>
   </div>
 
-  <!-- Languages Status -->
-  <div class="row mb-4">
+  <!-- Language Cards -->
+  <div class="row g-4 mb-4">
     {% for lang_code, lang_info in po_files_status.items %}
-    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'00' }}">
-      <div class="card translation-card">
-        <div class="card-body text-center p-4">
-          <div class="lang-icon mx-auto">
-            {% if lang_code == 'ar' %}
-              <i class="fas fa-flag"></i>
-            {% elif lang_code == 'en' %}
-              <i class="fas fa-globe-americas"></i>
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+      <div class="lang-card lang-{{ lang_code }}">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="lang-avatar">
+              {% if lang_code == 'ar' %}
+                <i class="fas fa-flag"></i>
+              {% elif lang_code == 'en' %}
+                <i class="fas fa-globe-americas"></i>
+              {% else %}
+                <i class="fas fa-language"></i>
+              {% endif %}
+            </div>
+            <h4>{{ lang_info.name }}</h4>
+            <span class="lang-code">{{ lang_code }}</span>
+          </div>
+          <div class="text-end">
+            {% if lang_info.exists %}
+              <span class="status-pill active">
+                <i class="fas fa-check-circle"></i>
+                {% trans "متاح" %}
+              </span>
             {% else %}
-              <i class="fas fa-language"></i>
+              <span class="status-pill inactive">
+                <i class="fas fa-times-circle"></i>
+                {% trans "غير متاح" %}
+              </span>
             {% endif %}
           </div>
-          <h4 class="card-title mb-3 noto-kufi-arabic">{{ lang_info.name }}</h4>
-          <p class="text-muted mb-2">
-            <strong>{% trans "رمز اللغة:" %}</strong> {{ lang_code }}
-          </p>
-
-          {% if lang_info.exists %}
-            <span class="status-badge status-active">
-              <i class="fas fa-check-circle"></i>
-              {% trans "ملف الترجمة موجود" %}
-            </span>
-            <div class="mt-3">
-              <a href="/rosetta/?filter={{ lang_code }}" class="btn btn-sm btn-outline-primary" target="_blank">
-                <i class="fas fa-edit"></i>
-                {% trans "تحرير الترجمة" %}
-              </a>
-            </div>
-          {% else %}
-            <span class="status-badge status-inactive">
-              <i class="fas fa-times-circle"></i>
-              {% trans "ملف الترجمة غير موجود" %}
-            </span>
-          {% endif %}
         </div>
+        {% if lang_info.exists %}
+        <div class="mt-3">
+          <a href="/rosetta/?filter={{ lang_code }}" class="btn-edit-lang" target="_blank">
+            <i class="fas fa-pen"></i>
+            {% trans "تحرير الترجمة" %}
+          </a>
+        </div>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
   </div>
 
-  <!-- Information Cards -->
-  <div class="row">
-    <!-- How to use -->
-    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-      <div class="card h-100">
+  <!-- Steps + Commands -->
+  <div class="row g-4 mb-4">
+    <!-- How to Use -->
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+      <div class="steps-card h-100">
         <div class="card-header">
-          <h5 class="mb-0 noto-kufi-arabic">
-            <i class="fas fa-info-circle text-info"></i>
+          <h5>
+            <i class="fas fa-lightbulb text-warning me-2"></i>
             {% trans "كيفية الاستخدام" %}
           </h5>
         </div>
         <div class="card-body">
-          <div class="d-flex align-items-start mb-3">
-            <div class="feature-icon">
-              <i class="fas fa-mouse-pointer"></i>
-            </div>
+          <div class="step-item">
+            <div class="step-number">1</div>
             <div>
-              <h6 class="noto-kufi-arabic">{% trans "1. افتح واجهة الترجمة" %}</h6>
-              <p class="text-muted small noto-kufi-arabic">
-                {% trans "اضغط على زر 'فتح واجهة الترجمة' للوصول إلى نظام Rosetta" %}
-              </p>
+              <h6>{% trans "افتح واجهة الترجمة" %}</h6>
+              <p>{% trans "اضغط على زر 'فتح واجهة الترجمة' للوصول إلى نظام Rosetta" %}</p>
             </div>
           </div>
-
-          <div class="d-flex align-items-start mb-3">
-            <div class="feature-icon">
-              <i class="fas fa-language"></i>
-            </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
             <div>
-              <h6 class="noto-kufi-arabic">{% trans "2. اختر اللغة" %}</h6>
-              <p class="text-muted small noto-kufi-arabic">
-                {% trans "حدد ملف اللغة الذي تريد ترجمته من القائمة" %}
-              </p>
+              <h6>{% trans "اختر اللغة" %}</h6>
+              <p>{% trans "حدد ملف اللغة الذي تريد ترجمته من القائمة" %}</p>
             </div>
           </div>
-
-          <div class="d-flex align-items-start mb-3">
-            <div class="feature-icon">
-              <i class="fas fa-edit"></i>
-            </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
             <div>
-              <h6 class="noto-kufi-arabic">{% trans "3. عدّل الترجمات" %}</h6>
-              <p class="text-muted small noto-kufi-arabic">
-                {% trans "أضف أو عدل الترجمات للنصوص المختلفة" %}
-              </p>
+              <h6>{% trans "عدّل الترجمات" %}</h6>
+              <p>{% trans "أضف أو عدل الترجمات للنصوص المختلفة" %}</p>
             </div>
           </div>
-
-          <div class="d-flex align-items-start">
-            <div class="feature-icon">
-              <i class="fas fa-save"></i>
-            </div>
+          <div class="step-item">
+            <div class="step-number">4</div>
             <div>
-              <h6 class="noto-kufi-arabic">{% trans "4. احفظ التغييرات" %}</h6>
-              <p class="text-muted small noto-kufi-arabic">
-                {% trans "اضغط على زر الحفظ لتطبيق الترجمات الجديدة" %}
-              </p>
+              <h6>{% trans "احفظ التغييرات" %}</h6>
+              <p>{% trans "اضغط على زر الحفظ لتطبيق الترجمات الجديدة" %}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Commands & Tips -->
-    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-      <div class="card h-100">
+    <!-- Commands -->
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+      <div class="terminal-card h-100">
         <div class="card-header">
-          <h5 class="mb-0 noto-kufi-arabic">
-            <i class="fas fa-terminal text-success"></i>
+          <h5>
+            <i class="fas fa-terminal text-success me-2"></i>
             {% trans "أوامر مفيدة" %}
           </h5>
         </div>
         <div class="card-body">
-          <div class="info-box mb-3">
-            <h6 class="noto-kufi-arabic">
-              <i class="fas fa-code"></i>
+          <div class="cmd-group">
+            <div class="cmd-group-label">
+              <i class="fas fa-file-code"></i>
               {% trans "تحديث ملفات الترجمة" %}
-            </h6>
-            <div class="command-box">
-              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py makemessages -l ar')">
-                <i class="fas fa-copy"></i>
-              </button>
-              <code>python manage.py makemessages -l ar</code>
             </div>
-            <div class="command-box">
-              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py makemessages -l en')">
+            <div class="cmd-line">
+              <code>python manage.py makemessages -l ar</code>
+              <button class="cmd-copy" onclick="copyCmd(this, 'python manage.py makemessages -l ar')">
                 <i class="fas fa-copy"></i>
               </button>
+            </div>
+            <div class="cmd-line">
               <code>python manage.py makemessages -l en</code>
+              <button class="cmd-copy" onclick="copyCmd(this, 'python manage.py makemessages -l en')">
+                <i class="fas fa-copy"></i>
+              </button>
             </div>
           </div>
 
-          <div class="info-box">
-            <h6 class="noto-kufi-arabic">
-              <i class="fas fa-sync"></i>
+          <div class="cmd-group">
+            <div class="cmd-group-label">
+              <i class="fas fa-sync-alt"></i>
               {% trans "تطبيق الترجمات" %}
-            </h6>
-            <div class="command-box">
-              <button class="copy-btn" onclick="copyCommand(this, 'python manage.py compilemessages')">
+            </div>
+            <div class="cmd-line">
+              <code>python manage.py compilemessages</code>
+              <button class="cmd-copy" onclick="copyCmd(this, 'python manage.py compilemessages')">
                 <i class="fas fa-copy"></i>
               </button>
-              <code>python manage.py compilemessages</code>
             </div>
-            <p class="text-muted small mt-2 mb-0 noto-kufi-arabic">
-              <i class="fas fa-lightbulb text-warning"></i>
+            <div class="cmd-tip">
+              <i class="fas fa-lightbulb"></i>
               {% trans "قم بتشغيل هذا الأمر بعد تحديث الترجمات لتطبيقها على الموقع" %}
-            </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Additional Info -->
-  <div class="row">
-    <div class="col-12" data-aos="fade-up" data-aos-delay="500">
-      <div class="card">
-        <div class="card-header bg-gradient-primary text-white">
-          <h5 class="mb-0 noto-kufi-arabic">
-            <i class="fas fa-book"></i>
-            {% trans "معلومات إضافية" %}
-          </h5>
+  <!-- Info Bar -->
+  <div class="info-bar" data-aos="fade-up" data-aos-delay="400">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <div>
+            <small>{% trans "مسار ملفات الترجمة" %}</small>
+            <p><code>{{ locale_path }}</code></p>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <div class="d-flex align-items-center">
-                <div class="feature-icon me-3">
-                  <i class="fas fa-folder"></i>
-                </div>
-                <div>
-                  <small class="text-muted noto-kufi-arabic">{% trans "مسار ملفات الترجمة" %}</small>
-                  <p class="mb-0 small"><code>{{ locale_path }}</code></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <div class="d-flex align-items-center">
-                <div class="feature-icon me-3">
-                  <i class="fas fa-globe"></i>
-                </div>
-                <div>
-                  <small class="text-muted noto-kufi-arabic">{% trans "اللغات المتاحة" %}</small>
-                  <p class="mb-0 small">{% for lang in languages %}{{ lang.1 }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <div class="d-flex align-items-center">
-                <div class="feature-icon me-3">
-                  <i class="fas fa-cog"></i>
-                </div>
-                <div>
-                  <small class="text-muted noto-kufi-arabic">{% trans "النظام" %}</small>
-                  <p class="mb-0 small">Django Rosetta</p>
-                </div>
-              </div>
-            </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div>
+            <small>{% trans "اللغات المتاحة" %}</small>
+            <p>{% for lang in languages %}{{ lang.1 }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div>
+            <small>{% trans "النظام" %}</small>
+            <p>Django Rosetta</p>
           </div>
         </div>
       </div>
@@ -354,12 +582,12 @@
 </div>
 
 <script>
-  function copyCommand(button, text) {
+  function copyCmd(btn, text) {
     navigator.clipboard.writeText(text).then(() => {
-      const originalHTML = button.innerHTML;
-      button.innerHTML = '<i class="fas fa-check"></i>';
+      const icon = btn.querySelector('i');
+      icon.className = 'fas fa-check';
       setTimeout(() => {
-        button.innerHTML = originalHTML;
+        icon.className = 'fas fa-copy';
       }, 2000);
     });
   }

@@ -62,7 +62,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",  # X_FRAME_OPTIONS below
     "main.middleware.ForceArabicDefaultMiddleware",  # force Arabic
 ]
 
@@ -162,6 +162,9 @@ MEDIA_URL = f"/{DEFAULT_MEDIA_FOLDER_NAME}/"
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Allow same-origin iframes (for PDF preview in reports)
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 
 # Messages style
 MESSAGE_TAGS = {
@@ -192,6 +195,10 @@ CONSTANCE_CONFIG = {
     "ADDRESS": ("الرياض، المملكة العربية السعودية", "عنوان الشركة"),
     "ADS_LINK": ("http://google/.com", "رابط الأعلان"),
     "ADS_TITLE": ("رابط  الأعلان", "عنوان الأعلان"),
+    "GOOGLE_MAPS_EMBED_URL": (
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.5347686765!2d46.67175431495965!3d24.71359998410654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03c3cda885c7%3A0x6d2c5acb88d39f3f!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s",
+        "رابط خريطة جوجل (Google Maps Embed URL)",
+    ),
     "GOOGLE_TAG_MANAGER_ID": ("", "Google Tag Manager ID (GTM-XXXXXXX)"),
     "GOOGLE_ANALYTICS_ID": ("", "Google Analytics ID (G-XXXXXXXXXX or UA-XXXXXXXXX-X)"),
     "GOOGLE_ADS_CONVERSION_ID": ("", "Google Ads Conversion ID (AW-XXXXXXXXX)"),

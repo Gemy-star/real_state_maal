@@ -876,15 +876,15 @@
 
   <div class="hero-content">
     <div class="container">
-      <h1 class="hero-title noto-kufi-arabic" data-aos="fade-down" data-aos-duration="1000">
+      <h1 class="hero-title" data-aos="fade-down" data-aos-duration="1000">
         {% trans 'نزرع النجاح، نحصد التميز' %}
         <br>
         <span class="highlight">{% trans 'ونبني مستقبلًا مزدهرًا' %}</span>
       </h1>
-      <p class="hero-subtitle noto-kufi-arabic" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         {% trans 'بخطى رائدة في الاستثمار والتسويق' %}
       </p>
-      <a href="{% url 'about-page' %}" class="hero-btn noto-kufi-arabic" data-aos="zoom-in" data-aos-delay="600">
+      <a href="{% url 'about-page' %}" class="hero-btn" data-aos="zoom-in" data-aos-delay="600">
         <span>{% trans 'اكتشف المزيد' %}</span>
         <i class="fas fa-arrow-left"></i>
       </a>
@@ -893,7 +893,7 @@
 
   <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1000">
     <a href="#about">
-      <span class="noto-kufi-arabic">{% trans 'اكتشف' %}</span>
+      <span>{% trans 'اكتشف' %}</span>
       <i class="fas fa-chevron-down"></i>
     </a>
   </div>
@@ -903,40 +903,40 @@
 <div class="news-ticker">
   <div class="ticker-wrapper">
     {% for item in news %}
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {{ item.title }}
     </div>
     {% empty %}
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'مرحباً بكم في شركة ثمار القابضة' %}
     </div>
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'أكثر من 35 عاماً من الخبرة والتميز' %}
     </div>
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'نفخر بخدمة أكثر من 500 شريك نجاح' %}
     </div>
     {% endfor %}
     <!-- Duplicate for seamless loop -->
     {% for item in news %}
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {{ item.title }}
     </div>
     {% empty %}
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'مرحباً بكم في شركة ثمار القابضة' %}
     </div>
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'أكثر من 35 عاماً من الخبرة والتميز' %}
     </div>
-    <div class="ticker-item noto-kufi-arabic">
+    <div class="ticker-item">
       <i class="fas fa-circle"></i>
       {% trans 'نفخر بخدمة أكثر من 500 شريك نجاح' %}
     </div>
@@ -956,9 +956,9 @@
       </div>
       <div class="col-lg-7">
         <div class="about-content" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-          <span class="section-badge noto-kufi-arabic">{% trans 'من نحن' %}</span>
-          <h2 class="about-title noto-kufi-arabic">{% trans 'شركة ثمار' %}</h2>
-          <p class="about-text noto-kufi-arabic">
+          <span class="section-badge">{% trans 'من نحن' %}</span>
+          <h2 class="about-title">{% trans 'شركة ثمار' %}</h2>
+          <p class="about-text">
             {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
           </p>
         </div>
@@ -977,9 +977,9 @@
           <div class="vision-card-icon">
             <i class="fas fa-eye"></i>
           </div>
-          <span class="vision-card-label noto-kufi-arabic">{% trans 'نعمل' %}</span>
-          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الرؤية' %}</h3>
-          <p class="vision-card-text noto-kufi-arabic">
+          <span class="vision-card-label">{% trans 'نعمل' %}</span>
+          <h3 class="vision-card-title">{% trans 'الرؤية' %}</h3>
+          <p class="vision-card-text">
             {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
           </p>
         </div>
@@ -991,9 +991,9 @@
           <div class="vision-card-icon">
             <i class="fas fa-bullseye"></i>
           </div>
-          <span class="vision-card-label noto-kufi-arabic">{% trans 'نطمح' %}</span>
-          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الأهداف' %}</h3>
-          <div class="vision-card-text noto-kufi-arabic">
+          <span class="vision-card-label">{% trans 'نطمح' %}</span>
+          <h3 class="vision-card-title">{% trans 'الأهداف' %}</h3>
+          <div class="vision-card-text">
             {% if content.goals_paragraph %}
               {{ content.goals_paragraph|safe }}
             {% else %}
@@ -1009,9 +1009,9 @@
           <div class="vision-card-icon">
             <i class="fas fa-paper-plane"></i>
           </div>
-          <span class="vision-card-label noto-kufi-arabic">{% trans 'لنحقق' %}</span>
-          <h3 class="vision-card-title noto-kufi-arabic">{% trans 'الرسالة' %}</h3>
-          <p class="vision-card-text noto-kufi-arabic">
+          <span class="vision-card-label">{% trans 'لنحقق' %}</span>
+          <h3 class="vision-card-title">{% trans 'الرسالة' %}</h3>
+          <p class="vision-card-text">
             {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
           </p>
         </div>
@@ -1024,7 +1024,7 @@
 <section class="facts-section">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title noto-kufi-arabic">{% trans 'حقائق وأرقام' %}</h2>
+      <h2 class="section-title">{% trans 'حقائق وأرقام' %}</h2>
     </div>
 
     <div class="row g-4">
@@ -1035,7 +1035,7 @@
             <i class="fas fa-calendar-alt"></i>
           </div>
           <h3 class="fact-number counter" data-count="35">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'سنوات من الخبرة' %}</p>
+          <p class="fact-label">{% trans 'سنوات من الخبرة' %}</p>
         </div>
       </div>
 
@@ -1046,7 +1046,7 @@
             <i class="fas fa-handshake"></i>
           </div>
           <h3 class="fact-number counter" data-count="500">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'شركاء النجاح' %}</p>
+          <p class="fact-label">{% trans 'شركاء النجاح' %}</p>
         </div>
       </div>
 
@@ -1057,7 +1057,7 @@
             <i class="fas fa-project-diagram"></i>
           </div>
           <h3 class="fact-number counter" data-count="100">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'مشروع ناجح' %}</p>
+          <p class="fact-label">{% trans 'مشروع ناجح' %}</p>
         </div>
       </div>
 
@@ -1068,7 +1068,7 @@
             <i class="fas fa-chart-pie"></i>
           </div>
           <h3 class="fact-number counter" data-count="10">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'قطاعات استثمارية' %}</p>
+          <p class="fact-label">{% trans 'قطاعات استثمارية' %}</p>
         </div>
       </div>
 
@@ -1079,7 +1079,7 @@
             <i class="fas fa-headset"></i>
           </div>
           <h3 class="fact-number counter" data-count="24">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'خدمة العملاء' %}</p>
+          <p class="fact-label">{% trans 'خدمة العملاء' %}</p>
         </div>
       </div>
 
@@ -1090,7 +1090,7 @@
             <i class="fas fa-trophy"></i>
           </div>
           <h3 class="fact-number counter" data-count="15">0</h3>
-          <p class="fact-label noto-kufi-arabic">{% trans 'جوائز وتكريمات' %}</p>
+          <p class="fact-label">{% trans 'جوائز وتكريمات' %}</p>
         </div>
       </div>
     </div>
@@ -1101,7 +1101,7 @@
 <section class="team-section">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title noto-kufi-arabic">{% trans 'فريق العمل' %}</h2>
+      <h2 class="section-title">{% trans 'فريق العمل' %}</h2>
     </div>
 
     <div class="swiper swiper-team" data-aos="fade-up" data-aos-delay="200">
@@ -1113,8 +1113,8 @@
               <img src="{% static 'assets/img/ceo/1.png' %}" alt="{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'رئيس مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'المهندس/ وليد بن عبدالعزيز الشويعر' %}</h4>
+              <p class="team-card-role">{% trans 'رئيس مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1130,8 +1130,8 @@
               <img src="{% static 'assets/img/ceo/2.png' %}" alt="{% trans 'أ/ خالد بن أسعد خاشقجي' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/ خالد بن أسعد خاشقجي' %}</h4>
+              <p class="team-card-role">{% trans 'نائب رئيس مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1147,8 +1147,8 @@
               <img src="{% static 'assets/img/ceo/3.png' %}" alt="{% trans 'أ/ ملفي بن مناحي المرزوقي' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/ ملفي بن مناحي المرزوقي' %}</h4>
+              <p class="team-card-role">{% trans 'عضو مجلس الإدارة - العضو المنتدب' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1164,8 +1164,8 @@
               <img src="{% static 'assets/img/ceo/4.png' %}" alt="{% trans 'أ/ عبد العزيز محمد القحطاني' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/ عبد العزيز محمد القحطاني' %}</h4>
+              <p class="team-card-role">{% trans 'عضو مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1181,8 +1181,8 @@
               <img src="{% static 'assets/img/ceo/5.png' %}" alt="{% trans 'أ/ عبدالكريم بن محمد النهير' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/ عبدالكريم بن محمد النهير' %}</h4>
+              <p class="team-card-role">{% trans 'عضو مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1198,8 +1198,8 @@
               <img src="{% static 'assets/img/ceo/6.png' %}" alt="{% trans 'أ/هيثم بن فيصل اسكوبى' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/هيثم بن فيصل اسكوبى' %}</h4>
+              <p class="team-card-role">{% trans 'عضو مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1215,8 +1215,8 @@
               <img src="{% static 'assets/img/ceo/7.png' %}" alt="{% trans 'أ/ياسر بن سليمان العقيل' %}">
             </div>
             <div class="team-card-body">
-              <h4 class="team-card-name noto-kufi-arabic">{% trans 'أ/ياسر بن سليمان العقيل' %}</h4>
-              <p class="team-card-role noto-kufi-arabic">{% trans 'عضو مجلس الإدارة' %}</p>
+              <h4 class="team-card-name">{% trans 'أ/ياسر بن سليمان العقيل' %}</h4>
+              <p class="team-card-role">{% trans 'عضو مجلس الإدارة' %}</p>
               <div class="team-card-social">
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>

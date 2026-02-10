@@ -1,0 +1,147 @@
+{% extends 'dash_base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "تعديل سؤال وجواب" %}{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-gradient-primary text-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+              <i class="fas fa-edit me-2"></i>
+              {% trans "تعديل السؤال والجواب" %}
+            </h4>
+            <a href="{% url 'chatbot-list' %}" class="btn btn-sm btn-outline-light">
+              <i class="fas fa-arrow-left me-1"></i>
+              {% trans "العودة للقائمة" %}
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="{{ form.question.id_for_label }}" class="form-label required">
+                {% trans "السؤال" %}
+              </label>
+              {{ form.question }}
+              {% if form.question.errors %}
+                <div class="text-danger">{{ form.question.errors }}</div>
+              {% endif %}
+              <small class="form-text text-muted">{% trans "السؤال الذي قد يطرحه المستخدمون" %}</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.answer.id_for_label }}" class="form-label required">
+                {% trans "الجواب" %}
+              </label>
+              {{ form.answer }}
+              {% if form.answer.errors %}
+                <div class="text-danger">{{ form.answer.errors }}</div>
+              {% endif %}
+              <small class="form-text text-muted">{% trans "الإجابة على السؤال" %}</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.keywords.id_for_label }}" class="form-label">
+                {% trans "الكلمات المفتاحية" %}
+              </label>
+              {{ form.keywords }}
+              {% if form.keywords.errors %}
+                <div class="text-danger">{{ form.keywords.errors }}</div>
+              {% endif %}
+              <small class="form-text text-muted">{% trans "كلمات مفتاحية مفصولة بفاصلة للبحث الأفضل (اختياري)" %}</small>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.category.id_for_label }}" class="form-label">
+                  {% trans "الفئة" %}
+                </label>
+                {{ form.category }}
+                {% if form.category.errors %}
+                  <div class="text-danger">{{ form.category.errors }}</div>
+                {% endif %}
+                <small class="form-text text-muted">{% trans "مثل: الخدمات، من نحن، إلخ" %}</small>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.order.id_for_label }}" class="form-label">
+                  {% trans "الترتيب" %}
+                </label>
+                {{ form.order }}
+                {% if form.order.errors %}
+                  <div class="text-danger">{{ form.order.errors }}</div>
+                {% endif %}
+                <small class="form-text text-muted">{% trans "الأرقام الأقل تظهر أولاً" %}</small>
+              </div>
+            </div>
+
+            <div class="mb-3 form-check">
+              {{ form.is_active }}
+              <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                {% trans "نشط (إظهار في الشات بوت)" %}
+              </label>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-success">
+                <i class="fas fa-save me-1"></i>
+                {% trans "حفظ التعديلات" %}
+              </button>
+              <a href="{% url 'chatbot-list' %}" class="btn btn-secondary">
+                <i class="fas fa-times me-1"></i>
+                {% trans "إلغاء" %}
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #392E37, #5a4a54);
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #392E37;
+  box-shadow: 0 0 0 0.2rem rgba(57, 46, 55, 0.25);
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
+
+.required::after {
+  content: " *";
+  color: red;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('input[type="text"], input[type="number"], textarea, select').forEach(function(el) {
+    if (el.type === 'checkbox') {
+      el.classList.add('form-check-input');
+    } else if (el.tagName === 'SELECT') {
+      el.classList.add('form-select');
+    } else {
+      el.classList.add('form-control');
+    }
+  });
+});
+</script>
+{% endblock %}

@@ -39,7 +39,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
     <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet" />
@@ -53,128 +53,115 @@
 
     <!-- Loader Styles -->
     <style>
-      /* Modern WhatsApp Button */
-      #chat {
+      /* WhatsApp Floating Button */
+      .wa-float {
         position: fixed;
-        bottom: 110px;
-        left: 30px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        color: white;
-        border-radius: 50%;
+        bottom: 100px;
+        right: 28px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        direction: ltr;
+      }
+
+      .wa-float .wa-btn {
+        width: 56px;
+        height: 56px;
+        background: #25D366;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-        cursor: pointer;
-        z-index: 999;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #fff;
         text-decoration: none;
-        overflow: visible;
-        animation: whatsappPulse 2s ease-in-out infinite;
+        box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        transition: all 0.3s ease;
+        position: relative;
       }
 
-      #chat:hover {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
-      }
-
-      #chat i {
-        font-size: 28px;
+      .wa-float .wa-btn i {
+        font-size: 26px;
         transition: transform 0.3s ease;
       }
 
-      #chat:hover i {
-        transform: scale(1.2) rotate(-5deg);
+      .wa-float .wa-btn:hover {
+        border-radius: 20px;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
       }
 
-      /* Tooltip/Helper Text */
-      #chat::before {
-        content: 'تحدث معنا';
+      .wa-float .wa-btn:hover i {
+        transform: scale(1.15);
+      }
+
+      /* Online dot */
+      .wa-float .wa-btn::after {
+        content: '';
         position: absolute;
-        right: 70px;
-        background: white;
-        color: #128C7E;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 14px;
+        top: 6px;
+        right: 6px;
+        width: 10px;
+        height: 10px;
+        background: #69ff69;
+        border: 2px solid #fff;
+        border-radius: 50%;
+      }
+
+      /* Label pill */
+      .wa-label {
+        background: #fff;
+        color: #333;
+        padding: 0.4rem 0.9rem;
+        border-radius: 10px;
+        font-size: 0.82rem;
         font-weight: 600;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin-right: 10px;
         opacity: 0;
-        transform: translateX(-10px);
+        transform: translateX(8px);
         transition: all 0.3s ease;
         pointer-events: none;
       }
 
-      #chat:hover::before {
+      .wa-float:hover .wa-label {
         opacity: 1;
         transform: translateX(0);
       }
 
-      /* Pulse Animation */
-      @keyframes whatsappPulse {
-        0%, 100% {
-          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-        }
-        50% {
-          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4),
-                      0 0 0 10px rgba(37, 211, 102, 0.2),
-                      0 0 0 20px rgba(37, 211, 102, 0.1);
-        }
-      }
-
-      /* Status Indicator */
-      #chat::after {
-        content: '';
+      /* Subtle ping ring */
+      .wa-ping {
         position: absolute;
-        top: 5px;
-        right: 5px;
-        width: 12px;
-        height: 12px;
-        background: #00ff00;
-        border: 2px solid white;
-        border-radius: 50%;
-        animation: blink 2s ease-in-out infinite;
+        inset: 0;
+        border-radius: 16px;
+        border: 2px solid rgba(37, 211, 102, 0.5);
+        animation: waPing 3s ease-out infinite;
+        pointer-events: none;
       }
 
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
+      @keyframes waPing {
+        0% { transform: scale(1); opacity: 0.6; }
+        70% { transform: scale(1.35); opacity: 0; }
+        100% { transform: scale(1.35); opacity: 0; }
       }
 
-      /* RTL Support */
-      [dir="rtl"] #chat {
-        left: auto;
-        right: 30px;
-      }
-
-      [dir="rtl"] #chat::before {
-        right: auto;
-        left: 70px;
-      }
-
-      /* Mobile Responsive */
       @media (max-width: 768px) {
-        #chat {
-          width: 55px;
-          height: 55px;
-          bottom: 100px;
+        .wa-float {
+          bottom: 90px;
+          right: 16px;
         }
-        
-        #chat i {
-          font-size: 24px;
+        .wa-float .wa-btn {
+          width: 50px;
+          height: 50px;
+          border-radius: 14px;
         }
-
-        #chat::before {
+        .wa-float .wa-btn i {
+          font-size: 22px;
+        }
+        .wa-label {
           display: none;
         }
-      }
-
-      .back-to-top {
-        cursor: pointer !important;
       }
 
       /* Modern Loader */
@@ -494,6 +481,7 @@
     </div>
 
     {% include 'partials/_navbar.html' %}
+    {% include 'partials/_messages.html' %}
 
     {% block body %}{% endblock %}
         {% include 'partials/_footer.html' %}
@@ -502,9 +490,13 @@
     {% include 'partials/_chatbot.html' %}
 
     <!-- WhatsApp Button -->
-    <a id="chat" href="https://api.whatsapp.com/send?phone=966591616638" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="wa-float">
+      <span class="wa-label">{% trans "تحدث معنا" %}</span>
+      <a class="wa-btn" href="https://api.whatsapp.com/send?phone={{ config.PHONE_NUMBER }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-ping"></span>
+      </a>
+    </div>
 
     <!-- Vendor JS -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
