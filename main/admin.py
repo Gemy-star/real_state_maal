@@ -38,8 +38,13 @@ class JobRequestAdmin(admin.ModelAdmin):
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ("title", "image")
-    search_fields = ("title", "content")
+    search_fields = ("title", "title_en", "content", "content_en")
     ordering = ("-id",)
+    fieldsets = (
+        ('Arabic', {'fields': ('title', 'content')}),
+        ('English', {'fields': ('title_en', 'content_en')}),
+        ('Media', {'fields': ('image',)}),
+    )
 
 
 # Singleton Models → only allow editing the single instance
@@ -51,6 +56,24 @@ class SiteConfigurationAdmin(admin.ModelAdmin):
 
 @admin.register(HomePageContent)
 class HomePageContentAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('welcome_header', 'welcome_btn_text', 'welcome_background'),
+        }),
+        ('First Paragraph (Arabic / English)', {
+            'fields': ('home_first_paragrapgh', 'home_first_paragrapgh_en', 'first_paragrapgh_background'),
+        }),
+        ('Vision / رؤية', {
+            'fields': ('roaya_paragraph', 'roaya_paragraph_en'),
+        }),
+        ('Goals / أهداف', {
+            'fields': ('goals_paragraph', 'goals_paragraph_en'),
+        }),
+        ('Message / رسالة', {
+            'fields': ('messages_paragraph', 'messages_paragraph_en'),
+        }),
+    )
+
     def has_add_permission(self, request):
         return not HomePageContent.objects.exists()
 

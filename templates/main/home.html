@@ -902,10 +902,11 @@
 <!-- News Ticker -->
 <div class="news-ticker">
   <div class="ticker-wrapper">
+    {% get_current_language as LANGUAGE_CODE %}
     {% for item in news %}
     <div class="ticker-item">
       <i class="fas fa-circle"></i>
-      {{ item.title }}
+      {% if LANGUAGE_CODE == 'en' %}{{ item.title_en|default:item.title }}{% else %}{{ item.title }}{% endif %}
     </div>
     {% empty %}
     <div class="ticker-item">
@@ -925,7 +926,7 @@
     {% for item in news %}
     <div class="ticker-item">
       <i class="fas fa-circle"></i>
-      {{ item.title }}
+      {% if LANGUAGE_CODE == 'en' %}{{ item.title_en|default:item.title }}{% else %}{{ item.title }}{% endif %}
     </div>
     {% empty %}
     <div class="ticker-item">
@@ -959,7 +960,12 @@
           <span class="section-badge">{% trans 'من نحن' %}</span>
           <h2 class="about-title">{% trans 'شركة ثمار' %}</h2>
           <p class="about-text">
-            {{ content.home_first_paragraph|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+              {{ content.home_first_paragrapgh_en|default:"Thimar Holding Development Company has been on a journey since its launch in 1988, providing innovative solutions for marketing agricultural and food products, and expanding its investments across vital sectors such as real estate development and project management. With an ambitious vision and renewed goals, Thimar aspires to be a leading partner in achieving sustainable development and supporting the national economy."|safe }}
+            {% else %}
+              {{ content.home_first_paragrapgh|default:'شركة ثمار التنمية القابضة، منذ انطلاقتها في عام 1988، تواصل رحلتها في تقديم حلول مبتكرة لتسويق المنتجات الزراعية والغذائية، وتوسيع نطاق استثماراتها عبر قطاعات حيوية مثل التطوير العقاري وإدارة المشاريع برؤية طموحة وأهداف متجددة، تسعى ثمار لأن تكون شريكًا رائدًا في تحقيق التنمية المستدامة ودعم الاقتصاد الوطني'|safe }}
+            {% endif %}
           </p>
         </div>
       </div>
@@ -980,7 +986,12 @@
           <span class="vision-card-label">{% trans 'نعمل' %}</span>
           <h3 class="vision-card-title">{% trans 'الرؤية' %}</h3>
           <p class="vision-card-text">
-            {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+              {{ content.roaya_paragraph_en|default:"To achieve sustainable returns through innovative and successful investments that drive growth and contribute to supporting and strengthening the national economy."|safe }}
+            {% else %}
+              {{ content.roaya_paragraph|default:'على تحقيق عوائد مستدامة من خلال استثمارات مبتكرة و ناجحة قابلة لتوسع النمو و تساهم فى دعم و تعزيز الأقتصاد الوطنى'|safe }}
+            {% endif %}
           </p>
         </div>
       </div>
@@ -994,10 +1005,19 @@
           <span class="vision-card-label">{% trans 'نطمح' %}</span>
           <h3 class="vision-card-title">{% trans 'الأهداف' %}</h3>
           <div class="vision-card-text">
-            {% if content.goals_paragraph %}
-              {{ content.goals_paragraph|safe }}
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+              {% if content.goals_paragraph_en %}
+                {{ content.goals_paragraph_en|safe }}
+              {% else %}
+                <p>{% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}</p>
+              {% endif %}
             {% else %}
-              <p>{% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}</p>
+              {% if content.goals_paragraph %}
+                {{ content.goals_paragraph|safe }}
+              {% else %}
+                <p>{% trans 'لريادة استثمارية تدعم الأقتصاد و تحقق تطلعات المستقبل' %}</p>
+              {% endif %}
             {% endif %}
           </div>
         </div>
@@ -1012,7 +1032,12 @@
           <span class="vision-card-label">{% trans 'لنحقق' %}</span>
           <h3 class="vision-card-title">{% trans 'الرسالة' %}</h3>
           <p class="vision-card-text">
-            {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == 'en' %}
+              {{ content.messages_paragraph_en|default:"Excellence through strategic investments that make a difference and open new horizons for sustainable and economic growth."|safe }}
+            {% else %}
+              {{ content.messages_paragraph|default:'التميز باستثمارات استراتيجية تصنع الفارق و تفتح أفاقا جديدة للنمو المستدام و النمو الأقتصادى'|safe }}
+            {% endif %}
           </p>
         </div>
       </div>

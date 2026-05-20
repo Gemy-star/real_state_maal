@@ -67,8 +67,10 @@ class JobRequest(models.Model):
 
 
 class News(models.Model):
-    title = models.TextField(_("Title"))
-    content = models.TextField(_("Content"))
+    title = models.TextField(_("Title (Arabic)"))
+    title_en = models.TextField(_("Title (English)"), null=True, blank=True)
+    content = models.TextField(_("Content (Arabic)"))
+    content_en = models.TextField(_("Content (English)"), null=True, blank=True)
     image = models.ImageField(_("Image"), null=True, blank=True, upload_to="news/")
 
     image_thumb = ImageSpecField(
@@ -122,16 +124,24 @@ class HomePageContent(SingletonModel):
         _("Welcome Button Text"), max_length=255, null=True, blank=True
     )
     home_first_paragrapgh = models.TextField(
-        _("First Paragraph"), null=True, blank=True
+        _("First Paragraph (Arabic)"), null=True, blank=True
+    )
+    home_first_paragrapgh_en = models.TextField(
+        _("First Paragraph (English)"), null=True, blank=True
     )
     first_paragrapgh_background = models.ImageField(
         _("First Paragraph Background"), upload_to="backgrounds/", null=True, blank=True
     )
-    roaya_paragraph = models.TextField(_("Vision Paragraph"), null=True, blank=True)
+    roaya_paragraph = models.TextField(_("Vision Paragraph (Arabic)"), null=True, blank=True)
+    roaya_paragraph_en = models.TextField(_("Vision Paragraph (English)"), null=True, blank=True)
     messages_paragraph = models.TextField(
-        _("Messages Paragraph"), null=True, blank=True
+        _("Messages Paragraph (Arabic)"), null=True, blank=True
     )
-    goals_paragraph = models.TextField(_("Goals Paragraph"), null=True, blank=True)
+    messages_paragraph_en = models.TextField(
+        _("Messages Paragraph (English)"), null=True, blank=True
+    )
+    goals_paragraph = models.TextField(_("Goals Paragraph (Arabic)"), null=True, blank=True)
+    goals_paragraph_en = models.TextField(_("Goals Paragraph (English)"), null=True, blank=True)
 
     welcome_background_large = ImageSpecField(
         source="welcome_background",
